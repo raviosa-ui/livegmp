@@ -25,7 +25,7 @@ jobs:
           fi
 
       - name: Upload to DreamHost via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/ftp-deploy-action@4.0.0
         with:
           server: ${{ secrets.DH_HOST }}
           username: ${{ secrets.DH_USER }}
@@ -34,3 +34,4 @@ jobs:
           protocol: sftp
           local-dir: .
           server-dir: /home/${{ secrets.DH_USER }}/livegmp.in
+
