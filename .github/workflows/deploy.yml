@@ -26,7 +26,7 @@ jobs:
         fi
 
     - name: Deploy via FTPS
-      uses: SamKirkland/ftp-deploy-action@v4
+      uses: SamKirkland/ftp-deploy-action@4.0.0
       with:
         server: ${{ secrets.DH_HOST }}
         username: ${{ secrets.DH_USER }}
