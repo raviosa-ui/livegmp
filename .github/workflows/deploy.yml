@@ -17,21 +17,27 @@ jobs:
       with:
         node-version: 18
 
-    - name: Build site (skip if HTML only)
+    - name: Build site (if applicable)
       run: |
         if [ -f package.json ]; then
           npm ci
-          npm run build || echo "No build step"
-          npm run export || echo "No export step"
+          npm run build --if-present
+          npm run export --if-present
         fi
 
     - name: Deploy via FTPS
-      uses: SamKirkland/ftp-deploy-action@4.0.0
+      uses: SamKirkland/ftp-deploy-action@v4
       with:
         server: ${{ secrets.DH_HOST }}
         username: ${{ secrets.DH_USER }}
         password: ${{ secrets.DH_PASS }}
-        port: ${{ secrets.DH_PORT }}
+        port: 21  # DreamHost uses explicit FTPS on port 21
         protocol: ftps
-        local-dir: ./
+        local-dir: ./  # ⚠️ Consider ./out/, ./dist/, or ./public/ if built
         server-dir: /home/${{ secrets.DH_USER }}/livegmp.in/
+        # Optional: exclude files
+        exclude: |
+          .git*
+          node_modules/
+          *.md
+          .ftp-deploy-sync-config.json
