@@ -34,4 +34,4 @@ jobs:
         port: ${{ secrets.DH_PORT }}
         protocol: ftps
         local-dir: ./
-        server-dir: /home/${{ secrets.DH_USER }}/livegmp.in
+        server-dir: /home/${{ secrets.DH_USER }}/livegmp.in/
