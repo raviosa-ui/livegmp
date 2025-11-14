@@ -1,4 +1,4 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - FINAL FIX: PUBLIC FOLDER
+name: Deploy to LiveGMP.in via SFTP (Final Public Folder Fix)
 
 on:
   push:
