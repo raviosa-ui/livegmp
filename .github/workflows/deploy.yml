@@ -1,9 +1,9 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22)
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - Wangyucode
 
 on:
   push:
     branches:
-      - main  # Set this to your main branch (e.g., main or master)
+      - main 
 
 jobs:
   web_deploy:
@@ -14,23 +14,23 @@ jobs:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
         
-      - name: 🚀 Deploy via SFTP
-        # CORRECTED: Using the full, pinned version tag (v1.3.1)
-        uses: SamKirkland/SFTP-Deploy-Action@v1.3.1
+      - name: 🚀 SFTP Uploader Deployment
+        # ACTION CHANGE: Using a dedicated SFTP password action
+        uses: wangyucode/sftp-upload-action@v2.0.4 
         with:
           # --- DREAMHOST CREDENTIALS (from GitHub Secrets) ---
-          server: ${{ secrets.DH_HOST }}
+          host: ${{ secrets.DH_HOST }}
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_PASS }}
-          port: 22 # Using SFTP default port
+          port: 22 
 
           # --- DIRECTORY PATHS ---
-          # Local directory: Look for all files/folders in the repo root
-          local-path: './**'
+          # Local directory: . means the root of the repo
+          localDir: "."
           
-          # Server directory: The absolute path on DreamHost (ends with /)
-          remote-path: '/home/${{ secrets.DH_USER }}/livegmp.in/'
-          
+          # Server directory: The absolute path on DreamHost
+          remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
+
           # --- OPTIONS ---
-          # Optional: Keep the remote path clean by deleting files not present locally
-          dry-run: false
+          # Optional: Force upload all files
+          forceUpload: true
