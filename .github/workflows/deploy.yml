@@ -1,4 +1,4 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - DeployClean
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - FINAL FIX: PUBLIC FOLDER
 
 on:
   push:
@@ -13,29 +13,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Prepare deploy folder (copy only site files)
+      - name: Prepare deploy folder (create clean 'public' folder locally)
         run: |
           # 1. Create a clean staging folder
           rm -rf deploy
           mkdir deploy
           
-          # 2. **CRUCIAL LINE:** Copy ONLY your actual website files and folders.
-          # We use 'cp -R .' to copy ALL contents, but we pipe it through rsync 
-          # to exclude .git, .github, and the deploy folder itself.
-          
+          # 2. Use rsync to copy ALL website files while GUARANTEEING exclusion of system files.
           rsync -avz --exclude '.git' --exclude '.github' --exclude 'deploy' ./ deploy/
           
           echo "Deploy folder contents:"
           ls -la deploy
           
-      - name: ⬇️ SFTP upload (deploy folder)
+      - name: ⬇️ SFTP upload to NEW /public folder
         uses: wangyucode/sftp-upload-action@v2.0.4
         with:
           host: ${{ secrets.DH_HOST }}
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_PASS }}
           port: 22
-          # Action now uploads the contents of the 'deploy' folder
+          # *** CRITICAL CHANGE: Deploying to the new 'public' subdirectory ***
+          remoteDir: "/home/${{ secrets.DH_USER }}/livegmp.in/public/" 
           localDir: "deploy/"
-          remoteDir: "/home/${{ secrets.DH_USER }}/livegmp.in/"
           forceUpload: true
