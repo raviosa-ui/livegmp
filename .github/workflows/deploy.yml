@@ -15,7 +15,6 @@ jobs:
         uses: actions/checkout@v4
         
       - name: 🚀 SFTP Uploader Deployment
-        # ACTION CHANGE: Using a dedicated SFTP password action
         uses: wangyucode/sftp-upload-action@v2.0.4 
         with:
           # --- DREAMHOST CREDENTIALS (from GitHub Secrets) ---
@@ -25,12 +24,12 @@ jobs:
           port: 22 
 
           # --- DIRECTORY PATHS ---
-          # Local directory: . means the root of the repo
           localDir: "."
-          
-          # Server directory: The absolute path on DreamHost
           remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
 
+          # --- CRUCIAL FIX: EXCLUDE GIT FILES ---
+          # This tells the action to ignore the .git directory and the .github folder
+          exclude: ".git, .github" 
+
           # --- OPTIONS ---
-          # Optional: Force upload all files
           forceUpload: true
