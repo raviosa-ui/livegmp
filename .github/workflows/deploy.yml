@@ -1,4 +1,4 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - Wangyucode
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - FINAL FIX
 
 on:
   push:
@@ -27,7 +27,9 @@ jobs:
           localDir: "."
           remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
 
-          # --- OPTION: EXCLUDE LINE IS GONE ---
+          # --- CRUCIAL FIX: IGNORE ALL DOT FILES ---
+          # This permanently prevents .git, .github, and .sftpignore from being uploaded.
+          ignore_dot_files: true 
 
           # --- OPTIONS ---
           forceUpload: true
