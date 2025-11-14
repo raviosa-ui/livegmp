@@ -1,63 +1,36 @@
-name: Build and Deploy to DreamHost (FTPS via lftp)
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22)
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main  # Ensure this matches your main branch name
 
 jobs:
-  build-and-deploy:
+  web_deploy:
+    name: SFTP Deployment
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js (optional - safe even for plain HTML)
-        uses: actions/setup-node@v4
+        
+      - name: 🚀 Deploy via SFTP
+        # Use an action designed for SFTP password authentication
+        uses: SamKirkland/SFTP-Deploy-Action@v1.3.1 # Note the action change!
         with:
-          node-version: 18
+          # --- REQUIRED SECRETS ---
+          server: ${{ secrets.DH_HOST }}
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_PASS }}
+          port: 22 # Explicitly set to SFTP default port
 
-      - name: Build site (skip if HTML only)
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-            npm run build || echo "No build step"
-            npm run export || echo "No export step"
-          fi
-
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Upload via FTPS (lftp)
-        env:
-          HOST: ${{ secrets.DH_HOST }}
-          USER: ${{ secrets.DH_USER }}
-          PASS: ${{ secrets.DH_PASS }}
-          PORT: ${{ secrets.DH_PORT }}
-        run: |
-          # Local directory to upload:
-          # if you use Next.js export use "out" instead of "." (uncomment the next line)
-          # LOCAL_DIR="out"
-          LOCAL_DIR="."
-
-          # Remote directory (must end with /). Adjust if your site directory is different.
-          REMOTE_DIR="/home/${USER}/livegmp.in/"
-
-          echo "Uploading $LOCAL_DIR -> ftps://$HOST:$PORT$REMOTE_DIR"
-
-          # lftp mirror command:
-          # -R : reverse (local -> remote)
-          # --delete : remove remote files that no longer exist locally
-          # -v : verbose
-          # --parallel=2 : parallel transfers
-          # set ftps:initial-prot '' ensures explicit TLS (AUTH TLS)
-          # set ftp:ssl-force true forces TLS
-          # set ftp:ssl-protect-data true protects data channel
-          # set ssl:verify-certificate no disables certificate verification (useful behind some proxies). Remove to enforce cert check.
-          lftp -u "$USER","$PASS" -p $PORT -e "\
-            set ftp:ssl-force true; \
-            set ftp:ssl-protect-data true; \
-            set ftps:initial-prot ''; \
-            set ssl:verify-certificate no; \
-            set ftp:passive-mode true; \
-            mirror -R --delete --verbose --parallel=2 $LOCAL_DIR $REMOTE_DIR; \
-            quit" ftps://$HOST
+          # --- DIRECTORIES ---
+          # Local directory: The root of your repo
+          local-path: './**' # '**' ensures all files/folders are included
+          
+          # Server directory: The absolute path to your site's root on DreamHost
+          remote-path: '/home/${{ secrets.DH_USER }}/livegmp.in/'
+          
+          # --- OPTIONS ---
+          # Optional: Keep the remote path clean by deleting files not present locally
+          dry-run: false
