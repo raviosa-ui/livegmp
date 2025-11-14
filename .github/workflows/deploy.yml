@@ -27,9 +27,9 @@ jobs:
           localDir: "."
           remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
 
-          # --- CRUCIAL FIX: IGNORE ALL DOT FILES ---
-          # This permanently prevents .git, .github, and .sftpignore from being uploaded.
-          ignore_dot_files: true 
+          # --- CRUCIAL FIX: CORRECT EXCLUDE PARAMETER ---
+          # This is the valid parameter, excluding the dot folders and all their contents.
+          exclude: ".git/**, .github/**, .sftpignore"
 
           # --- OPTIONS ---
           forceUpload: true
