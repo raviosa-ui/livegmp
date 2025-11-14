@@ -27,9 +27,7 @@ jobs:
           localDir: "."
           remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
 
-          # --- CRUCIAL FIX: EXCLUDE GIT FILES ---
-          # This tells the action to ignore the .git directory and the .github folder
-          exclude: ".git, .github" 
+          # --- OPTION: EXCLUDE LINE IS GONE ---
 
           # --- OPTIONS ---
           forceUpload: true
