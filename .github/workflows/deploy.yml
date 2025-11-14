@@ -1,35 +1,41 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - FINAL FIX
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - DeployClean
 
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   web_deploy:
-    name: SFTP Deployment
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: 🚀 SFTP Uploader Deployment
-        uses: wangyucode/sftp-upload-action@v2.0.4 
+
+      - name: Prepare deploy folder (copy only site files)
+        run: |
+          # 1. Create a clean staging folder
+          rm -rf deploy
+          mkdir deploy
+          
+          # 2. **CRUCIAL LINE:** Copy ONLY your actual website files and folders.
+          # We use 'cp -R .' to copy ALL contents, but we pipe it through rsync 
+          # to exclude .git, .github, and the deploy folder itself.
+          
+          rsync -avz --exclude '.git' --exclude '.github' --exclude 'deploy' ./ deploy/
+          
+          echo "Deploy folder contents:"
+          ls -la deploy
+          
+      - name: ⬇️ SFTP upload (deploy folder)
+        uses: wangyucode/sftp-upload-action@v2.0.4
         with:
-          # --- DREAMHOST CREDENTIALS (from GitHub Secrets) ---
           host: ${{ secrets.DH_HOST }}
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_PASS }}
-          port: 22 
-
-          # --- DIRECTORY PATHS ---
-          localDir: "."
-          remoteDir: '/home/${{ secrets.DH_USER }}/livegmp.in/'
-
-          # --- CRUCIAL FIX: CORRECT EXCLUDE PARAMETER ---
-          # This is the valid parameter, excluding the dot folders and all their contents.
-          exclude: ".git/**, .github/**, .sftpignore"
-
-          # --- OPTIONS ---
+          port: 22
+          # Action now uploads the contents of the 'deploy' folder
+          localDir: "deploy/"
+          remoteDir: "/home/${{ secrets.DH_USER }}/livegmp.in/"
           forceUpload: true
