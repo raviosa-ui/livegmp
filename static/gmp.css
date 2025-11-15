@@ -1,5 +1,7 @@
 /* static/gmp.css - card UI, badges, responsive, lazy */
-# gmp-wrapper { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; }
+
+/* wrapper */
+#gmp-wrapper { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; }
 .container { padding: 16px; max-width: 900px; margin: auto; }
 
 /* Controls / sticky filters */
@@ -38,8 +40,19 @@
 .ipo-card .card-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
 .card-row-top .ipo-title { font-weight:700; font-size:16px; }
 .card-row-meta { margin-top:6px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+
+/* left side (GMP arrow) */
 .meta-left .meta-gmp { font-weight:700; font-size:15px; margin-right:8px; }
+
+/* original meta-right baseline (kept for compatibility) */
 .meta-right { font-size:14px; color:#333; display:flex; gap:12px; align-items:center; }
+
+/* NEW: meta item label/value layout for clarity (GMP / Kostak / Date) */
+.meta-right { display:flex; gap:12px; align-items:center; }
+.meta-item { display:flex; flex-direction:column; align-items:flex-end; min-width:72px; }
+.meta-label { font-size:11px; color:#777; font-weight:600; letter-spacing:0.2px; text-transform:uppercase; }
+.meta-value { font-size:15px; font-weight:700; margin-top:4px; }
+.meta-item .gmp-up, .meta-item .gmp-down, .meta-item .gmp-neutral { font-weight:800; }
 
 /* small details row (hidden by default) */
 .card-row-details[aria-hidden="true"] { display:none; }
@@ -71,5 +84,11 @@
   .card-row-top .ipo-title { font-size:16px; }
   .meta-left .meta-gmp { font-size:15px; }
   .meta-right { font-size:13px; gap:10px; }
+
+  /* tighten label/value on small screens */
+  .meta-item { min-width:56px; }
+  .meta-value { font-size:14px; }
+  .meta-label { font-size:10px; }
+
   .sticky-filters { top:56px; padding:6px 0; overflow-x:auto; }
 }
