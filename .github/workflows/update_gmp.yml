@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install node-fetch@2 csv-parse
+          npm install node-fetch@2 papaparse
 
       - name: Run update script
         env:
