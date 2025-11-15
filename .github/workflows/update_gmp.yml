@@ -2,12 +2,16 @@ name: Update GMP from Google Sheet
 
 on:
   schedule:
-    - cron: '0 * * * *'   # runs every hour at minute 0 (change below if you want different frequency)
+    - cron: '0 * * * *'   # runs every hour at minute 0
   workflow_dispatch:      # allows manual run
 
 jobs:
   update-gmp:
     runs-on: ubuntu-latest
+    
+    # 💥 CRITICAL FIX: Grant Write Permission to GITHUB_TOKEN
+    permissions:
+      contents: write 
 
     steps:
       - name: Checkout repository
@@ -22,13 +26,11 @@ jobs:
         run: |
           npm init -y
           npm install node-fetch@2 papaparse
-
       - name: Run update script
         env:
           GMP_SHEET_CSV_URL: ${{ secrets.GMP_SHEET_CSV_URL }}
         run: |
           node scripts/update_gmp.js
-
       - name: Commit changes (if index.html changed)
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
