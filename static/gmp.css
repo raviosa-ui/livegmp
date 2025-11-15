@@ -38,51 +38,21 @@
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
 }
 .ipo-card .card-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.card-row-top .ipo-title { font-weight:700; font-size:16px; color:#111; }
+.card-row-top .ipo-title { font-weight:700; font-size:16px; }
 .card-row-meta { margin-top:6px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
 
-/* left side (optional old arrow) - keep but small; not hidden so layouts stay stable */
-.meta-left { display:flex; align-items:center; gap:8px; min-width:48px; }
+/* left side (GMP arrow) */
+.meta-left .meta-gmp { font-weight:700; font-size:15px; margin-right:8px; }
 
-/* GMP arrow/value (if present in meta-left) */
-.meta-left .meta-gmp { font-weight:700; font-size:15px; color:#111; }
-
-/* meta-right baseline */
-.meta-right { font-size:14px; color:#333; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+/* original meta-right baseline (kept for compatibility) */
+.meta-right { font-size:14px; color:#333; display:flex; gap:12px; align-items:center; }
 
 /* NEW: meta item label/value layout for clarity (GMP / Kostak / Date) */
-.meta-item {
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;    /* left-align so label and value read naturally */
-  min-width:72px;
-  gap:2px;
-  white-space:nowrap;
-}
-
-/* Label: visible, slightly bold, good contrast */
-.meta-label {
-  font-size:11px;
-  color:#2b2b2b;             /* darker so label is visible */
-  font-weight:700;
-  letter-spacing:0.2px;
-  text-transform:uppercase;
-  line-height:1;
-}
-
-/* Value: prominent and larger */
-.meta-value {
-  font-size:15px;
-  font-weight:800;
-  margin-top:0;
-  line-height:1;
-  color:#111;
-}
-
-/* color classes for GMP value */
-.meta-item .gmp-up { color:#0a8a3f; }
-.meta-item .gmp-down { color:#c62828; }
-.meta-item .gmp-neutral { color:#333; }
+.meta-right { display:flex; gap:12px; align-items:center; }
+.meta-item { display:flex; flex-direction:column; align-items:flex-end; min-width:72px; }
+.meta-label { font-size:11px; color:#777; font-weight:600; letter-spacing:0.2px; text-transform:uppercase; }
+.meta-value { font-size:15px; font-weight:700; margin-top:4px; }
+.meta-item .gmp-up, .meta-item .gmp-down, .meta-item .gmp-neutral { font-weight:800; }
 
 /* small details row (hidden by default) */
 .card-row-details[aria-hidden="true"] { display:none; }
@@ -96,7 +66,7 @@
 .badge.upcoming { background:#f39c12; color:#111; }
 .badge.closed { background:#c0392b; }
 
-/* GMP colors (fallback for older markup) */
+/* GMP colors */
 .gmp-up { color:#0a8a3f; }
 .gmp-down { color:#c62828; }
 .gmp-neutral { color:#333; }
@@ -109,12 +79,6 @@
   background:#0d1117; color:#fff; padding:10px 16px; border-radius:8px; border:none; cursor:pointer;
 }
 
-/* Accessibility: make tap targets easier */
-.ipo-card, .filter-btn, .load-more-btn { touch-action: manipulation; }
-
-/* Ensure labels are visible even if layout is tight */
-.meta-right .meta-item { overflow:visible; text-overflow:clip; }
-
 /* Responsive tweaks */
 @media (max-width:600px){
   .card-row-top .ipo-title { font-size:16px; }
@@ -122,13 +86,9 @@
   .meta-right { font-size:13px; gap:10px; }
 
   /* tighten label/value on small screens */
-  .meta-item { min-width:64px; }
+  .meta-item { min-width:56px; }
   .meta-value { font-size:14px; }
   .meta-label { font-size:10px; }
 
   .sticky-filters { top:56px; padding:6px 0; overflow-x:auto; }
 }
-
-/* Small visual polish */
-.ipo-card { transition: box-shadow .12s ease, transform .06s ease; }
-.ipo-card:hover { box-shadow: 0 6px 18px rgba(13,17,23,0.06); transform: translateY(-2px); }
