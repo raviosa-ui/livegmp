@@ -23,7 +23,10 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://livegmp.in/" />
 
-    <!-- Styles -->
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/static/gmp.css">
+
+    <!-- Inline Styles -->
     <style>
         body {
             margin: 0;
@@ -76,56 +79,48 @@
     <header>Live GMP – IPO Grey Market Premium</header>
 
     <div class="container">
-       
-
        <div class="card">
-  <h2>Latest IPO GMP (Today)</h2>
-<div id="gmp-wrapper">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
-      <div style="font-size:13px;color:#555">Last updated: <strong id="gmp-last-updated">15/11/2025, 17:03:14</strong></div>
-      <div style="font-size:13px;color:#555">Next run: <span id="gmp-next-run">calculating...</span></div>
-    </div>
+         <h2>Latest IPO GMP (Today)</h2>
 
-    <div class="gmp-table-wrap">
-      <table id="gmp-table" style="width:100%;border-collapse:collapse;">
-        <thead>
-          <tr style="background:#f6f6f6;">
-            <th data-sort="ipo" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">IPO ▴▾</th>
-            <th data-sort="gmp" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">GMP ▴▾</th>
-            <th data-sort="kostak" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">Kostak</th>
-            <th style="padding:10px;border:1px solid #e6e6e6">Subject to Sauda</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-      <td class="col-ipo">Groww IPO</td>
-      <td class="col-gmp gmp-up">↑ 4</td>
-      <td class="col-kostak">₹200</td>
-      <td class="col-ssa">₹901</td>
-    </tr>
-        </tbody>
-      </table>
-    </div>
-  
-</div>
+         <div id="gmp-wrapper">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
+              <div style="font-size:13px;color:#555">Last updated: <strong id="gmp-last-updated">15/11/2025, 17:03:14</strong></div>
+              <div style="font-size:13px;color:#555">Next run: <span id="gmp-next-run">calculating...</span></div>
+            </div>
 
-<script src="/static/gmp-client.js"></script>
-        
+            <div class="gmp-table-wrap">
+              <table id="gmp-table" style="width:100%;border-collapse:collapse;">
+                <thead>
+                  <tr style="background:#f6f6f6;">
+                    <th data-sort="ipo" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">IPO ▴▾</th>
+                    <th data-sort="gmp" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">GMP ▴▾</th>
+                    <th data-sort="kostak" style="padding:10px;border:1px solid #e6e6e6;cursor:pointer">Kostak</th>
+                    <th style="padding:10px;border:1px solid #e6e6e6">Subject to Sauda</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="col-ipo">Groww IPO</td>
+                    <td class="col-gmp gmp-up">↑ 4</td>
+                    <td class="col-kostak">₹200</td>
+                    <td class="col-ssa">₹901</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- meta for automation (kept inside wrapper for clean grouping) -->
+            <div style="display:none" id="gmp-meta" data-updated="2025-11-15T11:33:14.088Z"></div>
+         </div>
+
+         <script src="/static/gmp-client.js"></script>
+       </div>
 
         <h2>What is GMP?</h2>
         <p>The IPO Grey Market Premium (GMP) is an unofficial price at which an IPO is traded before listing on stock exchanges.</p>
     </div>
-<link rel="stylesheet" href="/static/gmp.css">
 
-    
-
-
-  
-
-    <!-- meta for automation -->
-    <div style="display:none" id="gmp-meta" data-updated="2025-11-15T11:33:14.088Z"></div>
-  </div>
-  <div class="footer">
+    <div class="footer">
         © 2025 LiveGMP.in — IPO Grey Market Premium Updates
     </div>
 </body>
