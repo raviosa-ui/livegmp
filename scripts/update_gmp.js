@@ -102,10 +102,23 @@ async function main(){
     <div class="meta-left">
       <span class="meta-gmp ${g.cls}">${esc(g.label)}</span>
     </div>
-    <div class="meta-right">
-      <span class="meta-kostak">${kostak ? '₹' + kostak.replace(/^₹/, '') : '&#8212;'}</span>
-      <span class="meta-date">${dateText ? dateText : ''}</span>
+       <div class="meta-right" role="group" aria-label="IPO quick details">
+      <span class="meta-item meta-item-gmp" title="Grey Market Premium (GMP)" aria-label="GMP ${g.label}">
+        <span class="meta-label">GMP</span>
+        <span class="meta-value ${g.cls}">${esc(g.label)}</span>
+      </span>
+
+      <span class="meta-item meta-item-kostak" title="Kostak" aria-label="Kostak ${kostak ? kostak : '—'}">
+        <span class="meta-label">Kostak</span>
+        <span class="meta-value">₹${kostak ? kostak.replace(/^₹/, '') : '—'}</span>
+      </span>
+
+      <span class="meta-item meta-item-date" title="Date" aria-label="Date ${dateText ? dateText : ''}">
+        <span class="meta-label">Date</span>
+        <span class="meta-value">${dateText ? dateText : ''}</span>
+      </span>
     </div>
+
   </div>
 
   <div class="card-row card-row-details" aria-hidden="true">
