@@ -1,0 +1,37 @@
+name: Update GMP from Google Sheet
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # runs every hour at minute 0 (change below if you want different frequency)
+  workflow_dispatch:      # allows manual run
+
+jobs:
+  update-gmp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install node-fetch@2 csv-parse
+
+      - name: Run update script
+        env:
+          GMP_SHEET_CSV_URL: ${{ secrets.GMP_SHEET_CSV_URL }}
+        run: |
+          node scripts/update_gmp.js
+
+      - name: Commit changes (if index.html changed)
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: auto-update GMP table from sheet"
+          file_pattern: index.html
+          branch: main
