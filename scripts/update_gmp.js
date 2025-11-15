@@ -1,7 +1,7 @@
-// scripts/update_gmp.js (CommonJS version)
+// scripts/update_gmp.js (CommonJS, uses papaparse)
 const fs = require('fs').promises;
 const fetch = require('node-fetch');
-const parse = require('csv-parse/lib/sync');
+const Papa = require('papaparse');
 
 const CSV_URL = process.env.GMP_SHEET_CSV_URL;
 if (!CSV_URL) {
@@ -19,7 +19,9 @@ async function main(){
   if (!res.ok) throw new Error('Failed to fetch CSV: ' + res.status);
   const csv = await res.text();
 
-  const rows = parse(csv, { columns: true, skip_empty_lines: true });
+  // Parse CSV using PapaParse
+  const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true, dynamicTyping: false });
+  const rows = parsed.data || [];
 
   // Build table HTML
   const rowsHtml = rows.map(function(r) {
