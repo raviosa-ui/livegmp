@@ -1,10 +1,10 @@
 // static/gmp-client.js
 (function(){
-  const SHOW_BATCH = 7; // how many cards to show initially
-  const BATCH_SIZE = 7; // how many to reveal on each "Load more"
+  const SHOW_BATCH = 7;
+  const BATCH_SIZE = 7;
 
-  function qs(sel, el=document){ return el.querySelector(sel); }
-  function qsa(sel, el=document){ return Array.from(el.querySelectorAll(sel)); }
+  function qs(s, el=document){ return el.querySelector(s); }
+  function qsa(s, el=document){ return Array.from(el.querySelectorAll(s)); }
 
   function toggleCard(card){
     const details = card.querySelector('.card-row-details');
@@ -17,7 +17,7 @@
   function setupCardClicks(){
     qsa('.ipo-card').forEach(card => {
       card.addEventListener('click', (e) => {
-        // don't toggle when clicking control buttons or the link
+        // ignore clicks on filter controls, load-more or View link
         if (e.target.closest('.filter-btn') || e.target.id === 'load-more-btn' || e.target.closest('.ipo-link')) return;
         toggleCard(card);
       });
@@ -26,14 +26,10 @@
 
   function applyLazyLoad(){
     const cards = qsa('#gmp-cards .ipo-card');
-    if (cards.length <= SHOW_BATCH) {
-      const wrap = qs('#load-more-wrap');
-      if (wrap) wrap.style.display = 'none';
-      return;
-    }
-    cards.forEach((c, i) => {
-      if (i >= SHOW_BATCH) c.classList.add('hidden-by-lazy');
-    });
+    const wrap = qs('#load-more-wrap');
+    if (!cards.length) { if (wrap) wrap.style.display = 'none'; return; }
+    if (cards.length <= SHOW_BATCH) { if (wrap) wrap.style.display = 'none'; return; }
+    cards.forEach((c,i) => { if (i >= SHOW_BATCH) c.classList.add('hidden-by-lazy'); });
     const btn = qs('#load-more-btn');
     if (!btn) return;
     btn.addEventListener('click', () => {
@@ -42,7 +38,6 @@
       hidden.slice(0, BATCH_SIZE).forEach(el => el.classList.remove('hidden-by-lazy'));
       if (qsa('.hidden-by-lazy').length === 0) btn.style.display = 'none';
       setupCardClicks();
-      if (hidden.length > 0) hidden[0].scrollIntoView({behavior:'smooth', block:'start'});
     });
   }
 
@@ -55,17 +50,12 @@
         const filter = b.dataset.filter;
         const cards = qsa('#gmp-cards .ipo-card');
         cards.forEach(c => {
-          if (filter === 'all') {
-            c.style.display = '';
-          } else {
-            c.style.display = (c.dataset.status === filter) ? '' : 'none';
-          }
+          if (filter === 'all') c.style.display = '';
+          else c.style.display = (c.dataset.status === filter) ? '' : 'none';
         });
         // reapply lazy rules for visible cards
         const visible = qsa('#gmp-cards .ipo-card').filter(x => x.style.display !== 'none');
-        visible.forEach((c,i) => {
-          c.classList.toggle('hidden-by-lazy', i >= SHOW_BATCH);
-        });
+        visible.forEach((c,i) => c.classList.toggle('hidden-by-lazy', i >= SHOW_BATCH));
         const btn = qs('#load-more-btn');
         if (!btn) return;
         btn.style.display = (visible.length > SHOW_BATCH) ? '' : 'none';
@@ -75,20 +65,20 @@
   }
 
   function setupNextRun() {
-    const nextRunEl = qs('#gmp-next-run');
-    if (!nextRunEl) return;
-    function updateNextRun() {
+    const el = qs('#gmp-next-run');
+    if (!el) return;
+    function tick() {
       const now = new Date();
       const next = new Date(now);
       next.setMinutes(0,0,0);
-      if (next <= now) next.setHours(next.getHours() + 1);
+      if (next <= now) next.setHours(next.getHours()+1);
       const diff = next - now;
       const mins = Math.floor(diff / 60000);
       const secs = Math.floor((diff % 60000) / 1000);
-      nextRunEl.textContent = `${String(mins).padStart(2,'0')}m ${String(secs).padStart(2,'0')}s`;
+      el.textContent = `${String(mins).padStart(2,'0')}m ${String(secs).padStart(2,'0')}s`;
     }
-    updateNextRun();
-    setInterval(updateNextRun, 1000);
+    tick();
+    setInterval(tick, 1000);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
