@@ -1,4 +1,4 @@
-/* static/gmp.css - card UI, badges, responsive, lazy */
+/* static/gmp.css - full styles for card UI, badges, responsive, lazy */
 
 /* wrapper */
 #gmp-wrapper { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; }
@@ -28,7 +28,7 @@
 /* meta line */
 .gmp-meta-line { display:flex; justify-content:space-between; margin-bottom:8px; font-size:13px; color:#555; }
 
-/* Card */
+/* Card basics */
 .ipo-card {
   border: 1px solid #eee;
   border-radius:10px;
@@ -36,27 +36,50 @@
   margin-bottom:10px;
   background:#fff;
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: box-shadow .12s ease, transform .06s ease;
 }
+.ipo-card:hover { box-shadow: 0 6px 18px rgba(13,17,23,0.06); transform: translateY(-2px); }
 .ipo-card .card-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.card-row-top .ipo-title { font-weight:700; font-size:16px; }
+.card-row-top .ipo-title { font-weight:700; font-size:16px; color:#111; }
 .card-row-meta { margin-top:6px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
 
-/* left side (GMP arrow) */
-.meta-left .meta-gmp { font-weight:700; font-size:15px; margin-right:8px; }
+/* 4-column grid layout for card summary */
+.card-grid {
+  display:grid;
+  grid-template-columns: 1fr auto minmax(140px, 200px) auto;
+  gap:12px;
+  align-items:center;
+}
 
-/* original meta-right baseline (kept for compatibility) */
-.meta-right { font-size:14px; color:#333; display:flex; gap:12px; align-items:center; }
+/* Column specifics */
+.col-name .ipo-title { font-weight:700; font-size:16px; color:#111; margin-bottom:6px; }
+.gmp-row { display:flex; gap:8px; align-items:center; }
+.gmp-label { font-size:11px; color:#444; font-weight:700; text-transform:uppercase; }
+.gmp-value { font-size:15px; font-weight:800; color:#111; }
 
-/* NEW: meta item label/value layout for clarity (GMP / Kostak / Date) */
-.meta-right { display:flex; gap:12px; align-items:center; }
-.meta-item { display:flex; flex-direction:column; align-items:flex-end; min-width:72px; }
-.meta-label { font-size:11px; color:#777; font-weight:600; letter-spacing:0.2px; text-transform:uppercase; }
-.meta-value { font-size:15px; font-weight:700; margin-top:4px; }
-.meta-item .gmp-up, .meta-item .gmp-down, .meta-item .gmp-neutral { font-weight:800; }
+/* Status column */
+.col-status { text-align:center; }
 
-/* small details row (hidden by default) */
-.card-row-details[aria-hidden="true"] { display:none; }
-.ipo-card.expanded .card-row-details[aria-hidden="false"] { display:block; margin-top:10px; }
+/* Meta column (Date only on front) */
+.meta-item-inline { display:flex; gap:6px; align-items:center; }
+.meta-item-inline .meta-label { font-size:11px; color:#666; font-weight:700; text-transform:uppercase; }
+.meta-item-inline .meta-value { font-size:14px; font-weight:700; color:#111; }
+
+/* Link column */
+.col-link { text-align:right; }
+.ipo-link {
+  display:inline-block;
+  padding:8px 10px;
+  background:#0d1117;
+  color:#fff;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:13px;
+}
+
+/* Hidden details (shown on expand) */
+.card-row-details { margin-top:10px; display:none; color:#333; font-size:14px; }
+.ipo-card.expanded .card-row-details { display:block; }
 
 /* badges */
 .badge {
@@ -66,10 +89,10 @@
 .badge.upcoming { background:#f39c12; color:#111; }
 .badge.closed { background:#c0392b; }
 
-/* GMP colors */
-.gmp-up { color:#0a8a3f; }
-.gmp-down { color:#c62828; }
-.gmp-neutral { color:#333; }
+/* GMP color classes */
+.gmp-value.gmp-up { color:#0a8a3f; }
+.gmp-value.gmp-down { color:#c62828; }
+.gmp-value.gmp-neutral { color:#333; }
 
 /* hidden-by-lazy used to hide cards beyond batch */
 .hidden-by-lazy { display:none !important; }
@@ -79,16 +102,27 @@
   background:#0d1117; color:#fff; padding:10px 16px; border-radius:8px; border:none; cursor:pointer;
 }
 
-/* Responsive tweaks */
+/* Accessibility touch targets */
+.ipo-card, .filter-btn, .load-more-btn { touch-action: manipulation; }
+
+/* Responsive: stack columns on small screens */
+@media (max-width:720px) {
+  .card-grid {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-auto-flow: row;
+  }
+  .col-name { grid-column: 1 / span 2; }
+  .col-status { grid-column: 2 / 3; grid-row: 1 / 2; justify-self:end; }
+  .col-meta { grid-column: 1 / span 2; grid-row: 2 / 3; display:flex; gap:12px; }
+  .col-link { grid-column: 2 / 3; grid-row: 2 / 3; justify-self:end; align-self:center; }
+  .meta-item-inline { margin-bottom:0; }
+}
+
+/* small-screen tweaks */
 @media (max-width:600px){
   .card-row-top .ipo-title { font-size:16px; }
-  .meta-left .meta-gmp { font-size:15px; }
-  .meta-right { font-size:13px; gap:10px; }
-
-  /* tighten label/value on small screens */
-  .meta-item { min-width:56px; }
-  .meta-value { font-size:14px; }
-  .meta-label { font-size:10px; }
-
+  .meta-item-inline .meta-value { font-size:14px; }
+  .meta-item-inline .meta-label { font-size:10px; }
   .sticky-filters { top:56px; padding:6px 0; overflow-x:auto; }
 }
