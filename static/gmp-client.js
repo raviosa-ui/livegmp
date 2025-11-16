@@ -6,7 +6,6 @@
   function qs(sel, el=document){ return el.querySelector(sel); }
   function qsa(sel, el=document){ return Array.from(el.querySelectorAll(sel)); }
 
-  // Expand/collapse card details
   function toggleCard(card){
     const details = card.querySelector('.card-row-details');
     if (!details) return;
@@ -17,16 +16,14 @@
 
   function setupCardClicks(){
     qsa('.ipo-card').forEach(card => {
-      // click anywhere on card toggles details
       card.addEventListener('click', (e) => {
-        // avoid clicks on filter buttons or load more
-        if (e.target.closest('.filter-btn') || e.target.id === 'load-more-btn') return;
+        // don't toggle when clicking control buttons or the link
+        if (e.target.closest('.filter-btn') || e.target.id === 'load-more-btn' || e.target.closest('.ipo-link')) return;
         toggleCard(card);
       });
     });
   }
 
-  // Lazy load: initial hide all after first SHOW_BATCH
   function applyLazyLoad(){
     const cards = qsa('#gmp-cards .ipo-card');
     if (cards.length <= SHOW_BATCH) {
@@ -34,27 +31,21 @@
       if (wrap) wrap.style.display = 'none';
       return;
     }
-    // Hide all beyond initial
     cards.forEach((c, i) => {
       if (i >= SHOW_BATCH) c.classList.add('hidden-by-lazy');
     });
-    // Attach load more
     const btn = qs('#load-more-btn');
     if (!btn) return;
     btn.addEventListener('click', () => {
       const hidden = qsa('.hidden-by-lazy');
       if (hidden.length === 0) { btn.style.display = 'none'; return; }
-      // reveal next BATCH_SIZE
       hidden.slice(0, BATCH_SIZE).forEach(el => el.classList.remove('hidden-by-lazy'));
       if (qsa('.hidden-by-lazy').length === 0) btn.style.display = 'none';
-      // re-bind clicks for newly revealed cards
       setupCardClicks();
-      // optional: scroll to first newly revealed
       if (hidden.length > 0) hidden[0].scrollIntoView({behavior:'smooth', block:'start'});
     });
   }
 
-  // Filters (sticky)
   function setupFilters(){
     const buttons = qsa('.filter-btn');
     buttons.forEach(b => {
@@ -65,13 +56,12 @@
         const cards = qsa('#gmp-cards .ipo-card');
         cards.forEach(c => {
           if (filter === 'all') {
-            c.style.display = ''; // default
+            c.style.display = '';
           } else {
             c.style.display = (c.dataset.status === filter) ? '' : 'none';
           }
         });
-        // after filtering, re-apply lazy load visibility rules
-        // hide all then reveal first SHOW_BATCH visible cards
+        // reapply lazy rules for visible cards
         const visible = qsa('#gmp-cards .ipo-card').filter(x => x.style.display !== 'none');
         visible.forEach((c,i) => {
           c.classList.toggle('hidden-by-lazy', i >= SHOW_BATCH);
@@ -84,7 +74,6 @@
     });
   }
 
-  // Next-run timer (assumes cron at top of hour)
   function setupNextRun() {
     const nextRunEl = qs('#gmp-next-run');
     if (!nextRunEl) return;
@@ -102,7 +91,6 @@
     setInterval(updateNextRun, 1000);
   }
 
-  // Run after DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     setupCardClicks();
     applyLazyLoad();
