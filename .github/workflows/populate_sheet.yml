@@ -1,0 +1,31 @@
+name: Populate Google Sheet from GMP sources
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # runs every hour
+  workflow_dispatch:
+
+jobs:
+  populate-sheet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install node-fetch@2 cheerio googleapis
+
+      - name: Run scraper → update Google Sheet
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GMP_SOURCE_URLS: ${{ secrets.GMP_SOURCE_URLS }}
+          DEFAULT_TYPE: ${{ secrets.DEFAULT_TYPE }}
+          FILL_TYPE_FROM_NSE: ${{ secrets.FILL_TYPE_FROM_NSE }}
+        run: node scripts/populate_sheet.js
