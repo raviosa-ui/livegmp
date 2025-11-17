@@ -1,8 +1,9 @@
 // scripts/populate_sheet.js
-// Node 18+
-// Dependencies: node-fetch@2 cheerio googleapis
+// Node 18+ (uses global fetch)
+// Dependencies: cheerio googleapis
+//
+// Purpose: same as before but using global fetch (no node-fetch/undici issues)
 
-const fetch = require('node-fetch'); 
 const cheerio = require('cheerio');
 const { google } = require('googleapis');
 
@@ -14,87 +15,149 @@ const DEFAULT_TYPE = process.env.DEFAULT_TYPE || '';
 const FILL_TYPE_FROM_NSE = (process.env.FILL_TYPE_FROM_NSE || '').toLowerCase() === 'true';
 
 if (!SA_JSON || !SHEET_ID || SOURCE_LIST.length === 0) {
-  console.error('Missing required env vars.');
+  console.error('Missing required env vars. Ensure GOOGLE_SERVICE_ACCOUNT_JSON, GOOGLE_SHEET_ID and GMP_SOURCE_URLS (or GMP_SOURCE_URL) are set.');
   process.exit(2);
 }
 
-function esc(s=''){ return String(s || '').trim(); }
+function esc(s=''){ return String(s === null || s === undefined ? '' : s).trim(); }
 function normalizeHeader(h) { return String(h || '').trim().toLowerCase().replace(/[^a-z0-9]/g,''); }
 
 function showSample(rows, n=6) {
-  console.log('Parsed rows sample:', JSON.stringify(rows.slice(0,n), null, 2));
+  try { console.log('Parsed rows sample (first ' + Math.min(n, rows.length) + '):'); console.log(JSON.stringify(rows.slice(0, n), null, 2)); } catch(e){}
 }
 
 /* ---------------------
    fetchTableRows(url)
+   Uses global fetch (Node 18+)
 --------------------- */
 async function fetchTableRows(url) {
-  console.log('Fetching:', url);
-  const res = await fetch(url, {
-    timeout: 20000,
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (LiveGMPBot/1.0)'
-    }
-  });
-  if (!res.ok) throw new Error('Failed: ' + res.status);
+  console.log('Fetching GMP source (tailored):', url);
 
+  // use global fetch; add User-Agent to reduce blocking
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) LiveGMPBot/1.0'
+    },
+    // timeout not standard in global fetch; rely on default action timeouts
+  });
+  if (!res.ok) throw new Error('Failed to fetch GMP source: ' + res.status);
   const html = await res.text();
   const $ = cheerio.load(html);
 
-  let $table = null;
-
-  // Try to find table mentioning GMP
+  // Strategy: find table containing GMP/kostak/sauda, fallback to heading-next-table, largest table, or div blocks
+  let $selectedTable = null;
   $('table').each((i, t) => {
     const txt = $(t).text().toLowerCase();
-    if (txt.includes('gmp') || txt.includes('grey') || txt.includes('kostak') || txt.includes('sauda')) {
-      if (!$table) $table = $(t);
+    if (txt.includes('gmp') || txt.includes('kostak') || txt.includes('sauda') || txt.includes('grey')) {
+      if (!$selectedTable) $selectedTable = $(t);
     }
   });
 
-  // Fallback: largest table
-  if (!$table) {
-    let max = 0, best = null;
-    $('table').each((i, t) => {
-      const rows = $(t).find('tr').length;
-      if (rows > max) { max = rows; best = $(t); }
-    });
-    if (best && max > 1) $table = best;
+  if (!$selectedTable) {
+    const heading = $('h1,h2,h3').filter((i,el) => /gmp|grey market premium|live ipo gmp/i.test($(el).text())).first();
+    if (heading && heading.length) {
+      const nextTable = heading.nextAll('table').first();
+      if (nextTable && nextTable.length) $selectedTable = nextTable;
+      else {
+        const parentTable = heading.parent().find('table').first();
+        if (parentTable && parentTable.length) $selectedTable = parentTable;
+      }
+    }
   }
 
-  if (!$table) throw new Error('No GMP table found');
+  if (!$selectedTable) {
+    let best = null, bestRows = 0;
+    $('table').each((i, t) => {
+      const rows = $(t).find('tr').length;
+      if (rows > bestRows) { bestRows = rows; best = $(t); }
+    });
+    if (best && bestRows > 1) $selectedTable = best;
+  }
 
-  const headers = [];
+  if (!$selectedTable) {
+    const candidates = $('div,section').filter((i, el) => {
+      const text = $(el).text().toLowerCase();
+      return text.includes('gmp') || text.includes('kostak') || text.includes('sauda') || text.includes('ipo');
+    });
+    if (candidates.length) {
+      const c = candidates.first();
+      const rows = [];
+      c.children().each((i, ch) => {
+        const txt = $(ch).text().trim();
+        if (!txt) return;
+        const parts = txt.split('\n').map(x => x.trim()).filter(Boolean);
+        if (parts.length >= 2) {
+          rows.push({
+            ipo: parts[0] || '',
+            gmp: parts[1] || '',
+            kostak: parts[2] || '',
+            subjecttosauda: parts[3] || '',
+            date: parts[4] || ''
+          });
+        }
+      });
+      if (rows.length) {
+        console.log('Parsed rows using div fallback, count:', rows.length);
+        return rows.map(r => {
+          const out = {};
+          for (const k of Object.keys(r)) out[normalizeHeader(k)] = esc(r[k]);
+          return out;
+        });
+      }
+    }
+    throw new Error('No table or list-like data found on GMP source page.');
+  }
+
+  // Parse selected table
+  const $table = $selectedTable;
   let headerCells = $table.find('tr').first().find('th');
-  if (!headerCells.length) headerCells = $table.find('tr').first().find('td');
+  if (!headerCells || headerCells.length === 0) headerCells = $table.find('tr').first().find('td');
+  const headers = [];
+  headerCells.each((i, cell) => headers.push(normalizeHeader(esc(cheerio(cell).text ? cheerio(cell).text() : cheerio(cell).text())))); // defensive
 
-  headerCells.each((i,cell)=>headers.push(normalizeHeader($(cell).text())));
+  const usefulKeywords = ['gmp','ipo','name','company','kostak','sauda','subject','date','status','type'];
+  let hasUsefulHeader = headers.some(h => usefulKeywords.some(k => h.includes(k)));
+  let usePositional = false;
+  if (!hasUsefulHeader) {
+    usePositional = true;
+    console.log('Header row not recognized; using positional mapping: IPO,GMP,Kostak,SubjectToSauda,Date.');
+  }
 
   const rows = [];
-  $table.find('tr').slice(1).each((i,tr)=>{
-    const tds = $(tr).find('td');
-    if (!tds.length) return;
-
-    const obj = {};
-    tds.each((ci,td)=>{
-      obj[headers[ci] || `col${ci}`] = esc($(td).text());
-    });
-
-    rows.push(obj);
+  $table.find('tr').slice(1).each((ri, tr) => {
+    const $tr = $(tr);
+    const cells = $tr.find('td');
+    if (cells.length === 0) return;
+    if (usePositional) {
+      const parts = cells.map((i, td) => esc($(td).text())).get();
+      const obj = { ipo: parts[0] || '', gmp: parts[1] || '', kostak: parts[2] || '', subjecttosauda: parts[3] || '', date: parts[4] || '' };
+      rows.push(obj);
+    } else {
+      const obj = {};
+      cells.each((ci, td) => {
+        const header = headers[ci] || `col${ci}`;
+        obj[header] = esc($(td).text());
+      });
+      rows.push(obj);
+    }
   });
 
-  const normalized = rows.map(r=>{
-    const out={};
+  if (!rows.length) throw new Error('No data rows parsed from selected table.');
+
+  const normalizedRows = rows.map(r => {
+    const out = {};
     for (const k of Object.keys(r)) out[normalizeHeader(k)] = esc(r[k]);
     return out;
   });
 
-  showSample(normalized);
-  return normalized;
+  showSample(normalizedRows, 6);
+  return normalizedRows;
 }
 
-/* -------------------------
+/* ====================
    Google Sheets helpers
-------------------------- */
+   ==================== */
 function authGoogleSheets() {
   const json = JSON.parse(SA_JSON);
   const scopes = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -103,137 +166,164 @@ function authGoogleSheets() {
 }
 
 async function readSheet(sheets) {
-  const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: SHEET_ID, range: 'Sheet1'
-  });
-  return res.data.values || [];
+  const range = 'Sheet1';
+  const res = await sheets.spreadsheets.values.get({ spreadsheetId: SHEET_ID, range });
+  const values = res.data.values || [];
+  return values;
 }
-
 async function writeSheet(sheets, values) {
+  const range = 'Sheet1';
   await sheets.spreadsheets.values.update({
     spreadsheetId: SHEET_ID,
-    range: 'Sheet1',
+    range,
     valueInputOption: 'RAW',
     requestBody: { values }
   });
-  console.log('Sheet updated:', values.length, 'rows');
+  console.log('Sheet updated: rows=', values.length);
 }
 
-/* -------------------------
-   Simple NSE/BSE type lookup
-------------------------- */
+/* ====================
+   Exchange Type lookup (best-effort)
+   ==================== */
 async function tryFetchTypeFromExchanges(ipoName) {
-  ipoName = ipoName.toLowerCase();
+  try {
+    if (!ipoName) return null;
+    const nameLower = ipoName.toLowerCase();
 
-  const tryURL = async (url) => {
     try {
-      const r = await fetch(url, { headers: {'User-Agent':'Mozilla/5.0'}, timeout:15000 });
-      if (!r.ok) return false;
-      const html = await r.text();
-      return html.toLowerCase().includes(ipoName);
-    } catch { return false; }
-  };
+      const nseUrl = 'https://www.nseindia.com/market-data/all-upcoming-issues-ipo';
+      const r = await fetch(nseUrl, { headers: { 'User-Agent': 'Mozilla/5.0 (LiveGMPBot/1.0)' } });
+      if (r.ok) {
+        const html = await r.text();
+        if (html.toLowerCase().includes(nameLower)) return 'Mainboard';
+      }
+    } catch(e) {}
 
-  if (await tryURL('https://www.nseindia.com/market-data/all-upcoming-issues-ipo')) return 'Mainboard';
-  if (await tryURL('https://www.bseindia.com/publicissue.html')) return 'Mainboard';
+    try {
+      const bseUrl = 'https://www.bseindia.com/publicissue.html';
+      const r2 = await fetch(bseUrl, { headers: { 'User-Agent': 'Mozilla/5.0 (LiveGMPBot/1.0)' } });
+      if (r2.ok) {
+        const html2 = await r2.text();
+        if (html2.toLowerCase().includes(nameLower)) return 'Mainboard';
+      }
+    } catch(e) {}
 
-  return null;
+    return null;
+  } catch(e) { return null; }
 }
 
-/* -------------------------
-   match helper
-------------------------- */
-function findRow(sheet, name) {
-  name = name.toLowerCase();
-  for (let i=1;i<sheet.length;i++){
-    const val = (sheet[i][0]||'').toString().toLowerCase();
-    if (val && (val===name || val.includes(name) || name.includes(val))) return i;
+/* ====================
+   Matching & merging
+   ==================== */
+function findMatchingRowIndex(sheetRows, ipoName) {
+  if (!ipoName) return -1;
+  ipoName = ipoName.toLowerCase();
+  for (let i = 1; i < sheetRows.length; i++) {
+    const row = sheetRows[i];
+    const cell = (row[0] || '').toString().toLowerCase();
+    if (!cell) continue;
+    if (cell === ipoName || cell.includes(ipoName) || ipoName.includes(cell)) return i;
   }
   return -1;
 }
 
-/* -------------------------
-   MAIN
-------------------------- */
-(async()=>{
+/* ====================
+   MAIN RUN
+   ==================== */
+(async () => {
   try {
     let scraped = [];
     for (const src of SOURCE_LIST) {
       try {
-        const data = await fetchTableRows(src);
-        if (data.length) { scraped = data; break; }
+        console.log('Trying source:', src);
+        scraped = await fetchTableRows(src);
+        if (scraped && scraped.length) { console.log('Succeeded parsing with', src); break; }
       } catch (e) {
-        console.log('Source failed:', src, e.message);
+        console.warn('Source failed:', src, e.message || e);
       }
     }
-
-    if (!scraped.length) throw new Error('No data from any source');
+    if (!scraped || scraped.length === 0) throw new Error('No data parsed from any source.');
 
     const sheets = authGoogleSheets();
-    const sheet = await readSheet(sheets);
+    const sheetVals = await readSheet(sheets);
+    if (sheetVals.length === 0) throw new Error('Sheet is empty. Ensure headers exist in row 1.');
 
-    if (!sheet.length) throw new Error('Sheet empty. Add headers in first row.');
-
-    const headers = sheet[0];
+    const headersRow = sheetVals[0].map(h => String(h || '').trim());
     const headerMap = {};
-    headers.forEach((h,i)=>headerMap[h.toLowerCase()] = i);
+    headersRow.forEach((h,i) => headerMap[h.toLowerCase()] = i);
 
-    const needed = ['ipo','gmp','kostak','subjecttosauda','date','status','type'];
-    for (const h of needed) {
+    const expected = ['ipo','gmp','kostak','subjecttosauda','date','status','type'];
+    for (const h of expected) {
       if (!(h in headerMap)) {
-        headerMap[h] = headers.length;
-        headers.push(h);
-        sheet[0].push(h);
+        headerMap[h] = headersRow.length;
+        headersRow.push(h);
+        sheetVals[0].push(h);
       }
     }
 
-    for (const r of scraped) {
-      const keys = Object.keys(r);
-      let ipoKey = keys.find(k=>k.includes('ipo')||k.includes('name')||k.includes('company')) || keys[0];
-      const ipo = (r[ipoKey]||'').trim();
-      if (!ipo) continue;
+    for (const raw of scraped) {
+      const keys = Object.keys(raw);
+      let ipoKey = keys.find(k => k.includes('ipo') || k.includes('name') || k.includes('company')) || keys[0];
+      const ipoName = (raw[ipoKey] || '').trim();
+      if (!ipoName) continue;
 
-      const gmp = r.gmp || '';
-      const kostak = r.kostak || '';
-      const sauda = r.subjecttosauda || r.sauda || '';
-      const date = r.date || '';
+      const normalized = {
+        ipo: ipoName,
+        gmp: (raw.gmp || raw.gmpvalue || raw.premium || '') .toString().trim(),
+        kostak: (raw.kostak || raw.kost || '') .toString().trim(),
+        subjecttosauda: (raw.subjecttosauda || raw.sauda || raw.subject || '') .toString().trim(),
+        date: (raw.date || raw.daterange || '') .toString().trim()
+      };
 
-      const rowIdx = findRow(sheet, ipo);
-
-      if (rowIdx>=1) {
-        const row = sheet[rowIdx];
-        row[headerMap['gmp']] = gmp;
-        row[headerMap['kostak']] = kostak;
-        row[headerMap['subjecttosauda']] = sauda;
-        row[headerMap['date']] = date;
+      const matchIdx = findMatchingRowIndex(sheetVals, ipoName);
+      if (matchIdx >= 1) {
+        const row = sheetVals[matchIdx];
+        row[headerMap['gmp']] = normalized.gmp || row[headerMap['gmp']] || '';
+        row[headerMap['kostak']] = normalized.kostak || row[headerMap['kostak']] || '';
+        row[headerMap['subjecttosauda']] = normalized.subjecttosauda || row[headerMap['subjecttosauda']] || '';
+        row[headerMap['date']] = normalized.date || row[headerMap['date']] || '';
       } else {
-        const newRow = Array(headers.length).fill('');
-        newRow[headerMap['ipo']] = ipo;
-        newRow[headerMap['gmp']] = gmp;
-        newRow[headerMap['kostak']] = kostak;
-        newRow[headerMap['subjecttosauda']] = sauda;
-        newRow[headerMap['date']] = date;
-        sheet.push(newRow);
+        const newRow = new Array(Object.keys(headerMap).length).fill('');
+        newRow[headerMap['ipo']] = normalized.ipo;
+        newRow[headerMap['gmp']] = normalized.gmp || '';
+        newRow[headerMap['kostak']] = normalized.kostak || '';
+        newRow[headerMap['subjecttosauda']] = normalized.subjecttosauda || '';
+        newRow[headerMap['date']] = normalized.date || '';
+        newRow[headerMap['status']] = '';
+        newRow[headerMap['type']] = '';
+        sheetVals.push(newRow);
       }
     }
 
-    // Fill missing Type
     if (FILL_TYPE_FROM_NSE) {
-      for (let i=1;i<sheet.length;i++){
-        const ipo = (sheet[i][headerMap['ipo']]||'').trim();
-        let type = sheet[i][headerMap['type']]||'';
-        if (!type) {
-          const found = await tryFetchTypeFromExchanges(ipo);
-          sheet[i][headerMap['type']] = found || DEFAULT_TYPE;
+      console.log('Attempting NSE/BSE type lookup (best-effort).');
+      for (let i = 1; i < sheetVals.length; i++) {
+        try {
+          const currType = (sheetVals[i][headerMap['type']] || '').toString().trim();
+          if (!currType) {
+            const ipoName = (sheetVals[i][headerMap['ipo']] || '').toString().trim();
+            if (!ipoName) continue;
+            const t = await tryFetchTypeFromExchanges(ipoName);
+            if (t) sheetVals[i][headerMap['type']] = t;
+            else if (DEFAULT_TYPE) sheetVals[i][headerMap['type']] = DEFAULT_TYPE;
+          }
+        } catch (e) {
+          console.warn('Type lookup failed for row', i, e.message || e);
+          if (DEFAULT_TYPE && !sheetVals[i][headerMap['type']]) sheetVals[i][headerMap['type']] = DEFAULT_TYPE;
+        }
+      }
+    } else if (DEFAULT_TYPE) {
+      for (let i = 1; i < sheetVals.length; i++) {
+        if (!sheetVals[i][headerMap['type']] || sheetVals[i][headerMap['type']].toString().trim() === '') {
+          sheetVals[i][headerMap['type']] = DEFAULT_TYPE;
         }
       }
     }
 
-    await writeSheet(sheets, sheet);
-    console.log('Done.');
-
-  } catch (e) {
-    console.error('Error:', e);
+    await writeSheet(sheets, sheetVals);
+    console.log('Done — sheet populated/updated from scraped source(s).');
+  } catch (err) {
+    console.error('Error:', err && err.stack ? err.stack : err);
     process.exit(1);
   }
 })();
