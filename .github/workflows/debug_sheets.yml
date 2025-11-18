@@ -1,8 +1,6 @@
 name: Debug Sheets Auth
-
 on:
   workflow_dispatch:
-
 jobs:
   debug:
     runs-on: ubuntu-latest
@@ -18,11 +16,10 @@ jobs:
         run: |
           if [ ! -f package.json ]; then npm init -y; fi
           npm install googleapis
-
       - name: Run debug script
         env:
-          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SERVICE_ACCOUNT_JSON_B64: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON_B64 }} # <-- NEW SECRET
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-          GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
-          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          # The script will extract client_email/private_key from the B64 string
+          # GOOGLE_CLIENT_EMAIL and GOOGLE_PRIVATE_KEY are no longer required here
         run: node scripts/debug_sheets_auth.js
