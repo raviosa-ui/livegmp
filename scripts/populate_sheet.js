@@ -23,9 +23,8 @@ if (typeof File === "undefined") {
 const cheerio = require("cheerio");
 const { google } = require("googleapis");
 // ---------------- credentials ----------------
-const RAW_B64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64 || ""; // NEW SECRET NAME
-// API Key is read but NOT passed to Sheets API calls to avoid 403 error
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || null; 
+const RAW_B64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64 || ""; 
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || null; // API Key is read here
 
 let CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL || "";
 let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY || "";
@@ -152,7 +151,7 @@ function parseTableGeneric(html) {
       const obj = {};
       cells.each((ci, td) => {
         const header = headers[ci] || `col${ci}`;
-        obj[header] = esc($(td).text()); // <--- SYNTAX ERROR CORRECTED HERE
+        obj[header] = esc($(td).text()); 
       });
       rows.push(obj);
     }
@@ -228,20 +227,22 @@ async function tryFetchTypeFromExchanges(ipoName) {
 }
 // ---------------- sheets helpers ----------------
 async function readSheet() {
-  // Relying solely on JWT auth, no API key needed
+  // API Key is necessary for the initial public read operation
   const res = await sheets.spreadsheets.values.get({ 
     spreadsheetId: SHEET_ID, 
-    range: 'Sheet1'
+    range: 'Sheet1',
+    key: GOOGLE_API_KEY // <--- API KEY ADDED BACK FOR READ
   });
   return res.data.values || [];
 }
 async function writeSheet(values) {
-  // Relying solely on JWT auth, no API key needed
+  // Service Account JWT is necessary for the authenticated write operation
   await sheets.spreadsheets.values.update({
     spreadsheetId: SHEET_ID,
     range: 'Sheet1',
     valueInputOption: 'RAW',
     requestBody: { values }
+    // API Key must NOT be here
   });
   console.log("Sheet updated: rows=", values.length);
 }
