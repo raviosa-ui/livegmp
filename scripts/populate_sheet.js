@@ -24,7 +24,8 @@ const cheerio = require("cheerio");
 const { google } = require("googleapis");
 // ---------------- credentials ----------------
 const RAW_B64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64 || ""; // NEW SECRET NAME
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || null; // NEW API KEY ADDED
+// We still read the API key, but we no longer pass it to sheets functions
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || null; 
 
 let CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL || "";
 let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY || "";
@@ -151,7 +152,7 @@ function parseTableGeneric(html) {
       const obj = {};
       cells.each((ci, td) => {
         const header = headers[ci] || `col${ci}`;
-        obj[header] = esc($(td).text());
+        obj[header] = esc(r[k]);
       });
       rows.push(obj);
     }
@@ -227,125 +228,5 @@ async function tryFetchTypeFromExchanges(ipoName) {
 }
 // ---------------- sheets helpers ----------------
 async function readSheet() {
-  const res = await sheets.spreadsheets.values.get({ 
-    spreadsheetId: SHEET_ID, 
-    range: 'Sheet1',
-    key: GOOGLE_API_KEY // <--- API KEY ADDED HERE
-  });
-  return res.data.values || [];
-}
-async function writeSheet(values) {
-  await sheets.spreadsheets.values.update({
-    spreadsheetId: SHEET_ID,
-    range: 'Sheet1',
-    valueInputOption: 'RAW',
-    requestBody: { values },
-    key: GOOGLE_API_KEY // <--- API KEY ADDED HERE
-  });
-  console.log("Sheet updated: rows=", values.length);
-}
-// ---------------- merge helper ----------------
-function findMatchingRowIndex(sheetRows, ipoName) {
-  if (!ipoName) return -1;
-  const n = ipoName.toString().toLowerCase();
-  for (let i=1;i<sheetRows.length;i++) {
-    const cell = (sheetRows[i][0]||'').toString().toLowerCase();
-    if (!cell) continue;
-    if (cell === n || cell.includes(n) || n.includes(cell)) return i;
-  }
-  return -1;
-}
-// ---------------- main ----------------
-(async () => {
-  try {
-    let scraped = [];
-    for (const src of SOURCE_LIST) {
-      try {
-        console.log("Trying to fetch & parse:", src);
-        const rows = await fetchTableRows(src);
-        if (rows && rows.length) { scraped = rows; console.log("Succeeded with", src); break; }
-      } catch (e) {
-        console.warn("Source failed:", src, e && e.message ? e.message : e);
-      }
-    }
-
-    if (!scraped.length) throw new Error("No data parsed from any source.");
-
-    const sheetVals = await readSheet();
-    if (sheetVals.length === 0) throw new Error("Sheet is empty. Ensure headers exist in first row.");
-
-    // headers mapping
-    const headersRow = sheetVals[0].map(h => String(h||'').trim());
-    const headerMap = {};
-    headersRow.forEach((h,i) => headerMap[h.toLowerCase()] = i);
-
-    const expected = ['ipo','gmp','kostak','subjecttosauda','date','status','type'];
-    for (const h of expected) {
-      if (!(h in headerMap)) {
-        headerMap[h] = headersRow.length;
-        headersRow.push(h);
-        sheetVals[0].push(h);
-      }
-    }
-
-    // merge scraped into sheet
-    for (const raw of scraped) {
-      const keys = Object.keys(raw);
-      let ipoKey = keys.find(k=>k.includes('ipo')||k.includes('name')||k.includes('company')) || keys[0];
-      const ipoName = (raw[ipoKey]||'').toString().trim();
-      if (!ipoName) continue;
-
-      const normalized = {
-        ipo: ipoName,
-        gmp: (raw.gmp || raw.gmpvalue || raw.premium || '').toString().trim(),
-        kostak: (raw.kostak || raw.kost || '').toString().trim(),
-        subjecttosauda: (raw.subjecttosauda || raw.sauda || raw.subject || '').toString().trim(),
-        date: (raw.date || raw.daterange || '').toString().trim()
-      };
-
-      const idx = findMatchingRowIndex(sheetVals, ipoName);
-      if (idx>=1) {
-        const row = sheetVals[idx];
-        row[headerMap['gmp']] = normalized.gmp || row[headerMap['gmp']] || '';
-        row[headerMap['kostak']] = normalized.kostak || row[headerMap['kostak']] || '';
-        row[headerMap['subjecttosauda']] = normalized.subjecttosauda || row[headerMap['subjecttosauda']] || '';
-        row[headerMap['date']] = normalized.date || row[headerMap['date']] || '';
-      } else {
-        const newRow = new Array(Object.keys(headerMap).length).fill('');
-        newRow[headerMap['ipo']] = normalized.ipo;
-        newRow[headerMap['gmp']] = normalized.gmp || '';
-        newRow[headerMap['kostak']] = normalized.kostak || '';
-        newRow[headerMap['subjecttosauda']] = normalized.subjecttosauda || '';
-        newRow[headerMap['date']] = normalized.date || '';
-        newRow[headerMap['status']] = '';
-        newRow[headerMap['type']] = '';
-        sheetVals.push(newRow);
-      }
-    }
-
-    // optional Type fill
-    if (FILL_TYPE_FROM_NSE) {
-      for (let i=1;i<sheetVals.length;i++){
-        try {
-          const curr = (sheetVals[i][headerMap['type']]||'').toString().trim();
-          if (!curr) {
-            const name = (sheetVals[i][headerMap['ipo']]||'').toString().trim();
-            if (!name) continue;
-            const t = await tryFetchTypeFromExchanges(name);
-            sheetVals[i][headerMap['type']] = t || DEFAULT_TYPE;
-          }
-        } catch(e){}
-      }
-    } else if (DEFAULT_TYPE) {
-      for (let i=1;i<sheetVals.length;i++){
-        if (!sheetVals[i][headerMap['type']] || sheetVals[i][headerMap['type']].toString().trim()==='') sheetVals[i][headerMap['type']] = DEFAULT_TYPE;
-      }
-    }
-
-    await writeSheet(sheetVals);
-    console.log("Done — sheet populated/updated.");
-  } catch (err) {
-    console.error("ERROR:", err && err.stack ? err.stack : err);
-    process.exit(1);
-  }
-})();
+  // REMOVED 'key' parameter - relying solely on JWT auth
+  const res = await sheets.spreadsheets.values
