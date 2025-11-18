@@ -1,7 +1,6 @@
 // scripts/populate_sheet.js
 // Node 18+; uses global fetch; includes File/Blob polyfill
 // Robust parser + investorgain-specific fallback + sheet updater
-
 // ---------------- polyfill ----------------
 if (typeof File === "undefined") {
   try {
@@ -20,13 +19,12 @@ if (typeof File === "undefined") {
     console.warn("Polyfill warn:", err && err.message ? err.message : err);
   }
 }
-
 // ---------------- imports ----------------
 const cheerio = require("cheerio");
 const { google } = require("googleapis");
-
 // ---------------- credentials ----------------
-const RAW_SA_JSON = process.env.GOOGLE_SERVICE_ACCOUNT_JSON || "";
+const RAW_B64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64 || ""; // NEW SECRET NAME
+
 let CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL || "";
 let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY || "";
 const SHEET_ID = process.env.GOOGLE_SHEET_ID || "";
@@ -34,6 +32,20 @@ const RAW_SOURCES = (process.env.GMP_SOURCE_URLS || process.env.GMP_SOURCE_URL |
 const SOURCE_LIST = RAW_SOURCES.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
 const DEFAULT_TYPE = process.env.DEFAULT_TYPE || "";
 const FILL_TYPE_FROM_NSE = (process.env.FILL_TYPE_FROM_NSE || "false").toLowerCase() === "true";
+
+let RAW_SA_JSON = "";
+
+if (RAW_B64) {
+  try {
+    // Decode the Base64 string into the JSON content
+    RAW_SA_JSON = Buffer.from(RAW_B64, 'base64').toString('utf8');
+  } catch(e) {
+    console.error('Failed to decode Base64 service json:', e && e.message);
+  }
+} else {
+    // Fallback/Original
+    RAW_SA_JSON = process.env.GOOGLE_SERVICE_ACCOUNT_JSON || "";
+}
 
 if (RAW_SA_JSON && !CLIENT_EMAIL) {
   try {
@@ -44,26 +56,20 @@ if (RAW_SA_JSON && !CLIENT_EMAIL) {
     console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON:", e && e.message ? e.message : e);
   }
 }
-if (PRIVATE_KEY && PRIVATE_KEY.indexOf("\\n") !== -1) PRIVATE_KEY = PRIVATE_KEY.replace(/\\n/g, "\n");
+
+// NOTE: We no longer need the private key string replacement logic
 
 if (!SHEET_ID || !CLIENT_EMAIL || !PRIVATE_KEY) {
-  console.error("❌ Missing Google API secrets. Ensure GOOGLE_SERVICE_ACCOUNT_JSON and GOOGLE_SHEET_ID are set.");
+  console.error("❌ Missing Google API secrets. Ensure GOOGLE_SERVICE_ACCOUNT_JSON_B64 (or GOOGLE_CLIENT_EMAIL and GOOGLE_PRIVATE_KEY) and GOOGLE_SHEET_ID are set.");
   process.exit(1);
 }
-if (SOURCE_LIST.length === 0) {
-  console.error("❌ No GMP sources set. Set GMP_SOURCE_URLS or GMP_SOURCE_URL in repo secrets.");
-  process.exit(1);
-}
-
 // ---------------- google auth ----------------
 const jwt = new google.auth.JWT(CLIENT_EMAIL, null, PRIVATE_KEY, ["https://www.googleapis.com/auth/spreadsheets"]);
 const sheets = google.sheets({ version: "v4", auth: jwt });
-
 // ---------------- helpers ----------------
 function esc(s='') { return String(s === null || s === undefined ? '' : s).trim(); }
 function normalizeHeader(h='') { return String(h || '').trim().toLowerCase().replace(/[^a-z0-9]/g,''); }
 function showSample(rows, n=6) { try { console.log('Parsed rows sample (first ' + Math.min(n, rows.length) + '):'); console.log(JSON.stringify(rows.slice(0,n), null, 2)); } catch(e){} }
-
 // ---------------- fetch HTML ----------------
 async function fetchHtml(url) {
   try {
@@ -74,13 +80,10 @@ async function fetchHtml(url) {
     throw new Error(`Failed to fetch ${url}: ${err && err.message ? err.message : err}`);
   }
 }
-
 // ---------------- investorgain-specific parser ----------------
 function parseInvestorgain(html) {
   const $ = cheerio.load(html);
   const rows = [];
-  // InvestorGain pages often contain a table with headers like Company, GMP, Kostak, Sauda
-  // Try to find a table with those keywords
   let $table = null;
   $('table').each((i, t) => {
     const txt = $(t).text().toLowerCase();
@@ -102,11 +105,9 @@ function parseInvestorgain(html) {
   });
   return rows;
 }
-
 // ---------------- generic table parser ----------------
 function parseTableGeneric(html) {
   const $ = cheerio.load(html);
-  // Find table that mentions gmp/kostak/sauda or fallback to biggest table
   let $table = null;
   $('table').each((i, t) => {
     const txt = $(t).text().toLowerCase();
@@ -115,7 +116,6 @@ function parseTableGeneric(html) {
     }
   });
   if (!$table) {
-    // try heading->next table
     const heading = $('h1,h2,h3').filter((i,el) => /gmp|grey market premium|live ipo gmp/i.test($(el).text())).first();
     if (heading && heading.length) {
       const nextTable = heading.nextAll('table').first();
@@ -123,7 +123,6 @@ function parseTableGeneric(html) {
     }
   }
   if (!$table) {
-    // largest table fallback
     let best = null, max = 0;
     $('table').each((i, t) => {
       const r = $(t).find('tr').length;
@@ -133,7 +132,6 @@ function parseTableGeneric(html) {
   }
   if (!$table) return [];
 
-  // build headers
   let headerCells = $table.find('tr').first().find('th');
   if (!headerCells || headerCells.length === 0) headerCells = $table.find('tr').first().find('td');
   const headers = [];
@@ -161,7 +159,6 @@ function parseTableGeneric(html) {
   });
   return rows.map(r => { const out = {}; for (const k of Object.keys(r)) out[normalizeHeader(k)] = esc(r[k]); return out; });
 }
-
 // ---------------- fallback list/div parser ----------------
 function parseBlocks(html) {
   const $ = cheerio.load(html);
@@ -182,27 +179,23 @@ function parseBlocks(html) {
   });
   return rows.map(r => { const out = {}; for (const k of Object.keys(r)) out[normalizeHeader(k)] = esc(r[k]); return out; });
 }
-
 // ---------------- fetch+parse orchestration ----------------
 async function fetchTableRows(url) {
   try {
     const html = await fetchHtml(url);
 
-    // try investorgain specific parser first for known patterns
     const igRows = parseInvestorgain(html);
     if (igRows && igRows.length) {
       console.log("Parsed with investorgain parser:", igRows.length, "rows");
       return igRows;
     }
 
-    // generic table parse
     const generic = parseTableGeneric(html);
     if (generic && generic.length) {
       console.log("Parsed with generic table parser:", generic.length, "rows");
       return generic;
     }
 
-    // block fallback
     const blocks = parseBlocks(html);
     if (blocks && blocks.length) {
       console.log("Parsed with block parser:", blocks.length, "rows");
@@ -214,7 +207,6 @@ async function fetchTableRows(url) {
     throw err;
   }
 }
-
 // ---------------- exchange type best-effort ----------------
 async function tryFetchTypeFromExchanges(ipoName) {
   if (!ipoName) return null;
@@ -234,7 +226,6 @@ async function tryFetchTypeFromExchanges(ipoName) {
   } catch(e){}
   return null;
 }
-
 // ---------------- sheets helpers ----------------
 async function readSheet() {
   const res = await sheets.spreadsheets.values.get({ spreadsheetId: SHEET_ID, range: 'Sheet1' });
@@ -249,7 +240,6 @@ async function writeSheet(values) {
   });
   console.log("Sheet updated: rows=", values.length);
 }
-
 // ---------------- merge helper ----------------
 function findMatchingRowIndex(sheetRows, ipoName) {
   if (!ipoName) return -1;
@@ -261,7 +251,6 @@ function findMatchingRowIndex(sheetRows, ipoName) {
   }
   return -1;
 }
-
 // ---------------- main ----------------
 (async () => {
   try {
