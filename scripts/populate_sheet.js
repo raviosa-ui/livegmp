@@ -24,6 +24,7 @@ const cheerio = require("cheerio");
 const { google } = require("googleapis");
 // ---------------- credentials ----------------
 const RAW_B64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64 || ""; // NEW SECRET NAME
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || null; // NEW API KEY ADDED
 
 let CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL || "";
 let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY || "";
@@ -56,8 +57,6 @@ if (RAW_SA_JSON && !CLIENT_EMAIL) {
     console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON:", e && e.message ? e.message : e);
   }
 }
-
-// NOTE: We no longer need the private key string replacement logic
 
 if (!SHEET_ID || !CLIENT_EMAIL || !PRIVATE_KEY) {
   console.error("❌ Missing Google API secrets. Ensure GOOGLE_SERVICE_ACCOUNT_JSON_B64 (or GOOGLE_CLIENT_EMAIL and GOOGLE_PRIVATE_KEY) and GOOGLE_SHEET_ID are set.");
@@ -228,7 +227,11 @@ async function tryFetchTypeFromExchanges(ipoName) {
 }
 // ---------------- sheets helpers ----------------
 async function readSheet() {
-  const res = await sheets.spreadsheets.values.get({ spreadsheetId: SHEET_ID, range: 'Sheet1' });
+  const res = await sheets.spreadsheets.values.get({ 
+    spreadsheetId: SHEET_ID, 
+    range: 'Sheet1',
+    key: GOOGLE_API_KEY // <--- API KEY ADDED HERE
+  });
   return res.data.values || [];
 }
 async function writeSheet(values) {
@@ -236,7 +239,8 @@ async function writeSheet(values) {
     spreadsheetId: SHEET_ID,
     range: 'Sheet1',
     valueInputOption: 'RAW',
-    requestBody: { values }
+    requestBody: { values },
+    key: GOOGLE_API_KEY // <--- API KEY ADDED HERE
   });
   console.log("Sheet updated: rows=", values.length);
 }
