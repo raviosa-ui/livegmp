@@ -1,34 +1,37 @@
-name: Populate Google Sheet from GMP sources
+# Replace the entire content of your YAML file with this (adjusting names if needed)
+
+name: Daily Sheet Update
+
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour at minute 0
+    # Runs at 10:00 AM UTC every day
+    - cron: '0 10 * * *'
   workflow_dispatch:
-jobs:
-  populate-sheet:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    # Allows manual running from the GitHub Actions tab
 
-      - name: Setup Node 18
+jobs:
+  update-sheet:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-      - name: Install deps (cheerio, googleapis)
-        run: |
-          if [ ! -f package.json ]; then
-            npm init -y
-          fi
-          npm install cheerio googleapis
-      - name: Run scraper → update Google Sheet
+          node-version: '20' # Use a recent stable Node.js version
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Run Node Script with RAW Credentials
+        run: node scripts/populate_sheet.js
         env:
-          GOOGLE_SERVICE_ACCOUNT_JSON_B64: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON_B64 }}
+          # ✅ NEW: Use the unencoded JSON secret for the Service Account authentication
+          GOOGLE_APPLICATION_CREDENTIALS_RAW: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_RAW }}
+          
+          # Keep your other essential variables
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }} # <--- API KEY ADDED BACK
-          GMP_SOURCE_URLS: ${{ secrets.GMP_SOURCE_URLS }}
-          GMP_SOURCE_URL: ${{ secrets.GMP_SOURCE_URL }}
-          DEFAULT_TYPE: ${{ secrets.DEFAULT_TYPE }}
-          FILL_TYPE_FROM_NSE: ${{ secrets.FILL_TYPE_FROM_NSE }}
-        run: |
-          node scripts/populate_sheet.js
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }} 
+          # ... include any other non-Google secrets (e.g., DM_HOST, etc.) here if needed
