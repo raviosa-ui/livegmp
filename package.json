@@ -1,0 +1,13 @@
+{
+  "name": "gmp-sheet-updater",
+  "version": "1.0.0",
+  "description": "Fetches GMP data and updates Google Sheets.",
+  "main": "scripts/populate_sheet.js",
+  "scripts": {
+    "start": "node scripts/populate_sheet.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "googleapis": "^129.0.0"
+  }
+}
