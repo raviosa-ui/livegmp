@@ -1,37 +1,39 @@
-# Replace the entire content of your YAML file with this (adjusting names if needed)
-
-name: Daily Sheet Update
+name: Daily Sheet Update (TEST MODE)
 
 on:
   schedule:
-    # Runs at 10:00 AM UTC every day
-    - cron: '0 10 * * *'
+    - cron: '0 10 * * *'   # adjust as needed
   workflow_dispatch:
-    # Allows manual running from the GitHub Actions tab
 
 jobs:
   update-sheet:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        
-      - name: Setup Node.js
+
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use a recent stable Node.js version
-          
-      - name: Install Dependencies
-        run: npm install
-        
-      - name: Run Node Script with RAW Credentials
-        run: node scripts/populate_sheet.js
+          node-version: '20'
+
+      - name: Ensure package.json and install runtime deps
+        run: |
+          if [ ! -f package.json ]; then npm init -y; fi
+          npm install cheerio googleapis
+
+      - name: Run Node Script (PARSING TEST - no write)
         env:
-          # ✅ NEW: Use the unencoded JSON secret for the Service Account authentication
-          GOOGLE_APPLICATION_CREDENTIALS_RAW: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_RAW }}
-          
-          # Keep your other essential variables
+          # Put the full JSON here (raw JSON, not base64)
+          GOOGLE_APPLICATION_CREDENTIALS_RAW: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_RAW }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }} 
-          # ... include any other non-Google secrets (e.g., DM_HOST, etc.) here if needed
+          # optional: GOOGLE_API_KEY if you use it
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GMP_SOURCE_URLS: ${{ secrets.GMP_SOURCE_URLS }}
+          DEFAULT_TYPE: ${{ secrets.DEFAULT_TYPE }}
+          FILL_TYPE_FROM_NSE: ${{ secrets.FILL_TYPE_FROM_NSE }}
+          # TEST_MODE true -> parsing only, no write
+          TEST_MODE: "true"
+        run: |
+          node scripts/populate_sheet.js
