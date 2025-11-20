@@ -28,8 +28,9 @@ jobs:
           # Put the full JSON here (raw JSON, not base64)
           GOOGLE_APPLICATION_CREDENTIALS_RAW: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_RAW }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-          # optional: GOOGLE_API_KEY if you use it
+          # optional: GOOGLE_API_KEY if you want for reads
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          # newline-separated list of source URLs; primary first
           GMP_SOURCE_URLS: ${{ secrets.GMP_SOURCE_URLS }}
           DEFAULT_TYPE: ${{ secrets.DEFAULT_TYPE }}
           FILL_TYPE_FROM_NSE: ${{ secrets.FILL_TYPE_FROM_NSE }}
