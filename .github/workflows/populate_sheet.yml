@@ -35,6 +35,6 @@ jobs:
           DEFAULT_TYPE: ${{ secrets.DEFAULT_TYPE }}
           FILL_TYPE_FROM_NSE: ${{ secrets.FILL_TYPE_FROM_NSE }}
           # TEST_MODE true -> parsing only, no write
-          TEST_MODE: "true"
+          TEST_MODE: "false"
         run: |
           node scripts/populate_sheet.js
