@@ -1,9 +1,10 @@
-name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22)
+name: 🔒 Deploy to LiveGMP.in via SFTP (Port 22) - DeployClean
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:     # ✅ Allows "Run workflow" button in GitHub UI
 
 jobs:
   web_deploy:
@@ -13,17 +14,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🚀 FIXED: Create a clean deploy folder WITHOUT duplicating itself
-      - name: Prepare deploy folder
+      - name: Prepare deploy folder (copy only site files)
         run: |
+          echo "🧹 Cleaning and creating deploy folder..."
           rm -rf deploy
           mkdir deploy
-          rsync -av --exclude ".git" --exclude ".github" ./ ./deploy/
 
-          echo "Deploy folder contents:"
+          echo "📦 Copying website files to deploy/ (excluding Git system folders)..."
+          rsync -avz \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "deploy" \
+            ./ deploy/
+
+          echo "📄 Creating debug file deploy_deployed.txt..."
+          date +"Deployed at: %Y-%m-%d %H:%M:%S" > deploy/deploy_deployed.txt
+
+          echo "📂 Final deploy folder contents:"
           ls -la deploy
 
-      - name: ⬇️ SFTP upload
+      - name: ⬆️ Upload via SFTP
         uses: wangyucode/sftp-upload-action@v2.0.4
         with:
           host: ${{ secrets.DH_HOST }}
@@ -31,5 +41,8 @@ jobs:
           password: ${{ secrets.DH_PASS }}
           port: 22
           localDir: "deploy/"
-          remoteDir: "/home/${{ secrets.DH_USER }}/livegmp.in/"
+          remoteDir: "/home/${{ secrets.DH_USER }}/livegmp.in/"   # ⬅️ Correct DreamHost path
           forceUpload: true
+
+      - name: ✔️ Deployment completed
+        run: echo "🚀 Deployment to LiveGMP.in finished successfully!"
