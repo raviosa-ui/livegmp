@@ -1,6 +1,6 @@
 // scripts/update_gmp.js
-// Updated: Adds date-range parsing, status logic (Asia/Kolkata), pre-hide >7 cards
-// Dependencies: node-fetch@2 papaparse (your workflow already installs them)
+// Updated: removes stale rows from index.html and limits each section to 10 items.
+// Requires: node-fetch@2 (or native fetch polyfill) and papaparse
 
 const fs = require('fs').promises;
 const path = require('path');
@@ -15,15 +15,17 @@ if (!CSV_URL) {
 
 const BACKUP_DIR = 'backups';
 const BACKUP_KEEP = 30;
-const SHOW_BATCH = 7; // how many cards visible on first load, rest hidden by lazy
+const MAX_PER_SECTION = 10; // <-- limit per Active/Upcoming/Closed
 
 function esc(s='') {
   return String(s === null || s === undefined ? '' : s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-async function ensureDir(dir) {
+
+function ensureDir(dir) {
   return fs.mkdir(dir, { recursive: true }).catch(()=>{});
 }
+
 async function backupExistingGmp() {
   try {
     const current = await fs.readFile('_gmp.html', 'utf8');
@@ -32,6 +34,7 @@ async function backupExistingGmp() {
     await ensureDir(BACKUP_DIR);
     const fname = path.join(BACKUP_DIR, `gmp-${ts}.html`);
     await fs.writeFile(fname, current, 'utf8');
+    // rotate
     const files = await fs.readdir(BACKUP_DIR);
     const backups = files.filter(f => f.startsWith('gmp-') && f.endsWith('.html')).sort();
     if (backups.length > BACKUP_KEEP) {
@@ -40,6 +43,7 @@ async function backupExistingGmp() {
     }
     console.log('Backup saved to', fname);
   } catch (err) {
+    // ignore - first run
     console.log('No existing _gmp.html found (first run?)');
   }
 }
@@ -52,6 +56,7 @@ function parseGmpNumber(raw) {
   const n = Number(normalized);
   return Number.isFinite(n) ? n : NaN;
 }
+
 function gmpLabelAndClass(raw) {
   const n = parseGmpNumber(raw);
   if (!isNaN(n)) {
@@ -61,6 +66,7 @@ function gmpLabelAndClass(raw) {
   }
   return { label: esc(raw), cls: 'gmp-neutral' };
 }
+
 function normalizeStatus(raw) {
   if (!raw) return 'active';
   const s = String(raw).trim().toLowerCase();
@@ -69,6 +75,7 @@ function normalizeStatus(raw) {
   if (s.includes('active') || s.includes('open')) return 'active';
   return 'active';
 }
+
 function slugify(name) {
   return String(name || '').toLowerCase()
     .replace(/\s+/g,'-')
@@ -77,149 +84,21 @@ function slugify(name) {
     .replace(/^\-|\-$/g,'');
 }
 
-/* ---------- DATE RANGE PARSING & STATUS ---------- */
-
-/*
-parseDateRange(rangeStr)
- - supports examples:
-   "14-18 Nov", "14-18 Nov 2025", "21 Nov 2025", "21 Nov", "TBA", "2025"
- - returns { start: Date|null, end: Date|null }
- - uses current year if year not provided
-*/
-function parseDateRange(rangeStr) {
-  if (!rangeStr) return { start: null, end: null };
-  const s = String(rangeStr).trim();
-  if (!s || /tba|to be announced|coming soon/i.test(s)) return { start: null, end: null };
-
-  // normalize separators
-  const norm = s.replace(/\u2013|\u2014/g,'-').replace(/\s*-\s*/g,'-').replace(/\s+to\s+/i, '-');
-  // months map
-  const months = {
-    jan:0, feb:1, mar:2, apr:3, may:4, jun:5,
-    jul:6, aug:7, sep:8, sept:8, oct:9, nov:10, dec:11
-  };
-
-  // try: "14-18 Nov 2025" or "14-18 Nov"
-  const parts = norm.split(/\s+/);
-  // find words that are month-like
-  let monthIndex = -1;
-  let year = null;
-  for (let i = parts.length-1; i>=0; i--) {
-    const p = parts[i].replace(/[^A-Za-z0-9]/g,'');
-    if (/^\d{4}$/.test(p)) { year = parseInt(p,10); continue; }
-    const m = p.substring(0,3).toLowerCase();
-    if (m in months) { monthIndex = months[m]; break; }
-  }
-
-  // separate numeric range portion (like "14-18")
-  const numericPart = parts[0]; // may contain dash
-  // if string contains a dash like "14-18 Nov"
-  const dashMatch = norm.match(/(\d{1,2})\s*-\s*(\d{1,2})/);
-  if (dashMatch) {
-    const startDay = parseInt(dashMatch[1],10);
-    const endDay = parseInt(dashMatch[2],10);
-    const y = year || (new Date()).getFullYear();
-    if (monthIndex >= 0) {
-      const start = new Date(Date.UTC(y, monthIndex, startDay));
-      const end = new Date(Date.UTC(y, monthIndex, endDay, 23,59,59));
-      return { start, end };
-    } else {
-      // maybe month present after range like "14-18 Nov"
-      const mMatch = norm.match(/(\d{1,2})\s*-\s*(\d{1,2})\s*([A-Za-z]+)/);
-      if (mMatch) {
-        const m = mMatch[3].substring(0,3).toLowerCase();
-        if (m in months) {
-          const y2 = year || (new Date()).getFullYear();
-          const start = new Date(Date.UTC(y2, months[m], startDay));
-          const end = new Date(Date.UTC(y2, months[m], endDay, 23,59,59));
-          return { start, end };
-        }
-      }
-    }
-  }
-
-  // try single date: "21 Nov 2025" or "21 Nov"
-  const singleMatch = norm.match(/(\d{1,2})\s*([A-Za-z]{3,})\s*(\d{4})?/);
-  if (singleMatch) {
-    const day = parseInt(singleMatch[1],10);
-    const m = singleMatch[2].substring(0,3).toLowerCase();
-    if (m in months) {
-      const y = singleMatch[3] ? parseInt(singleMatch[3],10) : (new Date()).getFullYear();
-      const start = new Date(Date.UTC(y, months[m], day));
-      const end = new Date(Date.UTC(y, months[m], day, 23,59,59));
-      return { start, end };
-    }
-  }
-
-  // try year-only "2025"
-  const yearOnly = norm.match(/^\d{4}$/);
-  if (yearOnly) {
-    const y = parseInt(norm,10);
-    const start = new Date(Date.UTC(y,0,1));
-    const end = new Date(Date.UTC(y,11,31,23,59,59));
-    return { start, end };
-  }
-
-  return { start: null, end: null };
-}
-
-/*
-determineStatus(rangeStr)
- - returns 'upcoming' | 'active' | 'closed'
- - uses Asia/Kolkata (IST) current date
-*/
-function determineStatus(rangeStr) {
-  const { start, end } = parseDateRange(rangeStr);
-  // now in India timezone: compute today's date boundary by converting current date to UTC date representing IST date
-  const now = new Date();
-  // convert now to IST offset string won't be necessary: compare using UTC times but offset by IST (UTC+5:30)
-  // We will make "today" be the IST local date at time 00:00:00 UTC-equivalent
-  const istOffsetMinutes = 5 * 60 + 30;
-  const nowUtcMs = Date.now();
-  const nowIstMs = nowUtcMs + istOffsetMinutes * 60000;
-  const todayIst = new Date(nowIstMs);
-  // normalize to midnight IST
-  const istYear = todayIst.getUTCFullYear();
-  const istMonth = todayIst.getUTCMonth();
-  const istDate = todayIst.getUTCDate();
-  const todayIstStart = Date.UTC(istYear, istMonth, istDate); // this is in ms UTC representing IST midnight
-
-  if (!start || !end) {
-    // If no dates, treat as upcoming
-    return 'upcoming';
-  }
-
-  // convert parsed start/end (which are built as UTC midnight) to ms
-  const startMs = start.getTime();
-  const endMs = end.getTime();
-
-  if (todayIstStart < startMs) return 'upcoming';
-  if (todayIstStart >= startMs && todayIstStart <= endMs) return 'active';
-  if (todayIstStart > endMs) return 'closed';
-  return 'upcoming';
-}
-
-/* ---------- HTML BUILD ---------- */
-
 function buildCardsHtml(rows) {
-  // We'll pre-hide cards after SHOW_BATCH overall items (not per-group).
-  let count = 0;
   return rows.map(r => {
     const g = gmpLabelAndClass(r.GMP_raw);
     const dateText = esc(r.Date);
     const kostak = esc(r.Kostak);
     const subj = esc(r.SubjectToSauda);
     const type = esc(r.Type || r.type || '');
-    const status = r.status || 'active';
+    const status = r.status;
     const ipoSlug = slugify(r.IPO);
     const ipoUrl = `/ipo/${ipoSlug}`;
 
-    const hiddenClass = (count >= SHOW_BATCH) ? ' hidden-by-lazy' : '';
-    count++;
-
-    return ` 
-  <div class="ipo-card${hiddenClass}" data-status="${status}">
+    return `
+  <div class="ipo-card" data-status="${status}">
     <div class="card-grid">
+      <!-- Column 1: Name + GMP -->
       <div class="col col-name">
         <div class="ipo-title">${esc(r.IPO)}</div>
         <div class="gmp-row">
@@ -228,10 +107,12 @@ function buildCardsHtml(rows) {
         </div>
       </div>
 
+      <!-- Column 2: Status badge -->
       <div class="col col-status">
         <span class="badge ${status}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>
       </div>
 
+      <!-- Column 3: Date only -->
       <div class="col col-meta">
         <div class="meta-item-inline">
           <span class="meta-label">Date</span>
@@ -239,74 +120,85 @@ function buildCardsHtml(rows) {
         </div>
       </div>
 
+      <!-- Column 4: View link -->
       <div class="col col-link">
         <a class="ipo-link" href="${ipoUrl}" rel="noopener" title="Open ${esc(r.IPO)} page">View</a>
       </div>
     </div>
 
+    <!-- Hidden details shown on expand (Kostak/Subject/Type only) -->
     <div class="card-row-details" aria-hidden="true">
       <div><strong>Kostak:</strong> ${kostak ? kostak : '—'}</div>
       <div style="margin-top:6px;"><strong>Subject to Sauda:</strong> ${subj || '—'}</div>
       <div style="margin-top:6px;"><strong>Type:</strong> ${type || '—'}</div>
     </div>
-  </div>`;
+  </div>
+`;
   }).join('\n');
 }
 
-/* ---------- main ---------- */
+async function readPreviousIpoList() {
+  try {
+    const prevHtml = await fs.readFile('_gmp.html', 'utf8');
+    const matches = [...prevHtml.matchAll(/<div[^>]*class="ipo-title"[^>]*>([\s\S]*?)<\/div>/gi)];
+    const names = matches.map(m => m[1].replace(/\s+/g,' ').trim()).filter(Boolean);
+    return names;
+  } catch(e){
+    return [];
+  }
+}
+
 async function main() {
   console.log('Fetching CSV:', CSV_URL);
   const res = await fetch(CSV_URL);
   if (!res.ok) throw new Error('Failed to fetch CSV: ' + res.status);
   const csv = await res.text();
   const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true });
-  const rowsRaw = parsed.data || [];
+  let rowsRaw = parsed.data || [];
 
-  // normalize rows
-  const norm = rowsRaw.map(r => {
+  // Normalize keys and pick only useful rows. Dedupe by IPO name.
+  const seen = new Set();
+  const norm = [];
+  for (const r of rowsRaw) {
+    const ipoName = (r.IPO ?? r.Ipo ?? r['IPO Name'] ?? r['Name'] ?? r['Company'] ?? '').toString().trim();
+    if (!ipoName) continue;
+    const nKey = ipoName.toLowerCase();
+    if (seen.has(nKey)) continue;
+    seen.add(nKey);
     const gmpRaw = r.GMP ?? r.Gmp ?? r.gmp ?? '';
-    const dateRaw = r.Date ?? r.date ?? r['Listing Date'] ?? r['Date'] ?? '';
     const statusRaw = r.Status ?? r.status ?? r.Stage ?? '';
-    const statusFromSheet = normalizeStatus(statusRaw);
-    const typeRaw = r.Type ?? r.type ?? '';
-    const entry = {
-      IPO: r.IPO ?? r.Ipo ?? r['IPO Name'] ?? '',
+    const status = normalizeStatus(statusRaw);
+    norm.push({
+      IPO: ipoName,
       GMP_raw: gmpRaw,
-      Kostak: r.Kostak ?? r.kostak ?? r['IPO Price'] ?? '',
-      Date: dateRaw,
-      SubjectToSauda: r.SubjectToSauda ?? r['SubjectToSauda'] ?? r.Sauda ?? '',
-      Type: typeRaw,
-      status: statusFromSheet
-    };
-    // compute status from Date if sheet status empty or if you prefer date overrides:
-    const computed = determineStatus(entry.Date);
-    // Use computed status unless sheet explicitly had a status different than empty? 
-    // Here we prefer computed status (so date drives status). If you want sheet override, change this.
-    entry.status = computed;
-    return entry;
-  });
-
-  // optional: you can dedupe or sort - here we'll keep order and then sort by status groups
-  const groups = { active: [], upcoming: [], closed: [] };
-  for (const item of norm) {
-    if (item.status === 'active') groups.active.push(item);
-    else if (item.status === 'upcoming') groups.upcoming.push(item);
-    else groups.closed.push(item);
+      GMP_num: (() => { const n = parseGmpNumber(gmpRaw); return Number.isFinite(n) ? n : null; })(),
+      Kostak: r.Kostak ?? r.kostak ?? r['Price'] ?? '',
+      Date: r.Date ?? r.date ?? r['Listing Date'] ?? r['Date Range'] ?? '',
+      SubjectToSauda: r.SubjectToSauda ?? r['SubjectToSauda'] ?? r.Sauda ?? r['Listing Gain'] ?? '',
+      Type: r.Type ?? r.type ?? '',
+      status
+    });
   }
 
-  // simple sorting by GMP numeric desc for active
+  // group and sort
+  const groups = { active: [], upcoming: [], closed: [] };
+  for (const item of norm) groups[item.status].push(item);
   const sortFn = (a,b) => {
-    const na = parseGmpNumber(a.GMP_raw);
-    const nb = parseGmpNumber(b.GMP_raw);
-    if (isNaN(na) && isNaN(nb)) return (a.IPO||'').localeCompare(b.IPO||'');
-    if (isNaN(na)) return 1;
-    if (isNaN(nb)) return -1;
-    return nb - na;
+    if (a.GMP_num === null && b.GMP_num === null) return (a.IPO||'').localeCompare(b.IPO||'');
+    if (a.GMP_num === null) return 1;
+    if (b.GMP_num === null) return -1;
+    return b.GMP_num - a.GMP_num;
   };
   groups.active.sort(sortFn);
   groups.upcoming.sort(sortFn);
   groups.closed.sort(sortFn);
 
+  // limit each section to MAX_PER_SECTION
+  groups.active = groups.active.slice(0, MAX_PER_SECTION);
+  groups.upcoming = groups.upcoming.slice(0, MAX_PER_SECTION);
+  groups.closed = groups.closed.slice(0, MAX_PER_SECTION);
+
+  // prepare HTML
   const now = new Date();
   const tsLocal = now.toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' });
 
@@ -348,20 +240,39 @@ async function main() {
   </div>
   `;
 
+  // read previous IPOs for diff logging
+  const prevIpos = await readPreviousIpoList();
+  const newIpos = [...groups.active, ...groups.upcoming, ...groups.closed].map(x => x.IPO);
+
+  const removed = prevIpos.filter(p => !newIpos.includes(p));
+  const added = newIpos.filter(n => !prevIpos.includes(n));
+
+  console.log('Summary: total rows on sheet (after dedupe):', norm.length);
+  console.log('New page counts -> Active:', groups.active.length, 'Upcoming:', groups.upcoming.length, 'Closed:', groups.closed.length);
+  console.log('Added IPOs (new):', added);
+  console.log('Removed IPOs (deleted upstream):', removed);
+
+  // backup existing
   await backupExistingGmp();
+
+  // write partial
   await fs.writeFile('_gmp.html', wrapperHtml, 'utf8');
 
-  // inject into index.html safely
+  // inject into index.html safely: remove any existing gmp-wrapper chunks then insert at placeholder
   let html = await fs.readFile('index.html', 'utf8');
+
+  // remove ALL prior injected blocks (global)
   html = html.replace(/<div id="gmp-wrapper">[\s\S]*?<\/div>\s*/g, '');
+
   if (html.indexOf('<!-- GMP_TABLE -->') === -1) {
     console.warn('Placeholder <!-- GMP_TABLE --> not found — appending wrapper before </body>.');
     html = html.replace('</body>', `\n${wrapperHtml}\n</body>`);
   } else {
     html = html.replace('<!-- GMP_TABLE -->', wrapperHtml);
   }
+
   await fs.writeFile('index.html', html, 'utf8');
-  console.log('Generated _gmp.html and injected into index.html');
+  console.log('Generated _gmp.html and injected into index.html — done.');
 }
 
 main().catch(err => {
