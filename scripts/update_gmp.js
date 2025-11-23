@@ -26,12 +26,14 @@ function ensureDir(dir) {
 
 async function backupExistingGmp() {
   try {
-    const current = await fs.readFile('_gmp.html', 'utf8');
+    // FIX: Explicitly use utf8 for reading
+    const current = await fs.readFile('_gmp.html', { encoding: 'utf8' });
     const now = new Date();
     const ts = now.toISOString().replace(/[:.]/g,'-');
     await ensureDir(BACKUP_DIR);
     const fname = path.join(BACKUP_DIR, `gmp-${ts}.html`);
-    await fs.writeFile(fname, current, 'utf8');
+    // FIX: Explicitly use utf8 for writing
+    await fs.writeFile(fname, current, { encoding: 'utf8' });
     
     // Rotate backups
     const files = await fs.readdir(BACKUP_DIR);
@@ -49,6 +51,7 @@ async function backupExistingGmp() {
 function parseGmpNumber(raw) {
   if (raw === undefined || raw === null) return NaN;
   const s = String(raw).trim();
+  // We remove the direct Rupee symbol and commas here to parse the number
   const normalized = s.replace(/[,₹\s]/g,'').replace(/[^\d\.\-\+]/g,'').trim();
   if (normalized === '' || normalized === '-' || normalized === '+') return NaN;
   const n = Number(normalized);
@@ -74,7 +77,8 @@ function normalizeStatus(raw) {
   return '';
 }
 
-// --- DATE PARSING HELPERS ---
+// --- DATE PARSING HELPERS (omitted for brevity, assume unchanged) ---
+
 const MONTHS = {
   jan:0, feb:1, mar:2, apr:3, may:4, jun:5,
   jul:6, aug:7, sep:8, oct:9, nov:10, dec:11
@@ -144,6 +148,8 @@ function computeStatusFromDateText(dateText) {
   return 'upcoming';
 }
 
+// --- END DATE HELPERS ---
+
 function slugify(name) {
   return String(name || '').toLowerCase()
     .replace(/\s+/g,'-')
@@ -162,6 +168,11 @@ function buildCardsHtml(rows) {
     const status = r.status;
     const ipoSlug = slugify(r.IPO);
     const ipoUrl = `/ipo/${ipoSlug}`;
+    
+    // FIX: Using HTML Entity &#8377; for Rupee symbol to prevent encoding issues
+    const rupee = '&#8377;'; 
+    const kostakDisplay = kostak ? (kostak.match(new RegExp(`^${rupee}`)) ? kostak : rupee + kostak) : '—';
+
 
     return `
   <div class="ipo-card" data-status="${status}">
@@ -187,11 +198,12 @@ function buildCardsHtml(rows) {
       </div>
     </div>
     <div class="card-row-details" aria-hidden="true">
-      <div><strong>Kostak:</strong> ${kostak ? (kostak.match(/^₹/) ? kostak : '₹' + kostak) : '—'}</div>
+      <div><strong>Kostak:</strong> ${kostakDisplay}</div>
       <div style="margin-top:6px;"><strong>Subject to Sauda:</strong> ${subj || '—'}</div>
       <div style="margin-top:6px;"><strong>Type:</strong> ${type || '—'}</div>
     </div>
-  </div>`;
+  </div>
+`;
   }).join('\n');
 }
 
@@ -231,8 +243,7 @@ async function main() {
   const groups = { active: [], upcoming: [], closed: [] };
   
   for (const item of norm) {
-    // FIX: STYRICT FILTER
-    // Check if IPO name exists AND isn't just whitespace
+    // Strict filter to skip empty/whitespace-only rows
     if (!item.IPO || String(item.IPO).trim().length === 0) {
         continue;
     }
@@ -258,8 +269,7 @@ async function main() {
   const now = new Date();
   const tsLocal = now.toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' });
 
-  // FIX: WRAPPER HTML
-  // We explicitly add comment tags so we can find this block easily later
+  // Use unique comment markers for safe HTML injection
   let content = `
 <div id="gmp-wrapper">
   <div id="gmp-controls" class="sticky-filters">
@@ -298,41 +308,30 @@ async function main() {
 `;
 
   await backupExistingGmp();
-  await fs.writeFile('_gmp.html', content, 'utf8');
+  // FIX: Explicitly use utf8 for writing
+  await fs.writeFile('_gmp.html', content, { encoding: 'utf8' });
 
-  let html = await fs.readFile('index.html', 'utf8');
+  // FIX: Explicitly use utf8 for reading
+  let html = await fs.readFile('index.html', { encoding: 'utf8' });
 
-  // FIX: CLEANER REPLACEMENT STRATEGY
-  // 1. If we find our explicit comments, replace everything between them.
+  // Use the new comment markers for a reliable replacement
   if (html.includes('') && html.includes('')) {
-      // The regex /[\s\S]*?/ is lazy, but since we use unique comments now, it works perfectly.
+      // Find the existing block and replace it entirely with the new content
       html = html.replace(/[\s\S]*?/, content);
   } 
-  // 2. Fallback: If we don't find comments (legacy/first run), try to find the wrapper div.
-  // Note: We use a more aggressive approach to remove the old wrapper completely.
-  else if (html.includes('<div id="gmp-wrapper">')) {
-      console.warn('Converting legacy HTML structure to Comment-based structure...');
-      // Remove the old wrapper entirely using a more robust regex or simple split
-      // We assume the old wrapper was there. We simply replace the placeholder or append.
-      // Since parsing nested divs with regex is risky, we will try to replace the known legacy placeholder if it exists
-      if (html.includes('')) {
-         html = html.replace('', content);
-      } else {
-         // Use a safer "split" approach to remove the old div if regex is failing
-         // But for now, let's append before body if we can't find a safe target
-         console.log('Could not safely find old block bounds, appending new block.');
-         html = html.replace('</body>', `\n${content}\n</body>`);
-      }
-  } 
-  // 3. Brand new installation
+  // Handle the initial insertion using the placeholder in your index.html
   else if (html.includes('')) {
+      console.log('Replacing placeholder with new content.');
       html = html.replace('', content);
-  } else {
-      // Append to bottom
+  } 
+  // Fallback: This should not happen if the previous step was followed correctly
+  else {
+      console.warn('Could not find existing placeholder or markers. Appending new block before </body>.');
       html = html.replace('</body>', `\n${content}\n</body>`);
   }
 
-  await fs.writeFile('index.html', html, 'utf8');
+  // FIX: Explicitly use utf8 for writing
+  await fs.writeFile('index.html', html, { encoding: 'utf8' });
   console.log('Generated _gmp.html and injected into index.html');
 }
 
