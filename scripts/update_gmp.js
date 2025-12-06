@@ -1,5 +1,6 @@
 // scripts/update_gmp.js
-// Updated: Kostak → IPO Price | Subject to Sauda → Listing Gain
+// Fixed: Full HTML output (no Markdown). Kostak → IPO Price | Subject to Sauda → Listing Gain
+// Debug: Added logs for timer/lazy init
 
 const fs = require('fs').promises;
 const path = require('path');
@@ -20,7 +21,9 @@ function esc(s = '') {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function ensureDir(dir) {
@@ -59,8 +62,8 @@ function parseGmpNumber(raw) {
 function gmpLabelAndClass(raw) {
   const n = parseGmpNumber(raw);
   if (!isNaN(n)) {
-    if (n > 0) return { label: `+ ${n}`, cls: 'gmp-up' };
-    if (n < 0) return { label: `- ${Math.abs(n)}`, cls: 'gmp-down' };
+    if (n > 0) return { label: `▲ ${n}`, cls: 'gmp-up' };
+    if (n < 0) return { label: `▼ ${Math.abs(n)}`, cls: 'gmp-down' };
     return { label: `${n}`, cls: 'gmp-neutral' };
   }
   return { label: esc(raw), cls: 'gmp-neutral' };
@@ -75,7 +78,6 @@ function normalizeStatus(raw) {
   return '';
 }
 
-// Date parsing helpers (unchanged - working perfectly)
 const MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
 
 function tryParseDayMonthYear(token, defaultYear) {
@@ -94,6 +96,12 @@ function tryParseDayMonthYear(token, defaultYear) {
     const m = MONTHS[mname];
     const y = nameMatch[3] ? Number(nameMatch[3]) : defaultYear;
     if (m !== undefined) return new Date(y, m, d);
+  }
+  const dayOnly = token.match(/^(\d{1,2})$/);
+  if (dayOnly) {
+    const d = Number(dayOnly[1]);
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), d);
   }
   return null;
 }
@@ -134,23 +142,22 @@ function slugify(name) {
     .replace(/\s+/g, '-')
     .replace(/[^a-z0-9\-]/g, '')
     .replace(/\-+/g, '-')
-    .trim('-');
+    .replace(/^\-+|-+$/g, '');
 }
 
-// MAIN HTML CARD BUILDER (With your requested label changes)
+// FIXED: Pure HTML output (no Markdown at all)
 function buildCardsHtml(rows) {
   return rows.map(r => {
     const g = gmpLabelAndClass(r.GMP_raw);
-    const dateText = esc(r.Date);
-    const kostak = esc(r.Kostak);           // ← This is now "IPO Price"
-    const listingGain = esc(r.SubjectToSauda); // ← This is now "Listing Gain"
+    const dateText = esc(r.Date || '');
+    const ipoPrice = esc(r.Kostak || '');  // IPO Price
+    const listingGain = esc(r.SubjectToSauda || '');  // Listing Gain
     const type = esc(r.Type || '');
     const status = r.status;
     const ipoSlug = slugify(r.IPO);
     const ipoUrl = `/ipo/${ipoSlug}`;
 
-    return `
-  <div class="ipo-card" data-status="${status}">
+    return `<div class="ipo-card" data-status="${status}">
     <div class="card-grid">
       <div class="col col-name">
         <div class="ipo-title">${esc(r.IPO)}</div>
@@ -172,9 +179,8 @@ function buildCardsHtml(rows) {
         <a class="ipo-link" href="${ipoUrl}" rel="noopener" title="Open ${esc(r.IPO)} page">View</a>
       </div>
     </div>
-
     <div class="card-row-details" aria-hidden="true">
-      <div><strong>IPO Price:</strong> ${kostak ? (kostak.startsWith('₹') ? kostak : '₹' + kostak) : '—'}</div>
+      <div><strong>IPO Price:</strong> ${ipoPrice ? (ipoPrice.startsWith('₹') ? ipoPrice : '₹' + ipoPrice) : '—'}</div>
       <div style="margin-top:6px;"><strong>Listing Gain:</strong> ${listingGain ? listingGain + '%' : '—'}</div>
       <div style="margin-top:6px;"><strong>Type:</strong> ${type || '—'}</div>
     </div>
@@ -183,43 +189,52 @@ function buildCardsHtml(rows) {
 }
 
 async function main() {
-  console.log('Fetching latest GMP data...');
+  console.log('Fetching latest GMP data from sheet...');
   const res = await fetch(CSV_URL);
-  if (!res.ok) throw new Error('CSV fetch failed: ' + res.status);
+  if (!res.ok) throw new Error(`CSV fetch failed: ${res.status}`);
   const csv = await res.text();
   const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true });
-  const rowsRaw = parsed.data;
+  const rowsRaw = parsed.data || [];
 
   const norm = rowsRaw.map(r => {
-    const gmpRaw = r.GMP ?? r.Gmp ?? r.gmp ?? '';
-    const dateRaw = r.Date ?? r.date ?? '';
-    const kostakRaw = r.Kostak ?? '';
-    const saudaRaw = r.SubjectToSauda ?? r.Sauda ?? '';
-    const typeRaw = r.Type ?? '';
+    const gmpRaw = r.GMP ?? r.Gmp ?? r.gmp ?? r['GMP_raw'] ?? '';
+    const dateRaw = r.Date ?? r.date ?? r['Listing Date'] ?? '';
+    const ipoPriceRaw = r.Kostak ?? r.kostak ?? r['IPO Price'] ?? '';
+    const gainRaw = r.SubjectToSauda ?? r['SubjectToSauda'] ?? r.Sauda ?? r['Listing Gain'] ?? '';
+    const typeRaw = r.Type ?? r.type ?? '';
 
-    const status = normalizeStatus(r.Status ?? r.status ?? '') || computeStatusFromDateText(dateRaw);
+    let statusFromCsv = normalizeStatus(r.Status ?? r.status ?? r.Stage ?? '');
+    let computedStatus = computeStatusFromDateText(String(dateRaw).trim());
+    const status = statusFromCsv || computedStatus || 'upcoming';
+
     const gmpNum = parseGmpNumber(gmpRaw);
 
     return {
-      IPO: (r.IPO ?? r.Ipo ?? '').trim(),
+      IPO: (r.IPO ?? r.Ipo ?? r['IPO Name'] ?? r['Name'] ?? '').trim(),
       GMP_raw: gmpRaw,
       GMP_num: isNaN(gmpNum) ? null : gmpNum,
-      Kostak: kostakRaw,
-      SubjectToSauda: saudaRaw,
-      Date: dateRaw,
-      Type: typeRaw,
+      Kostak: ipoPriceRaw,
+      SubjectToSauda: gainRaw,
+      Date: String(dateRaw),
+      Type: String(typeRaw),
       status
     };
-  }).filter(r => r.IPO);
+  }).filter(r => r.IPO);  // Skip empty
+
+  console.log(`Processed ${norm.length} rows from sheet.`);
 
   const groups = { active: [], upcoming: [], closed: [] };
-  norm.forEach(item => groups[item.status].push(item));
+  norm.forEach(item => {
+    if (groups[item.status]) groups[item.status].push(item);
+  });
 
-  const sortByGmp = (a, b) => (b.GMP_num ?? -Infinity) - (a.GMP_num ?? -Infinity);
+  const sortByGmp = (a, b) => (b.GMP_num ?? -Infinity) - (a.GMP_num ?? -Infinity) || a.IPO.localeCompare(b.IPO);
   ['active', 'upcoming', 'closed'].forEach(key => {
     groups[key].sort(sortByGmp);
     groups[key] = groups[key].slice(0, MAX_PER_GROUP);
   });
+
+  console.log(`Groups: Active=${groups.active.length}, Upcoming=${groups.upcoming.length}, Closed=${groups.closed.length}`);
 
   const now = new Date();
   const tsLocal = now.toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' });
@@ -233,16 +248,22 @@ async function main() {
 </div>
 
 <div class="gmp-meta-line">
-  <div class="updated">Last updated: <strong id="gmp-last-updated">${tsLocal}</strong></div>
+  <div class="updated">Last updated: <strong id="gmp-last-updated">${esc(tsLocal)}</strong></div>
   <div class="next-run">Next run: <span id="gmp-next-run">calculating...</span></div>
 </div>
 
 <div id="gmp-cards">
 `;
 
-  if (groups.active.length) content += `<h3 class="section-heading">Active IPOs</h3>\n${buildCardsHtml(groups.active)}`;
-  if (groups.upcoming.length) content += `<h3 class="section-heading">Upcoming IPOs</h3>\n${buildCardsHtml(groups.upcoming)}`;
-  if (groups.closed.length) content += `<h3 class="section-heading">Closed / Listed</h3>\n${buildCardsHtml(groups.closed)}`;
+  if (groups.active.length) {
+    content += `<h3 class="section-heading">Active IPOs</h3>\n${buildCardsHtml(groups.active)}`;
+  }
+  if (groups.upcoming.length) {
+    content += `<h3 class="section-heading">Upcoming IPOs</h3>\n${buildCardsHtml(groups.upcoming)}`;
+  }
+  if (groups.closed.length) {
+    content += `<h3 class="section-heading">Closed / Listed</h3>\n${buildCardsHtml(groups.closed)}`;
+  }
 
   content += `</div>
 <div id="load-more-wrap" style="text-align:center;margin-top:12px;">
@@ -256,16 +277,28 @@ async function main() {
 
   await backupExistingGmp();
   await fs.writeFile('_gmp.html', wrapperHtml, 'utf8');
+  console.log('Partial HTML saved to _gmp.html (check for HTML structure, not Markdown)');
 
   let html = await fs.readFile('index.html', 'utf8');
-  html = html.replace(/<!-- === DO NOT REMOVE === -->[\s\S]*?(?=<div id="gmp-wrapper">|$)/, ''); // clean old
-  html = html.replace('<!-- === DO NOT REMOVE === -->', wrapperHtml);
+
+  // Aggressive cleanup: Remove any old GMP blocks (Markdown or HTML)
+  html = html.replace(/<!-- === DO NOT REMOVE === -->[\s\S]*?(?=(<h3|###|\n\n|$))/gi, '<!-- === DO NOT REMOVE === -->');
+  html = html.replace(/<div id="gmp-wrapper">[\s\S]*?<\/div>/gi, '');
+
+  // Inject
+  const placeholder = '<!-- === DO NOT REMOVE === -->';
+  if (!html.includes(placeholder)) {
+    console.warn('Placeholder missing—appending before </body>');
+    html = html.replace('</body>', `${wrapperHtml}\n</body>`);
+  } else {
+    html = html.replace(placeholder, `${placeholder}\n${wrapperHtml}`);
+  }
 
   await fs.writeFile('index.html', html, 'utf8');
-  console.log('LiveGMP updated successfully! Kostak → IPO Price | Subject to Sauda → Listing Gain');
+  console.log('✅ LiveGMP updated! Check index.html for HTML cards. Upload & refresh (Ctrl+F5). Timer/lazy/filters will auto-init.');
 }
 
 main().catch(err => {
-  console.error('Error:', err);
+  console.error('❌ Error:', err);
   process.exit(1);
 });
