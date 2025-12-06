@@ -88,3 +88,4 @@
     setupNextRun();
   });
 })();
+console.log('GMP JS initialized - Timer, lazy, filters, clicks ready!');
