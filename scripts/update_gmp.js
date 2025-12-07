@@ -6,7 +6,8 @@ const Papa = require('papaparse');
 const fetch = global.fetch || ((...args) => import('node-fetch').then(({default: fetch}) => fetch(...args)));
 
 // --- CONFIGURATION ---
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1lXkB8nKj8hF0gJ_rZfyW7x-M7Gz1t9L-uE5h/pub?output=csv";
+// Prioritize Environment Variable for CI/CD, fallback to default for local dev (if valid)
+const CSV_URL = process.env.GMP_SHEET_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1lXkB8nKj8hF0gJ_rZfyW7x-M7Gz1t9L-uE5h/pub?output=csv";
 const TARGET_FILE = path.join(__dirname, 'index.html');
 const START_MARKER = '<!-- GMP_START -->';
 const END_MARKER = '<!-- GMP_END -->';
@@ -22,7 +23,7 @@ const parseGMPValue = (val) => {
   return isNaN(num) ? 0 : num;
 };
 
-// --- ROBUST DATE PARSING (Restored from your working code) ---
+// --- ROBUST DATE PARSING ---
 const MONTHS = {
   jan:0, feb:1, mar:2, apr:3, may:4, jun:5,
   jul:6, aug:7, sep:8, oct:9, nov:10, dec:11
@@ -144,9 +145,14 @@ const generateCardHTML = (row) => {
 // --- MAIN FUNCTION ---
 async function updateGMP() {
   try {
+    console.log('Starting GMP Update...');
+    console.log(`Using CSV Source: ${CSV_URL.startsWith('http') ? CSV_URL : 'Invalid URL'}`);
+
+    if (!CSV_URL) throw new Error('CSV_URL is not defined.');
+
     console.log('Fetching CSV...');
     const response = await fetch(CSV_URL);
-    if (!response.ok) throw new Error(`Fetch failed: ${response.statusText}`);
+    if (!response.ok) throw new Error(`Fetch failed: ${response.statusText} (${response.status})`);
     const csvText = await response.text();
 
     console.log('Parsing CSV...');
@@ -210,8 +216,6 @@ async function updateGMP() {
     let htmlContent = fs.readFileSync(TARGET_FILE, 'utf-8');
     
     // Strict replacement logic using Markers
-    // We construct a Regex that finds everything between START and END markers
-    // 's' flag (dotAll) is not standard in older node versions, so we use [\s\S]*?
     const regex = new RegExp(`(${START_MARKER})[\\s\\S]*?(${END_MARKER})`);
     
     if (regex.test(htmlContent)) {
@@ -220,7 +224,6 @@ async function updateGMP() {
       console.log('Success! index.html updated cleanly.');
     } else {
       console.error('ERROR: Markers not found in index.html. Cannot inject content.');
-      // Optional: Append if missing, but better to fail so we fix the template
       process.exit(1);
     }
 
