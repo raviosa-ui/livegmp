@@ -186,8 +186,8 @@ function buildCardsHtml(rows) {
   return rows.map(r => {
     const g = gmpLabelAndClass(r.GMP_raw);
     const dateText = esc(r.Date);
-    const kostak = esc(r.Kostak);
-    const subj = esc(r.SubjectToSauda);
+    const ipoPrice = esc(r.Kostak);
+    const listingGain = esc(r.SubjectToSauda);
     const type = esc(r.Type || r.type || '');
     const status = r.status;
     const ipoSlug = slugify(r.IPO);
@@ -224,10 +224,10 @@ function buildCardsHtml(rows) {
       </div>
     </div>
 
-    <!-- Hidden details shown on expand (Kostak/Subject/Type only) -->
+    <!-- Hidden details shown on expand (IPO Price/Listing Gain/Type only) -->
     <div class="card-row-details" aria-hidden="true">
-      <div><strong>Kostak:</strong> ${kostak ? (kostak.match(/^₹/) ? kostak : '₹' + kostak) : '—'}</div>
-      <div style="margin-top:6px;"><strong>Subject to Sauda:</strong> ${subj || '—'}</div>
+      <div><strong>IPO Price:</strong> ${ipoPrice ? (ipoPrice.match(/^₹/) ? ipoPrice : '₹' + ipoPrice) : '—'}</div>
+      <div style="margin-top:6px;"><strong>Listing Gain:</strong> ${listingGain || '—'}</div>
       <div style="margin-top:6px;"><strong>Type:</strong> ${type || '—'}</div>
     </div>
   </div>
@@ -345,19 +345,21 @@ async function main() {
   // inject into index.html safely:
   let html = await fs.readFile('index.html', 'utf8');
 
-  // Remove any previous gmp-wrapper blocks or old injected chunks
-  html = html.replace(/<!--\s*GMP_TABLE_START\s*-->[\s\S]*?<!--\s*GMP_TABLE_END\s*-->/g, '');
+  // Clean up any old remnants (for migration/safety)
   html = html.replace(/<div id="gmp-wrapper">[\s\S]*?<\/div>\s*/g, '');
+  html = html.replace(/<!--\s*GMP_TABLE_START\s*-->[\s\S]*?<!--\s*GMP_TABLE_END\s*-->/g, '');
+  html = html.replace(/<!-- GMP_TABLE -->/g, ''); // Remove old placeholder if present
 
-  // Prefer the GMP_TABLE placeholder if exists
-  if (html.indexOf('<!-- GMP_TABLE -->') === -1) {
-    console.warn('Placeholder <!-- GMP_TABLE --> not found — appending wrapper before </body>.');
-    html = html.replace('</body>', `\n${wrapperHtml}\n</body>`);
-  } else {
-    html = html.replace('<!-- GMP_TABLE -->', wrapperHtml);
+  // Replace between GMP_START and GMP_END
+  let newHtml = html.replace(/<!--\s*GMP_START\s*-->[\s\S]*?<!--\s*GMP_END\s*-->/, `<!-- GMP_START -->\n${wrapperHtml}\n<!-- GMP_END -->`);
+
+  // If no change (markers not found), append with markers
+  if (newHtml === html) {
+    console.warn('GMP_START/END markers not found — appending wrapper with markers before </body>.');
+    newHtml = html.replace('</body>', `\n<!-- GMP_START -->\n${wrapperHtml}\n<!-- GMP_END -->\n</body>`);
   }
 
-  await fs.writeFile('index.html', html, 'utf8');
+  await fs.writeFile('index.html', newHtml, 'utf8');
   console.log('Generated _gmp.html and injected into index.html');
 }
 
