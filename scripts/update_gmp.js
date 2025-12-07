@@ -8,7 +8,13 @@ const fetch = global.fetch || ((...args) => import('node-fetch').then(({default:
 // --- CONFIGURATION ---
 // Prioritize Environment Variable for CI/CD, fallback to default for local dev (if valid)
 const CSV_URL = process.env.GMP_SHEET_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1lXkB8nKj8hF0gJ_rZfyW7x-M7Gz1t9L-uE5h/pub?output=csv";
-const TARGET_FILE = path.join(__dirname, 'index.html');
+
+// Resolve index.html path: checks current directory first, then parent directory
+let TARGET_FILE = path.join(__dirname, 'index.html');
+if (!fs.existsSync(TARGET_FILE)) {
+  TARGET_FILE = path.join(__dirname, '../index.html');
+}
+
 const START_MARKER = '<!-- GMP_START -->';
 const END_MARKER = '<!-- GMP_END -->';
 const MAX_PER_GROUP = 50;
@@ -147,6 +153,7 @@ async function updateGMP() {
   try {
     console.log('Starting GMP Update...');
     console.log(`Using CSV Source: ${CSV_URL.startsWith('http') ? CSV_URL : 'Invalid URL'}`);
+    console.log(`Target HTML File: ${TARGET_FILE}`);
 
     if (!CSV_URL) throw new Error('CSV_URL is not defined.');
 
@@ -212,7 +219,7 @@ async function updateGMP() {
       </div>
     `;
 
-    console.log(`Reading ${TARGET_FILE}...`);
+    console.log(`Reading index.html...`);
     let htmlContent = fs.readFileSync(TARGET_FILE, 'utf-8');
     
     // Strict replacement logic using Markers
