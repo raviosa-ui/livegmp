@@ -1,155 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Configuration
-  const VISIBLE_CHUNK_SIZE = 10;
-  let visibleCount = VISIBLE_CHUNK_SIZE;
-  
-  // Restore filter from session storage or default to 'all'
-  let currentFilter = sessionStorage.getItem('gmp_filter') || 'all';
+// static/gmp-client.js
+(function(){
+  const SHOW_BATCH = 7;
+  const BATCH_SIZE = 7;
 
-  // DOM Elements
-  const container = document.getElementById('gmp-cards');
-  const cards = Array.from(document.querySelectorAll('.ipo-card'));
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  const loadMoreWrap = document.getElementById('load-more-wrap');
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const timerEl = document.getElementById('gmp-next-run');
+  function qs(s, el=document){ return el.querySelector(s); }
+  function qsa(s, el=document){ return Array.from(el.querySelectorAll(s)); }
 
-  // --- INITIALIZATION ---
-  
-  function init() {
-    setupFilters();
-    setupCards();
-    setupLoadMore();
-    startTimer();
-    
-    // Apply initial filter state (UI + Logic)
-    applyFilterUI(currentFilter);
-    render();
-  }
-
-  // --- RENDERING & FILTERING ---
-
-  function render() {
-    // 1. Filter the list of cards based on currentFilter
-    const filteredCards = cards.filter(card => {
-      const status = card.dataset.status;
-      if (currentFilter === 'all') return true;
-      return status === currentFilter;
-    });
-
-    // 2. Hide all cards first
-    cards.forEach(card => card.classList.add('hidden-by-lazy'));
-
-    // 3. Show only the visible subset of filtered cards
-    const toShow = filteredCards.slice(0, visibleCount);
-    toShow.forEach(card => card.classList.remove('hidden-by-lazy'));
-
-    // 4. Update Load More Button visibility
-    if (visibleCount >= filteredCards.length) {
-      if (loadMoreWrap) loadMoreWrap.style.display = 'none';
-    } else {
-      if (loadMoreWrap) loadMoreWrap.style.display = 'block';
-      const remaining = filteredCards.length - visibleCount;
-      if (loadMoreBtn) loadMoreBtn.textContent = `Load More (${remaining})`;
-    }
-  }
-
-  function applyFilterUI(filterName) {
-    filterBtns.forEach(btn => {
-      if (btn.dataset.filter === filterName) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-  }
-
-  // --- EVENT HANDLERS ---
-
-  function setupFilters() {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const newFilter = e.target.dataset.filter;
-        
-        // Update UI
-        applyFilterUI(newFilter);
-
-        // Update State
-        currentFilter = newFilter;
-        sessionStorage.setItem('gmp_filter', currentFilter); // Persist
-        visibleCount = VISIBLE_CHUNK_SIZE; // Reset pagination on filter change
-
-        render();
-      });
-    });
-  }
-
-  function setupCards() {
-    if (container) {
-      container.addEventListener('click', (e) => {
-        // Allow clicking on card header or body, but exclude details text selection
-        const card = e.target.closest('.ipo-card');
-        const details = e.target.closest('.card-row-details');
-        
-        if (card && !details) {
-          toggleCard(card);
-        }
-      });
-    }
-  }
-
-  function toggleCard(card) {
+  function toggleCard(card){
     const details = card.querySelector('.card-row-details');
     if (!details) return;
-
-    const isHidden = details.getAttribute('aria-hidden') === 'true';
-    if (isHidden) {
-      details.setAttribute('aria-hidden', 'false');
-      card.classList.add('expanded');
-    } else {
-      details.setAttribute('aria-hidden', 'true');
-      card.classList.remove('expanded');
-    }
+    const hidden = details.getAttribute('aria-hidden') === 'true';
+    details.setAttribute('aria-hidden', hidden ? 'false' : 'true');
+    card.classList.toggle('expanded', hidden);
   }
 
-  function setupLoadMore() {
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', () => {
-        visibleCount += VISIBLE_CHUNK_SIZE;
-        render();
+  function setupCardClicks(){
+    qsa('.ipo-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // ignore clicks on filter controls, load-more or View link
+        if (e.target.closest('.filter-btn') || e.target.id === 'load-more-btn' || e.target.closest('.ipo-link')) return;
+        toggleCard(card);
       });
-    }
+    });
   }
 
-  // --- TIMER ---
+  function applyLazyLoad(){
+    const cards = qsa('#gmp-cards .ipo-card');
+    const wrap = qs('#load-more-wrap');
+    if (!cards.length) { if (wrap) wrap.style.display = 'none'; return; }
+    if (cards.length <= SHOW_BATCH) { if (wrap) wrap.style.display = 'none'; return; }
+    cards.forEach((c,i) => { if (i >= SHOW_BATCH) c.classList.add('hidden-by-lazy'); });
+    const btn = qs('#load-more-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const hidden = qsa('.hidden-by-lazy');
+      if (hidden.length === 0) { btn.style.display = 'none'; return; }
+      hidden.slice(0, BATCH_SIZE).forEach(el => el.classList.remove('hidden-by-lazy'));
+      if (qsa('.hidden-by-lazy').length === 0) btn.style.display = 'none';
+      setupCardClicks();
+    });
+  }
 
-  function startTimer() {
-    if (!timerEl) return;
-    
-    const update = () => {
+  function setupFilters(){
+    const buttons = qsa('.filter-btn');
+    buttons.forEach(b => {
+      b.addEventListener('click', () => {
+        buttons.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        const filter = b.dataset.filter;
+        const cards = qsa('#gmp-cards .ipo-card');
+        cards.forEach(c => {
+          if (filter === 'all') c.style.display = '';
+          else c.style.display = (c.dataset.status === filter) ? '' : 'none';
+        });
+        // reapply lazy rules for visible cards
+        const visible = qsa('#gmp-cards .ipo-card').filter(x => x.style.display !== 'none');
+        visible.forEach((c,i) => c.classList.toggle('hidden-by-lazy', i >= SHOW_BATCH));
+        const btn = qs('#load-more-btn');
+        if (!btn) return;
+        btn.style.display = (visible.length > SHOW_BATCH) ? '' : 'none';
+        setupCardClicks();
+      });
+    });
+  }
+
+  function setupNextRun() {
+    const el = qs('#gmp-next-run');
+    if (!el) return;
+    function tick() {
       const now = new Date();
-      // Countdown to next hour or half-hour (e.g. 2:00, 2:30, 3:00)
-      const minutes = now.getMinutes();
-      const nextUpdateMin = minutes < 30 ? 30 : 60;
-      
-      let diffMin = nextUpdateMin - minutes;
-      let diffSec = 59 - now.getSeconds();
-      
-      if (diffMin === 60) diffMin = 0;
-      if (diffMin > 0) diffMin -= 1; 
-
-      const mStr = diffMin.toString().padStart(2, '0');
-      const sStr = diffSec.toString().padStart(2, '0');
-      
-      timerEl.textContent = `${mStr}m ${sStr}s`;
-    };
-
-    update();
-    setInterval(update, 1000);
+      const next = new Date(now);
+      next.setMinutes(0,0,0);
+      if (next <= now) next.setHours(next.getHours()+1);
+      const diff = next - now;
+      const mins = Math.floor(diff / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      el.textContent = `${String(mins).padStart(2,'0')}m ${String(secs).padStart(2,'0')}s`;
+    }
+    tick();
+    setInterval(tick, 1000);
   }
 
-  // Run only if cards container exists (it won't exist in the 'Loading...' placeholder state)
-  if (container) {
-    init();
-  }
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    setupCardClicks();
+    applyLazyLoad();
+    setupFilters();
+    setupNextRun();
+  });
+})();
