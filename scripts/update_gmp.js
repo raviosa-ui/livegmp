@@ -6,13 +6,14 @@ const Papa = require('papaparse');
 const fetch = global.fetch || ((...args) => import('node-fetch').then(({default: fetch}) => fetch(...args)));
 
 // --- CONFIGURATION ---
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1lXkB8nKj8hF0gJ_rZfyW7x-M7Gz1t9L-uE5h/pub?output=csv"; 
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1lXkB8nKj8hF0gJ_rZfyW7x-M7Gz1t9L-uE5h/pub?output=csv";
 const TARGET_FILE = path.join(__dirname, 'index.html');
-const MAX_PER_GROUP = 10;
+const START_MARKER = '<!-- GMP_START -->';
+const END_MARKER = '<!-- GMP_END -->';
+const MAX_PER_GROUP = 50;
 
 // --- HELPERS ---
 
-// Parse GMP value (e.g. "₹90") to number for sorting
 const parseGMPValue = (val) => {
   if (!val) return -999999;
   const cleaned = val.toString().replace(/[₹,]/g, '').trim();
@@ -21,101 +22,90 @@ const parseGMPValue = (val) => {
   return isNaN(num) ? 0 : num;
 };
 
-// Parse dates like "12-14 Feb", "28 Feb"
-// Returns { start: Date|null, end: Date|null }
-const parseDateRange = (dateStr) => {
-  if (!dateStr) return { start: null, end: null };
-  const str = dateStr.toLowerCase();
-  
-  // Non-date strings
-  if (str.includes('coming') || str.includes('soon') || str.includes('tba')) {
-    return { start: null, end: null };
-  }
-
-  try {
-    const currentYear = new Date().getFullYear();
-    // Remove year if exists to avoid double year issues
-    let clean = dateStr.replace(new RegExp(currentYear, 'g'), '').trim();
-    // Split by "-"
-    const parts = clean.split('-').map(s => s.trim());
-    
-    // Regex to capture Day and Month (e.g. "14" and "Feb")
-    const dateRegex = /([0-9]+)[\s-]*([a-zA-Z]+)/;
-
-    if (parts.length === 2) {
-      // Range: "12" - "14 Feb"
-      const startText = parts[0];
-      const endText = parts[1];
-      
-      const endMatch = endText.match(dateRegex);
-      if (endMatch) {
-        const day = endMatch[1];
-        const month = endMatch[2];
-        const end = new Date(`${day} ${month} ${currentYear}`);
-        
-        // Try to find month in start, else use end month
-        const startMatch = startText.match(dateRegex);
-        let start;
-        if (startMatch && startMatch[2]) {
-           start = new Date(`${startText} ${currentYear}`);
-        } else {
-           // Just day number in start
-           start = new Date(`${startText} ${month} ${currentYear}`);
-        }
-        return { start, end };
-      }
-    } else if (parts.length === 1) {
-      // Single date: "28 Feb"
-      const match = parts[0].match(dateRegex);
-      if (match) {
-        const d = new Date(`${match[1]} ${match[2]} ${currentYear}`);
-        return { start: d, end: d };
-      }
-    }
-  } catch (e) {
-    // console.log('Date parse error', e);
-  }
-  return { start: null, end: null };
+// --- ROBUST DATE PARSING (Restored from your working code) ---
+const MONTHS = {
+  jan:0, feb:1, mar:2, apr:3, may:4, jun:5,
+  jul:6, aug:7, sep:8, oct:9, nov:10, dec:11
 };
 
-// Determine status based on parsed dates
+function tryParseDayMonthYear(token, defaultYear) {
+  token = token.trim().replace(/\./g,'');
+  const dashMatch = token.match(/^(\d{1,2})[-\/](\d{1,2})(?:[-\/](\d{2,4}))?$/);
+  if (dashMatch) {
+    const d = Number(dashMatch[1]);
+    const m = Number(dashMatch[2]) - 1;
+    const y = dashMatch[3] ? Number(dashMatch[3]) : defaultYear;
+    return new Date(y, m, d);
+  }
+  const nameMatch = token.match(/^(\d{1,2})\s+([A-Za-z]{3,})\s*(\d{2,4})?$/);
+  if (nameMatch) {
+    const d = Number(nameMatch[1]);
+    const mname = nameMatch[2].slice(0,3).toLowerCase();
+    const m = MONTHS[mname];
+    const y = nameMatch[3] ? Number(nameMatch[3]) : defaultYear;
+    if (m !== undefined) return new Date(y, m, d);
+  }
+  return null;
+}
+
+function parseDateRange(text) {
+  if (!text) return { start: null, end: null };
+  const raw = String(text).trim();
+  if (/tba|to be announced|not announced|n\/a/i.test(raw)) return { start:null, end:null };
+
+  const norm = raw.replace(/\u2013|\u2014|–/g,'-').replace(/\s+to\s+/i,'-').replace(/\s*-\s*/,'-');
+  const parts = norm.split(','); // handle "14 Nov, 2025"
+  let main = parts[0].trim();
+  let year = (parts[1] && /^\s*\d{4}\s*$/.test(parts[1])) ? Number(parts[1].trim()) : (new Date()).getFullYear();
+
+  if (main.includes('-')) {
+    const rangeParts = main.split('-').map(p => p.trim());
+    const start = tryParseDayMonthYear(rangeParts[0], year);
+    const end = tryParseDayMonthYear(rangeParts.slice(1).join('-'), year);
+    return { start: start, end: end || start };
+  } else {
+    const single = tryParseDayMonthYear(main, year);
+    return { start: single, end: single };
+  }
+}
+
 const getStatus = (row) => {
-  // 1. Trust explicit Status column if present and valid
   if (row.Status) {
     const s = row.Status.toLowerCase().trim();
-    if (['active', 'upcoming', 'closed'].includes(s)) return s;
+    if (s.includes('active') || s.includes('open')) return 'active';
+    if (s.includes('clos') || s.includes('list')) return 'closed';
+    if (s.includes('upcom')) return 'upcoming';
   }
-
-  // 2. Parse Date
   const { start, end } = parseDateRange(row.Date);
-  
-  // If no date parseable, assume upcoming
   if (!start || !end) return 'upcoming';
-
-  // 3. Compare with Today
-  const now = new Date();
-  now.setHours(0,0,0,0);
-  start.setHours(0,0,0,0);
-  end.setHours(0,0,0,0);
-
-  if (end < now) return 'closed'; // Date passed
-  if (start <= now && end >= now) return 'active'; // Currently in range
-  if (start > now) return 'upcoming'; // Future
   
+  const now = new Date();
+  // Normalize to midnight for fair comparison
+  now.setHours(0,0,0,0);
+  const s = new Date(start); s.setHours(0,0,0,0);
+  const e = new Date(end); e.setHours(0,0,0,0);
+
+  if (now < s) return 'upcoming';
+  if (now >= s && now <= e) return 'active';
+  if (now > e) return 'closed';
   return 'upcoming';
 };
+
+// --- HTML GENERATION ---
 
 const generateCardHTML = (row) => {
   const name = row.IPO || 'Unknown IPO';
   const gmp = row.GMP || '₹0';
   const date = row.Date || 'TBA';
-  const price = row.Kostak || 'N/A'; // "IPO Price"
-  const gain = row.SubjectToSauda || 'N/A'; // "Listing Gain"
+  const price = row.Kostak || '—';
+  const gain = row.SubjectToSauda || '—';
   const type = row.Type || 'Mainline';
-  const status = row.derivedStatus; // calculated previously
+  const status = row.derivedStatus;
 
   const gmpVal = parseGMPValue(gmp);
-  const trendClass = gmpVal > 0 ? 'text-green' : (gmpVal < 0 ? 'text-red' : 'text-neutral');
+  let gmpClass = 'text-neutral';
+  if (gmpVal > 0) gmpClass = 'text-green';
+  if (gmpVal < 0) gmpClass = 'text-red';
 
   return `
     <div class="ipo-card" data-status="${status}">
@@ -125,10 +115,12 @@ const generateCardHTML = (row) => {
           <span class="ipo-date">${date}</span>
         </div>
         <div class="ipo-stats">
-          <div class="gmp-val ${trendClass}">${gmp}</div>
+          <div class="gmp-val ${gmpClass}">${gmp}</div>
           <div class="status-badge status-${status}">${status.toUpperCase()}</div>
         </div>
       </div>
+      
+      <!-- Hidden Details -->
       <div class="card-row-details" aria-hidden="true">
         <div class="detail-grid">
           <div class="detail-item">
@@ -136,7 +128,7 @@ const generateCardHTML = (row) => {
             <span class="value">${price}</span>
           </div>
           <div class="detail-item">
-            <span class="label">Listing Gain</span>
+            <span class="label">Subject Sauda</span>
             <span class="value">${gain}</span>
           </div>
           <div class="detail-item">
@@ -149,10 +141,10 @@ const generateCardHTML = (row) => {
     </div>`;
 };
 
-// --- MAIN ---
+// --- MAIN FUNCTION ---
 async function updateGMP() {
   try {
-    console.log('Fetching CSV from Google Sheets...');
+    console.log('Fetching CSV...');
     const response = await fetch(CSV_URL);
     if (!response.ok) throw new Error(`Fetch failed: ${response.statusText}`);
     const csvText = await response.text();
@@ -162,29 +154,31 @@ async function updateGMP() {
     
     // Process Data
     let items = result.data.map(row => {
-      // Map legacy columns if needed, already standard in user provided sheet
-      return { ...row, derivedStatus: getStatus(row) };
+      // Normalize keys to handle case variations
+      const normalizedRow = {
+        IPO: row.IPO || row.Ipo || row.Name || '',
+        GMP: row.GMP || row.Gmp || '',
+        Date: row.Date || row.date || '',
+        Kostak: row.Kostak || row.kostak || row['IPO Price'] || '',
+        SubjectToSauda: row.SubjectToSauda || row.Sauda || '',
+        Type: row.Type || row.type || '',
+        Status: row.Status || row.status || ''
+      };
+      return { ...normalizedRow, derivedStatus: getStatus(normalizedRow) };
     });
 
-    // Sort function (High to Low GMP)
     const sortFn = (a, b) => parseGMPValue(b.GMP) - parseGMPValue(a.GMP);
 
-    // Group and Limit
-    const active = items.filter(i => i.derivedStatus === 'active').sort(sortFn).slice(0, MAX_PER_GROUP);
-    const upcoming = items.filter(i => i.derivedStatus === 'upcoming').sort(sortFn).slice(0, MAX_PER_GROUP);
-    const closed = items.filter(i => i.derivedStatus === 'closed').sort(sortFn).slice(0, MAX_PER_GROUP);
+    const active = items.filter(i => i.derivedStatus === 'active').sort(sortFn);
+    const upcoming = items.filter(i => i.derivedStatus === 'upcoming').sort(sortFn);
+    const closed = items.filter(i => i.derivedStatus === 'closed').sort(sortFn);
 
-    console.log(`Counts -> Active: ${active.length}, Upcoming: ${upcoming.length}, Closed: ${closed.length}`);
-
-    // Combine for display (Active first, then Upcoming, then Closed)
-    // Note: User can filter via UI buttons. Initial view is limited "All".
     const displayItems = [...active, ...upcoming, ...closed];
-
     const cardsHTML = displayItems.map(generateCardHTML).join('\n');
-
-    // Build Wrapper
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    const finalHTML = `
+
+    // The Inner HTML Block
+    const innerHTML = `
       <div id="gmp-wrapper">
         <div id="gmp-controls">
           <div class="filters">
@@ -203,36 +197,32 @@ async function updateGMP() {
         </div>
 
         <div id="load-more-wrap">
-          <button id="load-more-btn">Load More IPOs</button>
+          <button id="load-more-btn">Load More</button>
         </div>
         
-        <div class="last-updated-ts" style="text-align:center; font-size:12px; color:#666; margin-top:15px; opacity:0.7;">
+        <div class="last-updated-ts" style="text-align:center; font-size:12px; color:#666; margin-top:20px;">
           Last Updated: ${timestamp}
         </div>
       </div>
     `;
 
-    // Inject into index.html
-    console.log(`Writing to ${TARGET_FILE}...`);
-    const htmlContent = fs.readFileSync(TARGET_FILE, 'utf-8');
+    console.log(`Reading ${TARGET_FILE}...`);
+    let htmlContent = fs.readFileSync(TARGET_FILE, 'utf-8');
     
-    const startMarker = '<!-- === DO NOT REMOVE === -->';
-    const endMarker = '<!-- === DO NOT REMOVE === -->';
+    // Strict replacement logic using Markers
+    // We construct a Regex that finds everything between START and END markers
+    // 's' flag (dotAll) is not standard in older node versions, so we use [\s\S]*?
+    const regex = new RegExp(`(${START_MARKER})[\\s\\S]*?(${END_MARKER})`);
     
-    // Use callback in replace to avoid issues if finalHTML contains '$' characters
-    // Regex matches the markers and everything in between
-    const regex = new RegExp(`(${startMarker})([\\s\\S]*?)(${endMarker})`);
-    
-    if (!regex.test(htmlContent)) {
-      throw new Error('Markers not found in index.html');
+    if (regex.test(htmlContent)) {
+      const newContent = htmlContent.replace(regex, `$1\n${innerHTML}\n$2`);
+      fs.writeFileSync(TARGET_FILE, newContent, 'utf-8');
+      console.log('Success! index.html updated cleanly.');
+    } else {
+      console.error('ERROR: Markers not found in index.html. Cannot inject content.');
+      // Optional: Append if missing, but better to fail so we fix the template
+      process.exit(1);
     }
-
-    const newContent = htmlContent.replace(regex, (match, p1, p2, p3) => {
-      return `${p1}\n${finalHTML}\n${p3}`;
-    });
-
-    fs.writeFileSync(TARGET_FILE, newContent, 'utf-8');
-    console.log('Success! index.html updated.');
 
   } catch (error) {
     console.error('FAILED to update GMP:', error);
