@@ -146,11 +146,11 @@ function computeStatusFromDateText(dateText) {
   const istOffsetMs = 5.5 * 60 * 60 * 1000;
   const nowIST = new Date(nowUTC.getTime() + istOffsetMs);
 
-  // Start: 10:00 AM IST on start date
+  // activeStart: 10:00 AM IST on start date
   const activeStart = new Date(start.getFullYear(), start.getMonth(), start.getDate(), 10, 0, 0, 0);
   activeStart.setTime(activeStart.getTime() + istOffsetMs);
 
-  // End: 4:30 PM IST on end date (use 16:30:59 to include the full second)
+  // activeEnd: 4:30 PM IST on end date (inclusive up to the full second)
   const activeEnd = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 16, 30, 59, 999);
   activeEnd.setTime(activeEnd.getTime() + istOffsetMs);
 
