@@ -147,18 +147,16 @@ function computeStatusFromDateText(dateText) {
   const nowIST = new Date(nowUTC.getTime() + istOffsetMs);
 
   // Start: 10:00 AM IST on start date
-  const activeStart = new Date(start);
-  activeStart.setHours(10, 0, 0, 0);
-  activeStart.setTime(activeStart.getTime() + istOffsetMs); // ensure IST context
+  const activeStart = new Date(start.getFullYear(), start.getMonth(), start.getDate(), 10, 0, 0, 0);
+  activeStart.setTime(activeStart.getTime() + istOffsetMs);
 
-  // End: 4:30 PM IST on end date
-  const activeEnd = new Date(end);
-  activeEnd.setHours(16, 30, 0, 0);
+  // End: 4:30 PM IST on end date (use 16:30:59 to include the full second)
+  const activeEnd = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 16, 30, 59, 999);
   activeEnd.setTime(activeEnd.getTime() + istOffsetMs);
 
   if (nowIST < activeStart) return 'upcoming';
-  if (nowIST >= activeStart && nowIST <= activeEnd) return 'active';
-  return 'closed'; // after 4:30 PM on last day
+  if (nowIST <= activeEnd) return 'active';
+  return 'closed';
 }
 
 // --- END DATE HELPERS ---
