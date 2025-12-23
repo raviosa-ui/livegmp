@@ -146,18 +146,45 @@ function computeStatusFromDateText(dateText) {
   const istOffsetMs = 5.5 * 60 * 60 * 1000;
   const nowIST = new Date(nowUTC.getTime() + istOffsetMs);
 
-  // Active start: 10:00 AM IST on start date
-  const activeStart = new Date(start.getFullYear(), start.getMonth(), start.getDate(), 10, 0, 0, 0);
-  activeStart.setTime(activeStart.getTime() + istOffsetMs);
+  const hasExplicitYear = /\b\d{4}\b/.test(String(dateText));
 
-  // Active end: 4:30 PM IST on end date
-  const activeEnd = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 16, 30, 0, 0);
-  activeEnd.setTime(activeEnd.getTime() + istOffsetMs);
+  // --- FIX: handle year-less past ranges like "26-28 Nov" ---
+  // If no year is mentioned AND the range has already fully passed this year,
+  // then it belongs to the past → CLOSED
+  if (
+    !hasExplicitYear &&
+    end < nowIST &&
+    (
+      end.getMonth() < nowIST.getMonth() ||
+      (
+        end.getMonth() === nowIST.getMonth() &&
+        end.getDate() < nowIST.getDate()
+      )
+    )
+  ) {
+    return 'closed';
+  }
+
+  // Active window in IST
+  const activeStart = new Date(
+    start.getFullYear(),
+    start.getMonth(),
+    start.getDate(),
+    10, 0, 0, 0
+  );
+
+  const activeEnd = new Date(
+    end.getFullYear(),
+    end.getMonth(),
+    end.getDate(),
+    16, 30, 0, 0
+  );
 
   if (nowIST < activeStart) return 'upcoming';
   if (nowIST <= activeEnd) return 'active';
   return 'closed';
 }
+
 
 // --- END DATE HELPERS ---
 
