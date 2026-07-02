@@ -32,5 +32,13 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
-          file_pattern: "gmp.json index.html sitemap.xml ipo/**"
+          file_pattern: "gmp.json index.html sitemap.xml ipo/index.html ipo/*/index.html"
           branch: main
+
+      - name: Notify on failure (Telegram)
+        if: failure()
+        continue-on-error: true
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="🔴 LiveGMP: all sources failed or build broke. Check the Actions log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
