@@ -1,0 +1,36 @@
+name: Update GMP (scrape -> gmp.json -> index.html)
+
+on:
+  schedule:
+    - cron: '30 * * * *'   # hourly at :30 (offset from source-site update cycles)
+  workflow_dispatch:        # manual "Run workflow" button
+
+jobs:
+  build-gmp:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install cheerio
+        run: |
+          if [ ! -f package.json ]; then npm init -y; fi
+          npm install cheerio
+
+      - name: Build GMP data + page
+        run: node scripts/build_gmp.js
+
+      - name: Commit changes (only if data changed)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-update GMP data"
+          file_pattern: "gmp.json index.html sitemap.xml ipo/**"
+          branch: main
