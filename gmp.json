@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-03T04:26:59.096Z",
-  "updatedLocal": "03/07/2026, 09:56:59 IST",
+  "updatedIso": "2026-07-03T07:47:37.396Z",
+  "updatedLocal": "03/07/2026, 13:17:37 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -11,6 +11,16 @@
       "listing": "₹- (0.00%)",
       "date": "14-16 July",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Happy Steels",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹66",
+      "listing": "₹- (0.00%)",
+      "date": "9-13 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
