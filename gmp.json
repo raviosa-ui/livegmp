@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-02T13:42:00.564Z",
-  "updatedLocal": "02/07/2026, 19:12:00 IST",
+  "updatedIso": "2026-07-03T04:26:59.096Z",
+  "updatedLocal": "03/07/2026, 09:56:59 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,33 +15,33 @@
     },
     {
       "ipo": "Devson Catalyst",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹118",
-      "listing": "₹124 (5.08%)",
+      "listing": "₹126 (6.78%)",
       "date": "9-13 July",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 110,
-      "gmpRaw": "₹110",
+      "gmp": 135,
+      "gmpRaw": "₹135",
       "price": "₹419",
-      "listing": "₹529 (26.25%)",
+      "listing": "₹554 (32.21%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "IC Electricals",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 44,
+      "gmpRaw": "₹44",
       "price": "₹99",
-      "listing": "₹139 (40.40%)",
+      "listing": "₹143 (44.44%)",
       "date": "3-7 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Knack Packaging",
@@ -55,13 +55,13 @@
     },
     {
       "ipo": "Teja Engineering",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹220",
-      "listing": "₹- (0.00%)",
+      "listing": "₹223 (1.36%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Vinit Mobile",
@@ -71,7 +71,7 @@
       "listing": "₹159 (0.63%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Seemax Resources",
@@ -81,7 +81,7 @@
       "listing": "₹- (0.00%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Kratikal Tech",
@@ -91,7 +91,7 @@
       "listing": "₹183 (22.82%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Sampark India Logistics",
@@ -101,17 +101,17 @@
       "listing": "₹- (0.00%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Atharva Polyplast",
-      "gmp": 1,
-      "gmpRaw": "₹1",
+      "gmp": 2.5,
+      "gmpRaw": "₹2.5",
       "price": "₹60",
-      "listing": "₹61 (1.67%)",
+      "listing": "₹62.5 (4.17%)",
       "date": "30-2 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Adon Agro Commodities",
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Aastha Spintex",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹136",
-      "listing": "₹139 (2.21%)",
+      "listing": "₹140 (2.94%)",
       "date": "29-1 July",
       "type": "Mainboard",
       "status": "closed"
@@ -141,16 +141,6 @@
       "listing": "₹- (0.00%)",
       "date": "25-30 June",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "CSM Technologies",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹113",
-      "listing": "₹- (0.00%)",
-      "date": "24-29 June",
-      "type": "Mainboard",
       "status": "closed"
     }
   ]
