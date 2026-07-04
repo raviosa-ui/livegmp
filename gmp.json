@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-03T15:34:30.095Z",
-  "updatedLocal": "03/07/2026, 21:04:30 IST",
+  "updatedIso": "2026-07-04T04:21:07.426Z",
+  "updatedLocal": "04/07/2026, 09:51:07 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,13 +55,13 @@
     },
     {
       "ipo": "Knack Packaging",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 27,
+      "gmpRaw": "₹27",
       "price": "₹188",
-      "listing": "₹228 (21.28%)",
+      "listing": "₹215 (14.36%)",
       "date": "1-3 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Teja Engineering",
@@ -95,10 +95,10 @@
     },
     {
       "ipo": "Kratikal Tech",
-      "gmp": 34,
-      "gmpRaw": "₹34",
-      "price": "₹149",
-      "listing": "₹183 (22.82%)",
+      "gmp": 37,
+      "gmpRaw": "₹37",
+      "price": "₹135",
+      "listing": "₹172 (27.41%)",
       "date": "30-2 July",
       "type": "SME",
       "status": "closed"
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "Atharva Polyplast",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 5.5,
+      "gmpRaw": "₹5.5",
       "price": "₹60",
-      "listing": "₹63 (5.00%)",
+      "listing": "₹65.5 (9.17%)",
       "date": "30-2 July",
       "type": "SME",
       "status": "closed"
@@ -141,16 +141,6 @@
       "listing": "₹140 (2.94%)",
       "date": "29-1 July",
       "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Crazy Snacks",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹42",
-      "listing": "₹- (0.00%)",
-      "date": "25-30 June",
-      "type": "SME",
       "status": "closed"
     }
   ]
