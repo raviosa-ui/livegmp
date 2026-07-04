@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-04T04:21:07.426Z",
-  "updatedLocal": "04/07/2026, 09:51:07 IST",
+  "updatedIso": "2026-07-04T15:43:05.168Z",
+  "updatedLocal": "04/07/2026, 21:13:05 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,6 +10,16 @@
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "14-16 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Laser Power & Infra",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "9-13 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
