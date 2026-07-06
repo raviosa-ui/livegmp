@@ -1,24 +1,24 @@
 {
-  "updatedIso": "2026-07-06T06:02:15.541Z",
-  "updatedLocal": "06/07/2026, 11:32:15 IST",
+  "updatedIso": "2026-07-06T11:13:37.804Z",
+  "updatedLocal": "06/07/2026, 16:43:37 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "SBI Funds Management",
-      "gmp": 100,
-      "gmpRaw": "₹100",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "gmp": 125,
+      "gmpRaw": "₹125",
+      "price": "₹575",
+      "listing": "₹700 (21.74%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹214",
-      "listing": "₹- (0.00%)",
+      "listing": "₹259 (21.03%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Devson Catalyst",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 44,
+      "gmpRaw": "₹44",
       "price": "₹118",
-      "listing": "₹158 (33.90%)",
+      "listing": "₹162 (37.29%)",
       "date": "9-13 July",
       "type": "SME",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "IC Electricals",
-      "gmp": 55,
-      "gmpRaw": "₹55",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹99",
-      "listing": "₹154 (55.56%)",
+      "listing": "₹144 (45.45%)",
       "date": "3-7 July",
       "type": "SME",
       "status": "active"
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Atharva Polyplast",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹60",
-      "listing": "₹69 (15.00%)",
+      "listing": "₹65 (8.33%)",
       "date": "30-2 July",
       "type": "SME",
       "status": "closed"
