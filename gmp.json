@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-07T08:50:36.860Z",
-  "updatedLocal": "07/07/2026, 14:20:36 IST",
+  "updatedIso": "2026-07-07T12:15:35.643Z",
+  "updatedLocal": "07/07/2026, 17:45:35 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -61,7 +61,7 @@
       "listing": "₹148 (49.49%)",
       "date": "3-7 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Knack Packaging",
