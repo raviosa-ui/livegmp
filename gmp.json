@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-07-07T04:34:06.237Z",
-  "updatedLocal": "07/07/2026, 10:04:06 IST",
+  "updatedIso": "2026-07-07T08:50:36.860Z",
+  "updatedLocal": "07/07/2026, 14:20:36 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "SBI Funds Management",
-      "gmp": 140,
-      "gmpRaw": "₹140",
+      "gmp": 143,
+      "gmpRaw": "₹143",
       "price": "₹575",
-      "listing": "₹715 (24.34%)",
+      "listing": "₹718 (24.87%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -45,10 +45,10 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 171,
-      "gmpRaw": "₹171",
+      "gmp": 160,
+      "gmpRaw": "₹160",
       "price": "₹419",
-      "listing": "₹590 (40.81%)",
+      "listing": "₹579 (38.19%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "upcoming"
