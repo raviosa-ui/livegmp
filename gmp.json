@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-08T07:05:05.031Z",
-  "updatedLocal": "08/07/2026, 12:35:05 IST",
+  "updatedIso": "2026-07-08T09:56:32.013Z",
+  "updatedLocal": "08/07/2026, 15:26:32 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 168,
-      "gmpRaw": "₹168",
+      "gmp": 170,
+      "gmpRaw": "₹170",
       "price": "₹419",
-      "listing": "₹587 (40.10%)",
+      "listing": "₹589 (40.57%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "active"
