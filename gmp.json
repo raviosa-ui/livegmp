@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-09T05:43:31.082Z",
-  "updatedLocal": "09/07/2026, 11:13:31 IST",
+  "updatedIso": "2026-07-09T10:05:09.287Z",
+  "updatedLocal": "09/07/2026, 15:35:09 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 70,
-      "gmpRaw": "₹70",
+      "gmp": 76,
+      "gmpRaw": "₹76",
       "price": "₹574",
-      "listing": "₹644 (12.20%)",
+      "listing": "₹650 (13.24%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹214",
-      "listing": "₹229 (7.01%)",
+      "listing": "₹227 (6.07%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "active"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 160,
-      "gmpRaw": "₹160",
+      "gmp": 152,
+      "gmpRaw": "₹152",
       "price": "₹419",
-      "listing": "₹579 (38.18%)",
+      "listing": "₹571 (36.28%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "active"
