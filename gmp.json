@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-10T10:01:14.973Z",
-  "updatedLocal": "10/07/2026, 15:31:14 IST",
+  "updatedIso": "2026-07-10T12:41:14.842Z",
+  "updatedLocal": "10/07/2026, 18:11:14 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹582 (38.90%)",
       "date": "8-10 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "IC Electricals",
