@@ -1,8 +1,28 @@
 {
-  "updatedIso": "2026-07-10T12:41:14.842Z",
-  "updatedLocal": "10/07/2026, 18:11:14 IST",
+  "updatedIso": "2026-07-11T12:30:36.395Z",
+  "updatedLocal": "11/07/2026, 18:00:36 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Caliber Mining",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (-%)",
+      "date": "17-21 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Sotefin Bharat",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (-%)",
+      "date": "16-20 July",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Alpine Texworld",
       "gmp": 2,
@@ -15,40 +35,40 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 105,
-      "gmpRaw": "₹105",
+      "gmp": 111,
+      "gmpRaw": "₹111",
       "price": "₹574",
-      "listing": "₹679 (18.29%)",
+      "listing": "₹685 (19.33%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 350,
-      "gmpRaw": "₹350",
+      "gmp": 400,
+      "gmpRaw": "₹400",
       "price": "₹331",
-      "listing": "₹681 (105.74%)",
+      "listing": "₹731 (120.85%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹214",
-      "listing": "₹262 (12.93%)",
+      "listing": "₹249 (16.35%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Happy Steels",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹66",
-      "listing": "₹74 (12.12%)",
+      "listing": "₹73 (10.61%)",
       "date": "9-13 July",
       "type": "SME",
       "status": "active"
@@ -65,22 +85,12 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 163,
-      "gmpRaw": "₹163",
+      "gmp": 165,
+      "gmpRaw": "₹165",
       "price": "₹419",
-      "listing": "₹582 (38.90%)",
+      "listing": "₹584 (39.38%)",
       "date": "8-10 July",
       "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "IC Electricals",
-      "gmp": 47,
-      "gmpRaw": "₹47",
-      "price": "₹99",
-      "listing": "₹146 (47.47%)",
-      "date": "3-7 July",
-      "type": "SME",
       "status": "closed"
     }
   ]
