@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-11T12:30:36.395Z",
-  "updatedLocal": "11/07/2026, 18:00:36 IST",
+  "updatedIso": "2026-07-13T05:02:28.239Z",
+  "updatedLocal": "13/07/2026, 10:32:28 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -17,7 +17,7 @@
       "ipo": "Sotefin Bharat",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹187",
       "listing": "₹- (-%)",
       "date": "16-20 July",
       "type": "SME",
@@ -35,20 +35,20 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 111,
-      "gmpRaw": "₹111",
+      "gmp": 89,
+      "gmpRaw": "₹89",
       "price": "₹574",
-      "listing": "₹685 (19.33%)",
+      "listing": "₹663 (15.51%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 400,
-      "gmpRaw": "₹400",
+      "gmp": 395,
+      "gmpRaw": "₹395",
       "price": "₹331",
-      "listing": "₹731 (120.85%)",
+      "listing": "₹726 (119.34%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Happy Steels",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹66",
-      "listing": "₹73 (10.61%)",
+      "listing": "₹80 (21.21%)",
       "date": "9-13 July",
       "type": "SME",
       "status": "active"
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 165,
-      "gmpRaw": "₹165",
+      "gmp": 160,
+      "gmpRaw": "₹160",
       "price": "₹419",
-      "listing": "₹584 (39.38%)",
+      "listing": "₹579 (38.19%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "closed"
