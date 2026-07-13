@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-13T05:02:28.239Z",
-  "updatedLocal": "13/07/2026, 10:32:28 IST",
+  "updatedIso": "2026-07-13T08:33:43.033Z",
+  "updatedLocal": "13/07/2026, 14:03:43 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 89,
-      "gmpRaw": "₹89",
+      "gmp": 92,
+      "gmpRaw": "₹92",
       "price": "₹574",
-      "listing": "₹663 (15.51%)",
+      "listing": "₹666 (16.03%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 29,
+      "gmpRaw": "₹29",
       "price": "₹214",
-      "listing": "₹249 (16.35%)",
+      "listing": "₹243 (13.55%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "active"
