@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-13T08:33:43.033Z",
-  "updatedLocal": "13/07/2026, 14:03:43 IST",
+  "updatedIso": "2026-07-13T12:20:54.859Z",
+  "updatedLocal": "13/07/2026, 17:50:54 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 92,
-      "gmpRaw": "₹92",
+      "gmp": 105,
+      "gmpRaw": "₹105",
       "price": "₹574",
-      "listing": "₹666 (16.03%)",
+      "listing": "₹679 (18.29%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -61,7 +61,7 @@
       "listing": "₹243 (13.55%)",
       "date": "9-13 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Happy Steels",
@@ -71,7 +71,7 @@
       "listing": "₹80 (21.21%)",
       "date": "9-13 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Devson Catalyst",
@@ -81,7 +81,7 @@
       "listing": "₹163 (38.14%)",
       "date": "9-13 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Kusumgar",
