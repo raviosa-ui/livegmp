@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-13T12:20:54.859Z",
-  "updatedLocal": "13/07/2026, 17:50:54 IST",
+  "updatedIso": "2026-07-13T15:23:31.312Z",
+  "updatedLocal": "13/07/2026, 20:53:31 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 17,
+      "gmpRaw": "₹17",
       "price": "₹187",
-      "listing": "₹- (-%)",
+      "listing": "₹204 (9.09%)",
       "date": "16-20 July",
       "type": "SME",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 105,
-      "gmpRaw": "₹105",
+      "gmp": 106,
+      "gmpRaw": "₹106",
       "price": "₹574",
-      "listing": "₹679 (18.29%)",
+      "listing": "₹680 (18.47%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 29,
-      "gmpRaw": "₹29",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹214",
-      "listing": "₹243 (13.55%)",
+      "listing": "₹259 (21.03%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "closed"
