@@ -1,24 +1,44 @@
 {
-  "updatedIso": "2026-07-14T09:26:55.465Z",
-  "updatedLocal": "14/07/2026, 14:56:55 IST",
+  "updatedIso": "2026-07-14T12:48:50.801Z",
+  "updatedLocal": "14/07/2026, 18:18:50 IST",
   "source": "ipowatch",
   "rows": [
     {
-      "ipo": "Caliber Mining",
+      "ipo": "Lohia Corp",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹424",
+      "price": "₹-",
       "listing": "₹- (-%)",
+      "date": "22-24 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Cube Highways Trust InvIT",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (-%)",
+      "date": "22-24 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Caliber Mining",
+      "gmp": 60,
+      "gmpRaw": "₹60",
+      "price": "₹424",
+      "listing": "₹484 (14.15%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 21,
+      "gmpRaw": "₹21",
       "price": "₹187",
-      "listing": "₹205 (9.63%)",
+      "listing": "₹208 (11.23%)",
       "date": "16-20 July",
       "type": "SME",
       "status": "upcoming"
@@ -35,20 +55,20 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 100,
-      "gmpRaw": "₹100",
+      "gmp": 92,
+      "gmpRaw": "₹92",
       "price": "₹574",
-      "listing": "₹674 (17.42%)",
+      "listing": "₹666 (16.03%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 300,
-      "gmpRaw": "₹300",
+      "gmp": 350,
+      "gmpRaw": "₹350",
       "price": "₹331",
-      "listing": "₹631 (90.63%)",
+      "listing": "₹681 (105.74%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "active"
