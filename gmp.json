@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-14T06:37:03.796Z",
-  "updatedLocal": "14/07/2026, 12:07:03 IST",
+  "updatedIso": "2026-07-14T09:26:55.465Z",
+  "updatedLocal": "14/07/2026, 14:56:55 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Laser Power & Infra",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹214",
-      "listing": "₹254 (18.69%)",
+      "listing": "₹249 (16.36%)",
       "date": "9-13 July",
       "type": "Mainboard",
       "status": "closed"
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Kusumgar",
-      "gmp": 160,
-      "gmpRaw": "₹160",
+      "gmp": 158,
+      "gmpRaw": "₹158",
       "price": "₹419",
-      "listing": "₹579 (38.19%)",
+      "listing": "₹577 (37.71%)",
       "date": "8-10 July",
       "type": "Mainboard",
       "status": "closed"
