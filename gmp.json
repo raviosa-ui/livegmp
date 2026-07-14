@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-14T04:29:43.677Z",
-  "updatedLocal": "14/07/2026, 09:59:43 IST",
+  "updatedIso": "2026-07-14T06:37:03.796Z",
+  "updatedLocal": "14/07/2026, 12:07:03 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -31,7 +31,7 @@
       "listing": "₹110 (4.76%)",
       "date": "14-16 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "SBI Funds Management",
@@ -41,7 +41,7 @@
       "listing": "₹674 (17.42%)",
       "date": "14-16 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Millworks Technologies",
@@ -51,7 +51,7 @@
       "listing": "₹631 (90.63%)",
       "date": "14-16 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Laser Power & Infra",
