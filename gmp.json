@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-15T04:30:07.020Z",
-  "updatedLocal": "15/07/2026, 10:00:07 IST",
+  "updatedIso": "2026-07-15T06:38:11.265Z",
+  "updatedLocal": "15/07/2026, 12:08:11 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -17,10 +17,20 @@
       "ipo": "Cube Highways Trust InvIT",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹152",
       "listing": "₹- (-%)",
       "date": "22-24 July",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Gulf Lloyds",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (-%)",
+      "date": "20-22 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
