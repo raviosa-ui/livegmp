@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-15T09:29:59.930Z",
-  "updatedLocal": "15/07/2026, 14:59:59 IST",
+  "updatedIso": "2026-07-15T12:53:11.558Z",
+  "updatedLocal": "15/07/2026, 18:23:11 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 80,
-      "gmpRaw": "₹80",
+      "gmp": 92,
+      "gmpRaw": "₹92",
       "price": "₹424",
-      "listing": "₹504 (18.87%)",
+      "listing": "₹516 (21.70%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Alpine Texworld",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹105",
-      "listing": "₹115 (9.52%)",
+      "listing": "₹- (0.00%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "active"
