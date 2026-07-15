@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-15T06:38:11.265Z",
-  "updatedLocal": "15/07/2026, 12:08:11 IST",
+  "updatedIso": "2026-07-15T09:29:59.930Z",
+  "updatedLocal": "15/07/2026, 14:59:59 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (-%)",
+      "gmp": 2,
+      "gmpRaw": "₹2",
+      "price": "₹100",
+      "listing": "₹102 (2.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "upcoming"
