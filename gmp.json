@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-15T12:53:11.558Z",
-  "updatedLocal": "15/07/2026, 18:23:11 IST",
+  "updatedIso": "2026-07-16T04:41:13.708Z",
+  "updatedLocal": "16/07/2026, 10:11:13 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,33 +25,33 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹100",
-      "listing": "₹102 (2.00%)",
+      "listing": "₹106 (6.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 92,
-      "gmpRaw": "₹92",
+      "gmp": 102,
+      "gmpRaw": "₹102",
       "price": "₹424",
-      "listing": "₹516 (21.70%)",
+      "listing": "₹526 (24.06%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "gmp": 27,
+      "gmpRaw": "₹27",
       "price": "₹187",
-      "listing": "₹209 (11.76%)",
+      "listing": "₹214 (14.44%)",
       "date": "16-20 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Alpine Texworld",
@@ -65,20 +65,20 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 90,
-      "gmpRaw": "₹90",
+      "gmp": 92,
+      "gmpRaw": "₹92",
       "price": "₹574",
-      "listing": "₹664 (15.68%)",
+      "listing": "₹666 (16.03%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 300,
-      "gmpRaw": "₹300",
+      "gmp": 400,
+      "gmpRaw": "₹400",
       "price": "₹331",
-      "listing": "₹631 (90.63%)",
+      "listing": "₹731 (120.85%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "active"
@@ -95,32 +95,22 @@
     },
     {
       "ipo": "Happy Steels",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹66",
-      "listing": "₹78 (18.18%)",
+      "listing": "₹76 (15.15%)",
       "date": "9-13 July",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Devson Catalyst",
-      "gmp": 51,
-      "gmpRaw": "₹51",
+      "gmp": 49,
+      "gmpRaw": "₹49",
       "price": "₹118",
-      "listing": "₹169 (43.22%)",
+      "listing": "₹167 (41.53%)",
       "date": "9-13 July",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Kusumgar",
-      "gmp": 161,
-      "gmpRaw": "₹161",
-      "price": "₹419",
-      "listing": "₹580 (38.42%)",
-      "date": "8-10 July",
-      "type": "Mainboard",
       "status": "closed"
     }
   ]
