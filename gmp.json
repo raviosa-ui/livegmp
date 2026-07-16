@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-16T10:28:43.110Z",
-  "updatedLocal": "16/07/2026, 15:58:43 IST",
+  "updatedIso": "2026-07-16T12:05:08.777Z",
+  "updatedLocal": "16/07/2026, 17:35:08 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,20 +55,20 @@
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 102,
-      "gmpRaw": "₹102",
+      "gmp": 100,
+      "gmpRaw": "₹100",
       "price": "₹424",
-      "listing": "₹526 (24.06%)",
+      "listing": "₹524 (23.58%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 27,
-      "gmpRaw": "₹27",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹187",
-      "listing": "₹214 (14.44%)",
+      "listing": "₹209 (11.76%)",
       "date": "16-20 July",
       "type": "SME",
       "status": "active"
@@ -81,17 +81,17 @@
       "listing": "₹- (0.00%)",
       "date": "14-16 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 92,
-      "gmpRaw": "₹92",
+      "gmp": 95,
+      "gmpRaw": "₹95",
       "price": "₹574",
-      "listing": "₹666 (16.03%)",
+      "listing": "₹669 (16.55%)",
       "date": "14-16 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Millworks Technologies",
@@ -101,7 +101,7 @@
       "listing": "₹731 (120.85%)",
       "date": "14-16 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Laser Power & Infra",
