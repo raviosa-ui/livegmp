@@ -1,14 +1,24 @@
 {
-  "updatedIso": "2026-07-16T04:41:13.708Z",
-  "updatedLocal": "16/07/2026, 10:11:13 IST",
+  "updatedIso": "2026-07-16T10:28:43.110Z",
+  "updatedLocal": "16/07/2026, 15:58:43 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Shree Balaji (Mala) Textiles",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹70",
+      "listing": "₹- (0.00%)",
+      "date": "22-24 July",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Lohia Corp",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹-",
-      "listing": "₹- (-%)",
+      "listing": "₹- (0.00%)",
       "date": "22-24 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -18,9 +28,19 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹152",
-      "listing": "₹- (-%)",
+      "listing": "₹- (0.00%)",
       "date": "22-24 July",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Metalic Technoforge",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹77",
+      "listing": "₹- (0.00%)",
+      "date": "21-23 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
