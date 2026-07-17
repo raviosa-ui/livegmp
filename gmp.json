@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-07-16T12:05:08.777Z",
-  "updatedLocal": "16/07/2026, 17:35:08 IST",
+  "updatedIso": "2026-07-17T04:43:41.249Z",
+  "updatedLocal": "17/07/2026, 10:13:41 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Shree Balaji (Mala) Textiles",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 19,
+      "gmpRaw": "₹19",
       "price": "₹70",
-      "listing": "₹- (0.00%)",
+      "listing": "₹89 (27.14%)",
       "date": "22-24 July",
       "type": "SME",
       "status": "upcoming"
@@ -45,23 +45,23 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹100",
-      "listing": "₹106 (6.00%)",
+      "listing": "₹108 (8.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 100,
-      "gmpRaw": "₹100",
+      "gmp": 105,
+      "gmpRaw": "₹105",
       "price": "₹424",
-      "listing": "₹524 (23.58%)",
+      "listing": "₹529 (24.76%)",
       "date": "17-21 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Sotefin Bharat",
@@ -85,51 +85,21 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 95,
-      "gmpRaw": "₹95",
+      "gmp": 97,
+      "gmpRaw": "₹97",
       "price": "₹574",
-      "listing": "₹669 (16.55%)",
+      "listing": "₹671 (16.90%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 400,
-      "gmpRaw": "₹400",
+      "gmp": 380,
+      "gmpRaw": "₹380",
       "price": "₹331",
-      "listing": "₹731 (120.85%)",
+      "listing": "₹711 (120.85%)",
       "date": "14-16 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Laser Power & Infra",
-      "gmp": 43,
-      "gmpRaw": "₹43",
-      "price": "₹214",
-      "listing": "₹257 (20.09%)",
-      "date": "9-13 July",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Happy Steels",
-      "gmp": 10,
-      "gmpRaw": "₹10",
-      "price": "₹66",
-      "listing": "₹76 (15.15%)",
-      "date": "9-13 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Devson Catalyst",
-      "gmp": 49,
-      "gmpRaw": "₹49",
-      "price": "₹118",
-      "listing": "₹167 (41.53%)",
-      "date": "9-13 July",
       "type": "SME",
       "status": "closed"
     }
