@@ -1,8 +1,38 @@
 {
-  "updatedIso": "2026-07-17T04:43:41.249Z",
-  "updatedLocal": "17/07/2026, 10:13:41 IST",
+  "updatedIso": "2026-07-17T10:19:12.074Z",
+  "updatedLocal": "17/07/2026, 15:49:12 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Manipal Health",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "27-29 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Indo-MIM",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "24-28 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Xtranet Technologies",
+      "gmp": 14,
+      "gmpRaw": "₹14",
+      "price": "₹127",
+      "listing": "₹141 (11.02%)",
+      "date": "22-24 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
     {
       "ipo": "Shree Balaji (Mala) Textiles",
       "gmp": 19,
@@ -65,10 +95,10 @@
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹187",
-      "listing": "₹209 (11.76%)",
+      "listing": "₹205 (9.63%)",
       "date": "16-20 July",
       "type": "SME",
       "status": "active"
@@ -95,10 +125,10 @@
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 380,
-      "gmpRaw": "₹380",
+      "gmp": 297,
+      "gmpRaw": "₹297",
       "price": "₹331",
-      "listing": "₹711 (120.85%)",
+      "listing": "₹658 (90.00%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "closed"
