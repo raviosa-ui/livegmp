@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-07-17T10:19:12.074Z",
-  "updatedLocal": "17/07/2026, 15:49:12 IST",
+  "updatedIso": "2026-07-18T04:27:23.522Z",
+  "updatedLocal": "18/07/2026, 09:57:23 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Manipal Health",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "27-29 July",
@@ -15,20 +15,30 @@
     },
     {
       "ipo": "Indo-MIM",
+      "gmp": 92,
+      "gmpRaw": "₹92",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "23-27 July",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Lohia Corp",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹-",
       "listing": "₹- (0.00%)",
-      "date": "24-28 July",
+      "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹127",
-      "listing": "₹141 (11.02%)",
+      "listing": "₹152 (19.69%)",
       "date": "22-24 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -41,16 +51,6 @@
       "listing": "₹89 (27.14%)",
       "date": "22-24 July",
       "type": "SME",
-      "status": "upcoming"
-    },
-    {
-      "ipo": "Lohia Corp",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
-      "date": "22-24 July",
-      "type": "Mainboard",
       "status": "upcoming"
     },
     {
@@ -75,30 +75,30 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹100",
-      "listing": "₹108 (8.00%)",
+      "listing": "₹115 (15.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 105,
-      "gmpRaw": "₹105",
+      "gmp": 116,
+      "gmpRaw": "₹116",
       "price": "₹424",
-      "listing": "₹529 (24.76%)",
+      "listing": "₹540 (27.36%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Sotefin Bharat",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹187",
-      "listing": "₹205 (9.63%)",
+      "listing": "₹200 (6.95%)",
       "date": "16-20 July",
       "type": "SME",
       "status": "active"
@@ -115,20 +115,20 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 97,
-      "gmpRaw": "₹97",
+      "gmp": 92,
+      "gmpRaw": "₹92",
       "price": "₹574",
-      "listing": "₹671 (16.90%)",
+      "listing": "₹666 (16.03%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 297,
-      "gmpRaw": "₹297",
+      "gmp": 400,
+      "gmpRaw": "₹400",
       "price": "₹331",
-      "listing": "₹658 (90.00%)",
+      "listing": "₹731 (120.85%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "closed"
