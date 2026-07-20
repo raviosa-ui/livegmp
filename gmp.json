@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-20T11:23:26.515Z",
-  "updatedLocal": "20/07/2026, 16:53:26 IST",
+  "updatedIso": "2026-07-20T13:27:23.426Z",
+  "updatedLocal": "20/07/2026, 18:57:23 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -111,7 +111,7 @@
       "listing": "₹200 (6.95%)",
       "date": "16-20 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Alpine Texworld",
