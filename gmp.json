@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-18T06:30:21.961Z",
-  "updatedLocal": "18/07/2026, 12:00:21 IST",
+  "updatedIso": "2026-07-20T04:23:15.520Z",
+  "updatedLocal": "20/07/2026, 09:53:15 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,20 +15,20 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 92,
-      "gmpRaw": "₹92",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "gmp": 210,
+      "gmpRaw": "₹210",
+      "price": "₹485",
+      "listing": "₹695 (43.29%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "gmp": 20,
+      "gmpRaw": "₹20",
+      "price": "₹425",
+      "listing": "₹445 (4.70%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -45,10 +45,10 @@
     },
     {
       "ipo": "Shree Balaji (Mala) Textiles",
-      "gmp": 19,
-      "gmpRaw": "₹19",
+      "gmp": 11,
+      "gmpRaw": "₹11",
       "price": "₹70",
-      "listing": "₹89 (27.14%)",
+      "listing": "₹81 (15.71%)",
       "date": "22-24 July",
       "type": "SME",
       "status": "upcoming"
@@ -75,10 +75,10 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹100",
-      "listing": "₹115 (15.00%)",
+      "listing": "₹125 (25.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "upcoming"
@@ -115,20 +115,20 @@
     },
     {
       "ipo": "SBI Funds Management",
-      "gmp": 92,
-      "gmpRaw": "₹92",
+      "gmp": 104,
+      "gmpRaw": "₹104",
       "price": "₹574",
-      "listing": "₹666 (16.03%)",
+      "listing": "₹678 (18.12%)",
       "date": "14-16 July",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 400,
-      "gmpRaw": "₹400",
+      "gmp": 390,
+      "gmpRaw": "₹390",
       "price": "₹331",
-      "listing": "₹731 (120.85%)",
+      "listing": "₹721 (117.82%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "closed"
