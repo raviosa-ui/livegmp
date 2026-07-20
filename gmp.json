@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-20T07:41:45.226Z",
-  "updatedLocal": "20/07/2026, 13:11:45 IST",
+  "updatedIso": "2026-07-20T11:23:26.515Z",
+  "updatedLocal": "20/07/2026, 16:53:26 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,30 +35,30 @@
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 68,
+      "gmpRaw": "₹68",
       "price": "₹425",
-      "listing": "₹445 (4.70%)",
+      "listing": "₹493(16.00%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹127",
-      "listing": "₹152 (19.69%)",
+      "listing": "₹147(15.75%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Shree Balaji (Mala) Textiles",
-      "gmp": 11,
-      "gmpRaw": "₹11",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹70",
-      "listing": "₹81 (15.71%)",
+      "listing": "₹90 (20.00%)",
       "date": "22-24 July",
       "type": "SME",
       "status": "upcoming"
@@ -135,10 +135,10 @@
     },
     {
       "ipo": "Millworks Technologies",
-      "gmp": 390,
-      "gmpRaw": "₹390",
+      "gmp": 298,
+      "gmpRaw": "₹298",
       "price": "₹331",
-      "listing": "₹721 (117.82%)",
+      "listing": "₹629 (90.00%)",
       "date": "14-16 July",
       "type": "SME",
       "status": "closed"
