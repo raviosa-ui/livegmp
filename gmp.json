@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-21T03:57:00.133Z",
-  "updatedLocal": "21/07/2026, 09:27:00 IST",
+  "updatedIso": "2026-07-21T07:11:19.524Z",
+  "updatedLocal": "21/07/2026, 12:41:19 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -38,7 +38,7 @@
       "gmp": 56,
       "gmpRaw": "₹56",
       "price": "₹425",
-      "listing": "₹481(13.18%)",
+      "listing": "₹481 (13.18%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -48,13 +48,13 @@
       "gmp": 26,
       "gmpRaw": "₹26",
       "price": "₹127",
-      "listing": "₹153(20.47%)",
+      "listing": "₹153 (20.47%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
-      "ipo": "Shree Balaji (Mala) Textiles",
+      "ipo": "Shree Balaji Textiles",
       "gmp": 14,
       "gmpRaw": "₹14",
       "price": "₹70",
@@ -64,7 +64,7 @@
       "status": "upcoming"
     },
     {
-      "ipo": "Cube Highways Trust InvIT",
+      "ipo": "Cube Highways Trust",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹152",
@@ -81,7 +81,7 @@
       "listing": "₹- (0.00%)",
       "date": "21-23 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Gulf Lloyds",
