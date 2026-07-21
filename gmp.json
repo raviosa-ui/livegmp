@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-21T07:11:19.524Z",
-  "updatedLocal": "21/07/2026, 12:41:19 IST",
+  "updatedIso": "2026-07-21T12:09:33.505Z",
+  "updatedLocal": "21/07/2026, 17:39:33 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,30 +25,30 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 200,
-      "gmpRaw": "₹200",
+      "gmp": 195,
+      "gmpRaw": "₹195",
       "price": "₹485",
-      "listing": "₹685 (41.23%)",
+      "listing": "₹680 (40.21%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 56,
-      "gmpRaw": "₹56",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹425",
-      "listing": "₹481 (13.18%)",
+      "listing": "₹470 (10.59%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 26,
-      "gmpRaw": "₹26",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹127",
-      "listing": "₹153 (20.47%)",
+      "listing": "₹147 (15.75%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -95,13 +95,13 @@
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 94,
-      "gmpRaw": "₹94",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹424",
-      "listing": "₹518 (22.17%)",
+      "listing": "₹499 (17.69%)",
       "date": "17-21 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Sotefin Bharat",
