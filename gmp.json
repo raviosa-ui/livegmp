@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-22T07:13:45.602Z",
-  "updatedLocal": "22/07/2026, 12:43:45 IST",
+  "updatedIso": "2026-07-22T10:00:52.822Z",
+  "updatedLocal": "22/07/2026, 15:30:52 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -11,6 +11,26 @@
       "listing": "₹- (0.00%)",
       "date": "27-29 July",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Propshop Events",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹69",
+      "listing": "₹- (0.00%)",
+      "date": "27-29 July",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Advance Technoforge",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹95",
+      "listing": "₹- (0.00%)",
+      "date": "27-29 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
