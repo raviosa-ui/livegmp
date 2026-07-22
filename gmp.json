@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-22T10:00:52.822Z",
-  "updatedLocal": "22/07/2026, 15:30:52 IST",
+  "updatedIso": "2026-07-22T12:12:37.041Z",
+  "updatedLocal": "22/07/2026, 17:42:37 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -111,7 +111,7 @@
       "listing": "₹103 (3.00%)",
       "date": "20-22 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Caliber Mining",
