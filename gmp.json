@@ -1,8 +1,28 @@
 {
-  "updatedIso": "2026-07-23T04:53:59.562Z",
-  "updatedLocal": "23/07/2026, 10:23:59 IST",
+  "updatedIso": "2026-07-23T10:40:00.523Z",
+  "updatedLocal": "23/07/2026, 16:10:00 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Fusion Klassroom",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹159",
+      "listing": "₹- (0.00%)",
+      "date": "31-4 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Poojaa Precision",
+      "gmp": 150,
+      "gmpRaw": "₹150",
+      "price": "₹301",
+      "listing": "₹451 (49.83%)",
+      "date": "28-30 July",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Manipal Health",
       "gmp": 50,
@@ -45,10 +65,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 185,
-      "gmpRaw": "₹185",
+      "gmp": 197,
+      "gmpRaw": "₹197",
       "price": "₹485",
-      "listing": "₹670 (38.14%)",
+      "listing": "₹682 (40.62%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
