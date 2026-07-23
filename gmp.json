@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-22T12:12:37.041Z",
-  "updatedLocal": "22/07/2026, 17:42:37 IST",
+  "updatedIso": "2026-07-23T04:53:59.562Z",
+  "updatedLocal": "23/07/2026, 10:23:59 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹95",
-      "listing": "₹- (0.00%)",
+      "listing": "₹98 (3.17%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "upcoming"
@@ -45,40 +45,40 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 195,
-      "gmpRaw": "₹195",
+      "gmp": 185,
+      "gmpRaw": "₹185",
       "price": "₹485",
-      "listing": "₹680 (40.21%)",
+      "listing": "₹670 (38.14%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 36,
+      "gmpRaw": "₹36",
       "price": "₹425",
-      "listing": "₹465 (9.41%)",
+      "listing": "₹461 (8.47%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹127",
-      "listing": "₹145 (14.17%)",
+      "listing": "₹140 (10.24%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Shree Balaji Textiles",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹70",
-      "listing": "₹85 (21.43%)",
+      "listing": "₹86 (22.86%)",
       "date": "22-24 July",
       "type": "SME",
       "status": "active"
@@ -105,20 +105,20 @@
     },
     {
       "ipo": "Gulf Lloyds",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 1,
+      "gmpRaw": "₹1",
       "price": "₹100",
-      "listing": "₹103 (3.00%)",
+      "listing": "₹101 (1.00%)",
       "date": "20-22 July",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 71,
-      "gmpRaw": "₹71",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹424",
-      "listing": "₹495 (16.75%)",
+      "listing": "₹504 (18.87%)",
       "date": "17-21 July",
       "type": "Mainboard",
       "status": "closed"
