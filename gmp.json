@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-23T13:04:40.394Z",
-  "updatedLocal": "23/07/2026, 18:34:40 IST",
+  "updatedIso": "2026-07-24T04:50:24.722Z",
+  "updatedLocal": "24/07/2026, 10:20:24 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -14,23 +14,33 @@
       "status": "upcoming"
     },
     {
-      "ipo": "Poojaa Precision",
-      "gmp": 150,
-      "gmpRaw": "₹150",
-      "price": "₹301",
-      "listing": "₹451 (49.83%)",
-      "date": "28-30 July",
-      "type": "SME",
+      "ipo": "Juniper Green Energy",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "30-3 August",
+      "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Manipal Health",
       "gmp": 50,
       "gmpRaw": "₹50",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
-      "date": "27-29 July",
+      "price": "₹590",
+      "listing": "₹640 (8.47%)",
+      "date": "29-31 July",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Poojaa Precision",
+      "gmp": 195,
+      "gmpRaw": "₹195",
+      "price": "₹301",
+      "listing": "₹496 (64.78%)",
+      "date": "28-30 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
@@ -45,10 +55,10 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹95",
-      "listing": "₹98 (3.17%)",
+      "listing": "₹100 (5.26%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "upcoming"
@@ -61,34 +71,34 @@
       "listing": "₹- (0.00%)",
       "date": "24-28 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 197,
-      "gmpRaw": "₹197",
+      "gmp": 175,
+      "gmpRaw": "₹175",
       "price": "₹485",
-      "listing": "₹682 (40.62%)",
+      "listing": "₹660 (36.08%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 36,
-      "gmpRaw": "₹36",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹425",
-      "listing": "₹461 (8.47%)",
+      "listing": "₹440 (3.52%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹127",
-      "listing": "₹140 (10.24%)",
+      "listing": "₹135 (6.30%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
@@ -115,10 +125,10 @@
     },
     {
       "ipo": "Metalic Technoforge",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹77",
-      "listing": "₹- (0.00%)",
+      "listing": "₹83 (7.79%)",
       "date": "21-23 July",
       "type": "SME",
       "status": "closed"
@@ -135,22 +145,12 @@
     },
     {
       "ipo": "Caliber Mining",
-      "gmp": 80,
-      "gmpRaw": "₹80",
+      "gmp": 64,
+      "gmpRaw": "₹64",
       "price": "₹424",
-      "listing": "₹504 (18.87%)",
+      "listing": "₹488 (15.09%)",
       "date": "17-21 July",
       "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Sotefin Bharat",
-      "gmp": 2,
-      "gmpRaw": "₹2",
-      "price": "₹187",
-      "listing": "₹189 (1.06%)",
-      "date": "16-20 July",
-      "type": "SME",
       "status": "closed"
     }
   ]
