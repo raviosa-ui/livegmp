@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-24T07:54:54.440Z",
-  "updatedLocal": "24/07/2026, 13:24:54 IST",
+  "updatedIso": "2026-07-24T13:01:11.580Z",
+  "updatedLocal": "24/07/2026, 18:31:11 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -121,7 +121,7 @@
       "listing": "₹86 (22.86%)",
       "date": "22-24 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Cube Highways Trust",
@@ -131,7 +131,7 @@
       "listing": "₹- (0.00%)",
       "date": "22-24 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Metalic Technoforge",
