@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-24T04:50:24.722Z",
-  "updatedLocal": "24/07/2026, 10:20:24 IST",
+  "updatedIso": "2026-07-24T07:54:54.440Z",
+  "updatedLocal": "24/07/2026, 13:24:54 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,6 +10,16 @@
       "price": "₹159",
       "listing": "₹- (0.00%)",
       "date": "31-4 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Dhaval Packaging",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹97",
+      "listing": "₹- (0.00%)",
+      "date": "30-3 August",
       "type": "SME",
       "status": "upcoming"
     },
@@ -25,10 +35,10 @@
     },
     {
       "ipo": "Manipal Health",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹590",
-      "listing": "₹640 (8.47%)",
+      "listing": "₹615 (4.24%)",
       "date": "29-31 July",
       "type": "Mainboard",
       "status": "upcoming"
@@ -75,10 +85,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 175,
-      "gmpRaw": "₹175",
+      "gmp": 166,
+      "gmpRaw": "₹166",
       "price": "₹485",
-      "listing": "₹660 (36.08%)",
+      "listing": "₹651 (34.23%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
