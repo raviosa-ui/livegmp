@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-25T07:33:19.573Z",
-  "updatedLocal": "25/07/2026, 13:03:19 IST",
+  "updatedIso": "2026-07-25T11:46:13.335Z",
+  "updatedLocal": "25/07/2026, 17:16:13 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -24,6 +24,16 @@
       "status": "upcoming"
     },
     {
+      "ipo": "MV Electrosystems",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "30-3 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
       "ipo": "Juniper Green Energy",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -31,6 +41,16 @@
       "listing": "₹- (0.00%)",
       "date": "30-3 August",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "H.R. Hygiene Products",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹88",
+      "listing": "₹- (0.00%)",
+      "date": "29-31 July",
+      "type": "SME",
       "status": "upcoming"
     },
     {
