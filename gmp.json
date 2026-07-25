@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-25T04:45:59.706Z",
-  "updatedLocal": "25/07/2026, 10:15:59 IST",
+  "updatedIso": "2026-07-25T07:33:19.573Z",
+  "updatedLocal": "25/07/2026, 13:03:19 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 184,
-      "gmpRaw": "₹184",
+      "gmp": 187,
+      "gmpRaw": "₹187",
       "price": "₹485",
-      "listing": "₹669 (37.94%)",
+      "listing": "₹672 (38.56%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
