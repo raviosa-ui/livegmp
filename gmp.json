@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-24T13:01:11.580Z",
-  "updatedLocal": "24/07/2026, 18:31:11 IST",
+  "updatedIso": "2026-07-25T04:45:59.706Z",
+  "updatedLocal": "25/07/2026, 10:15:59 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,20 +35,20 @@
     },
     {
       "ipo": "Manipal Health",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹590",
-      "listing": "₹615 (4.24%)",
+      "listing": "₹625 (5.93%)",
       "date": "29-31 July",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Poojaa Precision",
-      "gmp": 195,
-      "gmpRaw": "₹195",
+      "gmp": 217,
+      "gmpRaw": "₹217",
       "price": "₹301",
-      "listing": "₹496 (64.78%)",
+      "listing": "₹518 (72.09%)",
       "date": "28-30 July",
       "type": "SME",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 9,
+      "gmpRaw": "₹9",
       "price": "₹95",
-      "listing": "₹100 (5.26%)",
+      "listing": "₹104 (9.47%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "upcoming"
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 166,
-      "gmpRaw": "₹166",
+      "gmp": 184,
+      "gmpRaw": "₹184",
       "price": "₹485",
-      "listing": "₹651 (34.23%)",
+      "listing": "₹669 (37.94%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
@@ -105,30 +105,30 @@
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹127",
-      "listing": "₹135 (6.30%)",
+      "listing": "₹137 (7.87%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Shree Balaji Textiles",
-      "gmp": 16,
-      "gmpRaw": "₹16",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹70",
-      "listing": "₹86 (22.86%)",
+      "listing": "₹83 (18.57%)",
       "date": "22-24 July",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Cube Highways Trust",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹152",
-      "listing": "₹- (0.00%)",
+      "listing": "₹154 (1.32%)",
       "date": "22-24 July",
       "type": "Mainboard",
       "status": "closed"
@@ -151,16 +151,6 @@
       "listing": "₹101 (1.00%)",
       "date": "20-22 July",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Caliber Mining",
-      "gmp": 64,
-      "gmpRaw": "₹64",
-      "price": "₹424",
-      "listing": "₹488 (15.09%)",
-      "date": "17-21 July",
-      "type": "Mainboard",
       "status": "closed"
     }
   ]
