@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-27T08:55:53.602Z",
-  "updatedLocal": "27/07/2026, 14:25:53 IST",
+  "updatedIso": "2026-07-27T12:42:47.570Z",
+  "updatedLocal": "27/07/2026, 18:12:47 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "G.V. Electricals",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹130",
-      "listing": "₹- (0.00%)",
+      "listing": "₹142 (9.23%)",
       "date": "31-4 August",
       "type": "SME",
       "status": "upcoming"
@@ -131,27 +131,27 @@
       "listing": "₹675 (39.18%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Lohia Corp",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹425",
-      "listing": "₹433 (1.88%)",
+      "listing": "₹432 (1.62%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹127",
-      "listing": "₹137 (7.87%)",
+      "listing": "₹134 (5.51%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Shree Balaji Textiles",
