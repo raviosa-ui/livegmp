@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-28T12:22:34.154Z",
-  "updatedLocal": "28/07/2026, 17:52:34 IST",
+  "updatedIso": "2026-07-28T15:01:15.331Z",
+  "updatedLocal": "28/07/2026, 20:31:15 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 11,
+      "gmpRaw": "₹11",
       "price": "₹225",
-      "listing": "₹250 (11.11%)",
+      "listing": "₹236 (4.89%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "upcoming"
