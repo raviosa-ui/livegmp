@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-28T03:47:41.478Z",
-  "updatedLocal": "28/07/2026, 09:17:41 IST",
+  "updatedIso": "2026-07-28T07:16:45.723Z",
+  "updatedLocal": "28/07/2026, 12:46:45 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -45,20 +45,20 @@
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 100,
-      "gmpRaw": "₹100",
+      "gmp": 105,
+      "gmpRaw": "₹105",
       "price": "₹425",
-      "listing": "₹525 (23.53%)",
+      "listing": "₹530 (24.71%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹225",
-      "listing": "₹- (0.00%)",
+      "listing": "₹245 (8.89%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -91,7 +91,7 @@
       "listing": "₹561 (86.38%)",
       "date": "28-30 July",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Propshop Events",
