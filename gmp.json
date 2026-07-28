@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-28T10:10:00.514Z",
-  "updatedLocal": "28/07/2026, 15:40:00 IST",
+  "updatedIso": "2026-07-28T12:22:34.154Z",
+  "updatedLocal": "28/07/2026, 17:52:34 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -121,7 +121,7 @@
       "listing": "₹- (0.00%)",
       "date": "24-28 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Indo-MIM",
