@@ -1,8 +1,38 @@
 {
-  "updatedIso": "2026-07-29T04:48:56.100Z",
-  "updatedLocal": "29/07/2026, 10:18:56 IST",
+  "updatedIso": "2026-07-29T11:03:54.851Z",
+  "updatedLocal": "29/07/2026, 16:33:54 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Ardee Industries",
+      "gmp": 5,
+      "gmpRaw": "₹5",
+      "price": "₹53",
+      "listing": "₹58 (9.43%)",
+      "date": "5-7 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Aegeus Technologies",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹105",
+      "listing": "₹- (0.00%)",
+      "date": "4-6 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Anawil Wire & Engineering",
+      "gmp": 35,
+      "gmpRaw": "₹35",
+      "price": "₹270",
+      "listing": "₹305 (12.96%)",
+      "date": "3-5 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Fusion Klassroom",
       "gmp": 0,
@@ -75,20 +105,20 @@
     },
     {
       "ipo": "Manipal Health",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹590",
-      "listing": "₹605 (2.54%)",
+      "listing": "₹600 (1.69%)",
       "date": "29-31 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Poojaa Precision",
-      "gmp": 300,
-      "gmpRaw": "₹300",
+      "gmp": 271,
+      "gmpRaw": "₹271",
       "price": "₹301",
-      "listing": "₹601 (99.67%)",
+      "listing": "₹572 (90.00%)",
       "date": "28-30 July",
       "type": "SME",
       "status": "active"
@@ -105,10 +135,10 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹95",
-      "listing": "₹104 (9.47%)",
+      "listing": "₹95 (0.00%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "active"
@@ -125,10 +155,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 190,
-      "gmpRaw": "₹190",
+      "gmp": 170,
+      "gmpRaw": "₹170",
       "price": "₹485",
-      "listing": "₹675 (39.18%)",
+      "listing": "₹655 (35.52%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "closed"
@@ -145,10 +175,10 @@
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 9,
+      "gmpRaw": "₹9",
       "price": "₹127",
-      "listing": "₹139 (9.47%)",
+      "listing": "₹136 (7.09%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "closed"
