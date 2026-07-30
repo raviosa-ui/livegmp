@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-30T04:37:09.853Z",
-  "updatedLocal": "30/07/2026, 10:07:09 IST",
+  "updatedIso": "2026-07-30T13:08:00.690Z",
+  "updatedLocal": "30/07/2026, 18:38:00 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -121,7 +121,7 @@
       "listing": "₹531 (76.41%)",
       "date": "28-30 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Propshop Events",
