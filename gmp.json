@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-07-29T13:15:42.807Z",
-  "updatedLocal": "29/07/2026, 18:45:42 IST",
+  "updatedIso": "2026-07-30T04:37:09.853Z",
+  "updatedLocal": "30/07/2026, 10:07:09 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Ardee Industries",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹53",
-      "listing": "₹58 (9.43%)",
+      "listing": "₹66 (24.53%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 60,
+      "gmpRaw": "₹60",
       "price": "₹270",
-      "listing": "₹305 (12.96%)",
+      "listing": "₹330 (22.22%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "upcoming"
@@ -61,27 +61,27 @@
       "listing": "₹- (0.00%)",
       "date": "30-3 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹97",
-      "listing": "₹105 (8.25%)",
+      "listing": "₹109 (12.37%)",
       "date": "30-3 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 105,
-      "gmpRaw": "₹105",
+      "gmp": 100,
+      "gmpRaw": "₹100",
       "price": "₹425",
-      "listing": "₹530 (24.71%)",
+      "listing": "₹525 (23.53%)",
       "date": "30-3 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Juniper Green Energy",
@@ -91,7 +91,7 @@
       "listing": "₹242 (7.56%)",
       "date": "30-3 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "H.R. Hygiene Products",
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "Poojaa Precision",
-      "gmp": 271,
-      "gmpRaw": "₹271",
+      "gmp": 230,
+      "gmpRaw": "₹230",
       "price": "₹301",
-      "listing": "₹572 (90.00%)",
+      "listing": "₹531 (76.41%)",
       "date": "28-30 July",
       "type": "SME",
       "status": "active"
@@ -135,10 +135,10 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹95",
-      "listing": "₹95 (0.00%)",
+      "listing": "₹103 (8.42%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "closed"
@@ -155,10 +155,10 @@
     },
     {
       "ipo": "Indo-MIM",
-      "gmp": 170,
-      "gmpRaw": "₹170",
+      "gmp": 188,
+      "gmpRaw": "₹188",
       "price": "₹485",
-      "listing": "₹655 (35.52%)",
+      "listing": "₹673 (38.76%)",
       "date": "23-27 July",
       "type": "Mainboard",
       "status": "closed"
@@ -175,22 +175,12 @@
     },
     {
       "ipo": "Xtranet Technologies",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹127",
-      "listing": "₹136 (7.09%)",
+      "listing": "₹141 (11.02%)",
       "date": "23-27 July",
       "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Shree Balaji Textiles",
-      "gmp": 56,
-      "gmpRaw": "₹56",
-      "price": "₹70",
-      "listing": "₹126 (80.00%)",
-      "date": "22-24 July",
-      "type": "SME",
       "status": "closed"
     },
     {
