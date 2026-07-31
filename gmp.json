@@ -1,14 +1,24 @@
 {
-  "updatedIso": "2026-07-31T07:24:02.046Z",
-  "updatedLocal": "31/07/2026, 12:54:02 IST",
+  "updatedIso": "2026-07-31T12:28:10.004Z",
+  "updatedLocal": "31/07/2026, 17:58:10 IST",
   "source": "ipowatch",
   "rows": [
     {
+      "ipo": "LAPL Automotive",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹94",
+      "listing": "₹- (0.00%)",
+      "date": "6-10 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
       "ipo": "Ardee Industries",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹53",
-      "listing": "₹66 (24.53%)",
+      "listing": "₹63 (18.87%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,10 +45,10 @@
     },
     {
       "ipo": "Fusion Klassroom",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹159",
-      "listing": "₹168 (5.66%)",
+      "listing": "₹168 (4.40%)",
       "date": "31-4 August",
       "type": "SME",
       "status": "active"
@@ -101,7 +111,7 @@
       "listing": "₹90 (2.27%)",
       "date": "29-31 July",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Manipal Health",
@@ -111,7 +121,7 @@
       "listing": "₹596 (1.02%)",
       "date": "29-31 July",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Poojaa Precision",
