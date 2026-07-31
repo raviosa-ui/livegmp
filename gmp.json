@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-30T13:08:00.690Z",
-  "updatedLocal": "30/07/2026, 18:38:00 IST",
+  "updatedIso": "2026-07-31T04:01:40.485Z",
+  "updatedLocal": "31/07/2026, 09:31:40 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,30 +25,30 @@
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 60,
-      "gmpRaw": "₹60",
+      "gmp": 70,
+      "gmpRaw": "₹70",
       "price": "₹270",
-      "listing": "₹330 (22.22%)",
+      "listing": "₹340 (25.93%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Fusion Klassroom",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 9,
+      "gmpRaw": "₹9",
       "price": "₹159",
-      "listing": "₹- (0.00%)",
+      "listing": "₹168 (5.66%)",
       "date": "31-4 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "G.V. Electricals",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹130",
-      "listing": "₹152 (16.92%)",
+      "listing": "₹155 (19.23%)",
       "date": "31-4 August",
       "type": "SME",
       "status": "upcoming"
@@ -65,30 +65,30 @@
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹97",
-      "listing": "₹109 (12.37%)",
+      "listing": "₹112 (15.46%)",
       "date": "30-3 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 100,
-      "gmpRaw": "₹100",
+      "gmp": 120,
+      "gmpRaw": "₹120",
       "price": "₹425",
-      "listing": "₹525 (23.53%)",
+      "listing": "₹545 (29.41%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 17,
-      "gmpRaw": "₹17",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹225",
-      "listing": "₹242 (7.56%)",
+      "listing": "₹235 (4.44%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "active"
@@ -105,20 +105,20 @@
     },
     {
       "ipo": "Manipal Health",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹590",
-      "listing": "₹600 (1.69%)",
+      "listing": "₹596 (1.02%)",
       "date": "29-31 July",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Poojaa Precision",
-      "gmp": 230,
-      "gmpRaw": "₹230",
+      "gmp": 225,
+      "gmpRaw": "₹225",
       "price": "₹301",
-      "listing": "₹531 (76.41%)",
+      "listing": "₹526 (74.75%)",
       "date": "28-30 July",
       "type": "SME",
       "status": "closed"
@@ -135,52 +135,22 @@
     },
     {
       "ipo": "Advance Technoforge",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹95",
-      "listing": "₹103 (8.42%)",
+      "listing": "₹100 (5.26%)",
       "date": "27-29 July",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Silverstorm Parks",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹133",
-      "listing": "₹- (0.00%)",
+      "listing": "₹138 (3.76%)",
       "date": "24-28 July",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Indo-MIM",
-      "gmp": 188,
-      "gmpRaw": "₹188",
-      "price": "₹485",
-      "listing": "₹673 (38.76%)",
-      "date": "23-27 July",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Lohia Corp",
-      "gmp": 17,
-      "gmpRaw": "₹17",
-      "price": "₹425",
-      "listing": "₹442 (4.00%)",
-      "date": "23-27 July",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Xtranet Technologies",
-      "gmp": 14,
-      "gmpRaw": "₹14",
-      "price": "₹127",
-      "listing": "₹141 (11.02%)",
-      "date": "23-27 July",
-      "type": "Mainboard",
       "status": "closed"
     },
     {
