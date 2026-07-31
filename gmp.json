@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-31T04:01:40.485Z",
-  "updatedLocal": "31/07/2026, 09:31:40 IST",
+  "updatedIso": "2026-07-31T07:24:02.046Z",
+  "updatedLocal": "31/07/2026, 12:54:02 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -41,7 +41,7 @@
       "listing": "₹168 (5.66%)",
       "date": "31-4 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "G.V. Electricals",
@@ -51,7 +51,7 @@
       "listing": "₹155 (19.23%)",
       "date": "31-4 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Oneindig Technologies",
