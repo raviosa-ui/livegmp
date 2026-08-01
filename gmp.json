@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-07-31T15:03:04.057Z",
-  "updatedLocal": "31/07/2026, 20:33:04 IST",
+  "updatedIso": "2026-08-01T04:54:50.141Z",
+  "updatedLocal": "01/08/2026, 10:24:50 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,20 +25,20 @@
     },
     {
       "ipo": "LAPL Automotive",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹94",
-      "listing": "₹- (0.00%)",
+      "listing": "₹116 (23.40%)",
       "date": "6-10 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Ardee Industries",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹53",
-      "listing": "₹63 (18.87%)",
+      "listing": "₹60 (13.20%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 70,
-      "gmpRaw": "₹70",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹270",
-      "listing": "₹340 (25.93%)",
+      "listing": "₹350 (29.63%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "upcoming"
@@ -95,30 +95,30 @@
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹97",
-      "listing": "₹112 (15.46%)",
+      "listing": "₹109 (12.37%)",
       "date": "30-3 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 120,
-      "gmpRaw": "₹120",
+      "gmp": 133,
+      "gmpRaw": "₹133",
       "price": "₹425",
-      "listing": "₹545 (29.41%)",
+      "listing": "₹558 (31.29%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹225",
-      "listing": "₹235 (4.44%)",
+      "listing": "₹229 (1.78%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "active"
@@ -135,10 +135,10 @@
     },
     {
       "ipo": "Manipal Health",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹590",
-      "listing": "₹596 (1.02%)",
+      "listing": "₹- (0.00%)",
       "date": "29-31 July",
       "type": "Mainboard",
       "status": "closed"
@@ -170,16 +170,6 @@
       "price": "₹95",
       "listing": "₹100 (5.26%)",
       "date": "27-29 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Silverstorm Parks",
-      "gmp": 5,
-      "gmpRaw": "₹5",
-      "price": "₹133",
-      "listing": "₹138 (3.76%)",
-      "date": "24-28 July",
       "type": "SME",
       "status": "closed"
     },
