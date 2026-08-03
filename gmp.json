@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-03T07:58:11.944Z",
-  "updatedLocal": "03/08/2026, 13:28:11 IST",
+  "updatedIso": "2026-08-03T11:57:40.448Z",
+  "updatedLocal": "03/08/2026, 17:27:40 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹212",
-      "listing": "₹- (0.00%)",
+      "listing": "₹228 (7.55%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 90,
-      "gmpRaw": "₹90",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹270",
-      "listing": "₹360 (33.33%)",
+      "listing": "₹350 (29.63%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "active"
@@ -101,17 +101,17 @@
       "listing": "₹- (0.00%)",
       "date": "30-3 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹97",
-      "listing": "₹109 (12.37%)",
+      "listing": "₹102 (5.15%)",
       "date": "30-3 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "MV Electrosystems",
@@ -121,7 +121,7 @@
       "listing": "₹540 (27.06%)",
       "date": "30-3 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Juniper Green Energy",
@@ -131,7 +131,7 @@
       "listing": "₹227 (0.89%)",
       "date": "30-3 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "H.R. Hygiene Products",
@@ -181,16 +181,6 @@
       "listing": "₹100 (5.26%)",
       "date": "27-29 July",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Cube Highways Trust",
-      "gmp": 2,
-      "gmpRaw": "₹2",
-      "price": "₹152",
-      "listing": "₹154 (1.32%)",
-      "date": "22-24 July",
-      "type": "Mainboard",
       "status": "closed"
     }
   ]
