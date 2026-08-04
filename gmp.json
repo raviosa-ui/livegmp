@@ -1,14 +1,24 @@
 {
-  "updatedIso": "2026-08-03T11:57:40.448Z",
-  "updatedLocal": "03/08/2026, 17:27:40 IST",
+  "updatedIso": "2026-08-04T04:45:30.220Z",
+  "updatedLocal": "04/08/2026, 10:15:30 IST",
   "source": "ipowatch",
   "rows": [
     {
+      "ipo": "Dhoot Transmission",
+      "gmp": 140,
+      "gmpRaw": "₹140",
+      "price": "₹871",
+      "listing": "₹1017 (16.73%)",
+      "date": "10-12 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
       "ipo": "LEAP India",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹159",
-      "listing": "₹167 (5.03%)",
+      "listing": "₹163 (2.52%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -25,20 +35,20 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 16,
-      "gmpRaw": "₹16",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹212",
-      "listing": "₹228 (7.55%)",
+      "listing": "₹222 (4.72%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LAPL Automotive",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 28,
+      "gmpRaw": "₹28",
       "price": "₹94",
-      "listing": "₹119 (26.60%)",
+      "listing": "₹122 (29.78%)",
       "date": "6-10 August",
       "type": "SME",
       "status": "upcoming"
@@ -61,7 +71,7 @@
       "listing": "₹- (0.00%)",
       "date": "4-6 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Anawil Wire & Engineering",
@@ -105,30 +115,30 @@
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹97",
-      "listing": "₹102 (5.15%)",
+      "listing": "₹105 (8.25%)",
       "date": "30-3 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 115,
-      "gmpRaw": "₹115",
+      "gmp": 100,
+      "gmpRaw": "₹100",
       "price": "₹425",
-      "listing": "₹540 (27.06%)",
+      "listing": "₹525 (23.53%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 9,
+      "gmpRaw": "₹9",
       "price": "₹225",
-      "listing": "₹227 (0.89%)",
+      "listing": "₹234 (4.00%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "closed"
@@ -155,31 +165,11 @@
     },
     {
       "ipo": "Poojaa Precision",
-      "gmp": 230,
-      "gmpRaw": "₹230",
+      "gmp": 235,
+      "gmpRaw": "₹235",
       "price": "₹301",
-      "listing": "₹531 (76.41%)",
+      "listing": "₹536 (78.07%)",
       "date": "28-30 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Propshop Events",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹69",
-      "listing": "₹- (0.00%)",
-      "date": "27-29 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Advance Technoforge",
-      "gmp": 5,
-      "gmpRaw": "₹5",
-      "price": "₹95",
-      "listing": "₹100 (5.26%)",
-      "date": "27-29 July",
       "type": "SME",
       "status": "closed"
     }
