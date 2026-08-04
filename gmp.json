@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-08-04T04:45:30.220Z",
-  "updatedLocal": "04/08/2026, 10:15:30 IST",
+  "updatedIso": "2026-08-04T08:02:23.783Z",
+  "updatedLocal": "04/08/2026, 13:32:23 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 140,
-      "gmpRaw": "₹140",
+      "gmp": 245,
+      "gmpRaw": "₹245",
       "price": "₹871",
-      "listing": "₹1017 (16.73%)",
+      "listing": "₹1,116 (28.13%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
