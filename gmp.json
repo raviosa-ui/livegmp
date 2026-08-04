@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-08-04T08:02:23.783Z",
-  "updatedLocal": "04/08/2026, 13:32:23 IST",
+  "updatedIso": "2026-08-04T11:04:44.135Z",
+  "updatedLocal": "04/08/2026, 16:34:44 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Molbio Diagnostics",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "10-12 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
     {
       "ipo": "Dhoot Transmission",
       "gmp": 245,
@@ -27,7 +37,7 @@
       "ipo": "Optimystix Entertainment",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹175",
       "listing": "₹- (0.00%)",
       "date": "7-11 August",
       "type": "SME",
