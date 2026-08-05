@@ -1,13 +1,33 @@
 {
-  "updatedIso": "2026-08-05T07:16:24.493Z",
-  "updatedLocal": "05/08/2026, 12:46:24 IST",
+  "updatedIso": "2026-08-05T10:08:54.214Z",
+  "updatedLocal": "05/08/2026, 15:38:54 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Pramodini Medicare",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹118",
+      "listing": "₹- (0.00%)",
+      "date": "12-13 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Milky Mist",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "11-13 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
     {
       "ipo": "Molbio Diagnostics",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹807",
       "listing": "₹- (0.00%)",
       "date": "10-12 August",
       "type": "Mainboard",
@@ -65,10 +85,10 @@
     },
     {
       "ipo": "Ardee Industries",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹53",
-      "listing": "₹61 (15.09%)",
+      "listing": "₹66 (24.53%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "active"
@@ -109,9 +129,9 @@
       "gmpRaw": "₹26",
       "price": "₹130",
       "listing": "₹156 (20.00%)",
-      "date": "31-4 August",
+      "date": "31-7 August",
       "type": "SME",
-      "status": "closed"
+      "status": "active"
     },
     {
       "ipo": "Oneindig Technologies",
