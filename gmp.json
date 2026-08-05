@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-05T10:08:54.214Z",
-  "updatedLocal": "05/08/2026, 15:38:54 IST",
+  "updatedIso": "2026-08-05T12:23:58.408Z",
+  "updatedLocal": "05/08/2026, 17:53:58 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 253,
-      "gmpRaw": "₹253",
+      "gmp": 255,
+      "gmpRaw": "₹255",
       "price": "₹871",
-      "listing": "₹1,124 (29.05%)",
+      "listing": "₹1,126 (29.28%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -111,7 +111,7 @@
       "listing": "₹350 (29.63%)",
       "date": "3-5 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Fusion Klassroom",
