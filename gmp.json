@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-06T04:45:30.370Z",
-  "updatedLocal": "06/08/2026, 10:15:30 IST",
+  "updatedIso": "2026-08-06T08:01:45.912Z",
+  "updatedLocal": "06/08/2026, 13:31:45 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -14,10 +14,30 @@
       "status": "upcoming"
     },
     {
+      "ipo": "Shiprocket",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹97",
+      "listing": "₹- (0.00%)",
+      "date": "12-13 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Fascinate Textiles",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹156",
+      "listing": "₹- (0.00%)",
+      "date": "11-13 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
       "ipo": "Milky Mist",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹140",
       "listing": "₹- (0.00%)",
       "date": "11-13 August",
       "type": "Mainboard",
