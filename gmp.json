@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-05T12:23:58.408Z",
-  "updatedLocal": "05/08/2026, 17:53:58 IST",
+  "updatedIso": "2026-08-06T04:45:30.370Z",
+  "updatedLocal": "06/08/2026, 10:15:30 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 170,
+      "gmpRaw": "₹170",
       "price": "₹807",
-      "listing": "₹- (0.00%)",
+      "listing": "₹977 (21.06%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -65,30 +65,30 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹212",
-      "listing": "₹222 (4.72%)",
+      "listing": "₹225 (6.13%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LAPL Automotive",
-      "gmp": 28,
-      "gmpRaw": "₹28",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹94",
-      "listing": "₹122 (29.78%)",
+      "listing": "₹124 (31.91%)",
       "date": "6-10 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Ardee Industries",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹53",
-      "listing": "₹66 (24.53%)",
+      "listing": "₹68 (28.30%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "active"
@@ -145,51 +145,31 @@
     },
     {
       "ipo": "Dhaval Packaging",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹97",
-      "listing": "₹107 (10.31%)",
+      "listing": "₹109 (12.37%)",
       "date": "30-3 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "MV Electrosystems",
-      "gmp": 102,
-      "gmpRaw": "₹102",
+      "gmp": 109,
+      "gmpRaw": "₹109",
       "price": "₹425",
-      "listing": "₹527 (24.00%)",
+      "listing": "₹534 (25.65%)",
       "date": "30-3 August",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Juniper Green Energy",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹225",
-      "listing": "₹238 (5.78%)",
+      "listing": "₹247 (9.78%)",
       "date": "30-3 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "H.R. Hygiene Products",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹88",
-      "listing": "₹89 (1.14%)",
-      "date": "29-31 July",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Manipal Health",
-      "gmp": 3,
-      "gmpRaw": "₹3",
-      "price": "₹590",
-      "listing": "₹593 (0.51%)",
-      "date": "29-31 July",
       "type": "Mainboard",
       "status": "closed"
     }
