@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-06T08:01:45.912Z",
-  "updatedLocal": "06/08/2026, 13:31:45 IST",
+  "updatedIso": "2026-08-06T13:11:02.851Z",
+  "updatedLocal": "06/08/2026, 18:41:02 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -121,7 +121,7 @@
       "listing": "₹- (0.00%)",
       "date": "4-6 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Anawil Wire & Engineering",
