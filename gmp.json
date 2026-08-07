@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-06T13:11:02.851Z",
-  "updatedLocal": "06/08/2026, 18:41:02 IST",
+  "updatedIso": "2026-08-07T03:30:42.074Z",
+  "updatedLocal": "07/08/2026, 09:00:42 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Shiprocket",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹97",
-      "listing": "₹- (0.00%)",
+      "listing": "₹111 (14.43%)",
       "date": "12-13 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,70 +35,70 @@
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 26,
+      "gmpRaw": "₹26",
       "price": "₹140",
-      "listing": "₹- (0.00%)",
+      "listing": "₹166 (18.57%)",
       "date": "11-13 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 170,
-      "gmpRaw": "₹170",
+      "gmp": 220,
+      "gmpRaw": "₹220",
       "price": "₹807",
-      "listing": "₹977 (21.06%)",
+      "listing": "₹1027 (27.26%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 255,
-      "gmpRaw": "₹255",
+      "gmp": 260,
+      "gmpRaw": "₹260",
       "price": "₹871",
-      "listing": "₹1,126 (29.28%)",
+      "listing": "₹1131 (29.85%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LEAP India",
-      "gmp": 4,
-      "gmpRaw": "₹4",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹159",
-      "listing": "₹163 (2.52%)",
+      "listing": "₹179 (12.57%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Optimystix Entertainment",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹175",
-      "listing": "₹- (0.00%)",
+      "listing": "₹180 (2.86%)",
       "date": "7-11 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹212",
-      "listing": "₹225 (6.13%)",
+      "listing": "₹228 (7.55%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LAPL Automotive",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 32,
+      "gmpRaw": "₹32",
       "price": "₹94",
-      "listing": "₹124 (31.91%)",
+      "listing": "₹126 (34.04%)",
       "date": "6-10 August",
       "type": "SME",
       "status": "active"
@@ -115,20 +115,20 @@
     },
     {
       "ipo": "Aegeus Technologies",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹105",
-      "listing": "₹- (0.00%)",
+      "listing": "₹117 (11.43%)",
       "date": "4-6 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 80,
-      "gmpRaw": "₹80",
+      "gmp": 66,
+      "gmpRaw": "₹66",
       "price": "₹270",
-      "listing": "₹350 (29.63%)",
+      "listing": "₹336 (24.44%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "closed"
@@ -152,46 +152,6 @@
       "date": "31-7 August",
       "type": "SME",
       "status": "active"
-    },
-    {
-      "ipo": "Oneindig Technologies",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹96",
-      "listing": "₹103 (7.29%)",
-      "date": "30-3 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Dhaval Packaging",
-      "gmp": 12,
-      "gmpRaw": "₹12",
-      "price": "₹97",
-      "listing": "₹109 (12.37%)",
-      "date": "30-3 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "MV Electrosystems",
-      "gmp": 109,
-      "gmpRaw": "₹109",
-      "price": "₹425",
-      "listing": "₹534 (25.65%)",
-      "date": "30-3 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Juniper Green Energy",
-      "gmp": 22,
-      "gmpRaw": "₹22",
-      "price": "₹225",
-      "listing": "₹247 (9.78%)",
-      "date": "30-3 August",
-      "type": "Mainboard",
-      "status": "closed"
     }
   ]
 }
