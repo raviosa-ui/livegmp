@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-07T11:23:36.974Z",
-  "updatedLocal": "07/08/2026, 16:53:36 IST",
+  "updatedIso": "2026-08-07T12:10:29.908Z",
+  "updatedLocal": "07/08/2026, 17:40:29 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -131,7 +131,7 @@
       "listing": "₹68 (28.30%)",
       "date": "5-7 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Aegeus Technologies",
@@ -171,7 +171,7 @@
       "listing": "₹156 (20.00%)",
       "date": "31-7 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     }
   ]
 }
