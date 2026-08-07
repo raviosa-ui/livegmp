@@ -1,15 +1,25 @@
 {
-  "updatedIso": "2026-08-07T05:56:17.932Z",
-  "updatedLocal": "07/08/2026, 11:26:17 IST",
+  "updatedIso": "2026-08-07T11:23:36.974Z",
+  "updatedLocal": "07/08/2026, 16:53:36 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Behari Lal Engineering",
+      "gmp": 24,
+      "gmpRaw": "₹24",
+      "price": "₹285",
+      "listing": "₹309 (8.42%)",
+      "date": "12-14 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
     {
       "ipo": "Pramodini Medicare",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹118",
       "listing": "₹- (0.00%)",
-      "date": "12-13 August",
+      "date": "12-14 August",
       "type": "SME",
       "status": "upcoming"
     },
@@ -19,8 +29,18 @@
       "gmpRaw": "₹14",
       "price": "₹97",
       "listing": "₹111 (14.43%)",
-      "date": "12-13 August",
+      "date": "12-14 August",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Sham Foam",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹130",
+      "listing": "₹- (0.00%)",
+      "date": "11-13 August",
+      "type": "SME",
       "status": "upcoming"
     },
     {
