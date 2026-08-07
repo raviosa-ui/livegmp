@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-07T03:30:42.074Z",
-  "updatedLocal": "07/08/2026, 09:00:42 IST",
+  "updatedIso": "2026-08-07T05:56:17.932Z",
+  "updatedLocal": "07/08/2026, 11:26:17 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹179 (12.57%)",
       "date": "7-11 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Optimystix Entertainment",
@@ -81,7 +81,7 @@
       "listing": "₹180 (2.86%)",
       "date": "7-11 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Technocraft Ventures",
@@ -91,7 +91,7 @@
       "listing": "₹228 (7.55%)",
       "date": "7-11 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "LAPL Automotive",
