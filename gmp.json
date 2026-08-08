@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-08-08T02:29:06.772Z",
-  "updatedLocal": "08/08/2026, 07:59:06 IST",
+  "updatedIso": "2026-08-08T07:30:19.783Z",
+  "updatedLocal": "08/08/2026, 13:00:19 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Q&T Foods",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹115",
+      "listing": "₹- (0.00%)",
+      "date": "12-14 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Behari Lal Engineering",
       "gmp": 30,
