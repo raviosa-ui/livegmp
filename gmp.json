@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-08-08T07:30:19.783Z",
-  "updatedLocal": "08/08/2026, 13:00:19 IST",
+  "updatedIso": "2026-08-08T11:55:42.596Z",
+  "updatedLocal": "08/08/2026, 17:25:42 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Q&T Foods",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹115",
       "listing": "₹- (0.00%)",
       "date": "12-14 August",
@@ -18,7 +18,7 @@
       "gmp": 30,
       "gmpRaw": "₹30",
       "price": "₹285",
-      "listing": "₹315 (17.14%)",
+      "listing": "₹315 (10.53%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 26,
-      "gmpRaw": "₹26",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹140",
-      "listing": "₹166 (18.57%)",
+      "listing": "₹165 (17.86%)",
       "date": "11-13 August",
       "type": "Mainboard",
       "status": "upcoming"
