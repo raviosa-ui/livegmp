@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-08-07T12:10:29.908Z",
-  "updatedLocal": "07/08/2026, 17:40:29 IST",
+  "updatedIso": "2026-08-08T02:29:06.772Z",
+  "updatedLocal": "08/08/2026, 07:59:06 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 24,
-      "gmpRaw": "₹24",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹285",
-      "listing": "₹309 (8.42%)",
+      "listing": "₹315 (17.14%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -65,30 +65,30 @@
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 220,
-      "gmpRaw": "₹220",
+      "gmp": 180,
+      "gmpRaw": "₹180",
       "price": "₹807",
-      "listing": "₹1027 (27.26%)",
+      "listing": "₹987 (22.30%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 260,
-      "gmpRaw": "₹260",
+      "gmp": 247,
+      "gmpRaw": "₹247",
       "price": "₹871",
-      "listing": "₹1131 (29.85%)",
+      "listing": "₹1118 (28.36%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LEAP India",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹159",
-      "listing": "₹179 (12.57%)",
+      "listing": "₹174 (9.43%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "active"
@@ -150,16 +150,6 @@
       "price": "₹270",
       "listing": "₹336 (24.44%)",
       "date": "3-5 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Fusion Klassroom",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹159",
-      "listing": "₹- (0.00%)",
-      "date": "31-4 August",
       "type": "SME",
       "status": "closed"
     },
