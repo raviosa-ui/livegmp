@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-10T12:09:30.799Z",
-  "updatedLocal": "10/08/2026, 17:39:30 IST",
+  "updatedIso": "2026-08-10T13:56:58.665Z",
+  "updatedLocal": "10/08/2026, 19:26:58 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 43,
-      "gmpRaw": "₹43",
+      "gmp": 49,
+      "gmpRaw": "₹49",
       "price": "₹285",
-      "listing": "₹328 (15.09%)",
+      "listing": "₹334 (17.19%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
