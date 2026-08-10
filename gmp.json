@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-08T11:55:42.596Z",
-  "updatedLocal": "08/08/2026, 17:25:42 IST",
+  "updatedIso": "2026-08-10T02:41:56.317Z",
+  "updatedLocal": "10/08/2026, 08:11:56 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹285",
-      "listing": "₹315 (10.53%)",
+      "listing": "₹310 (8.77%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Shiprocket",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹97",
-      "listing": "₹111 (14.43%)",
+      "listing": "₹119 (22.68%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -65,40 +65,40 @@
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 26,
+      "gmpRaw": "₹26",
       "price": "₹140",
-      "listing": "₹165 (17.86%)",
+      "listing": "₹166 (18.57%)",
       "date": "11-13 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 180,
-      "gmpRaw": "₹180",
+      "gmp": 132,
+      "gmpRaw": "₹132",
       "price": "₹807",
-      "listing": "₹987 (22.30%)",
+      "listing": "₹939 (16.36%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 247,
-      "gmpRaw": "₹247",
+      "gmp": 259,
+      "gmpRaw": "₹259",
       "price": "₹871",
-      "listing": "₹1118 (28.36%)",
+      "listing": "₹1130 (29.74%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "LEAP India",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹159",
-      "listing": "₹174 (9.43%)",
+      "listing": "₹175 (10.06%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "active"
@@ -115,30 +115,30 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 16,
-      "gmpRaw": "₹16",
+      "gmp": 23,
+      "gmpRaw": "₹23",
       "price": "₹212",
-      "listing": "₹228 (7.55%)",
+      "listing": "₹235 (10.85%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "active"
     },
     {
       "ipo": "LAPL Automotive",
-      "gmp": 32,
-      "gmpRaw": "₹32",
+      "gmp": 37,
+      "gmpRaw": "₹37",
       "price": "₹94",
-      "listing": "₹126 (34.04%)",
+      "listing": "₹131 (39.36%)",
       "date": "6-10 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Ardee Industries",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹53",
-      "listing": "₹68 (28.30%)",
+      "listing": "₹69 (30.19%)",
       "date": "5-7 August",
       "type": "Mainboard",
       "status": "closed"
@@ -155,10 +155,10 @@
     },
     {
       "ipo": "Anawil Wire & Engineering",
-      "gmp": 66,
-      "gmpRaw": "₹66",
+      "gmp": 58,
+      "gmpRaw": "₹58",
       "price": "₹270",
-      "listing": "₹336 (24.44%)",
+      "listing": "₹328 (21.48%)",
       "date": "3-5 August",
       "type": "SME",
       "status": "closed"
