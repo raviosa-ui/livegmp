@@ -1,24 +1,34 @@
 {
-  "updatedIso": "2026-08-10T05:06:42.669Z",
-  "updatedLocal": "10/08/2026, 10:36:42 IST",
+  "updatedIso": "2026-08-10T08:58:30.293Z",
+  "updatedLocal": "10/08/2026, 14:28:30 IST",
   "source": "ipowatch",
   "rows": [
     {
-      "ipo": "Q&T Foods",
-      "gmp": 6,
-      "gmpRaw": "₹6",
-      "price": "₹115",
+      "ipo": "Credent Connect N Care",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹189",
       "listing": "₹- (0.00%)",
+      "date": "13-17 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Q&T Foods",
+      "gmp": 12,
+      "gmpRaw": "₹12",
+      "price": "₹115",
+      "listing": "₹127 (10.43%)",
       "date": "12-14 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 43,
+      "gmpRaw": "₹43",
       "price": "₹285",
-      "listing": "₹310 (8.77%)",
+      "listing": "₹328 (15.09%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "upcoming"
