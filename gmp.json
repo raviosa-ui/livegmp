@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-11T09:32:23.926Z",
-  "updatedLocal": "11/08/2026, 15:02:23 IST",
+  "updatedIso": "2026-08-11T12:10:52.849Z",
+  "updatedLocal": "11/08/2026, 17:40:52 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Technocrats Plasma Systems",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 26,
+      "gmpRaw": "₹26",
       "price": "₹132",
-      "listing": "₹- (0.00%)",
+      "listing": "₹158 (19.70%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹189",
-      "listing": "₹- (0.00%)",
+      "listing": "₹199 (5.29%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "upcoming"
@@ -171,7 +171,7 @@
       "listing": "₹166 (4.40%)",
       "date": "7-11 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Optimystix Entertainment",
@@ -181,7 +181,7 @@
       "listing": "₹180 (2.86%)",
       "date": "7-11 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Technocraft Ventures",
@@ -191,7 +191,7 @@
       "listing": "₹242 (14.15%)",
       "date": "7-11 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "LAPL Automotive",
