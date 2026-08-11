@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-11T02:35:46.223Z",
-  "updatedLocal": "11/08/2026, 08:05:46 IST",
+  "updatedIso": "2026-08-11T04:49:48.030Z",
+  "updatedLocal": "11/08/2026, 10:19:48 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -81,7 +81,7 @@
       "listing": "₹- (0.00%)",
       "date": "11-13 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Fascinate Textiles",
@@ -91,7 +91,7 @@
       "listing": "₹- (0.00%)",
       "date": "11-13 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Milky Mist",
@@ -101,7 +101,7 @@
       "listing": "₹161 (15.00%)",
       "date": "11-13 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Molbio Diagnostics",
