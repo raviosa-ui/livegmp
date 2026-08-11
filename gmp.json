@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-11T06:29:08.457Z",
-  "updatedLocal": "11/08/2026, 11:59:08 IST",
+  "updatedIso": "2026-08-11T07:49:05.110Z",
+  "updatedLocal": "11/08/2026, 13:19:05 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "LEAP India",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹159",
-      "listing": "₹172 (8.18%)",
+      "listing": "₹166 (4.40%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "active"
