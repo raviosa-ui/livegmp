@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-12T05:14:56.912Z",
-  "updatedLocal": "12/08/2026, 10:44:56 IST",
+  "updatedIso": "2026-08-12T06:53:55.865Z",
+  "updatedLocal": "12/08/2026, 12:23:55 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -185,10 +185,10 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹212",
-      "listing": "₹- (0.00%)",
+      "listing": "₹242 (14.15%)",
       "date": "7-11 August",
       "type": "Mainboard",
       "status": "closed"
