@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-12T03:04:49.434Z",
-  "updatedLocal": "12/08/2026, 08:34:49 IST",
+  "updatedIso": "2026-08-12T05:14:56.912Z",
+  "updatedLocal": "12/08/2026, 10:44:56 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -75,13 +75,13 @@
     },
     {
       "ipo": "Q&T Foods",
-      "gmp": 21,
-      "gmpRaw": "₹21",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹115",
-      "listing": "₹136 (18.26%)",
+      "listing": "₹- (0.00%)",
       "date": "12-14 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Behari Lal Engineering",
@@ -91,7 +91,7 @@
       "listing": "₹352 (23.51%)",
       "date": "12-14 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Pramodini Medicare",
@@ -101,7 +101,7 @@
       "listing": "₹- (0.00%)",
       "date": "12-14 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Shiprocket",
@@ -111,7 +111,7 @@
       "listing": "₹127 (30.93%)",
       "date": "12-14 August",
       "type": "Mainboard",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Sham Foam",
