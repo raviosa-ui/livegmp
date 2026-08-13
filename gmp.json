@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-13T05:18:21.199Z",
-  "updatedLocal": "13/08/2026, 10:48:21 IST",
+  "updatedIso": "2026-08-13T06:57:32.832Z",
+  "updatedLocal": "13/08/2026, 12:27:32 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Sham Foam",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹130",
-      "listing": "₹139 (6.92%)",
+      "listing": "₹- (0.00%)",
       "date": "11-13 August",
       "type": "SME",
       "status": "active"
