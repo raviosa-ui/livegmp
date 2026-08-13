@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-08-13T08:51:52.709Z",
-  "updatedLocal": "13/08/2026, 14:21:52 IST",
+  "updatedIso": "2026-08-13T12:11:17.690Z",
+  "updatedLocal": "13/08/2026, 17:41:17 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Skyways Air Services",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "24-27 August",
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 17,
-      "gmpRaw": "₹17",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹360",
-      "listing": "₹377 (4.72%)",
+      "listing": "₹385 (6.94%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,20 +55,20 @@
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 41,
-      "gmpRaw": "₹41",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹201",
-      "listing": "₹242 (20.40%)",
+      "listing": "₹216 (7.46%)",
       "date": "17-19 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Technocrats Plasma Systems",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 21,
+      "gmpRaw": "₹21",
       "price": "₹132",
-      "listing": "₹150 (13.64%)",
+      "listing": "₹153 (15.91%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "upcoming"
@@ -95,30 +95,30 @@
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 62,
+      "gmpRaw": "₹62",
       "price": "₹189",
-      "listing": "₹239 (26.46%)",
+      "listing": "₹251 (32.80%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Q&T Foods",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹115",
-      "listing": "₹- (0.00%)",
+      "listing": "₹121 (5.22%)",
       "date": "12-14 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 74,
-      "gmpRaw": "₹74",
+      "gmp": 78,
+      "gmpRaw": "₹78",
       "price": "₹285",
-      "listing": "₹359 (25.96%)",
+      "listing": "₹363 (27.37%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "active"
@@ -151,7 +151,7 @@
       "listing": "₹- (0.00%)",
       "date": "11-13 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Fascinate Textiles",
@@ -159,26 +159,26 @@
       "gmpRaw": "₹0",
       "price": "₹156",
       "listing": "₹- (0.00%)",
-      "date": "11-13 August",
+      "date": "11-19 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "gmp": 29,
+      "gmpRaw": "₹29",
       "price": "₹140",
-      "listing": "₹162 (15.71%)",
+      "listing": "₹169 (20.71%)",
       "date": "11-13 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 154,
-      "gmpRaw": "₹154",
+      "gmp": 156,
+      "gmpRaw": "₹156",
       "price": "₹807",
-      "listing": "₹961 (19.08%)",
+      "listing": "₹963 (19.33%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "closed"
