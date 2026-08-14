@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-08-13T12:11:17.690Z",
-  "updatedLocal": "13/08/2026, 17:41:17 IST",
+  "updatedIso": "2026-08-14T03:07:29.007Z",
+  "updatedLocal": "14/08/2026, 08:37:29 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Skyways Air Services",
       "gmp": 20,
       "gmpRaw": "₹20",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "price": "₹138",
+      "listing": "₹168 (14.49%)",
       "date": "24-27 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -25,40 +25,40 @@
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 33,
+      "gmpRaw": "₹33",
       "price": "₹360",
-      "listing": "₹385 (6.94%)",
+      "listing": "₹393 (9.17%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Shankesh Jewellers",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹93",
-      "listing": "₹100 (7.53%)",
+      "listing": "₹101 (8.60%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Horizon Industrial Parks",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹60",
-      "listing": "₹- (0.00%)",
+      "listing": "₹66 (6.67%)",
       "date": "17-19 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 38,
+      "gmpRaw": "₹38",
       "price": "₹201",
-      "listing": "₹216 (7.46%)",
+      "listing": "₹239 (18.91%)",
       "date": "17-19 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -85,40 +85,40 @@
     },
     {
       "ipo": "Skytech Infinite Platform",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹77",
-      "listing": "₹- (0.00%)",
+      "listing": "₹90 (16.88%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 62,
-      "gmpRaw": "₹62",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹189",
-      "listing": "₹251 (32.80%)",
+      "listing": "₹266 (39.68%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Q&T Foods",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹115",
-      "listing": "₹121 (5.22%)",
+      "listing": "₹- (0.00%)",
       "date": "12-14 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 78,
-      "gmpRaw": "₹78",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹285",
-      "listing": "₹363 (27.37%)",
+      "listing": "₹365 (28.07%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "active"
@@ -135,10 +135,10 @@
     },
     {
       "ipo": "Shiprocket",
-      "gmp": 34,
-      "gmpRaw": "₹34",
+      "gmp": 36,
+      "gmpRaw": "₹36",
       "price": "₹97",
-      "listing": "₹131 (35.05%)",
+      "listing": "₹133 (37.11%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "active"
@@ -165,10 +165,10 @@
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 29,
-      "gmpRaw": "₹29",
+      "gmp": 26,
+      "gmpRaw": "₹26",
       "price": "₹140",
-      "listing": "₹169 (20.71%)",
+      "listing": "₹166 (18.57%)",
       "date": "11-13 August",
       "type": "Mainboard",
       "status": "closed"
@@ -215,22 +215,12 @@
     },
     {
       "ipo": "Technocraft Ventures",
-      "gmp": 37,
-      "gmpRaw": "₹37",
+      "gmp": 42,
+      "gmpRaw": "₹42",
       "price": "₹212",
-      "listing": "₹249 (17.45%)",
+      "listing": "₹254 (19.81%)",
       "date": "7-11 August",
       "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "LAPL Automotive",
-      "gmp": 50,
-      "gmpRaw": "₹50",
-      "price": "₹94",
-      "listing": "₹144 (53.19%)",
-      "date": "6-10 August",
-      "type": "SME",
       "status": "closed"
     }
   ]
