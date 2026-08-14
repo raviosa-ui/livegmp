@@ -1,18 +1,8 @@
 {
-  "updatedIso": "2026-08-14T08:46:16.837Z",
-  "updatedLocal": "14/08/2026, 14:16:16 IST",
+  "updatedIso": "2026-08-14T12:09:59.057Z",
+  "updatedLocal": "14/08/2026, 17:39:59 IST",
   "source": "ipowatch",
   "rows": [
-    {
-      "ipo": "Dhanwel Hybrid Seeds",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹99",
-      "listing": "₹- (0.00%)",
-      "date": "2026",
-      "type": "SME",
-      "status": "upcoming"
-    },
     {
       "ipo": "Skyways Air Services",
       "gmp": 20,
@@ -21,6 +11,16 @@
       "listing": "₹168 (14.49%)",
       "date": "24-27 August",
       "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Dhanwel Hybrid Seeds",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹99",
+      "listing": "₹- (0.00%)",
+      "date": "19-21 August",
+      "type": "SME",
       "status": "upcoming"
     },
     {
@@ -131,7 +131,7 @@
       "listing": "₹- (0.00%)",
       "date": "12-14 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Behari Lal Engineering",
@@ -141,7 +141,7 @@
       "listing": "₹365 (28.07%)",
       "date": "12-14 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Pramodini Medicare",
@@ -151,7 +151,7 @@
       "listing": "₹- (0.00%)",
       "date": "12-14 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Shiprocket",
@@ -161,7 +161,7 @@
       "listing": "₹133 (37.11%)",
       "date": "12-14 August",
       "type": "Mainboard",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Sham Foam",
