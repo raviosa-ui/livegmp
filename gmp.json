@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-14T12:09:59.057Z",
-  "updatedLocal": "14/08/2026, 17:39:59 IST",
+  "updatedIso": "2026-08-15T03:18:42.799Z",
+  "updatedLocal": "15/08/2026, 08:48:42 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,6 +10,16 @@
       "price": "₹138",
       "listing": "₹168 (14.49%)",
       "date": "24-27 August",
+      "type": "Mainboard",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Tempsens Instruments",
+      "gmp": 35,
+      "gmpRaw": "₹35",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "20-24 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
@@ -25,10 +35,10 @@
     },
     {
       "ipo": "Mopshop Distribution",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹138",
-      "listing": "₹- (0.00%)",
+      "listing": "₹148 (7.24%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "upcoming"
@@ -45,10 +55,10 @@
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 33,
-      "gmpRaw": "₹33",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹360",
-      "listing": "₹393 (9.17%)",
+      "listing": "₹405 (12.50%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -75,20 +85,20 @@
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 38,
-      "gmpRaw": "₹38",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹201",
-      "listing": "₹239 (18.91%)",
+      "listing": "₹231 (14.92%)",
       "date": "17-19 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Technocrats Plasma Systems",
-      "gmp": 21,
-      "gmpRaw": "₹21",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹132",
-      "listing": "₹153 (15.91%)",
+      "listing": "₹157 (18.39%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "active"
@@ -115,10 +125,10 @@
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 75,
-      "gmpRaw": "₹75",
+      "gmp": 65,
+      "gmpRaw": "₹65",
       "price": "₹189",
-      "listing": "₹266 (39.68%)",
+      "listing": "₹256 (34.39%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "active"
@@ -135,10 +145,10 @@
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 80,
-      "gmpRaw": "₹80",
+      "gmp": 85,
+      "gmpRaw": "₹85",
       "price": "₹285",
-      "listing": "₹365 (28.07%)",
+      "listing": "₹370 (29.82%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "closed"
@@ -155,10 +165,10 @@
     },
     {
       "ipo": "Shiprocket",
-      "gmp": 36,
-      "gmpRaw": "₹36",
+      "gmp": 33,
+      "gmpRaw": "₹33",
       "price": "₹97",
-      "listing": "₹133 (37.11%)",
+      "listing": "₹130 (34.02%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "closed"
@@ -185,61 +195,31 @@
     },
     {
       "ipo": "Milky Mist",
-      "gmp": 26,
-      "gmpRaw": "₹26",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹140",
-      "listing": "₹166 (18.57%)",
+      "listing": "₹160 (14.29%)",
       "date": "11-13 August",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Molbio Diagnostics",
-      "gmp": 156,
-      "gmpRaw": "₹156",
+      "gmp": 130,
+      "gmpRaw": "₹130",
       "price": "₹807",
-      "listing": "₹963 (19.33%)",
+      "listing": "₹937 (16.11%)",
       "date": "10-12 August",
       "type": "Mainboard",
       "status": "closed"
     },
     {
       "ipo": "Dhoot Transmission",
-      "gmp": 276,
-      "gmpRaw": "₹276",
+      "gmp": 270,
+      "gmpRaw": "₹270",
       "price": "₹871",
-      "listing": "₹1147 (31.69%)",
+      "listing": "₹1141 (30.99%)",
       "date": "10-12 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "LEAP India",
-      "gmp": 13,
-      "gmpRaw": "₹13",
-      "price": "₹159",
-      "listing": "₹172 (8.18%)",
-      "date": "7-11 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Optimystix Entertainment",
-      "gmp": 5,
-      "gmpRaw": "₹5",
-      "price": "₹175",
-      "listing": "₹180 (2.86%)",
-      "date": "7-11 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Technocraft Ventures",
-      "gmp": 42,
-      "gmpRaw": "₹42",
-      "price": "₹212",
-      "listing": "₹254 (19.81%)",
-      "date": "7-11 August",
       "type": "Mainboard",
       "status": "closed"
     }
