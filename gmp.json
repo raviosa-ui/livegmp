@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-17T10:58:12.443Z",
-  "updatedLocal": "17/08/2026, 16:28:12 IST",
+  "updatedIso": "2026-08-17T11:51:19.913Z",
+  "updatedLocal": "17/08/2026, 17:21:19 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -151,7 +151,7 @@
       "listing": "₹244 (29.10%)",
       "date": "13-17 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Q&T Foods",
