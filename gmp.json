@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-17T11:51:19.913Z",
-  "updatedLocal": "17/08/2026, 17:21:19 IST",
+  "updatedIso": "2026-08-17T13:22:25.698Z",
+  "updatedLocal": "17/08/2026, 18:52:25 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 28,
-      "gmpRaw": "₹28",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹138",
-      "listing": "₹166 (20.28%)",
+      "listing": "₹168 (21.74%)",
       "date": "24-27 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 65,
-      "gmpRaw": "₹65",
+      "gmp": 135,
+      "gmpRaw": "₹135",
       "price": "₹300",
-      "listing": "₹365 (21.66%)",
+      "listing": "₹435 (45.00%)",
       "date": "20-24 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,20 +55,20 @@
     },
     {
       "ipo": "Mopshop Distribution",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹138",
-      "listing": "₹148 (7.24%)",
+      "listing": "₹152 (10.14%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹160",
-      "listing": "₹- (0.00%)",
+      "listing": "₹170 (6.25%)",
       "date": "19-21 August",
       "type": "Mainboard",
       "status": "upcoming"
