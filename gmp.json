@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-18T09:04:38.749Z",
-  "updatedLocal": "18/08/2026, 14:34:38 IST",
+  "updatedIso": "2026-08-18T11:52:35.138Z",
+  "updatedLocal": "18/08/2026, 17:22:35 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹164 (24.24%)",
       "date": "14-18 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "ENS Enterprises",
@@ -81,7 +81,7 @@
       "listing": "₹- (0.00%)",
       "date": "14-18 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Skytech Infinite Platform",
@@ -91,7 +91,7 @@
       "listing": "₹79 (2.60%)",
       "date": "14-18 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Credent Connect N Care",
