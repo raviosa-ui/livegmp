@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-17T13:22:25.698Z",
-  "updatedLocal": "17/08/2026, 18:52:25 IST",
+  "updatedIso": "2026-08-18T01:59:14.651Z",
+  "updatedLocal": "18/08/2026, 07:29:14 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -27,7 +27,7 @@
       "ipo": "Augmont Enterprises",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹786",
       "listing": "₹- (0.00%)",
       "date": "21-25 August",
       "type": "Mainboard",
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 135,
-      "gmpRaw": "₹135",
+      "gmp": 154,
+      "gmpRaw": "₹154",
       "price": "₹300",
-      "listing": "₹435 (45.00%)",
+      "listing": "₹454 (51.33%)",
       "date": "20-24 August",
       "type": "Mainboard",
       "status": "upcoming"
@@ -55,50 +55,50 @@
     },
     {
       "ipo": "Mopshop Distribution",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹138",
-      "listing": "₹152 (10.14%)",
+      "listing": "₹156 (13.04%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹160",
-      "listing": "₹170 (6.25%)",
+      "listing": "₹167 (4.38%)",
       "date": "19-21 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 54,
-      "gmpRaw": "₹54",
+      "gmp": 73,
+      "gmpRaw": "₹73",
       "price": "₹360",
-      "listing": "₹414 (15.00%)",
+      "listing": "₹433 (20.28%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Shankesh Jewellers",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹93",
-      "listing": "₹98 (5.38%)",
+      "listing": "₹95 (2.15%)",
       "date": "18-20 August",
       "type": "Mainboard",
       "status": "upcoming"
     },
     {
       "ipo": "Horizon Industrial Parks",
-      "gmp": 4,
-      "gmpRaw": "₹4",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹60",
-      "listing": "₹66 (6.67%)",
+      "listing": "₹62 (3.33%)",
       "date": "17-19 August",
       "type": "Mainboard",
       "status": "active"
@@ -135,20 +135,20 @@
     },
     {
       "ipo": "Skytech Infinite Platform",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹77",
-      "listing": "₹84 (9.09%)",
+      "listing": "₹79 (2.60%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 55,
-      "gmpRaw": "₹55",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹189",
-      "listing": "₹244 (29.10%)",
+      "listing": "₹234 (23.81%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "closed"
@@ -165,10 +165,10 @@
     },
     {
       "ipo": "Behari Lal Engineering",
-      "gmp": 85,
-      "gmpRaw": "₹85",
+      "gmp": 105,
+      "gmpRaw": "₹105",
       "price": "₹285",
-      "listing": "₹370 (29.82%)",
+      "listing": "₹390 (36.84%)",
       "date": "12-14 August",
       "type": "Mainboard",
       "status": "closed"
@@ -220,26 +220,6 @@
       "price": "₹140",
       "listing": "₹160 (14.29%)",
       "date": "11-13 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Molbio Diagnostics",
-      "gmp": 120,
-      "gmpRaw": "₹120",
-      "price": "₹807",
-      "listing": "₹927 (14.87%)",
-      "date": "10-12 August",
-      "type": "Mainboard",
-      "status": "closed"
-    },
-    {
-      "ipo": "Dhoot Transmission",
-      "gmp": 262,
-      "gmpRaw": "₹262",
-      "price": "₹871",
-      "listing": "₹1133 (30.08%)",
-      "date": "10-12 August",
       "type": "Mainboard",
       "status": "closed"
     }
