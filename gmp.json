@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-18T11:52:35.138Z",
-  "updatedLocal": "18/08/2026, 17:22:35 IST",
+  "updatedIso": "2026-08-19T03:25:28.246Z",
+  "updatedLocal": "19/08/2026, 08:55:28 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Sumax Engineering",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹101",
-      "listing": "₹- (0.00%)",
+      "listing": "₹121 (19.80%)",
       "date": "25-28 August",
       "type": "SME",
       "status": "upcoming"
@@ -55,30 +55,30 @@
     },
     {
       "ipo": "Mopshop Distribution",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹138",
-      "listing": "₹156 (13.04%)",
+      "listing": "₹160 (15.94%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Technocrats Plasma Systems",
-      "gmp": 32,
-      "gmpRaw": "₹32",
+      "gmp": 43,
+      "gmpRaw": "₹43",
       "price": "₹132",
-      "listing": "₹164 (24.24%)",
+      "listing": "₹175 (32.58%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "ENS Enterprises",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹92",
-      "listing": "₹- (0.00%)",
+      "listing": "₹96 (4.35%)",
       "date": "14-18 August",
       "type": "SME",
       "status": "closed"
@@ -95,10 +95,10 @@
     },
     {
       "ipo": "Credent Connect N Care",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 63,
+      "gmpRaw": "₹63",
       "price": "₹189",
-      "listing": "₹234 (23.81%)",
+      "listing": "₹252 (33.33%)",
       "date": "13-17 August",
       "type": "SME",
       "status": "closed"
@@ -120,16 +120,6 @@
       "price": "₹118",
       "listing": "₹- (0.00%)",
       "date": "12-14 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Sham Foam",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹130",
-      "listing": "₹- (0.00%)",
-      "date": "11-13 August",
       "type": "SME",
       "status": "closed"
     },
