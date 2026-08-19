@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-19T10:56:59.132Z",
-  "updatedLocal": "19/08/2026, 16:26:59 IST",
+  "updatedIso": "2026-08-19T11:52:10.644Z",
+  "updatedLocal": "19/08/2026, 17:22:10 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 170,
-      "gmpRaw": "₹170",
+      "gmp": 180,
+      "gmpRaw": "₹180",
       "price": "₹300",
-      "listing": "₹470 (56.67%)",
+      "listing": "₹480 (60.00%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "upcoming"
@@ -101,7 +101,7 @@
       "listing": "₹62 (3.33%)",
       "date": "17-19 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
@@ -111,7 +111,7 @@
       "listing": "₹241 (19.90%)",
       "date": "17-19 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Behari Lal Engineering",
