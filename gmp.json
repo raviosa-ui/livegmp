@@ -1,137 +1,137 @@
 {
-  "updatedIso": "2026-08-19T05:03:33.813Z",
-  "updatedLocal": "19/08/2026, 10:33:33 IST",
+  "updatedIso": "2026-08-19T10:56:59.132Z",
+  "updatedLocal": "19/08/2026, 16:26:59 IST",
   "source": "ipowatch",
   "rows": [
     {
-      "ipo": "Kwick Forensic Solutions",
+      "ipo": "Annu Projects",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹-",
       "listing": "₹- (0.00%)",
-      "date": "27-31 August",
-      "type": "SME",
-      "status": "upcoming"
-    },
-    {
-      "ipo": "Sumax Engineering",
-      "gmp": 20,
-      "gmpRaw": "₹20",
-      "price": "₹101",
-      "listing": "₹121 (19.80%)",
       "date": "25-28 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
-      "ipo": "Madhur Knit Crafts",
+      "ipo": "Symbiotec Pharmalab",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹100",
+      "price": "₹988",
       "listing": "₹- (0.00%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
-      "ipo": "ABH Healthcare",
+      "ipo": "Hy-Tech Engineers",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹102",
+      "price": "₹53",
       "listing": "₹- (0.00%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
-      "ipo": "Dhanwel Hybrid Seeds",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹99",
-      "listing": "₹- (0.00%)",
-      "date": "19-21 August",
-      "type": "SME",
-      "status": "active"
-    },
-    {
-      "ipo": "Mopshop Distribution",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "ipo": "Skyways Air Services",
+      "gmp": 40,
+      "gmpRaw": "₹40",
       "price": "₹138",
-      "listing": "₹160 (15.94%)",
+      "listing": "₹178 (28.99%)",
+      "date": "24-27 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Augmont Enterprises",
+      "gmp": 190,
+      "gmpRaw": "₹190",
+      "price": "₹786",
+      "listing": "₹976 (24.11%)",
+      "date": "21-25 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Tempsens Instruments",
+      "gmp": 170,
+      "gmpRaw": "₹170",
+      "price": "₹300",
+      "listing": "₹470 (56.67%)",
+      "date": "20-24 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Gaja Alternative Asset Management",
+      "gmp": 30,
+      "gmpRaw": "₹30",
+      "price": "₹160",
+      "listing": "₹190 (18.75%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "active"
     },
     {
-      "ipo": "Technocrats Plasma Systems",
-      "gmp": 43,
-      "gmpRaw": "₹43",
-      "price": "₹132",
-      "listing": "₹175 (32.58%)",
-      "date": "14-18 August",
+      "ipo": "Sunshine Pictures",
+      "gmp": 77,
+      "gmpRaw": "₹77",
+      "price": "₹360",
+      "listing": "₹437 (21.39%)",
+      "date": "18-20 August",
       "type": "SME",
-      "status": "closed"
+      "status": "active"
     },
     {
-      "ipo": "ENS Enterprises",
-      "gmp": 4,
-      "gmpRaw": "₹4",
-      "price": "₹92",
-      "listing": "₹96 (4.35%)",
-      "date": "14-18 August",
+      "ipo": "Shankesh Jewellers",
+      "gmp": 5,
+      "gmpRaw": "₹5",
+      "price": "₹93",
+      "listing": "₹98 (5.38%)",
+      "date": "18-20 August",
       "type": "SME",
-      "status": "closed"
+      "status": "active"
     },
     {
-      "ipo": "Skytech Infinite Platform",
+      "ipo": "Horizon Industrial Parks",
       "gmp": 2,
       "gmpRaw": "₹2",
-      "price": "₹77",
-      "listing": "₹79 (2.60%)",
-      "date": "14-18 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Credent Connect N Care",
-      "gmp": 63,
-      "gmpRaw": "₹63",
-      "price": "₹189",
-      "listing": "₹252 (33.33%)",
-      "date": "13-17 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Q&T Foods",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹115",
-      "listing": "₹- (0.00%)",
-      "date": "12-14 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Pramodini Medicare",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹118",
-      "listing": "₹- (0.00%)",
-      "date": "12-14 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Fascinate Textiles",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹156",
-      "listing": "₹- (0.00%)",
-      "date": "11-19 August",
+      "price": "₹60",
+      "listing": "₹62 (3.33%)",
+      "date": "17-19 August",
       "type": "SME",
       "status": "active"
+    },
+    {
+      "ipo": "Lalithaa Jewellery Mart",
+      "gmp": 40,
+      "gmpRaw": "₹40",
+      "price": "₹201",
+      "listing": "₹241 (19.90%)",
+      "date": "17-19 August",
+      "type": "SME",
+      "status": "active"
+    },
+    {
+      "ipo": "Behari Lal Engineering",
+      "gmp": 133,
+      "gmpRaw": "₹133",
+      "price": "₹285",
+      "listing": "₹418 (46.67%)",
+      "date": "12-14 August",
+      "type": "SME",
+      "status": "closed"
+    },
+    {
+      "ipo": "Shiprocket",
+      "gmp": 36,
+      "gmpRaw": "₹36",
+      "price": "₹97",
+      "listing": "₹133 (37.11%)",
+      "date": "12-14 August",
+      "type": "SME",
+      "status": "closed"
     }
   ]
 }
