@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-19T11:52:10.644Z",
-  "updatedLocal": "19/08/2026, 17:22:10 IST",
+  "updatedIso": "2026-08-20T03:25:05.584Z",
+  "updatedLocal": "20/08/2026, 08:55:05 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,20 +15,20 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 200,
+      "gmpRaw": "₹200",
       "price": "₹988",
-      "listing": "₹- (0.00%)",
+      "listing": "₹1188 (20.24%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Hy-Tech Engineers",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹53",
-      "listing": "₹- (0.00%)",
+      "listing": "₹58 (9.43%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
@@ -45,91 +45,71 @@
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 190,
-      "gmpRaw": "₹190",
+      "gmp": 270,
+      "gmpRaw": "₹270",
       "price": "₹786",
-      "listing": "₹976 (24.11%)",
+      "listing": "₹1056 (34.35%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 180,
-      "gmpRaw": "₹180",
+      "gmp": 220,
+      "gmpRaw": "₹220",
       "price": "₹300",
-      "listing": "₹480 (60.00%)",
+      "listing": "₹480 (73.33%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹160",
-      "listing": "₹190 (18.75%)",
+      "listing": "₹185 (15.63%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 77,
-      "gmpRaw": "₹77",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹360",
-      "listing": "₹437 (21.39%)",
+      "listing": "₹440 (22.22%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Shankesh Jewellers",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹93",
-      "listing": "₹98 (5.38%)",
+      "listing": "₹95 (2.15%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Horizon Industrial Parks",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 1,
+      "gmpRaw": "₹1",
       "price": "₹60",
-      "listing": "₹62 (3.33%)",
+      "listing": "₹61 (1.67%)",
       "date": "17-19 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹201",
-      "listing": "₹241 (19.90%)",
+      "listing": "₹256 (27.36%)",
       "date": "17-19 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Behari Lal Engineering",
-      "gmp": 133,
-      "gmpRaw": "₹133",
-      "price": "₹285",
-      "listing": "₹418 (46.67%)",
-      "date": "12-14 August",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Shiprocket",
-      "gmp": 36,
-      "gmpRaw": "₹36",
-      "price": "₹97",
-      "listing": "₹133 (37.11%)",
-      "date": "12-14 August",
       "type": "SME",
       "status": "closed"
     }
