@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-20T05:04:43.278Z",
-  "updatedLocal": "20/08/2026, 10:34:43 IST",
+  "updatedIso": "2026-08-20T11:54:26.047Z",
+  "updatedLocal": "20/08/2026, 17:24:26 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -81,7 +81,7 @@
       "listing": "₹440 (22.22%)",
       "date": "18-20 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Shankesh Jewellers",
@@ -91,7 +91,7 @@
       "listing": "₹95 (2.15%)",
       "date": "18-20 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Horizon Industrial Parks",
