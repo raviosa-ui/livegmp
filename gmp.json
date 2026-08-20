@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-08-20T11:54:26.047Z",
-  "updatedLocal": "20/08/2026, 17:24:26 IST",
+  "updatedIso": "2026-08-20T13:28:00.468Z",
+  "updatedLocal": "20/08/2026, 18:58:00 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Rays of Belief",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "1-3 September",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Annu Projects",
       "gmp": 0,
@@ -15,10 +25,10 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 200,
-      "gmpRaw": "₹200",
+      "gmp": 260,
+      "gmpRaw": "₹260",
       "price": "₹988",
-      "listing": "₹1188 (20.24%)",
+      "listing": "₹1248 (26.32%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
@@ -45,40 +55,40 @@
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 270,
-      "gmpRaw": "₹270",
+      "gmp": 285,
+      "gmpRaw": "₹285",
       "price": "₹786",
-      "listing": "₹1056 (34.35%)",
+      "listing": "₹1071 (36.26%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 220,
-      "gmpRaw": "₹220",
+      "gmp": 250,
+      "gmpRaw": "₹250",
       "price": "₹300",
-      "listing": "₹480 (73.33%)",
+      "listing": "₹550 (83.33%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹160",
-      "listing": "₹185 (15.63%)",
+      "listing": "₹175 (9.38%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 80,
-      "gmpRaw": "₹80",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹360",
-      "listing": "₹440 (22.22%)",
+      "listing": "₹435 (20.83%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "closed"
@@ -95,10 +105,10 @@
     },
     {
       "ipo": "Horizon Industrial Parks",
-      "gmp": 1,
-      "gmpRaw": "₹1",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹60",
-      "listing": "₹61 (1.67%)",
+      "listing": "₹62 (3.33%)",
       "date": "17-19 August",
       "type": "SME",
       "status": "closed"
