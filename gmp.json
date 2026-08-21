@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-21T03:30:14.006Z",
-  "updatedLocal": "21/08/2026, 09:00:14 IST",
+  "updatedIso": "2026-08-21T05:05:31.346Z",
+  "updatedLocal": "21/08/2026, 10:35:31 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹1071 (36.26%)",
       "date": "21-25 August",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Tempsens Instruments",
