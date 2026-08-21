@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-21T05:05:31.346Z",
-  "updatedLocal": "21/08/2026, 10:35:31 IST",
+  "updatedIso": "2026-08-21T07:24:36.614Z",
+  "updatedLocal": "21/08/2026, 12:54:36 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -55,40 +55,40 @@
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹138",
-      "listing": "₹178 (28.99%)",
+      "listing": "₹188 (36.23%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 285,
-      "gmpRaw": "₹285",
+      "gmp": 300,
+      "gmpRaw": "₹300",
       "price": "₹786",
-      "listing": "₹1071 (36.26%)",
+      "listing": "₹1086 (38.17%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 250,
-      "gmpRaw": "₹250",
+      "gmp": 325,
+      "gmpRaw": "₹325",
       "price": "₹300",
-      "listing": "₹550 (83.33%)",
+      "listing": "₹525 (108.33%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹160",
-      "listing": "₹178 (11.25%)",
+      "listing": "₹172 (7.50%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "active"
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 61,
-      "gmpRaw": "₹61",
+      "gmp": 59,
+      "gmpRaw": "₹59",
       "price": "₹201",
-      "listing": "₹262 (30.35%)",
+      "listing": "₹262 (29.35%)",
       "date": "17-19 August",
       "type": "SME",
       "status": "closed"
