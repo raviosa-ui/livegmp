@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-20T13:28:00.468Z",
-  "updatedLocal": "20/08/2026, 18:58:00 IST",
+  "updatedIso": "2026-08-21T03:30:14.006Z",
+  "updatedLocal": "21/08/2026, 09:00:14 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -14,10 +14,20 @@
       "status": "upcoming"
     },
     {
+      "ipo": "Lumino Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹82",
+      "listing": "₹- (0.00%)",
+      "date": "27-31 August",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
       "ipo": "Annu Projects",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹99",
       "listing": "₹- (0.00%)",
       "date": "25-28 August",
       "type": "SME",
@@ -25,20 +35,20 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 260,
-      "gmpRaw": "₹260",
+      "gmp": 320,
+      "gmpRaw": "₹320",
       "price": "₹988",
-      "listing": "₹1248 (26.32%)",
+      "listing": "₹1308 (32.39%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Hy-Tech Engineers",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹53",
-      "listing": "₹58 (9.43%)",
+      "listing": "₹75 (41.51%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
@@ -75,30 +85,30 @@
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹160",
-      "listing": "₹175 (9.38%)",
+      "listing": "₹178 (11.25%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 75,
-      "gmpRaw": "₹75",
+      "gmp": 80,
+      "gmpRaw": "₹80",
       "price": "₹360",
-      "listing": "₹435 (20.83%)",
+      "listing": "₹440 (22.22%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Shankesh Jewellers",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹93",
-      "listing": "₹95 (2.15%)",
+      "listing": "₹98 (5.38%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "closed"
@@ -115,10 +125,10 @@
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 55,
-      "gmpRaw": "₹55",
+      "gmp": 61,
+      "gmpRaw": "₹61",
       "price": "₹201",
-      "listing": "₹256 (27.36%)",
+      "listing": "₹262 (30.35%)",
       "date": "17-19 August",
       "type": "SME",
       "status": "closed"
