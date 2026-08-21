@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-21T11:54:03.935Z",
-  "updatedLocal": "21/08/2026, 17:24:03 IST",
+  "updatedIso": "2026-08-21T14:08:05.807Z",
+  "updatedLocal": "21/08/2026, 19:38:05 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Lumino Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 43,
+      "gmpRaw": "₹43",
       "price": "₹82",
-      "listing": "₹- (0.00%)",
+      "listing": "₹125 (52.44%)",
       "date": "27-31 August",
       "type": "SME",
       "status": "upcoming"
