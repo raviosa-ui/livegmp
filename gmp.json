@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-24T05:19:00.782Z",
-  "updatedLocal": "24/08/2026, 10:49:00 IST",
+  "updatedIso": "2026-08-24T09:24:38.084Z",
+  "updatedLocal": "24/08/2026, 14:54:38 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "Priority Jewels",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹200",
-      "listing": "₹- (0.00%)",
+      "listing": "₹215 (7.50%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "upcoming"
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Annu Projects",
-      "gmp": 4,
-      "gmpRaw": "₹4",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹99",
-      "listing": "₹103 (4.04%)",
+      "listing": "₹104 (5.05%)",
       "date": "25-28 August",
       "type": "SME",
       "status": "upcoming"
@@ -65,30 +65,30 @@
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 32,
+      "gmpRaw": "₹32",
       "price": "₹138",
-      "listing": "₹173 (25.36%)",
+      "listing": "₹170 (23.19%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 380,
-      "gmpRaw": "₹380",
+      "gmp": 370,
+      "gmpRaw": "₹370",
       "price": "₹786",
-      "listing": "₹1166 (48.34%)",
+      "listing": "₹1166 (47.07%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 313,
-      "gmpRaw": "₹313",
+      "gmp": 325,
+      "gmpRaw": "₹325",
       "price": "₹300",
-      "listing": "₹613 (104.33%)",
+      "listing": "₹625 (108.33%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "active"
@@ -105,10 +105,10 @@
     },
     {
       "ipo": "Sunshine Pictures",
-      "gmp": 65,
-      "gmpRaw": "₹65",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹360",
-      "listing": "₹425 (17.05%)",
+      "listing": "₹415 (15.28%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "closed"
