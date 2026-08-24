@@ -1,13 +1,13 @@
 {
-  "updatedIso": "2026-08-23T13:11:17.927Z",
-  "updatedLocal": "23/08/2026, 18:41:17 IST",
+  "updatedIso": "2026-08-24T03:31:55.277Z",
+  "updatedLocal": "24/08/2026, 09:01:55 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Rays of Belief",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹239",
       "listing": "₹- (0.00%)",
       "date": "1-3 September",
       "type": "SME",
@@ -17,7 +17,7 @@
       "ipo": "Priority Jewels",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹200",
       "listing": "₹- (0.00%)",
       "date": "28-1 September",
       "type": "SME",
@@ -45,10 +45,10 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 380,
-      "gmpRaw": "₹380",
+      "gmp": 409,
+      "gmpRaw": "₹409",
       "price": "₹988",
-      "listing": "₹1368 (38.46%)",
+      "listing": "₹1397 (41.40%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹138",
-      "listing": "₹188 (36.23%)",
+      "listing": "₹173 (25.36%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "upcoming"
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 310,
-      "gmpRaw": "₹310",
+      "gmp": 313,
+      "gmpRaw": "₹313",
       "price": "₹300",
-      "listing": "₹610 (103.33%)",
+      "listing": "₹613 (104.33%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "active"
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "Shankesh Jewellers",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹93",
-      "listing": "₹- (0.00%)",
+      "listing": "₹95 (2.15%)",
       "date": "18-20 August",
       "type": "SME",
       "status": "closed"
@@ -135,10 +135,10 @@
     },
     {
       "ipo": "Lalithaa Jewellery Mart",
-      "gmp": 70,
-      "gmpRaw": "₹70",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹201",
-      "listing": "₹271 (34.82%)",
+      "listing": "₹276 (37.31%)",
       "date": "17-19 August",
       "type": "SME",
       "status": "closed"
