@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-24T11:55:56.888Z",
-  "updatedLocal": "24/08/2026, 17:25:56 IST",
+  "updatedIso": "2026-08-24T13:31:33.327Z",
+  "updatedLocal": "24/08/2026, 19:01:33 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -45,20 +45,20 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 409,
-      "gmpRaw": "₹409",
+      "gmp": 388,
+      "gmpRaw": "₹388",
       "price": "₹988",
-      "listing": "₹1397 (41.40%)",
+      "listing": "₹1376 (39.27%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Hy-Tech Engineers",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 29,
+      "gmpRaw": "₹29",
       "price": "₹53",
-      "listing": "₹77 (47.17%)",
+      "listing": "₹82 (54.72%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 325,
-      "gmpRaw": "₹325",
+      "gmp": 315,
+      "gmpRaw": "₹315",
       "price": "₹300",
-      "listing": "₹625 (108.33%)",
+      "listing": "₹615 (105.00%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "closed"
