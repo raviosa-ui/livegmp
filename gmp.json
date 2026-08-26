@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-26T10:06:33.212Z",
-  "updatedLocal": "26/08/2026, 15:36:33 IST",
+  "updatedIso": "2026-08-26T11:57:16.735Z",
+  "updatedLocal": "26/08/2026, 17:27:16 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 317,
-      "gmpRaw": "₹317",
+      "gmp": 351,
+      "gmpRaw": "₹351",
       "price": "₹429",
-      "listing": "₹746 (73.89%)",
+      "listing": "₹780 (81.82%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "upcoming"
@@ -55,10 +55,10 @@
     },
     {
       "ipo": "Lumino Industries",
-      "gmp": 46,
-      "gmpRaw": "₹46",
+      "gmp": 48,
+      "gmpRaw": "₹48",
       "price": "₹82",
-      "listing": "₹128 (56.10%)",
+      "listing": "₹130 (58.54%)",
       "date": "27-31 August",
       "type": "SME",
       "status": "upcoming"
@@ -75,10 +75,10 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 352,
-      "gmpRaw": "₹352",
+      "gmp": 333,
+      "gmpRaw": "₹333",
       "price": "₹988",
-      "listing": "₹1340 (35.63%)",
+      "listing": "₹1321 (33.70%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
