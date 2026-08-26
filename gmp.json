@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-25T11:55:50.947Z",
-  "updatedLocal": "25/08/2026, 17:25:50 IST",
+  "updatedIso": "2026-08-26T02:09:32.114Z",
+  "updatedLocal": "26/08/2026, 07:39:32 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,50 +25,50 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 245,
-      "gmpRaw": "₹245",
+      "gmp": 280,
+      "gmpRaw": "₹280",
       "price": "₹429",
-      "listing": "₹674 (57.11%)",
+      "listing": "₹709 (65.27%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Priority Jewels",
-      "gmp": 28,
-      "gmpRaw": "₹28",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹200",
-      "listing": "₹228 (14.00%)",
+      "listing": "₹230 (15.00%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Lumino Industries",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 46,
+      "gmpRaw": "₹46",
       "price": "₹82",
-      "listing": "₹132 (60.98%)",
+      "listing": "₹128 (56.10%)",
       "date": "27-31 August",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Annu Projects",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹99",
-      "listing": "₹104 (5.05%)",
+      "listing": "₹- (0.00%)",
       "date": "25-28 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 340,
-      "gmpRaw": "₹340",
+      "gmp": 352,
+      "gmpRaw": "₹352",
       "price": "₹988",
-      "listing": "₹1328 (34.41%)",
+      "listing": "₹1340 (35.63%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
@@ -85,20 +85,20 @@
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 32,
-      "gmpRaw": "₹32",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹138",
-      "listing": "₹170 (23.19%)",
+      "listing": "₹138 (21.01%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 325,
-      "gmpRaw": "₹325",
+      "gmp": 315,
+      "gmpRaw": "₹315",
       "price": "₹786",
-      "listing": "₹1111 (41.24%)",
+      "listing": "₹1101 (39.97%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "closed"
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "Gaja Alternative Asset Management",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹160",
-      "listing": "₹175 (9.37%)",
+      "listing": "₹178 (11.56%)",
       "date": "19-21 August",
       "type": "SME",
       "status": "closed"
