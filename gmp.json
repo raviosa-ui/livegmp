@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-08-26T07:26:30.416Z",
-  "updatedLocal": "26/08/2026, 12:56:30 IST",
+  "updatedIso": "2026-08-26T10:06:33.212Z",
+  "updatedLocal": "26/08/2026, 15:36:33 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Deepa Jewellers",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "1-3 September",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Rays of Belief",
       "gmp": 0,
@@ -17,7 +27,7 @@
       "ipo": "Purple Style Labs",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹575",
       "listing": "₹- (0.00%)",
       "date": "31-2 September",
       "type": "SME",
