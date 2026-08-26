@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-26T02:09:32.114Z",
-  "updatedLocal": "26/08/2026, 07:39:32 IST",
+  "updatedIso": "2026-08-26T07:26:30.416Z",
+  "updatedLocal": "26/08/2026, 12:56:30 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 280,
-      "gmpRaw": "₹280",
+      "gmp": 317,
+      "gmpRaw": "₹317",
       "price": "₹429",
-      "listing": "₹709 (65.27%)",
+      "listing": "₹746 (73.89%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "upcoming"
@@ -75,20 +75,20 @@
     },
     {
       "ipo": "Hy-Tech Engineers",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 40,
+      "gmpRaw": "₹40",
       "price": "₹53",
-      "listing": "₹83 (56.60%)",
+      "listing": "₹93 (75.47%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Skyways Air Services",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 24,
+      "gmpRaw": "₹24",
       "price": "₹138",
-      "listing": "₹138 (21.01%)",
+      "listing": "₹162 (17.39%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "active"
