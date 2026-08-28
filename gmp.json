@@ -1,24 +1,24 @@
 {
-  "updatedIso": "2026-08-27T11:53:40.695Z",
-  "updatedLocal": "27/08/2026, 17:23:40 IST",
+  "updatedIso": "2026-08-28T06:17:09.658Z",
+  "updatedLocal": "28/08/2026, 11:47:09 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Deepa Jewellers",
-      "gmp": 32,
-      "gmpRaw": "₹32",
+      "gmp": 47,
+      "gmpRaw": "₹47",
       "price": "₹177",
-      "listing": "₹209 (18.08%)",
+      "listing": "₹224 (26.55%)",
       "date": "1-3 September",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Rays of Belief",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹239",
-      "listing": "₹257 (7.53%)",
+      "listing": "₹249 (4.18%)",
       "date": "1-3 September",
       "type": "SME",
       "status": "upcoming"
@@ -35,50 +35,50 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 335,
-      "gmpRaw": "₹335",
+      "gmp": 325,
+      "gmpRaw": "₹325",
       "price": "₹429",
-      "listing": "₹764 (78.09%)",
+      "listing": "₹754 (75.76%)",
       "date": "28-1 September",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Priority Jewels",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 37,
+      "gmpRaw": "₹37",
       "price": "₹200",
-      "listing": "₹220 (10.00%)",
+      "listing": "₹237 (18.50%)",
       "date": "28-1 September",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Lumino Industries",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 56,
+      "gmpRaw": "₹56",
       "price": "₹82",
-      "listing": "₹132 (60.98%)",
+      "listing": "₹138 (68.29%)",
       "date": "27-31 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Annu Projects",
-      "gmp": 4,
-      "gmpRaw": "₹4",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹99",
-      "listing": "₹93 (4.04%)",
+      "listing": "₹96 (7.07%)",
       "date": "25-28 August",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 275,
-      "gmpRaw": "₹275",
+      "gmp": 270,
+      "gmpRaw": "₹270",
       "price": "₹988",
-      "listing": "₹1263 (27.83%)",
+      "listing": "₹1258 (27.33%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "closed"
@@ -105,20 +105,20 @@
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 315,
-      "gmpRaw": "₹315",
+      "gmp": 300,
+      "gmpRaw": "₹300",
       "price": "₹786",
-      "listing": "₹1101 (39.97%)",
+      "listing": "₹1086 (38.07%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Tempsens Instruments",
-      "gmp": 303,
-      "gmpRaw": "₹303",
+      "gmp": 330,
+      "gmpRaw": "₹330",
       "price": "₹300",
-      "listing": "₹303 (101.00%)",
+      "listing": "₹630 (110.00%)",
       "date": "20-24 August",
       "type": "SME",
       "status": "closed"
