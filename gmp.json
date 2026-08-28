@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-08-28T06:17:09.658Z",
-  "updatedLocal": "28/08/2026, 11:47:09 IST",
+  "updatedIso": "2026-08-28T18:56:45.585Z",
+  "updatedLocal": "29/08/2026, 00:26:45 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹96 (7.07%)",
       "date": "25-28 August",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Symbiotec Pharmalab",
