@@ -1,44 +1,44 @@
 {
-  "updatedIso": "2026-08-29T09:18:36.465Z",
-  "updatedLocal": "29/08/2026, 14:48:36 IST",
+  "updatedIso": "2026-08-31T05:58:04.322Z",
+  "updatedLocal": "31/08/2026, 11:28:04 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Deepa Jewellers",
-      "gmp": 47,
-      "gmpRaw": "₹47",
+      "gmp": 46,
+      "gmpRaw": "₹46",
       "price": "₹177",
-      "listing": "₹224 (26.55%)",
+      "listing": "₹223 (25.99%)",
       "date": "1-3 September",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Rays of Belief",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹239",
-      "listing": "₹264 (10.46%)",
+      "listing": "₹269 (12.55%)",
       "date": "1-3 September",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Purple Style Labs",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 28,
+      "gmpRaw": "₹28",
       "price": "₹575",
-      "listing": "₹605 (5.22%)",
+      "listing": "₹603 (4.87%)",
       "date": "31-2 September",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 360,
-      "gmpRaw": "₹360",
+      "gmp": 328,
+      "gmpRaw": "₹328",
       "price": "₹429",
-      "listing": "₹789 (83.91%)",
+      "listing": "₹757 (76.45%)",
       "date": "28-1 September",
       "type": "SME",
       "status": "active"
@@ -75,10 +75,10 @@
     },
     {
       "ipo": "Symbiotec Pharmalab",
-      "gmp": 260,
-      "gmpRaw": "₹260",
+      "gmp": 205,
+      "gmpRaw": "₹205",
       "price": "₹988",
-      "listing": "₹1248 (26.32%)",
+      "listing": "₹1193 (20.74%)",
       "date": "24-27 August",
       "type": "SME",
       "status": "closed"
@@ -105,10 +105,10 @@
     },
     {
       "ipo": "Augmont Enterprises",
-      "gmp": 300,
-      "gmpRaw": "₹300",
+      "gmp": 290,
+      "gmpRaw": "₹290",
       "price": "₹786",
-      "listing": "₹1086 (38.07%)",
+      "listing": "₹1076 (36.90%)",
       "date": "21-25 August",
       "type": "SME",
       "status": "closed"
