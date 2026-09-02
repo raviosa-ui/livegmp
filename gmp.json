@@ -1,54 +1,54 @@
 {
-  "updatedIso": "2026-09-01T11:56:13.363Z",
-  "updatedLocal": "01/09/2026, 17:26:13 IST",
+  "updatedIso": "2026-09-02T06:16:46.438Z",
+  "updatedLocal": "02/09/2026, 11:46:46 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Veegaland Developers",
+      "gmp": 18,
+      "gmpRaw": "₹18",
+      "price": "₹140",
+      "listing": "₹158 (12.86%)",
+      "date": "10-15 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Kanohar Electricals",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹-",
       "listing": "₹- (0.00%)",
-      "date": "TBA",
-      "type": "SME",
-      "status": "upcoming"
-    },
-    {
-      "ipo": "Veegaland Developers",
-      "gmp": 14,
-      "gmpRaw": "₹14",
-      "price": "₹140",
-      "listing": "₹154 (10.00%)",
-      "date": "10-15 Sept",
+      "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Pranav Constructions",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "gmp": 23,
+      "gmpRaw": "₹23",
+      "price": "₹124",
+      "listing": "₹147 (18.54%)",
       "date": "7-9 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Deepa Jewellers",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 44,
+      "gmpRaw": "₹44",
       "price": "₹177",
-      "listing": "₹217 (22.60%)",
+      "listing": "₹221 (24.86%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Rays of Belief",
-      "gmp": 48,
-      "gmpRaw": "₹48",
+      "gmp": 38,
+      "gmpRaw": "₹38",
       "price": "₹239",
-      "listing": "₹287 (20.08%)",
+      "listing": "₹277 (15.90%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "active"
@@ -65,20 +65,20 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 250,
-      "gmpRaw": "₹250",
+      "gmp": 255,
+      "gmpRaw": "₹255",
       "price": "₹429",
-      "listing": "₹679 (58.28%)",
+      "listing": "₹684 (59.44%)",
       "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Priority Jewels",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 31,
+      "gmpRaw": "₹31",
       "price": "₹200",
-      "listing": "₹240 (20.00%)",
+      "listing": "₹231 (15.50%)",
       "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
@@ -98,38 +98,8 @@
       "gmp": null,
       "gmpRaw": "₹-",
       "price": "₹99",
-      "listing": "₹99 (0.00%)",
+      "listing": "₹- (0.00%)",
       "date": "25-28 Aug",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Symbiotec Pharmalab",
-      "gmp": 185,
-      "gmpRaw": "₹185",
-      "price": "₹988",
-      "listing": "₹1173 (18.72%)",
-      "date": "24-27 Aug",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Hy-Tech Engineers",
-      "gmp": 35,
-      "gmpRaw": "₹35",
-      "price": "₹53",
-      "listing": "₹88 (66.04%)",
-      "date": "24-27 Aug",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Skyways Air Services",
-      "gmp": 32,
-      "gmpRaw": "₹32",
-      "price": "₹138",
-      "listing": "₹170 (23.19%)",
-      "date": "24-27 Aug",
       "type": "SME",
       "status": "closed"
     }
