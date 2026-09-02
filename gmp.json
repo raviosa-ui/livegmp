@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-02T06:16:46.438Z",
-  "updatedLocal": "02/09/2026, 11:46:46 IST",
+  "updatedIso": "2026-09-02T11:36:47.791Z",
+  "updatedLocal": "02/09/2026, 17:06:47 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,6 +10,16 @@
       "price": "₹140",
       "listing": "₹158 (12.86%)",
       "date": "10-15 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Asset Reconstruction",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "9-11 Sept",
       "type": "SME",
       "status": "upcoming"
     },
@@ -61,7 +71,7 @@
       "listing": "₹579 (0.70%)",
       "date": "31-2 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "ESDS Software",
