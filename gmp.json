@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-03T11:35:17.086Z",
-  "updatedLocal": "03/09/2026, 17:05:17 IST",
+  "updatedIso": "2026-09-03T16:37:27.942Z",
+  "updatedLocal": "03/09/2026, 22:07:27 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -45,30 +45,30 @@
     },
     {
       "ipo": "Prasol Chemicals",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹676",
-      "listing": "₹- (0.00%)",
+      "listing": "₹690 (2.07%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Glass Wall Systems",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹182",
-      "listing": "₹- (0.00%)",
+      "listing": "₹197 (8.24%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Kanohar Electricals",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 150,
+      "gmpRaw": "₹150",
       "price": "₹632",
-      "listing": "₹- (0.00%)",
+      "listing": "₹782 (23.73%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -85,20 +85,20 @@
     },
     {
       "ipo": "Deepa Jewellers",
-      "gmp": 28,
-      "gmpRaw": "₹28",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹177",
-      "listing": "₹205 (15.82%)",
+      "listing": "₹195 (10.17%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Rays of Belief",
-      "gmp": 47,
-      "gmpRaw": "₹47",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹239",
-      "listing": "₹286 (19.67%)",
+      "listing": "₹254 (6.28%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "closed"
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 255,
-      "gmpRaw": "₹255",
+      "gmp": 245,
+      "gmpRaw": "₹245",
       "price": "₹429",
-      "listing": "₹684 (59.44%)",
+      "listing": "₹674 (57.11%)",
       "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
@@ -130,16 +130,6 @@
       "price": "₹200",
       "listing": "₹231 (15.50%)",
       "date": "28-1 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Lumino Industries",
-      "gmp": 40,
-      "gmpRaw": "₹40",
-      "price": "₹82",
-      "listing": "₹122 (48.78%)",
-      "date": "27-31 Aug",
       "type": "SME",
       "status": "closed"
     }
