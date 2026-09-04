@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-04T06:25:47.126Z",
-  "updatedLocal": "04/09/2026, 11:55:47 IST",
+  "updatedIso": "2026-09-04T11:39:45.526Z",
+  "updatedLocal": "04/09/2026, 17:09:45 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -150,26 +150,6 @@
       "price": "₹575",
       "listing": "₹577 (0.35%)",
       "date": "31-2 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "ESDS Software",
-      "gmp": 247,
-      "gmpRaw": "₹247",
-      "price": "₹429",
-      "listing": "₹676 (57.58%)",
-      "date": "28-1 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Priority Jewels",
-      "gmp": 28,
-      "gmpRaw": "₹28",
-      "price": "₹200",
-      "listing": "₹228 (14.00%)",
-      "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
     }
