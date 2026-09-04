@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-03T16:37:27.942Z",
-  "updatedLocal": "03/09/2026, 22:07:27 IST",
+  "updatedIso": "2026-09-04T06:25:47.126Z",
+  "updatedLocal": "04/09/2026, 11:55:47 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -37,6 +37,46 @@
       "ipo": "LCC Projects",
       "gmp": 0,
       "gmpRaw": "₹0",
+      "price": "₹146",
+      "listing": "₹- (0.00%)",
+      "date": "9-11 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Karamtara Engineering",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹254",
+      "listing": "₹- (0.00%)",
+      "date": "9-11 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Manipal Payment",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹339",
+      "listing": "₹- (0.00%)",
+      "date": "9-11 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Rentomojo",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹404",
+      "listing": "₹- (0.00%)",
+      "date": "9-11 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Steamhouse India",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "9-11 Sept",
@@ -55,30 +95,30 @@
     },
     {
       "ipo": "Glass Wall Systems",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹182",
-      "listing": "₹197 (8.24%)",
+      "listing": "₹202 (10.99%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Kanohar Electricals",
-      "gmp": 150,
-      "gmpRaw": "₹150",
+      "gmp": 200,
+      "gmpRaw": "₹200",
       "price": "₹632",
-      "listing": "₹782 (23.73%)",
+      "listing": "₹832 (31.65%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Pranav Constructions",
-      "gmp": 27,
-      "gmpRaw": "₹27",
+      "gmp": 31,
+      "gmpRaw": "₹31",
       "price": "₹124",
-      "listing": "₹151 (21.77%)",
+      "listing": "₹155 (25.00%)",
       "date": "7-9 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -115,20 +155,20 @@
     },
     {
       "ipo": "ESDS Software",
-      "gmp": 245,
-      "gmpRaw": "₹245",
+      "gmp": 247,
+      "gmpRaw": "₹247",
       "price": "₹429",
-      "listing": "₹674 (57.11%)",
+      "listing": "₹676 (57.58%)",
       "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Priority Jewels",
-      "gmp": 31,
-      "gmpRaw": "₹31",
+      "gmp": 28,
+      "gmpRaw": "₹28",
       "price": "₹200",
-      "listing": "₹231 (15.50%)",
+      "listing": "₹228 (14.00%)",
       "date": "28-1 Sept",
       "type": "SME",
       "status": "closed"
