@@ -1,15 +1,15 @@
 {
-  "updatedIso": "2026-09-04T11:39:45.526Z",
-  "updatedLocal": "04/09/2026, 17:09:45 IST",
+  "updatedIso": "2026-09-04T16:32:48.703Z",
+  "updatedLocal": "04/09/2026, 22:02:48 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "NSE",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 200,
+      "gmpRaw": "₹200",
       "price": "₹-",
       "listing": "₹- (0.00%)",
-      "date": "21-23 Sept",
+      "date": "21-23 Sept (T)",
       "type": "SME",
       "status": "upcoming"
     },
