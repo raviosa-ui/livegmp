@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-06T04:58:44.008Z",
-  "updatedLocal": "06/09/2026, 10:28:44 IST",
+  "updatedIso": "2026-09-07T05:05:59.759Z",
+  "updatedLocal": "07/09/2026, 10:35:59 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -17,7 +17,7 @@
       "ipo": "Manika Plastech",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹43",
       "listing": "₹- (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Veegaland Developers",
-      "gmp": 22,
-      "gmpRaw": "₹22",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹140",
-      "listing": "₹162 (15.71%)",
+      "listing": "₹170 (21.43%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -45,20 +45,20 @@
     },
     {
       "ipo": "LCC Projects",
-      "gmp": 17,
-      "gmpRaw": "₹17",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹146",
-      "listing": "₹163 (11.64%)",
+      "listing": "₹171 (17.12%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Karamtara Engineering",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹254",
-      "listing": "₹294 (15.75%)",
+      "listing": "₹309 (21.65%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -75,10 +75,10 @@
     },
     {
       "ipo": "Rentomojo",
-      "gmp": 95,
-      "gmpRaw": "₹95",
+      "gmp": 149,
+      "gmpRaw": "₹149",
       "price": "₹404",
-      "listing": "₹499 (23.51%)",
+      "listing": "₹553 (36.88%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -95,20 +95,20 @@
     },
     {
       "ipo": "Prasol Chemicals",
-      "gmp": 170,
-      "gmpRaw": "₹170",
+      "gmp": 120,
+      "gmpRaw": "₹120",
       "price": "₹676",
-      "listing": "₹846 (25.15%)",
+      "listing": "₹796 (17.75%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Glass Wall Systems",
-      "gmp": 65,
-      "gmpRaw": "₹65",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹182",
-      "listing": "₹247 (35.71%)",
+      "listing": "₹217 (19.23%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -125,40 +125,40 @@
     },
     {
       "ipo": "Pranav Constructions",
-      "gmp": 37,
-      "gmpRaw": "₹37",
+      "gmp": 44,
+      "gmpRaw": "₹44",
       "price": "₹124",
-      "listing": "₹161 (29.84%)",
+      "listing": "₹168 (35.48%)",
       "date": "7-9 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Deepa Jewellers",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹177",
-      "listing": "₹195 (10.17%)",
+      "listing": "₹199 (12.43%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Rays of Belief",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹239",
-      "listing": "₹251 (5.02%)",
+      "listing": "₹259 (8.37%)",
       "date": "1-3 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Purple Style Labs",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹575",
-      "listing": "₹577 (0.35%)",
+      "listing": "₹- (0.00%)",
       "date": "31-2 Sept",
       "type": "SME",
       "status": "closed"
