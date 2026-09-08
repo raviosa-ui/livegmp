@@ -1,15 +1,25 @@
 {
-  "updatedIso": "2026-09-08T05:03:20.938Z",
-  "updatedLocal": "08/09/2026, 10:33:20 IST",
+  "updatedIso": "2026-09-08T14:43:01.921Z",
+  "updatedLocal": "08/09/2026, 20:13:01 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "NSE",
-      "gmp": 225,
-      "gmpRaw": "₹225",
+      "gmp": 200,
+      "gmpRaw": "₹200",
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "18-22 Sept (T)",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Jindal Supreme",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "16-18 Sept",
       "type": "SME",
       "status": "upcoming"
     },
