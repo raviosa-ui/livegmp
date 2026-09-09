@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-09-08T18:54:46.469Z",
-  "updatedLocal": "09/09/2026, 00:24:46 IST",
+  "updatedIso": "2026-09-09T05:06:18.812Z",
+  "updatedLocal": "09/09/2026, 10:36:18 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "NSE",
-      "gmp": 245,
-      "gmpRaw": "₹245",
+      "gmp": 255,
+      "gmpRaw": "₹255",
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "18-22 Sept (T)",
@@ -25,10 +25,10 @@
     },
     {
       "ipo": "Manika Plastech",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 17,
+      "gmpRaw": "₹17",
       "price": "₹43",
-      "listing": "₹63 (46.51%)",
+      "listing": "₹60 (39.53%)",
       "date": "11-16 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -51,27 +51,27 @@
       "listing": "₹166 (19.42%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "LCC Projects",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 33,
+      "gmpRaw": "₹33",
       "price": "₹146",
-      "listing": "₹171 (17.12%)",
+      "listing": "₹179 (22.60%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Karamtara Engineering",
-      "gmp": 65,
-      "gmpRaw": "₹65",
+      "gmp": 69,
+      "gmpRaw": "₹69",
       "price": "₹254",
-      "listing": "₹319 (25.59%)",
+      "listing": "₹323 (27.17%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Manipal Payment",
@@ -81,27 +81,27 @@
       "listing": "₹377 (11.21%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Rentomojo",
-      "gmp": 125,
-      "gmpRaw": "₹125",
+      "gmp": 135,
+      "gmpRaw": "₹135",
       "price": "₹404",
-      "listing": "₹529 (30.94%)",
+      "listing": "₹539 (33.42%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Steamhouse India",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹81",
-      "listing": "₹96 (18.52%)",
+      "listing": "₹99 (22.22%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Prasol Chemicals",
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Kanohar Electricals",
-      "gmp": 210,
-      "gmpRaw": "₹210",
+      "gmp": 218,
+      "gmpRaw": "₹218",
       "price": "₹632",
-      "listing": "₹842 (33.23%)",
+      "listing": "₹850 (34.49%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "active"
