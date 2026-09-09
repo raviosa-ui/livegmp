@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-09T05:06:18.812Z",
-  "updatedLocal": "09/09/2026, 10:36:18 IST",
+  "updatedIso": "2026-09-09T14:45:22.380Z",
+  "updatedLocal": "09/09/2026, 20:15:22 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -14,11 +14,31 @@
       "status": "upcoming"
     },
     {
-      "ipo": "Jindal Supreme",
+      "ipo": "Sonaselection India",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹-",
       "listing": "₹- (0.00%)",
+      "date": "17-21 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "SS Retail",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Jindal Supreme",
+      "gmp": 11,
+      "gmpRaw": "₹11",
+      "price": "₹93",
+      "listing": "₹104 (11.83%)",
       "date": "16-18 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -141,7 +161,7 @@
       "listing": "₹168 (35.48%)",
       "date": "7-9 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     }
   ]
 }
