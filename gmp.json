@@ -1,18 +1,8 @@
 {
-  "updatedIso": "2026-09-10T05:08:08.762Z",
-  "updatedLocal": "10/09/2026, 10:38:08 IST",
+  "updatedIso": "2026-09-10T09:58:40.088Z",
+  "updatedLocal": "10/09/2026, 15:28:40 IST",
   "source": "ipowatch",
   "rows": [
-    {
-      "ipo": "NSE",
-      "gmp": 222,
-      "gmpRaw": "₹222",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
-      "date": "18-22 Sept (T)",
-      "type": "SME",
-      "status": "upcoming"
-    },
     {
       "ipo": "Sonaselection India",
       "gmp": 0,
@@ -24,10 +14,30 @@
       "status": "upcoming"
     },
     {
+      "ipo": "NSE",
+      "gmp": 222,
+      "gmpRaw": "₹222",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Hero Motors",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹84",
+      "listing": "₹- (0.00%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
       "ipo": "SS Retail",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹424",
       "listing": "₹- (0.00%)",
       "date": "16-18 Sept",
       "type": "SME",
