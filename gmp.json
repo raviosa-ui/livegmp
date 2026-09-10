@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-10T09:58:40.088Z",
-  "updatedLocal": "10/09/2026, 15:28:40 IST",
+  "updatedIso": "2026-09-10T14:35:11.794Z",
+  "updatedLocal": "10/09/2026, 20:05:11 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -17,9 +17,9 @@
       "ipo": "NSE",
       "gmp": 222,
       "gmpRaw": "₹222",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
-      "date": "16-18 Sept",
+      "price": "₹1785",
+      "listing": "₹2007 (12.44%)",
+      "date": "17-21 Sept",
       "type": "SME",
       "status": "upcoming"
     },
@@ -45,10 +45,10 @@
     },
     {
       "ipo": "Jindal Supreme",
-      "gmp": 11,
-      "gmpRaw": "₹11",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹93",
-      "listing": "₹104 (11.83%)",
+      "listing": "₹106 (13.98%)",
       "date": "16-18 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -141,7 +141,7 @@
       "listing": "₹716 (5.91%)",
       "date": "8-10 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Glass Wall Systems",
@@ -151,7 +151,7 @@
       "listing": "₹248 (36.26%)",
       "date": "8-10 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Kanohar Electricals",
@@ -161,7 +161,7 @@
       "listing": "₹856 (35.44%)",
       "date": "8-10 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Pranav Constructions",
