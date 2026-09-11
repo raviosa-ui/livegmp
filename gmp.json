@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-10T14:35:11.794Z",
-  "updatedLocal": "10/09/2026, 20:05:11 IST",
+  "updatedIso": "2026-09-11T05:02:39.370Z",
+  "updatedLocal": "11/09/2026, 10:32:39 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,30 +15,30 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 222,
-      "gmpRaw": "₹222",
+      "gmp": 188,
+      "gmpRaw": "₹188",
       "price": "₹1785",
-      "listing": "₹2007 (12.44%)",
+      "listing": "₹1973 (10.53%)",
       "date": "17-21 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Hero Motors",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹84",
-      "listing": "₹- (0.00%)",
+      "listing": "₹92 (9.52%)",
       "date": "16-18 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "SS Retail",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹424",
-      "listing": "₹- (0.00%)",
+      "listing": "₹454 (7.08%)",
       "date": "16-18 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -61,7 +61,7 @@
       "listing": "₹56 (30.23%)",
       "date": "11-16 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Veegaland Developers",
@@ -75,30 +75,30 @@
     },
     {
       "ipo": "Asset Reconstruction",
-      "gmp": 24,
-      "gmpRaw": "₹24",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹139",
-      "listing": "₹163 (17.27%)",
+      "listing": "₹153 (10.07%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "LCC Projects",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹146",
-      "listing": "₹191 (30.82%)",
+      "listing": "₹196 (34.25%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Karamtara Engineering",
-      "gmp": 75,
-      "gmpRaw": "₹75",
+      "gmp": 69,
+      "gmpRaw": "₹69",
       "price": "₹254",
-      "listing": "₹329 (29.53%)",
+      "listing": "₹323 (27.17%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "active"
@@ -115,60 +115,60 @@
     },
     {
       "ipo": "Rentomojo",
-      "gmp": 144,
-      "gmpRaw": "₹144",
+      "gmp": 138,
+      "gmpRaw": "₹138",
       "price": "₹404",
-      "listing": "₹548 (35.64%)",
+      "listing": "₹542 (34.16%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Steamhouse India",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹81",
-      "listing": "₹101 (24.69%)",
+      "listing": "₹103 (27.16%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "active"
     },
     {
       "ipo": "Prasol Chemicals",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹676",
-      "listing": "₹716 (5.91%)",
+      "listing": "₹- (0.00%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Glass Wall Systems",
-      "gmp": 66,
-      "gmpRaw": "₹66",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹182",
-      "listing": "₹248 (36.26%)",
+      "listing": "₹227 (24.73%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Kanohar Electricals",
-      "gmp": 224,
-      "gmpRaw": "₹224",
+      "gmp": 236,
+      "gmpRaw": "₹236",
       "price": "₹632",
-      "listing": "₹856 (35.44%)",
+      "listing": "₹868 (37.34%)",
       "date": "8-10 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Pranav Constructions",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹124",
-      "listing": "₹164 (32.26%)",
+      "listing": "₹174 (40.32%)",
       "date": "7-9 Sept",
       "type": "SME",
       "status": "closed"
