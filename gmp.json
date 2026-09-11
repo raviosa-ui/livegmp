@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-11T05:02:39.370Z",
-  "updatedLocal": "11/09/2026, 10:32:39 IST",
+  "updatedIso": "2026-09-11T14:34:06.103Z",
+  "updatedLocal": "11/09/2026, 20:04:06 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -15,10 +15,10 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 188,
-      "gmpRaw": "₹188",
+      "gmp": 200,
+      "gmpRaw": "₹200",
       "price": "₹1785",
-      "listing": "₹1973 (10.53%)",
+      "listing": "₹1985 (11.20%)",
       "date": "17-21 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -81,7 +81,7 @@
       "listing": "₹153 (10.07%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "LCC Projects",
@@ -91,7 +91,7 @@
       "listing": "₹196 (34.25%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Karamtara Engineering",
@@ -101,7 +101,7 @@
       "listing": "₹323 (27.17%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Manipal Payment",
@@ -111,7 +111,7 @@
       "listing": "₹347 (2.36%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Rentomojo",
@@ -121,7 +121,7 @@
       "listing": "₹542 (34.16%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Steamhouse India",
@@ -131,7 +131,7 @@
       "listing": "₹103 (27.16%)",
       "date": "9-11 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Prasol Chemicals",
