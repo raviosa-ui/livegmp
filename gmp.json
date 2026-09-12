@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-09-12T04:57:19.390Z",
-  "updatedLocal": "12/09/2026, 10:27:19 IST",
+  "updatedIso": "2026-09-12T13:41:47.682Z",
+  "updatedLocal": "12/09/2026, 19:11:47 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "A-One Steels",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "24-28 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "Sonaselection India",
       "gmp": 0,
