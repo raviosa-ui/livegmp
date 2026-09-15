@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-15T07:58:37.097Z",
-  "updatedLocal": "15/09/2026, 13:28:37 IST",
+  "updatedIso": "2026-09-15T13:48:25.421Z",
+  "updatedLocal": "15/09/2026, 19:18:25 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -121,7 +121,7 @@
       "listing": "₹161 (15.00%)",
       "date": "10-15 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Maharaja & Speedex",
@@ -131,7 +131,7 @@
       "listing": "₹231 (24.19%)",
       "date": "10-15 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Om Galaxy",
@@ -141,7 +141,7 @@
       "listing": "₹- (0.00%)",
       "date": "10-15 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Raksan Transformers",
@@ -151,7 +151,7 @@
       "listing": "₹334 (22.34%)",
       "date": "10-15 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Vinod Texworld",
