@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-15T01:47:41.355Z",
-  "updatedLocal": "15/09/2026, 07:17:41 IST",
+  "updatedIso": "2026-09-15T07:58:37.097Z",
+  "updatedLocal": "15/09/2026, 13:28:37 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -71,7 +71,7 @@
       "listing": "₹351 (2.93%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Shakti Polytarp",
@@ -81,7 +81,7 @@
       "listing": "₹- (0.00%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Quanto Agroworld",
@@ -91,7 +91,7 @@
       "listing": "₹- (0.00%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Injecto Polymers",
