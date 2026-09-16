@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-15T13:48:25.421Z",
-  "updatedLocal": "15/09/2026, 19:18:25 IST",
+  "updatedIso": "2026-09-16T06:32:54.547Z",
+  "updatedLocal": "16/09/2026, 12:02:54 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,6 +10,26 @@
       "price": "₹125",
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Himalaya Nutravedics",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹106",
+      "listing": "₹- (0.00%)",
+      "date": "22-24 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Vivekanand Cotspin",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹37",
+      "listing": "₹- (0.00%)",
+      "date": "21-23 Sept",
       "type": "SME",
       "status": "upcoming"
     },
@@ -45,30 +65,30 @@
     },
     {
       "ipo": "SpectraA Technology",
-      "gmp": 44,
-      "gmpRaw": "₹44",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹118",
-      "listing": "₹162 (37.29%)",
+      "listing": "₹168 (42.37%)",
       "date": "17-21 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Kheria Autocomp",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹101",
-      "listing": "₹- (0.00%)",
+      "listing": "₹111 (9.90%)",
       "date": "17-21 Sept",
       "type": "SME",
       "status": "upcoming"
     },
     {
       "ipo": "Vama Wovenfab",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹341",
-      "listing": "₹351 (2.93%)",
+      "listing": "₹371 (8.80%)",
       "date": "15-17 Sept",
       "type": "SME",
       "status": "active"
@@ -115,20 +135,20 @@
     },
     {
       "ipo": "Panchatv Bharat",
-      "gmp": 21,
-      "gmpRaw": "₹21",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹140",
-      "listing": "₹161 (15.00%)",
+      "listing": "₹143 (2.14%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Maharaja & Speedex",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 28,
+      "gmpRaw": "₹28",
       "price": "₹186",
-      "listing": "₹231 (24.19%)",
+      "listing": "₹214 (15.05%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "closed"
@@ -145,10 +165,10 @@
     },
     {
       "ipo": "Raksan Transformers",
-      "gmp": 61,
-      "gmpRaw": "₹61",
+      "gmp": 50,
+      "gmpRaw": "₹50",
       "price": "₹273",
-      "listing": "₹334 (22.34%)",
+      "listing": "₹323 (18.32%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "closed"
@@ -175,21 +195,11 @@
     },
     {
       "ipo": "Amtech Esters",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹75",
-      "listing": "₹82 (9.33%)",
+      "listing": "₹88 (17.33%)",
       "date": "9-11 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Apana Logistics",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹60",
-      "listing": "₹- (0.00%)",
-      "date": "7-9 Sept",
       "type": "SME",
       "status": "closed"
     }
