@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-16T06:32:54.547Z",
-  "updatedLocal": "16/09/2026, 12:02:54 IST",
+  "updatedIso": "2026-09-16T12:45:46.868Z",
+  "updatedLocal": "16/09/2026, 18:15:46 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -47,7 +47,7 @@
       "ipo": "FX Multitech",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹116",
       "listing": "₹- (0.00%)",
       "date": "21-23 Sept",
       "type": "SME",
@@ -85,10 +85,10 @@
     },
     {
       "ipo": "Vama Wovenfab",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 70,
+      "gmpRaw": "₹70",
       "price": "₹341",
-      "listing": "₹371 (8.80%)",
+      "listing": "₹411 (20.53%)",
       "date": "15-17 Sept",
       "type": "SME",
       "status": "active"
@@ -121,7 +121,7 @@
       "listing": "₹- (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Century Business Media",
@@ -131,7 +131,7 @@
       "listing": "₹- (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Panchatv Bharat",
