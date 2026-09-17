@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-17T06:31:48.865Z",
-  "updatedLocal": "17/09/2026, 12:01:48 IST",
+  "updatedIso": "2026-09-17T12:43:33.707Z",
+  "updatedLocal": "17/09/2026, 18:13:33 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -8,8 +8,38 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹125",
+      "listing": "₹125 (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Liqvd Digital",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Sai Urja Indo Ventures",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹113",
+      "listing": "₹113 (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
+    {
+      "ipo": "Anand Seamless",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹72",
+      "listing": "₹72 (0.00%)",
+      "date": "22-24 Sept",
       "type": "SME",
       "status": "upcoming"
     },
@@ -18,7 +48,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹106",
-      "listing": "₹- (0.00%)",
+      "listing": "₹106 (0.00%)",
       "date": "22-24 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -28,7 +58,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹37",
-      "listing": "₹- (0.00%)",
+      "listing": "₹37 (0.00%)",
       "date": "21-23 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -48,7 +78,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹116",
-      "listing": "₹- (0.00%)",
+      "listing": "₹116 (0.00%)",
       "date": "21-23 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -58,7 +88,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹53",
-      "listing": "₹- (0.00%)",
+      "listing": "₹53 (0.00%)",
       "date": "18-22 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -91,34 +121,34 @@
       "listing": "₹411 (20.53%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Shakti Polytarp",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹59",
-      "listing": "₹- (0.00%)",
+      "listing": "₹59 (0.00%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Quanto Agroworld",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹67",
-      "listing": "₹- (0.00%)",
+      "listing": "₹67 (0.00%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "closed"
     },
     {
       "ipo": "Injecto Polymers",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹100",
-      "listing": "₹- (0.00%)",
+      "listing": "₹100 (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
       "status": "closed"
@@ -128,7 +158,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹74",
-      "listing": "₹- (0.00%)",
+      "listing": "₹74 (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
       "status": "closed"
@@ -158,7 +188,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹90",
-      "listing": "₹- (0.00%)",
+      "listing": "₹90 (0.00%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "closed"
@@ -188,7 +218,7 @@
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹104",
-      "listing": "₹- (0.00%)",
+      "listing": "₹104 (0.00%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "closed"
