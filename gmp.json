@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-16T12:45:46.868Z",
-  "updatedLocal": "16/09/2026, 18:15:46 IST",
+  "updatedIso": "2026-09-17T06:31:48.865Z",
+  "updatedLocal": "17/09/2026, 12:01:48 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "ipo": "Robokidz Eduventures",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 51,
+      "gmpRaw": "₹51",
       "price": "₹106",
-      "listing": "₹151 (42.45%)",
+      "listing": "₹157 (48.11%)",
       "date": "21-23 Sept",
       "type": "SME",
       "status": "upcoming"
@@ -71,7 +71,7 @@
       "listing": "₹168 (42.37%)",
       "date": "17-21 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Kheria Autocomp",
@@ -81,7 +81,7 @@
       "listing": "₹111 (9.90%)",
       "date": "17-21 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "Vama Wovenfab",
@@ -165,10 +165,10 @@
     },
     {
       "ipo": "Raksan Transformers",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 21,
+      "gmpRaw": "₹21",
       "price": "₹273",
-      "listing": "₹323 (18.32%)",
+      "listing": "₹294 (7.69%)",
       "date": "10-15 Sept",
       "type": "SME",
       "status": "closed"
@@ -195,10 +195,10 @@
     },
     {
       "ipo": "Amtech Esters",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹75",
-      "listing": "₹88 (17.33%)",
+      "listing": "₹91 (21.33%)",
       "date": "9-11 Sept",
       "type": "SME",
       "status": "closed"
