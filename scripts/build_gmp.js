@@ -1,41 +1,68 @@
 /**
- * build_gmp.js — LiveGMP single-pipeline builder (v2, no Google Sheets)
+ * build_gmp.js — LiveGMP pipeline builder (v5, two-zone IPO pages)
  *
  * Flow:  fetch source (tiered) -> parse by HEADER NAME -> validate ->
- *        write gmp.json -> rebuild HTML between GMP_START/GMP_END -> done.
+ *        write gmp.json -> rebuild homepage between GMP_START/GMP_END ->
+ *        create/refresh per-IPO pages -> /ipo/ index -> sitemap.
  *
- * Safety rules:
- *  - A row is accepted only if GMP parses as a number or an explicit blank (₹-).
+ * TWO-ZONE IPO PAGES (new in v5)
+ * ------------------------------
+ * Every /ipo/<slug>/index.html contains two zones:
+ *
+ *   <!-- LIVE_START --> ... <!-- LIVE_END -->
+ *       Machine-owned. GMP, status, dates, price band, key-details table.
+ *       Rewritten on EVERY run, forever, on every page — stub or hand-written.
+ *
+ *   <!-- PROSE_START --> ... <!-- PROSE_END -->
+ *       Human-owned. DRHP analysis, business, financials, risks, verdict.
+ *       NEVER touched by this script once written.
+ *
+ * Page lifecycle:
+ *   1. IPO appears in the GMP table  -> full page generated, PROSE zone holds
+ *      a "coming soon" placeholder, page carries <!-- AUTO_STUB -->.
+ *   2. You publish real analysis via PR -> remove the AUTO_STUB marker, write
+ *      your prose inside the PROSE zone, set your own <title>/<meta>.
+ *   3. From then on this script only ever rewrites the LIVE zone. Your prose,
+ *      title, meta and schema are yours. GMP keeps updating underneath.
+ *
+ * This is what lets a DRHP-stage page keep its URL and accumulate age while
+ * its live data stays current all the way through listing.
+ *
+ * Safety rules (unchanged):
+ *  - A row is accepted only if GMP parses as a number or an explicit blank.
  *  - A source is accepted only if it yields >= MIN_ROWS valid rows.
- *  - If ALL sources fail, the script EXITS NONZERO and touches nothing:
- *    last-good gmp.json + index.html stay live. Stale data can never
- *    overwrite good data.
- *  - If parsed data is identical to committed gmp.json, exit 0 without
- *    writing (=> no commit, no deploy).
+ *  - If ALL sources fail, exit nonzero and touch nothing.
+ *  - If parsed data is identical to committed gmp.json, exit 0 without writing.
+ *  - Status is computed from the DATE (IST), not from the source's status text.
  *
- * Requires: cheerio (npm i cheerio). Node 20+ (global fetch).
+ * Requires: cheerio. Node 20+ (global fetch).
  */
 
 const fs = require("fs").promises;
 const { load } = require("cheerio");
 
 // ---------------- config ----------------
-const MAX_PER_GROUP = 10;          // cards per Active/Upcoming/Closed section
-const MIN_ROWS = 8;                // reject a source returning fewer valid rows
-const MIN_VALID_RATIO = 0.7;       // >=70% of raw rows must validate
+const MAX_PER_GROUP = 10;
+const MIN_ROWS = 8;
+const MIN_VALID_RATIO = 0.7;
 const GMP_JSON = "gmp.json";
 const INDEX_HTML = "index.html";
 const UA = "Mozilla/5.0 (compatible; LiveGMPBot/2.0; +https://livegmp.in)";
+const SITE = "https://livegmp.in";
 
-// Sources are tried in order; first one passing validation wins.
+// zone markers
+const STUB_MARK   = "<!-- AUTO_STUB -->";      // page has no human prose yet
+const LIVE_START  = "<!-- LIVE_START -->";     // machine-owned zone
+const LIVE_END    = "<!-- LIVE_END -->";
+const PROSE_START = "<!-- PROSE_START -->";    // human-owned zone
+const PROSE_END   = "<!-- PROSE_END -->";
+
 const SOURCES = [
-  { name: "ipowatch",   url: "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/" },
-  { name: "ipowala",    url: "https://ipowala.in/ipo-grey-market-premium-gmp/" },
-  { name: "chanakya",   url: "https://chanakyanipothi.com/ipo-gmp-today/" },
+  { name: "ipowatch", url: "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/" },
+  { name: "ipowala",  url: "https://ipowala.in/ipo-grey-market-premium-gmp/" },
+  { name: "chanakya", url: "https://chanakyanipothi.com/ipo-gmp-today/" },
 ];
 
-// Header synonyms -> canonical field. Matching is "header CONTAINS key".
-// Order matters: first match wins, so put more specific keys first.
 const HEADER_MAP = [
   { field: "ipo",     keys: ["ipo name", "company", "ipo"] },
   { field: "gmp",     keys: ["ipo gmp", "gmp", "premium"] },
@@ -56,12 +83,9 @@ const clean = (s = "") => String(s ?? "").replace(/\s+/g, " ").trim();
 
 function parseGmpNumber(raw) {
   const s = clean(raw);
-  if (s === "" ) return { n: NaN, blank: false };
-  // explicit "no GMP" markers: ₹-, -, –, ₹0- etc.
+  if (s === "") return { n: NaN, blank: false };
   if (/^₹?\s*[-–—]\s*$/.test(s)) return { n: NaN, blank: true };
   const norm = s.replace(/[,₹\s]/g, "").replace(/[^\d.\-+]/g, "");
-  // Only an EXPLICIT dash marker counts as blank. If stripping symbols left
-  // nothing but the original wasn't a dash (e.g. "N/A", "junk"), it's invalid.
   if (norm === "" || norm === "-" || norm === "+") return { n: NaN, blank: false };
   const n = Number(norm);
   return Number.isFinite(n) ? { n, blank: false } : { n: NaN, blank: false };
@@ -90,7 +114,7 @@ function slugify(name) {
     .replace(/-+/g, "-").replace(/^-|-$/g, "");
 }
 
-// ---- date parsing (fallback only, when a source has no Status column) ----
+// ---- date -> status ----
 const MONTHS = { jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11 };
 
 function parseDayMonth(token, defYear) {
@@ -102,7 +126,7 @@ function parseDayMonth(token, defYear) {
     const mo = MONTHS[m[2].slice(0, 3).toLowerCase()];
     if (mo !== undefined) return new Date(m[3] ? +m[3] : defYear, mo, +m[1]);
   }
-  m = token.match(/^([A-Za-z]{3,})\s+(\d{1,2})\s*(\d{2,4})?$/); // "July 3"
+  m = token.match(/^([A-Za-z]{3,})\s+(\d{1,2})\s*(\d{2,4})?$/);
   if (m) {
     const mo = MONTHS[m[1].slice(0, 3).toLowerCase()];
     if (mo !== undefined) return new Date(m[3] ? +m[3] : defYear, mo, +m[2]);
@@ -121,13 +145,10 @@ function computeStatusFromDate(text) {
   let end = parts.length > 1 ? parseDayMonth(parts[parts.length - 1], year) : null;
   let start = parseDayMonth(parts[0], year);
 
-  // Bare-day start like "30" in "30-2 July": inherit month/year from the end
-  // date; if start day > end day it belongs to the previous month.
   if (!start && /^\d{1,2}$/.test(parts[0]) && end) {
     start = new Date(end.getFullYear(), end.getMonth(), +parts[0]);
     if (start > end) start = new Date(end.getFullYear(), end.getMonth() - 1, +parts[0]);
   }
-  // Bare-day end like "3" in "1 July-3": inherit from start.
   if (!end && parts.length > 1 && /^\d{1,2}$/.test(parts[parts.length - 1]) && start) {
     end = new Date(start.getFullYear(), start.getMonth(), +parts[parts.length - 1]);
     if (end < start) end = new Date(start.getFullYear(), start.getMonth() + 1, +parts[parts.length - 1]);
@@ -162,9 +183,9 @@ async function fetchHtml(url, attempts = 3) {
   throw new Error(`fetch failed after ${attempts} attempts: ${url}`);
 }
 
-// ---------------- header-mapped table parsing ----------------
+// ---------------- header-mapped parsing ----------------
 function mapHeaders(headerTexts) {
-  const map = {}; // field -> column index
+  const map = {};
   headerTexts.forEach((h, idx) => {
     const hl = h.toLowerCase();
     for (const { field, keys } of HEADER_MAP) {
@@ -181,12 +202,7 @@ function scoreTable($, $t) {
   const headers = [];
   cells.each((_, c) => headers.push(clean($(c).text())));
   const map = mapHeaders(headers);
-  // must at least identify IPO name + GMP columns to be our table
   const ok = map.ipo !== undefined && map.gmp !== undefined;
-  // score = how many canonical fields this table's headers expose.
-  // The LIVE table (ipo/gmp/price/listing/date/type/status/updated) scores far
-  // higher than history tables (ipo/price/gmp/listing) even if history has
-  // 10x more rows — so field coverage decides, row count only breaks ties.
   const score = Object.keys(map).length;
   return { ok, map, headers, score, rows: $t.find("tr").length };
 }
@@ -213,20 +229,15 @@ function parseSourceHtml(html) {
     const cell = i => (i === undefined || i >= tds.length) ? "" : clean($(tds[i]).text());
     const m = best.map;
     rows.push({
-      ipo: cell(m.ipo),
-      gmpRaw: cell(m.gmp),
-      price: cell(m.price),
-      listing: cell(m.listing),
-      date: cell(m.date),
-      type: cell(m.type),
-      status: cell(m.status),
-      updated: cell(m.updated),
+      ipo: cell(m.ipo), gmpRaw: cell(m.gmp), price: cell(m.price),
+      listing: cell(m.listing), date: cell(m.date), type: cell(m.type),
+      status: cell(m.status), updated: cell(m.updated),
     });
   });
   return rows;
 }
 
-// ---------------- validation & normalization ----------------
+// ---------------- validation ----------------
 function validateAndNormalize(rawRows, sourceName) {
   const out = [];
   let considered = 0;
@@ -237,7 +248,6 @@ function validateAndNormalize(rawRows, sourceName) {
     if (isNaN(n) && !blank) { console.log(`  drop (bad GMP "${r.gmpRaw}"): ${r.ipo}`); continue; }
     const dateStatus = computeStatusFromDate(r.date);
     const hasParsableDate = r.date && !/tba|announc|n\/a/i.test(r.date);
-    // Trust our own date math first — source Status columns lag reality.
     const status = hasParsableDate ? dateStatus : (normalizeStatus(r.status) || dateStatus);
     out.push({
       ipo: clean(r.ipo).replace(/\s+ipo$/i, ""),
@@ -246,7 +256,7 @@ function validateAndNormalize(rawRows, sourceName) {
       price: clean(r.price),
       listing: clean(r.listing),
       date: clean(r.date),
-      type: normalizeType(r.type) || "SME", // conservative default; ipowatch always provides it
+      type: normalizeType(r.type) || "SME",
       status,
     });
   }
@@ -254,7 +264,6 @@ function validateAndNormalize(rawRows, sourceName) {
   if (out.length < MIN_ROWS) throw new Error(`${sourceName}: only ${out.length} valid rows (< ${MIN_ROWS})`);
   if (out.length / considered < MIN_VALID_RATIO)
     throw new Error(`${sourceName}: valid ratio ${(out.length / considered).toFixed(2)} < ${MIN_VALID_RATIO}`);
-  // dedupe by normalized name (keeps first occurrence = live table, not history table)
   const seen = new Set(), dedup = [];
   for (const r of out) {
     const k = slugify(r.ipo);
@@ -264,7 +273,7 @@ function validateAndNormalize(rawRows, sourceName) {
   return dedup;
 }
 
-// ---------------- HTML generation (matches existing gmp.css / gmp-client.js) ----------------
+// ---------------- shared render bits ----------------
 function gmpLabelAndClass(row) {
   if (row.gmp === null) return { label: "—", cls: "gmp-neutral" };
   if (row.gmp > 0) return { label: `▲ ${row.gmp}`, cls: "gmp-up" };
@@ -272,6 +281,11 @@ function gmpLabelAndClass(row) {
   return { label: "0", cls: "gmp-neutral" };
 }
 
+const priceOf = r => (r.price && r.price !== "₹-")
+  ? (r.price.startsWith("₹") ? r.price : "₹" + r.price)
+  : "To be announced";
+
+// ---------------- homepage cards ----------------
 function cardHtml(r) {
   const g = gmpLabelAndClass(r);
   const typeAttr = r.type.toLowerCase() === "sme" ? "sme" : "mainboard";
@@ -297,7 +311,7 @@ function cardHtml(r) {
         </div>
       </div>
       <div class="col col-link">
-        <a class="ipo-link" href="/ipo/${slug}" rel="noopener" title="Open ${esc(r.ipo)} page">View</a>
+        <a class="ipo-link" href="/ipo/${slug}/" rel="noopener" title="Open ${esc(r.ipo)} page">View</a>
       </div>
     </div>
     <div class="card-row-details" aria-hidden="true">
@@ -318,7 +332,6 @@ function buildWrapper(rows, meta) {
     return b.gmp - a.gmp;
   };
   for (const k of Object.keys(groups)) groups[k] = groups[k].sort(byGmp).slice(0, MAX_PER_GROUP);
-
   const section = (title, list) =>
     list.length ? `<h3 class="section-heading">${title}</h3>\n${list.map(cardHtml).join("\n")}` : "";
 
@@ -349,11 +362,67 @@ ${section("Closed / Listed", groups.closed)}
   </div>`;
 }
 
-// ---------------- per-IPO stub pages, analysis index, sitemap ----------------
-const SITE = "https://livegmp.in";
-const STUB_MARK = "<!-- AUTO_STUB -->"; // pages carrying this are pipeline-owned
+// ================= IPO PAGE: LIVE ZONE (machine-owned) =================
+// Rewritten on every run, on every page, stub or hand-written.
+function liveZone(r, payload) {
+  const g = gmpLabelAndClass(r);
+  const price = priceOf(r);
+  const typeAttr = r.type.toLowerCase() === "sme" ? "sme" : "mainboard";
+  return `${LIVE_START}
+<div class="ipo-card expanded" data-status="${r.status}" data-type="${typeAttr}">
+  <div class="card-grid">
+    <div class="col col-name">
+      <div class="ipo-title">${esc(r.ipo)}</div>
+      <div class="gmp-row"><span class="gmp-label meta-label">GMP</span>
+      <span class="meta-value gmp-value ${g.cls}">${esc(g.label)}</span></div>
+    </div>
+    <div class="col col-status"><span class="badge ${r.status}">${r.status[0].toUpperCase() + r.status.slice(1)}</span></div>
+    <div class="col col-meta"><div class="meta-item-inline"><span class="meta-label">Date</span><span class="meta-value">${esc(r.date) || "—"}</span></div></div>
+    <div class="col col-link"><a class="ipo-link" href="/">All GMPs</a></div>
+  </div>
+  <div class="card-row-details" aria-hidden="false" style="display:block">
+    <div><strong>IPO Price:</strong> ${esc(price)}</div>
+    <div style="margin-top:6px;"><strong>Est. Listing:</strong> ${esc(r.listing) || "—"}</div>
+    <div style="margin-top:6px;"><strong>Type:</strong> ${esc(r.type)}</div>
+  </div>
+</div>
 
-function siteShell({ title, desc, canonical, body, jsonld }) {
+<h2>${esc(r.ipo)} IPO GMP Today</h2>
+<p>${r.gmp === null
+  ? `The grey market premium for the ${esc(r.ipo)} IPO is not being quoted right now. GMP activity usually picks up closer to the IPO opening date — this page updates automatically every hour.`
+  : `The current grey market premium (GMP) of the ${esc(r.ipo)} IPO is <strong>₹${r.gmp}</strong>. GMP reflects unofficial demand for the shares before listing and moves with market sentiment and subscription numbers. This figure updates automatically every hour.`}</p>
+
+<h2>Key Details</h2>
+<table class="stub-table">
+  <tr><th>IPO Name</th><td>${esc(r.ipo)}</td></tr>
+  <tr><th>Type</th><td>${esc(r.type)}</td></tr>
+  <tr><th>IPO Dates</th><td>${esc(r.date) || "To be announced"}</td></tr>
+  <tr><th>Price Band</th><td>${esc(price)}</td></tr>
+  <tr><th>GMP Today</th><td>${r.gmp === null ? "Not quoted yet" : "₹" + r.gmp}</td></tr>
+  <tr><th>Estimated Listing</th><td>${esc(r.listing) || "—"}</td></tr>
+  <tr><th>Status</th><td>${r.status[0].toUpperCase() + r.status.slice(1)}</td></tr>
+</table>
+<p class="stub-updated">Live data last refreshed: <strong>${esc(payload.updatedLocal)}</strong></p>
+${LIVE_END}`;
+}
+
+// ================= IPO PAGE: PROSE ZONE (human-owned) =================
+// Written ONCE at page creation as a placeholder. Never rewritten afterwards.
+function prosePlaceholder(r) {
+  return `${PROSE_START}
+<div class="coming-soon-note">📝 <strong>Full analysis coming soon</strong> — a detailed review of ${esc(r.ipo)}'s business, financials, objects of the issue, strengths and risks will be published here. The live GMP and key details above update automatically every hour.</div>
+
+<h2>FAQ</h2>
+<h3>What is the GMP of ${esc(r.ipo)} IPO today?</h3>
+<p>The current GMP is shown in the Key Details table above and refreshes every hour.</p>
+<h3>Is ${esc(r.ipo)} a Mainboard or SME IPO?</h3>
+<p>${esc(r.ipo)} is a ${esc(r.type)} IPO.</p>
+<h3>Does GMP guarantee listing gains?</h3>
+<p>No. GMP is an unofficial, unregulated indicator and can change quickly. Always evaluate the company's fundamentals before investing.</p>
+${PROSE_END}`;
+}
+
+function siteShell({ title, desc, canonical, body, jsonld, stub }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -370,8 +439,7 @@ function siteShell({ title, desc, canonical, body, jsonld }) {
   <script type="application/ld+json">${jsonld}</script>
 </head>
 <body>
-${STUB_MARK}
-<header class="site-header">
+${stub ? STUB_MARK + "\n" : ""}<header class="site-header">
   <a class="brand" href="/">LiveGMP<span class="brand-dot">.in</span></a>
   <nav class="site-nav">
     <a href="/">Live GMP</a>
@@ -398,7 +466,7 @@ function stubJsonLd(r, url, payload) {
       { "@type": "Question", "name": `What is the GMP of ${r.ipo} IPO today?`,
         "acceptedAnswer": { "@type": "Answer", "text": r.gmp === null
           ? `${r.ipo} IPO GMP is not yet quoted in the grey market.`
-          : `${r.ipo} IPO GMP today is ₹${r.gmp} (updated ${payload.updatedLocal}).` } },
+          : `${r.ipo} IPO GMP today is ₹${r.gmp}.` } },
       { "@type": "Question", "name": `What are the ${r.ipo} IPO dates?`,
         "acceptedAnswer": { "@type": "Answer", "text": r.date
           ? `${r.ipo} IPO dates: ${r.date}.` : `${r.ipo} IPO dates are yet to be announced.` } },
@@ -416,85 +484,80 @@ function stubJsonLd(r, url, payload) {
   return JSON.stringify([article, faq]);
 }
 
-function stubBody(r, payload) {
-  const g = gmpLabelAndClass(r);
-  const price = r.price && r.price !== "₹-" ? (r.price.startsWith("₹") ? r.price : "₹" + r.price) : "To be announced";
-  return `
+function fullStubPage(r, payload) {
+  const slug = slugify(r.ipo);
+  const url = `${SITE}/ipo/${slug}/`;
+  const body = `
 <nav class="breadcrumbs"><a href="/">Live GMP</a> › <a href="/ipo/">IPO Analysis</a> › ${esc(r.ipo)}</nav>
 <h1>${esc(r.ipo)} IPO — GMP Today, Price Band &amp; Dates</h1>
-<p class="stub-updated">Last updated: <strong>${esc(payload.updatedLocal)}</strong></p>
 
-<div class="ipo-card expanded" data-status="${r.status}" data-type="${r.type.toLowerCase() === "sme" ? "sme" : "mainboard"}">
-  <div class="card-grid">
-    <div class="col col-name">
-      <div class="ipo-title">${esc(r.ipo)}</div>
-      <div class="gmp-row"><span class="gmp-label meta-label">GMP</span>
-      <span class="meta-value gmp-value ${g.cls}">${esc(g.label)}</span></div>
-    </div>
-    <div class="col col-status"><span class="badge ${r.status}">${r.status[0].toUpperCase() + r.status.slice(1)}</span></div>
-    <div class="col col-meta"><div class="meta-item-inline"><span class="meta-label">Date</span><span class="meta-value">${esc(r.date) || "—"}</span></div></div>
-    <div class="col col-link"><a class="ipo-link" href="/">All GMPs</a></div>
-  </div>
-  <div class="card-row-details" aria-hidden="false" style="display:block">
-    <div><strong>IPO Price:</strong> ${esc(price)}</div>
-    <div style="margin-top:6px;"><strong>Est. Listing:</strong> ${esc(r.listing) || "—"}</div>
-    <div style="margin-top:6px;"><strong>Type:</strong> ${esc(r.type)}</div>
-  </div>
-</div>
+${liveZone(r, payload)}
 
-<h2>${esc(r.ipo)} IPO GMP Today</h2>
-<p>${r.gmp === null
-  ? `The grey market premium for the ${esc(r.ipo)} IPO is not yet being quoted. GMP activity usually starts close to the IPO opening date — check back for live updates.`
-  : `The current grey market premium (GMP) of the ${esc(r.ipo)} IPO is <strong>₹${r.gmp}</strong>. GMP reflects unofficial demand for the shares before listing and changes with market sentiment and subscription numbers.`}</p>
-
-<h2>Key Details</h2>
-<table class="stub-table">
-  <tr><th>IPO Name</th><td>${esc(r.ipo)}</td></tr>
-  <tr><th>Type</th><td>${esc(r.type)}</td></tr>
-  <tr><th>IPO Dates</th><td>${esc(r.date) || "To be announced"}</td></tr>
-  <tr><th>Price Band</th><td>${esc(price)}</td></tr>
-  <tr><th>GMP Today</th><td>${r.gmp === null ? "Not quoted yet" : "₹" + r.gmp}</td></tr>
-  <tr><th>Estimated Listing</th><td>${esc(r.listing) || "—"}</td></tr>
-  <tr><th>Status</th><td>${r.status[0].toUpperCase() + r.status.slice(1)}</td></tr>
-</table>
-
-<div class="coming-soon-note">📝 <strong>Full analysis coming soon</strong> — detailed review of financials, strengths, risks and our take on the ${esc(r.ipo)} IPO will be published here. Meanwhile, track the live GMP on our <a href="/">homepage</a>.</div>
-
-<h2>FAQ</h2>
-<h3>What is the GMP of ${esc(r.ipo)} IPO today?</h3>
-<p>${r.gmp === null ? "GMP is not yet quoted in the grey market." : `₹${r.gmp}, as of ${esc(payload.updatedLocal)}.`}</p>
-<h3>Is ${esc(r.ipo)} a Mainboard or SME IPO?</h3>
-<p>${esc(r.ipo)} is a ${esc(r.type)} IPO.</p>
-<h3>Does GMP guarantee listing gains?</h3>
-<p>No. GMP is an unofficial, unregulated indicator and can change quickly. Always evaluate fundamentals before investing.</p>
+${prosePlaceholder(r)}
 `;
+  return siteShell({
+    title: `${r.ipo} IPO GMP Today, Price Band, Dates | LiveGMP`,
+    desc: `${r.ipo} IPO grey market premium today${r.gmp !== null ? ` is ₹${r.gmp}` : ""}. ${r.type} IPO${r.date ? `, dates ${r.date}` : ""}. Live GMP, price band and listing estimate.`,
+    canonical: url,
+    jsonld: stubJsonLd(r, url, payload),
+    body,
+    stub: true,
+  });
+}
+
+// Splice a fresh LIVE zone into an existing page, leaving everything else alone.
+function spliceLiveZone(html, r, payload) {
+  const si = html.indexOf(LIVE_START);
+  const ei = html.indexOf(LIVE_END);
+  if (si === -1 || ei === -1 || ei < si) return null; // no zone -> caller warns
+  return html.slice(0, si) + liveZone(r, payload) + html.slice(ei + LIVE_END.length);
 }
 
 async function generateStubs(rows, payload) {
-  let created = 0, refreshed = 0, skipped = 0;
+  let created = 0, stubRefreshed = 0, liveUpdated = 0, noZone = [];
   for (const r of rows) {
     const slug = slugify(r.ipo);
     if (!slug) continue;
     const dir = `ipo/${slug}`;
     const file = `${dir}/index.html`;
+
     let existing = null;
     try { existing = await fs.readFile(file, "utf8"); } catch {}
-    if (existing && !existing.includes(STUB_MARK)) { skipped++; continue; } // hand-written blog: never touch
-    const url = `${SITE}/ipo/${slug}/`;
-    const page = siteShell({
-      title: `${r.ipo} IPO GMP Today, Price Band, Dates | LiveGMP`,
-      desc: `${r.ipo} IPO grey market premium today${r.gmp !== null ? ` is ₹${r.gmp}` : ""}. ${r.type} IPO${r.date ? `, dates ${r.date}` : ""}. Live GMP, price band and listing estimate.`,
-      canonical: url,
-      jsonld: stubJsonLd(r, url, payload),
-      body: stubBody(r, payload),
-    });
-    await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(file, page, "utf8");
-    existing ? refreshed++ : created++;
+
+    if (!existing) {
+      await fs.mkdir(dir, { recursive: true });
+      await fs.writeFile(file, fullStubPage(r, payload), "utf8");
+      created++;
+      continue;
+    }
+
+    if (existing.includes(STUB_MARK)) {
+      // still a pure stub: regenerate whole page so title/meta/schema track status
+      await fs.writeFile(file, fullStubPage(r, payload), "utf8");
+      stubRefreshed++;
+      continue;
+    }
+
+    // hand-written page: refresh ONLY the live zone, never the prose
+    const updated = spliceLiveZone(existing, r, payload);
+    if (updated === null) {
+      noZone.push(slug);
+      continue;
+    }
+    if (updated !== existing) {
+      await fs.writeFile(file, updated, "utf8");
+      liveUpdated++;
+    }
   }
-  console.log(`Stubs: ${created} created, ${refreshed} refreshed, ${skipped} hand-written pages left untouched.`);
+  console.log(`Pages: ${created} created, ${stubRefreshed} stubs refreshed, ${liveUpdated} live-zones updated on published pages.`);
+  if (noZone.length) {
+    console.log(`  WARNING: ${noZone.length} published page(s) have no LIVE_START/LIVE_END zone and got no data update:`);
+    for (const s of noZone) console.log(`    - ipo/${s}/index.html`);
+    console.log(`  Add the markers around the data block to re-enable automatic GMP updates on those pages.`);
+  }
 }
 
+// ---------------- /ipo/ index + sitemap ----------------
 async function listIpoDirs() {
   try {
     const entries = await fs.readdir("ipo", { withFileTypes: true });
@@ -535,6 +598,7 @@ ${items.join("\n")}
     jsonld: JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage",
       "name": "IPO Analysis & GMP Pages", "url": `${SITE}/ipo/`, "dateModified": payload.updatedIso }),
     body,
+    stub: false,
   });
   await fs.mkdir("ipo", { recursive: true });
   await fs.writeFile("ipo/index.html", page, "utf8");
@@ -564,7 +628,6 @@ ${urls.join("\n")}
 
 // ---------------- main ----------------
 (async () => {
-  // 1) scrape, tier by tier
   let rows = null, sourceUsed = null;
   for (const src of SOURCES) {
     try {
@@ -584,18 +647,15 @@ ${urls.join("\n")}
     process.exit(1);
   }
 
-  // 2) change detection against committed gmp.json (compare data only)
   const newData = { source: sourceUsed, rows };
   let oldData = null;
   try { oldData = JSON.parse(await fs.readFile(GMP_JSON, "utf8")); } catch {}
   const stripped = j => JSON.stringify({ source: j.source, rows: j.rows });
   if (oldData && stripped(oldData) === stripped(newData)) {
     console.log("No data change since last run — nothing to write, nothing to deploy.");
-    return; // exit 0, no file writes => auto-commit action commits nothing
+    return;
   }
 
-  // 3) verify index.html markers BEFORE writing anything, so a broken page
-  //    can never end up paired with an updated gmp.json.
   const html = await fs.readFile(INDEX_HTML, "utf8");
   const re = /<!--\s*GMP_START\s*-->[\s\S]*?<!--\s*GMP_END\s*-->/;
   if (!re.test(html)) {
@@ -603,7 +663,6 @@ ${urls.join("\n")}
     process.exit(1);
   }
 
-  // 4) write gmp.json + index.html together
   const now = new Date();
   const payload = {
     updatedIso: now.toISOString(),
@@ -617,10 +676,7 @@ ${urls.join("\n")}
   await fs.writeFile(INDEX_HTML, html.replace(re, `<!-- GMP_START -->\n${wrapper}\n<!-- GMP_END -->`), "utf8");
   console.log(`Injected ${rows.length}-row wrapper into ${INDEX_HTML}.`);
 
-  // 5) per-IPO stub pages (never overwrite hand-written blogs)
   await generateStubs(rows, payload);
-
-  // 6) analysis index + sitemap
   await generateIpoIndex(payload);
   await generateSitemap(payload);
   console.log("Done.");
