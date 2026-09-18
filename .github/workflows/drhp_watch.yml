@@ -1,0 +1,71 @@
+name: Agent 1 — DRHP watch (SEBI)
+
+on:
+  schedule:
+    - cron: '45 3,11 * * *'   # twice daily, 09:15 & 17:15 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commits data/filings.json (the seen-state)
+  issues: write
+
+concurrency:
+  group: drhp-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          if [ ! -f package.json ]; then npm init -y; fi
+          npm install cheerio pdfjs-dist@4.0.379
+
+      - name: Watch SEBI draft offer documents
+        id: watch
+        run: node scripts/drhp_watch.js
+
+      - name: Open an issue per new filing
+        if: steps.watch.outputs.count != '0' && steps.watch.outputs.count != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          gh label create drhp --color 1D76DB --description "New DRHP filing detected" 2>/dev/null || true
+          shopt -s nullglob
+          for body in reports/*.md; do
+            base="${body%.md}"
+            title="$(cat "${base}.title")"
+            echo "Opening issue: $title"
+            gh issue create --title "$title" --label drhp --body-file "$body"
+          done
+
+      - name: Commit seen-state
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update DRHP watch state"
+          file_pattern: "data/filings.json"
+          branch: main
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## DRHP watch"
+            echo ""
+            if [ "${{ steps.watch.outputs.seeded }}" = "true" ]; then
+              echo "First run — seeded existing filings as seen. No issues opened."
+            else
+              echo "New filings reported: ${{ steps.watch.outputs.count }}"
+            fi
+          } >> $GITHUB_STEP_SUMMARY
