@@ -1,8 +1,18 @@
 {
-  "updatedIso": "2026-09-17T12:43:33.707Z",
-  "updatedLocal": "17/09/2026, 18:13:33 IST",
+  "updatedIso": "2026-09-18T06:27:06.429Z",
+  "updatedLocal": "18/09/2026, 11:57:06 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Unitec Fibres",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming"
+    },
     {
       "ipo": "S.K.Offset",
       "gmp": 0,
@@ -91,14 +101,14 @@
       "listing": "₹53 (0.00%)",
       "date": "18-22 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "active"
     },
     {
       "ipo": "SpectraA Technology",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹118",
-      "listing": "₹168 (42.37%)",
+      "listing": "₹148 (25.42%)",
       "date": "17-21 Sept",
       "type": "SME",
       "status": "active"
@@ -115,20 +125,20 @@
     },
     {
       "ipo": "Vama Wovenfab",
-      "gmp": 70,
-      "gmpRaw": "₹70",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹341",
-      "listing": "₹411 (20.53%)",
+      "listing": "₹344 (0.88%)",
       "date": "15-17 Sept",
       "type": "SME",
       "status": "closed"
     },
     {
       "ipo": "Shakti Polytarp",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹59",
-      "listing": "₹59 (0.00%)",
+      "listing": "₹65 (10.17%)",
       "date": "15-17 Sept",
       "type": "SME",
       "status": "closed"
@@ -195,41 +205,11 @@
     },
     {
       "ipo": "Raksan Transformers",
-      "gmp": 21,
-      "gmpRaw": "₹21",
+      "gmp": 11,
+      "gmpRaw": "₹11",
       "price": "₹273",
-      "listing": "₹294 (7.69%)",
+      "listing": "₹284 (4.03%)",
       "date": "10-15 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Vinod Texworld",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹94",
-      "listing": "₹95 (1.06%)",
-      "date": "9-11 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Infrax Renewable",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹104",
-      "listing": "₹104 (0.00%)",
-      "date": "9-11 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Amtech Esters",
-      "gmp": 16,
-      "gmpRaw": "₹16",
-      "price": "₹75",
-      "listing": "₹91 (21.33%)",
-      "date": "9-11 Sept",
       "type": "SME",
       "status": "closed"
     }
