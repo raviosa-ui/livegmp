@@ -1,0 +1,43 @@
+name: Probe — DRHP source reachability
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe sources
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+          probe () {
+            NAME="$1"; URL="$2"
+            CODE=$(curl -s -o /tmp/out -w '%{http_code}' -L --max-time 25 \
+                   -A "$UA" \
+                   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+                   -H 'Accept-Language: en-US,en;q=0.9' \
+                   "$URL" || echo 000)
+            SIZE=$(wc -c < /tmp/out)
+            HIT=$(grep -ci 'drhp' /tmp/out || true)
+            printf '%-34s %s  bytes=%-9s drhp_mentions=%s\n' "$NAME" "$CODE" "$SIZE" "$HIT"
+          }
+
+          echo "=== SEBI (primary target) ==="
+          probe "SEBI draft-docs listing" "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15&smid=10"
+          probe "SEBI public-issues index" "https://www.sebi.gov.in/filings/public-issues.html"
+          probe "SEBI homepage"            "https://www.sebi.gov.in/"
+
+          echo ""
+          echo "=== Exchanges (SME draft docs live here, not SEBI) ==="
+          probe "BSE SME listing"   "https://www.bsesme.com/"
+          probe "NSE Emerge"        "https://www.nseindia.com/emerge"
+
+          echo ""
+          echo "=== Known-good control (your GMP source) ==="
+          probe "ipowatch GMP page" "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/"
+
+          echo ""
+          echo "200 = reachable. 403 = IP-blocked. 000 = timeout/DNS."
