@@ -1,0 +1,61 @@
+name: Probe v2 — SME draft-document sources
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe candidate SME sources
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+
+          probe () {
+            NAME="$1"; URL="$2"; REF="${3:-}"
+            if [ -n "$REF" ]; then
+              CODE=$(curl -s -o /tmp/out -w '%{http_code}' -L --max-time 25 -A "$UA" \
+                     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+                     -H 'Accept-Language: en-US,en;q=0.9' \
+                     -H "Referer: $REF" "$URL" 2>/dev/null || echo 000)
+            else
+              CODE=$(curl -s -o /tmp/out -w '%{http_code}' -L --max-time 25 -A "$UA" \
+                     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+                     -H 'Accept-Language: en-US,en;q=0.9' "$URL" 2>/dev/null || echo 000)
+            fi
+            SIZE=$(wc -c < /tmp/out 2>/dev/null || echo 0)
+            DRHP=$(grep -ci 'drhp\|draft prospectus\|draft offer' /tmp/out 2>/dev/null || echo 0)
+            LTD=$(grep -ci 'limited' /tmp/out 2>/dev/null || echo 0)
+            printf '%-42s %-4s bytes=%-8s draft_hits=%-4s ltd_hits=%s\n' "$NAME" "$CODE" "$SIZE" "$DRHP" "$LTD"
+          }
+
+          echo "=== NSE (URLs confirmed to exist) ==="
+          probe "NSE draft-offer-documents"  "https://www.nseindia.com/products-services/draft-offer-documents" "https://www.nseindia.com/"
+          probe "NSE corp-filings offer docs" "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents" "https://www.nseindia.com/"
+          probe "NSE homepage (cookie seed)"  "https://www.nseindia.com/"
+
+          echo ""
+          echo "=== BSE SME / BSE India candidates ==="
+          probe "bsesme.com root"            "https://www.bsesme.com/"
+          probe "bsesme listing procedure"   "https://www.bsesme.com/static/getlisted/listingprocedure.aspx?expandable=0"
+          probe "bseindia root"              "https://www.bseindia.com/"
+          probe "bseindia public issues"     "https://www.bseindia.com/markets/PublicIssues/IPODetails_new.aspx" "https://www.bseindia.com/"
+          probe "bseindia IPO listing"       "https://www.bseindia.com/markets/publicissues/ipoissues.aspx" "https://www.bseindia.com/"
+          probe "bsesme active issues"       "https://www.bsesme.com/markets/PublicIssues/IPOIssues.aspx" "https://www.bsesme.com/"
+          probe "bsesme drhp page"           "https://www.bsesme.com/markets/PublicIssues/DRHP.aspx" "https://www.bsesme.com/"
+
+          echo ""
+          echo "=== A known BSE-hosted draft prospectus PDF (can we download at all?) ==="
+          probe "BSE draft prospectus PDF"   "https://www.bseindia.com/corporates/download/327334/Draft%20Prospectus_Gabriel_20231116203916.pdf" "https://www.bseindia.com/"
+
+          echo ""
+          echo "=== Controls ==="
+          probe "SEBI draft-docs (known good)" "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15&smid=10"
+          probe "ipowatch (known good)"        "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/"
+
+          echo ""
+          echo "200 = reachable. 403 = blocked. 404 = wrong URL. 000 = timeout/DNS."
+          echo "High draft_hits + high ltd_hits on a 200 = likely a real filings list."
