@@ -1,0 +1,43 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Stage site files
+        run: |
+          rm -rf deploy && mkdir deploy
+          rsync -av \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "deploy" \
+            --exclude "scripts" \
+            --exclude "node_modules" \
+            --exclude "package.json" \
+            --exclude "package-lock.json" \
+            --exclude ".htaccess" \
+            --exclude "health_report.md" \
+            ./ deploy/
+          echo "Deploying $(find deploy -type f | wc -l) files"
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy deploy --project-name=livegmp --branch=main
