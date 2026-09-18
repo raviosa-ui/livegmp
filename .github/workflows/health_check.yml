@@ -1,0 +1,86 @@
+name: Agent 3 — Site health check
+
+on:
+  schedule:
+    - cron: '15 */6 * * *'   # every 6 hours at :15 (offset from the :30 GMP scrape)
+  workflow_dispatch:
+
+# Read-only against the repo; only Issues are written.
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: health-check
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install cheerio
+        run: |
+          if [ ! -f package.json ]; then npm init -y; fi
+          npm install cheerio
+
+      - name: Run health check
+        id: check
+        env:
+          SITE_URL: https://livegmp.in
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}   # optional; omit and it still works
+        run: node scripts/health_check.js
+
+      - name: Open or update health issue
+        if: steps.check.outputs.healthy == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -e
+          TITLE="🔴 Site health: livegmp.in needs attention"
+          # find an existing open issue with the health label
+          NUM=$(gh issue list --state open --label site-health --limit 1 --json number --jq '.[0].number // empty')
+
+          # ensure the label exists (no-op if it already does)
+          gh label create site-health --color B60205 --description "Automated health check findings" 2>/dev/null || true
+
+          {
+            cat health_report.md
+            echo ""
+            echo "[Workflow run]($RUN_URL)"
+          } > issue_body.md
+
+          if [ -n "$NUM" ]; then
+            echo "Updating issue #$NUM"
+            gh issue comment "$NUM" --body-file issue_body.md
+          else
+            echo "Opening new issue"
+            gh issue create --title "$TITLE" --label site-health --body-file issue_body.md
+          fi
+
+      - name: Close health issue when healthy
+        if: steps.check.outputs.healthy == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          NUM=$(gh issue list --state open --label site-health --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "✅ All checks passed on the latest run. Closing automatically."
+            gh issue close "$NUM"
+          else
+            echo "Healthy; no open health issue."
+          fi
+
+      - name: Summary
+        if: always()
+        run: cat health_report.md >> $GITHUB_STEP_SUMMARY
