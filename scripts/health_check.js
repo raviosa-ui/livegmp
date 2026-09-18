@@ -31,7 +31,7 @@ const SITE = process.env.SITE_URL || "https://livegmp.in";
 const GMP_JSON = "gmp.json";
 const REPORT = "health_report.md";
 const DATA_STALE_HOURS = 36;   // gmp.json older than this = finding
-const SAMPLE_IPO_PAGES = 5;    // how many /ipo/<slug>/ pages to spot-check
+const SAMPLE_IPO_PAGES = 100;    // how many /ipo/<slug>/ pages to spot-check
 const UA = "Mozilla/5.0 (compatible; LiveGMPHealthBot/1.0; +https://livegmp.in)";
 const GEMINI_MODEL = "gemini-2.5-flash-lite";
 
