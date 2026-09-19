@@ -28,7 +28,8 @@ const path = require("path");
 
 // ---------------- config ----------------
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const GEMINI_MODEL   = process.env.GEMINI_MODEL   || "gemini-3.6-flash";
+const FALLBACK_MODEL = process.env.FALLBACK_MODEL || "gemini-3.6-flash-lite";
 const MAX_CHARS = 140000;          // hard cap on text sent to the model
 const MAX_PAGES = 90;              // hard cap on pages extracted
 const PDF_MAX_BYTES = 90 * 1024 * 1024;
@@ -185,22 +186,42 @@ HARD RULES:
 - Do not recommend buying or selling. Do not predict listing gains or GMP.`;
 
 async function callGemini(key, prompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192, temperature: 0.2 },
-    }),
-  });
-  const data = await res.json();
-  if (data.error) throw new Error(`Gemini: ${data.error.message || JSON.stringify(data.error)}`);
-  const cand = data.candidates && data.candidates[0];
-  if (!cand || !cand.content || !cand.content.parts) {
-    throw new Error("Gemini returned no content" + (cand && cand.finishReason ? ` (finishReason: ${cand.finishReason})` : ""));
+  // Flash first, Flash-Lite as fallback. For fixed-schema JSON extraction
+  // Flash-Lite is entirely adequate, so a capacity spike on Flash should
+  // degrade the run, not kill it.
+  const models = [GEMINI_MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
+  let lastErr = null;
+
+  for (const model of models) {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`;
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192, temperature: 0.2 },
+          }),
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+        const cand = data.candidates && data.candidates[0];
+        if (!cand || !cand.content || !cand.content.parts) {
+          throw new Error("no content returned" + (cand && cand.finishReason ? ` (finishReason: ${cand.finishReason})` : ""));
+        }
+        if (model !== GEMINI_MODEL) console.log(`  NOTE: used fallback model ${model}`);
+        return { text: cand.content.parts.map(p => p.text || "").join(""), modelUsed: model };
+      } catch (e) {
+        lastErr = e;
+        const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error/i.test(e.message);
+        console.log(`  ${model} attempt ${attempt}/3 failed: ${e.message}`);
+        if (!transient) break;                       // config/quota error: move to next model
+        if (attempt < 3) await new Promise(r => setTimeout(r, 15000 * attempt));
+      }
+    }
   }
-  return cand.content.parts.map(p => p.text || "").join("");
+  throw new Error(`Gemini: ${lastErr ? lastErr.message : "all models and attempts failed"}`);
 }
 
 // ---------------- validation ----------------
@@ -388,7 +409,7 @@ ${prose}
   const prompt = `${SCHEMA_PROMPT}\n\nCOMPANY: ${meta.company}\n\nDRHP EXCERPTS:\n${source}`;
 
   console.log(`Calling ${GEMINI_MODEL}…`);
-  const raw = await callGemini(key, prompt);
+  const { text: raw, modelUsed } = await callGemini(key, prompt);
   let draft;
   try {
     draft = JSON.parse(raw.replace(/^```json\s*/i, "").replace(/```\s*$/, "").trim());
@@ -442,7 +463,7 @@ ${prose}
   md += `| Action | ${action} |\n`;
   md += `| Source PDF | ${meta.pdf} |\n`;
   md += `| Pages used | ${ranges.map(r => r[0] + "-" + r[1]).join(", ")} (${ext.pages.length} of ${ext.total}) |\n`;
-  md += `| Model | ${GEMINI_MODEL} |\n`;
+  md += `| Model | ${modelUsed} |\n`;
   md += `| Alias variants registered | ${aliasCount} (in \`${ALIAS_FILE}\`) |\n\n`;
 
   md += `### ⚠️ Verify before merging\n\n`;
