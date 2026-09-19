@@ -185,14 +185,64 @@ HARD RULES:
 - Financial metrics to include when present: Revenue from operations, EBITDA, Profit after tax, Net worth, Total borrowings, and margin percentages.
 - Do not recommend buying or selling. Do not predict listing gains or GMP.`;
 
-async function callGemini(key, prompt) {
-  // Flash first, Flash-Lite as fallback. For fixed-schema JSON extraction
-  // Flash-Lite is entirely adequate, so a capacity spike on Flash should
-  // degrade the run, not kill it.
-  const models = [GEMINI_MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
-  let lastErr = null;
+// Ask the API which models actually exist, instead of hard-coding names that
+// get retired. Returns generateContent-capable model ids, newest-looking first.
+async function listModels(key) {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}&pageSize=200`);
+  const data = await res.json();
+  if (data.error) throw new Error(`ListModels: ${data.error.message}`);
+  return (data.models || [])
+    .filter(m => (m.supportedGenerationMethods || []).includes("generateContent"))
+    .map(m => String(m.name || "").replace(/^models\//, ""))
+    .filter(Boolean);
+}
 
-  for (const model of models) {
+// Version-aware sort: gemini-3.8-flash beats gemini-3.6-flash beats 2.5.
+function versionOf(id) {
+  const m = id.match(/(\d+)\.(\d+)/);
+  return m ? (+m[1]) * 100 + (+m[2]) : 0;
+}
+
+function buildChain(available, preferred) {
+  const has = id => available.includes(id);
+  const chain = [];
+  // Only pin the configured model if it is at least as new as the newest
+  // available; otherwise prefer whatever is newest, since a congested older
+  // model is exactly the case we are trying to route around.
+  if (preferred && has(preferred)) {
+    const newest = Math.max(0, ...available.filter(id => /flash/.test(id) && !/lite/.test(id)).map(versionOf));
+    if (versionOf(preferred) >= newest) chain.push(preferred);
+  }
+
+  const isUsable = id =>
+    /gemini/.test(id) && /flash|pro/.test(id) &&
+    !/embed|vision|tts|image|audio|live|thinking-exp/.test(id);
+
+  const flash = available.filter(id => isUsable(id) && /flash/.test(id) && !/lite/.test(id))
+    .sort((a, b) => versionOf(b) - versionOf(a));
+  const lite = available.filter(id => isUsable(id) && /flash/.test(id) && /lite/.test(id))
+    .sort((a, b) => versionOf(b) - versionOf(a));
+
+  for (const id of [...flash, ...lite]) if (!chain.includes(id)) chain.push(id);
+  return chain.slice(0, 4);   // primary + up to 3 fallbacks
+}
+
+async function callGemini(key, prompt) {
+  let available = [];
+  try {
+    available = await listModels(key);
+    console.log(`  models available: ${available.length}`);
+  } catch (e) {
+    console.log(`  ListModels failed (${e.message}) — falling back to configured names only`);
+  }
+
+  const chain = available.length
+    ? buildChain(available, GEMINI_MODEL)
+    : [GEMINI_MODEL, FALLBACK_MODEL].filter(Boolean);
+  console.log(`  model chain: ${chain.join(" -> ")}`);
+
+  let lastErr = null;
+  for (const model of chain) {
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`;
@@ -210,13 +260,13 @@ async function callGemini(key, prompt) {
         if (!cand || !cand.content || !cand.content.parts) {
           throw new Error("no content returned" + (cand && cand.finishReason ? ` (finishReason: ${cand.finishReason})` : ""));
         }
-        if (model !== GEMINI_MODEL) console.log(`  NOTE: used fallback model ${model}`);
+        if (model !== chain[0]) console.log(`  NOTE: used fallback model ${model}`);
         return { text: cand.content.parts.map(p => p.text || "").join(""), modelUsed: model };
       } catch (e) {
         lastErr = e;
         const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error/i.test(e.message);
         console.log(`  ${model} attempt ${attempt}/3 failed: ${e.message}`);
-        if (!transient) break;                       // config/quota error: move to next model
+        if (!transient) break;                       // not found / quota: next model
         if (attempt < 3) await new Promise(r => setTimeout(r, 15000 * attempt));
       }
     }
@@ -408,7 +458,7 @@ ${prose}
   const source = ext.text.slice(0, MAX_CHARS);
   const prompt = `${SCHEMA_PROMPT}\n\nCOMPANY: ${meta.company}\n\nDRHP EXCERPTS:\n${source}`;
 
-  console.log(`Calling ${GEMINI_MODEL}…`);
+  console.log(`Calling Gemini…`);
   const { text: raw, modelUsed } = await callGemini(key, prompt);
   let draft;
   try {
