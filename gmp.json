@@ -1,17 +1,18 @@
 {
-  "updatedIso": "2026-09-18T06:27:06.429Z",
-  "updatedLocal": "18/09/2026, 11:57:06 IST",
+  "updatedIso": "2026-09-19T06:30:29.890Z",
+  "updatedLocal": "19/09/2026, 12:00:29 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Unitec Fibres",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
+      "price": "₹88",
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "unitec-fibres"
     },
     {
       "ipo": "S.K.Offset",
@@ -21,7 +22,8 @@
       "listing": "₹125 (0.00%)",
       "date": "23-25 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "skoffset"
     },
     {
       "ipo": "Liqvd Digital",
@@ -31,7 +33,19 @@
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "liqvd-digital"
+    },
+    {
+      "ipo": "Pooja Logistics",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹115",
+      "listing": "₹- (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "pooja-logistics"
     },
     {
       "ipo": "Sai Urja Indo Ventures",
@@ -41,7 +55,8 @@
       "listing": "₹113 (0.00%)",
       "date": "23-25 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "sai-urja-indo-ventures"
     },
     {
       "ipo": "Anand Seamless",
@@ -51,7 +66,8 @@
       "listing": "₹72 (0.00%)",
       "date": "22-24 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "anand-seamless"
     },
     {
       "ipo": "Himalaya Nutravedics",
@@ -61,7 +77,8 @@
       "listing": "₹106 (0.00%)",
       "date": "22-24 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "himalaya-nutravedics"
     },
     {
       "ipo": "Vivekanand Cotspin",
@@ -71,7 +88,8 @@
       "listing": "₹37 (0.00%)",
       "date": "21-23 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "vivekanand-cotspin"
     },
     {
       "ipo": "Robokidz Eduventures",
@@ -81,7 +99,8 @@
       "listing": "₹157 (48.11%)",
       "date": "21-23 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "robokidz-eduventures"
     },
     {
       "ipo": "FX Multitech",
@@ -91,7 +110,8 @@
       "listing": "₹116 (0.00%)",
       "date": "21-23 Sept",
       "type": "SME",
-      "status": "upcoming"
+      "status": "upcoming",
+      "slug": "fx-multitech"
     },
     {
       "ipo": "Axiom Gas Engineering",
@@ -101,17 +121,19 @@
       "listing": "₹53 (0.00%)",
       "date": "18-22 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "active",
+      "slug": "axiom-gas-engineering"
     },
     {
       "ipo": "SpectraA Technology",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹118",
-      "listing": "₹148 (25.42%)",
+      "listing": "₹163 (38.14%)",
       "date": "17-21 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "active",
+      "slug": "spectraa-technology"
     },
     {
       "ipo": "Kheria Autocomp",
@@ -121,7 +143,8 @@
       "listing": "₹111 (9.90%)",
       "date": "17-21 Sept",
       "type": "SME",
-      "status": "active"
+      "status": "active",
+      "slug": "kheria-autocomp"
     },
     {
       "ipo": "Vama Wovenfab",
@@ -131,7 +154,8 @@
       "listing": "₹344 (0.88%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "closed"
+      "status": "closed",
+      "slug": "vama-wovenfab"
     },
     {
       "ipo": "Shakti Polytarp",
@@ -141,7 +165,8 @@
       "listing": "₹65 (10.17%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "closed"
+      "status": "closed",
+      "slug": "shakti-polytarp"
     },
     {
       "ipo": "Quanto Agroworld",
@@ -151,7 +176,8 @@
       "listing": "₹67 (0.00%)",
       "date": "15-17 Sept",
       "type": "SME",
-      "status": "closed"
+      "status": "closed",
+      "slug": "quanto-agroworld"
     },
     {
       "ipo": "Injecto Polymers",
@@ -161,7 +187,8 @@
       "listing": "₹100 (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
-      "status": "closed"
+      "status": "closed",
+      "slug": "injecto-polymers"
     },
     {
       "ipo": "Century Business Media",
@@ -171,47 +198,8 @@
       "listing": "₹74 (0.00%)",
       "date": "11-16 Sept",
       "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Panchatv Bharat",
-      "gmp": 3,
-      "gmpRaw": "₹3",
-      "price": "₹140",
-      "listing": "₹143 (2.14%)",
-      "date": "10-15 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Maharaja & Speedex",
-      "gmp": 28,
-      "gmpRaw": "₹28",
-      "price": "₹186",
-      "listing": "₹214 (15.05%)",
-      "date": "10-15 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Om Galaxy",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹90",
-      "listing": "₹90 (0.00%)",
-      "date": "10-15 Sept",
-      "type": "SME",
-      "status": "closed"
-    },
-    {
-      "ipo": "Raksan Transformers",
-      "gmp": 11,
-      "gmpRaw": "₹11",
-      "price": "₹273",
-      "listing": "₹284 (4.03%)",
-      "date": "10-15 Sept",
-      "type": "SME",
-      "status": "closed"
+      "status": "closed",
+      "slug": "century-business-media"
     }
   ]
 }
