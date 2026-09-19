@@ -1,0 +1,87 @@
+name: Agent 2 — Generate IPO blog from DRHP
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: blog-generate-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    # only on DRHP issues, only for /generate comments, only from the repo owner
+    if: >
+      github.event.issue.pull_request == null &&
+      startsWith(github.event.comment.body, '/generate') &&
+      contains(toJSON(github.event.issue.labels.*.name), 'drhp') &&
+      github.event.comment.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Acknowledge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
+            --body "🤖 Generating draft… [watch the run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          if [ ! -f package.json ]; then npm init -y; fi
+          npm install cheerio pdfjs-dist@4.0.379
+
+      - name: Generate page
+        id: gen
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+        run: node scripts/generate_blog.js
+
+      - name: Open pull request
+        id: pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: drhp/${{ steps.gen.outputs.slug }}
+          delete-branch: true
+          commit-message: "content: ${{ steps.gen.outputs.company }} IPO page from DRHP"
+          title: "📝 ${{ steps.gen.outputs.company }} — IPO page from DRHP"
+          body-path: pr_body.md
+          labels: drhp-draft
+          add-paths: |
+            ipo/**
+            data/ipo_aliases.json
+
+      - name: Link the PR on the issue
+        if: steps.pr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
+            --body "✅ Draft ready: #${{ steps.pr.outputs.pull-request-number }} — ${{ steps.gen.outputs.unverified }} figure(s) flagged for verification. Review and merge to publish."
+
+      - name: Report failure on the issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
+            --body "❌ Generation failed — nothing was written. [See the log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). Common causes: wrong page ranges, a scanned PDF with no text layer, or the model returning invalid JSON. Re-comment \`/generate <ranges>\` to retry."
