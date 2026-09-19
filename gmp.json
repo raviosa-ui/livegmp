@@ -1,8 +1,30 @@
 {
-  "updatedIso": "2026-09-19T06:30:29.890Z",
-  "updatedLocal": "19/09/2026, 12:00:29 IST",
+  "updatedIso": "2026-09-19T16:00:42.354Z",
+  "updatedLocal": "19/09/2026, 21:30:42 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Bench Mark Infotech",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "bench-mark-infotech"
+    },
+    {
+      "ipo": "Coreintegra Consulting",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹78",
+      "listing": "₹- (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "coreintegra-consulting"
+    },
     {
       "ipo": "Unitec Fibres",
       "gmp": 0,
