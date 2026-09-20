@@ -1,0 +1,70 @@
+name: Agent 0 — Watchdog
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # daily, 09:30 IST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read      # needed to read other workflows' run history
+  issues: write
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run watchdog
+        id: wd
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # optional
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}       # optional
+        run: node scripts/watchdog.js
+
+      - name: Open or update watchdog issue
+        if: steps.wd.outputs.healthy == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -e
+          gh label create watchdog --color D93F0B --description "Automation health alerts" 2>/dev/null || true
+          NUM=$(gh issue list --state open --label watchdog --limit 1 --json number --jq '.[0].number // empty')
+          { cat watchdog_report.md; echo ""; echo "[Workflow run]($RUN_URL)"; } > issue_body.md
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file issue_body.md
+          else
+            gh issue create --title "🚨 Automation alert: LiveGMP agents need attention" \
+                            --label watchdog --body-file issue_body.md
+          fi
+
+      - name: Close watchdog issue when healthy
+        if: steps.wd.outputs.healthy == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          NUM=$(gh issue list --state open --label watchdog --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "✅ All agents healthy on the latest watchdog run. Closing automatically."
+            gh issue close "$NUM"
+          fi
+
+      - name: Summary
+        if: always()
+        run: cat watchdog_report.md >> $GITHUB_STEP_SUMMARY
