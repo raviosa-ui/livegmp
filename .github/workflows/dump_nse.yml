@@ -1,0 +1,32 @@
+name: Dump NSE feed
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump NSE feeds
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+          JAR=/tmp/c.txt
+          REF='https://www.nseindia.com/market-data/all-upcoming-issues-ipo'
+
+          curl -s -o /dev/null -c $JAR -A "$UA" --max-time 20 https://www.nseindia.com/
+
+          echo "=== public-past-issues (first 1500 chars) ==="
+          curl -s -b $JAR -c $JAR -A "$UA" -H "Referer: $REF" --max-time 25 \
+            'https://www.nseindia.com/api/public-past-issues' | head -c 1500
+          echo ""
+          echo ""
+          echo "=== all-upcoming-issues, category variants ==="
+          for c in ipo sme debt none; do
+            if [ "$c" = "none" ]; then URL='https://www.nseindia.com/api/all-upcoming-issues'; else URL="https://www.nseindia.com/api/all-upcoming-issues?category=$c"; fi
+            echo "--- category=$c ---"
+            curl -s -b $JAR -c $JAR -A "$UA" -H "Referer: $REF" --max-time 25 "$URL" | head -c 500
+            echo ""
+          done
