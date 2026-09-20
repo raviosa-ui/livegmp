@@ -1,8 +1,129 @@
 {
-  "updatedIso": "2026-09-19T16:00:42.354Z",
-  "updatedLocal": "19/09/2026, 21:30:42 IST",
+  "updatedIso": "2026-09-20T05:05:17.684Z",
+  "updatedLocal": "20/09/2026, 10:35:17 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "A-One Steels",
+      "gmp": 60,
+      "gmpRaw": "₹60",
+      "price": "₹405",
+      "listing": "₹465 (14.81%)",
+      "date": "24-28 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "a-one-steels"
+    },
+    {
+      "ipo": "Adroit Industries",
+      "gmp": 37,
+      "gmpRaw": "₹37",
+      "price": "₹134",
+      "listing": "₹171 (27.61%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "adroit-industries"
+    },
+    {
+      "ipo": "Elevate Campuses",
+      "gmp": 15,
+      "gmpRaw": "₹15",
+      "price": "₹362",
+      "listing": "₹- (4.14%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "elevate-campuses"
+    },
+    {
+      "ipo": "ArMee Infotech",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹375",
+      "listing": "₹- (0.00%)",
+      "date": "23-25 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "armee-infotech"
+    },
+    {
+      "ipo": "Varmora Granito",
+      "gmp": 15,
+      "gmpRaw": "₹15",
+      "price": "₹148",
+      "listing": "₹163 (10.14%)",
+      "date": "22-24 Sept",
+      "type": "SME",
+      "status": "upcoming",
+      "slug": "varmora-granito"
+    },
+    {
+      "ipo": "Sonaselection India",
+      "gmp": 2,
+      "gmpRaw": "₹2",
+      "price": "₹99",
+      "listing": "₹101 (2.02%)",
+      "date": "17-21 Sept",
+      "type": "SME",
+      "status": "active",
+      "slug": "sonaselection-india"
+    },
+    {
+      "ipo": "NSE",
+      "gmp": 90,
+      "gmpRaw": "₹90",
+      "price": "₹1785",
+      "listing": "₹1875 (5.04%)",
+      "date": "17-21 Sept",
+      "type": "SME",
+      "status": "active",
+      "slug": "nse"
+    },
+    {
+      "ipo": "Hero Motors",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹84",
+      "listing": "₹- (0.00%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "closed",
+      "slug": "hero-motors"
+    },
+    {
+      "ipo": "SS Retail",
+      "gmp": 145,
+      "gmpRaw": "₹145",
+      "price": "₹424",
+      "listing": "₹569 (34.20%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "closed",
+      "slug": "ss-retail"
+    },
+    {
+      "ipo": "Jindal Supreme",
+      "gmp": 30,
+      "gmpRaw": "₹30",
+      "price": "₹93",
+      "listing": "₹123 (32.26%)",
+      "date": "16-18 Sept",
+      "type": "SME",
+      "status": "closed",
+      "slug": "jindal-supreme"
+    },
+    {
+      "ipo": "Manika Plastech",
+      "gmp": 2,
+      "gmpRaw": "₹2",
+      "price": "₹43",
+      "listing": "₹45 (4.65%)",
+      "date": "11-16 Sept",
+      "type": "SME",
+      "status": "closed",
+      "slug": "manika-plastech"
+    },
     {
       "ipo": "Bench Mark Infotech",
       "gmp": 0,
