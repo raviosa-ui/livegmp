@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-20T05:05:17.684Z",
-  "updatedLocal": "20/09/2026, 10:35:17 IST",
+  "updatedIso": "2026-09-20T06:15:03.156Z",
+  "updatedLocal": "20/09/2026, 11:45:03 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,7 +10,7 @@
       "price": "₹405",
       "listing": "₹465 (14.81%)",
       "date": "24-28 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "a-one-steels"
     },
@@ -21,7 +21,7 @@
       "price": "₹134",
       "listing": "₹171 (27.61%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "adroit-industries"
     },
@@ -32,7 +32,7 @@
       "price": "₹362",
       "listing": "₹- (4.14%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "elevate-campuses"
     },
@@ -43,7 +43,7 @@
       "price": "₹375",
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "armee-infotech"
     },
@@ -54,7 +54,7 @@
       "price": "₹148",
       "listing": "₹163 (10.14%)",
       "date": "22-24 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "varmora-granito"
     },
@@ -65,7 +65,7 @@
       "price": "₹99",
       "listing": "₹101 (2.02%)",
       "date": "17-21 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "active",
       "slug": "sonaselection-india"
     },
@@ -76,7 +76,7 @@
       "price": "₹1785",
       "listing": "₹1875 (5.04%)",
       "date": "17-21 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "active",
       "slug": "nse"
     },
@@ -87,7 +87,7 @@
       "price": "₹84",
       "listing": "₹- (0.00%)",
       "date": "16-18 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "hero-motors"
     },
@@ -98,7 +98,7 @@
       "price": "₹424",
       "listing": "₹569 (34.20%)",
       "date": "16-18 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "ss-retail"
     },
@@ -109,7 +109,7 @@
       "price": "₹93",
       "listing": "₹123 (32.26%)",
       "date": "16-18 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "jindal-supreme"
     },
@@ -120,7 +120,7 @@
       "price": "₹43",
       "listing": "₹45 (4.65%)",
       "date": "11-16 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "manika-plastech"
     },
