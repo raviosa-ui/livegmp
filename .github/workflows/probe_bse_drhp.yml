@@ -11,30 +11,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Probe BSE SME DRHP
+        continue-on-error: true
         run: |
+          set +e
           UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
           JAR=/tmp/c.txt
-          curl -s -o /dev/null -c $JAR -A "$UA" --max-time 20 https://www.bseindia.com/ || true
+          curl -s -o /dev/null -c $JAR -A "$UA" --max-time 20 https://www.bseindia.com/
+
+          echo "=== DNS resolution ==="
+          getent hosts www.bsesme.com  || echo "www.bsesme.com  -> DOES NOT RESOLVE"
+          getent hosts www.bseindia.com || echo "www.bseindia.com -> DOES NOT RESOLVE"
+          echo ""
 
           probe () {
             echo "--- $1 ---"
+            : > /tmp/o
             CODE=$(curl -s -o /tmp/o -w '%{http_code}' -L --max-time 30 -A "$UA" -b $JAR -c $JAR \
               -H 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' \
               -H 'Accept-Language: en-US,en;q=0.9' \
-              ${3:+-H "Referer: $3"} "$2" 2>/dev/null || echo 000)
-            SIZE=$(wc -c < /tmp/o 2>/dev/null || echo 0)
-            DRHP=$(grep -oci 'drhp\|draft' /tmp/o 2>/dev/null | head -1)
-            LTD=$(grep -oci 'limited' /tmp/o 2>/dev/null | head -1)
-            PDF=$(grep -oci '\.pdf' /tmp/o 2>/dev/null | head -1)
-            echo "code=$CODE bytes=$SIZE draft=$DRHP ltd=$LTD pdfs=$PDF"
-            echo "first 300 chars:"; head -c 300 /tmp/o; echo ""
+              ${3:+-H "Referer: $3"} "$2")
+            [ -z "$CODE" ] && CODE=000
+            SIZE=$(wc -c < /tmp/o)
+            DRHP=$(grep -ci 'drhp\|draft' /tmp/o)
+            LTD=$(grep -ci 'limited' /tmp/o)
+            PDF=$(grep -ci '\.pdf' /tmp/o)
+            echo "code=$CODE bytes=$SIZE draft_lines=$DRHP ltd_lines=$LTD pdf_lines=$PDF"
+            echo "first 300 chars:"
+            head -c 300 /tmp/o
+            echo ""
+            echo ""
           }
 
-          probe "bsesme SMEIPODRHP"  "https://www.bsesme.com/PublicIssues/SMEIPODRHP.aspx"
-          probe "bseindia same path" "https://www.bseindia.com/PublicIssues/SMEIPODRHP.aspx" "https://www.bseindia.com/"
-          probe "bseindia markets path" "https://www.bseindia.com/markets/PublicIssues/SMEIPODRHP.aspx" "https://www.bseindia.com/"
-          probe "bsesme root retry"  "https://www.bsesme.com/"
-
-          echo "=== DNS check ==="
-          getent hosts www.bsesme.com || echo "bsesme.com does NOT resolve from this runner"
-          getent hosts www.bseindia.com || echo "bseindia.com does not resolve"
+          probe "bsesme SMEIPODRHP"      "https://www.bsesme.com/PublicIssues/SMEIPODRHP.aspx"
+          probe "bseindia same path"     "https://www.bseindia.com/PublicIssues/SMEIPODRHP.aspx" "https://www.bseindia.com/"
+          probe "bseindia markets path"  "https://www.bseindia.com/markets/PublicIssues/SMEIPODRHP.aspx" "https://www.bseindia.com/"
+          probe "bseindia publicissues"  "https://www.bseindia.com/publicissues/SMEIPODRHP.aspx" "https://www.bseindia.com/"
+          exit 0
