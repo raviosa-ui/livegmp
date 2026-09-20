@@ -1,0 +1,53 @@
+name: Probe v3 — SME JSON APIs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe SME data APIs
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+          JAR=/tmp/cookies.txt
+
+          probe () {
+            NAME="$1"; URL="$2"; REF="${3:-}"; ACC="${4:-application/json, text/plain, */*}"
+            CODE=$(curl -s -o /tmp/out -w '%{http_code}' -L --max-time 25 -A "$UA" \
+                   -b "$JAR" -c "$JAR" \
+                   -H "Accept: $ACC" -H 'Accept-Language: en-US,en;q=0.9' \
+                   ${REF:+-H "Referer: $REF"} "$URL" 2>/dev/null || echo 000)
+            SIZE=$(wc -c < /tmp/out 2>/dev/null || echo 0)
+            JSONY=$(head -c 1 /tmp/out 2>/dev/null)
+            HITS=$(grep -oci 'company\|issuer\|prospectus\|scrip' /tmp/out 2>/dev/null | head -1)
+            printf '%-40s %-4s bytes=%-9s first=%-3s hits=%s\n' "$NAME" "$CODE" "$SIZE" "${JSONY:-.}" "${HITS:-0}"
+          }
+
+          echo "=== seed cookies first (both sites gate on them) ==="
+          curl -s -o /dev/null -c "$JAR" -A "$UA" --max-time 20 https://www.nseindia.com/ || true
+          curl -s -o /dev/null -b "$JAR" -c "$JAR" -A "$UA" --max-time 20 https://www.bseindia.com/ || true
+          echo "cookie jar: $(wc -l < $JAR 2>/dev/null || echo 0) lines"
+
+          echo ""
+          echo "=== NSE APIs ==="
+          probe "NSE all-upcoming-issues SME" "https://www.nseindia.com/api/all-upcoming-issues?category=sme" "https://www.nseindia.com/market-data/all-upcoming-issues-ipo"
+          probe "NSE public-past-issues"      "https://www.nseindia.com/api/public-past-issues" "https://www.nseindia.com/market-data/all-upcoming-issues-ipo"
+          probe "NSE corp offer docs (html)"  "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents" "https://www.nseindia.com/" "text/html"
+
+          echo ""
+          echo "=== BSE APIs ==="
+          probe "BSE SME new listing"   "https://api.bseindia.com/BseIndiaAPI/api/GetSMEIPODetails/w" "https://www.bsesme.com/"
+          probe "BSE IPO issue list"    "https://api.bseindia.com/BseIndiaAPI/api/DisplayIPO/w?Type=SME" "https://www.bseindia.com/"
+          probe "BSE public issue data" "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssueData/w?Type=SME" "https://www.bseindia.com/"
+          probe "BSE corp announcements" "https://api.bseindia.com/BseIndiaAPI/api/AnnGetData/w?strCat=Company+Update&strType=C" "https://www.bseindia.com/"
+
+          echo ""
+          echo "=== what a hit looks like ==="
+          echo "200 + first={ or [ + hits>0  => usable JSON feed. Dump it with:"
+          echo "  curl -b \$JAR -A \"\$UA\" -H 'Referer: ...' '<url>' | head -c 2000"
+          echo ""
+          echo "first char: { or [ = JSON, < = HTML shell (not a feed)"
