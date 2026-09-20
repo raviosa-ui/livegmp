@@ -29,7 +29,7 @@ const API   = "https://api.github.com";
 
 // Per-workflow expectations. max_age_h = how long silence is acceptable.
 const TRACKED = [
-  { file: "update_gmp.yml",     name: "GMP scrape",      max_age_h: 0,    critical: true  },
+  { file: "update_gmp.yml",     name: "GMP scrape",      max_age_h: 6,    critical: true  },
   { file: "deploy.yml",         name: "Cloudflare deploy", max_age_h: 168, critical: false },
   { file: "health_check.yml",   name: "Agent 3 health",  max_age_h: 24,   critical: true  },
   { file: "drhp_watch.yml",     name: "Agent 1 DRHP",    max_age_h: 48,   critical: true  },
