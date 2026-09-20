@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-20T10:00:11.160Z",
-  "updatedLocal": "20/09/2026, 15:30:11 IST",
+  "updatedIso": "2026-09-20T10:14:45.162Z",
+  "updatedLocal": "20/09/2026, 15:44:45 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,7 +10,7 @@
       "price": "₹405",
       "listing": "₹465 (14.81%)",
       "date": "24-28 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "a-one-steels"
     },
@@ -21,7 +21,7 @@
       "price": "₹134",
       "listing": "₹171 (27.61%)",
       "date": "23-25 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "adroit-industries"
     },
@@ -32,7 +32,7 @@
       "price": "₹185",
       "listing": "₹185 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "swastika-infra"
     },
@@ -43,7 +43,7 @@
       "price": "₹362",
       "listing": "₹377 (4.14%)",
       "date": "23-25 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "elevate-campuses"
     },
@@ -54,7 +54,7 @@
       "price": "₹375",
       "listing": "₹375 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "armee-infotech"
     },
@@ -65,7 +65,7 @@
       "price": "₹148",
       "listing": "₹163 (10.14%)",
       "date": "22-24 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "upcoming",
       "slug": "varmora-granito"
     },
@@ -76,7 +76,7 @@
       "price": "₹99",
       "listing": "₹101 (2.02%)",
       "date": "17-21 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "active",
       "slug": "sonaselection-india"
     },
@@ -87,7 +87,7 @@
       "price": "₹1785",
       "listing": "₹1875 (5.04%)",
       "date": "17-21 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "active",
       "slug": "nse"
     },
@@ -98,7 +98,7 @@
       "price": "₹84",
       "listing": "₹84 (0.00%)",
       "date": "16-18 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "closed",
       "slug": "hero-motors"
     },
@@ -109,7 +109,7 @@
       "price": "₹424",
       "listing": "₹569 (34.20%)",
       "date": "16-18 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "closed",
       "slug": "ss-retail"
     },
@@ -120,7 +120,7 @@
       "price": "₹93",
       "listing": "₹123 (32.26%)",
       "date": "16-18 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "closed",
       "slug": "jindal-supreme"
     },
@@ -131,7 +131,7 @@
       "price": "₹43",
       "listing": "₹45 (4.65%)",
       "date": "11-16 Sept",
-      "type": "Mainboard",
+      "type": "SME",
       "status": "closed",
       "slug": "manika-plastech"
     },
@@ -142,7 +142,7 @@
       "price": "₹-",
       "listing": "₹- (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "bench-mark-infotech"
     },
@@ -153,7 +153,7 @@
       "price": "₹78",
       "listing": "₹78 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "coreintegra-consulting"
     },
@@ -164,7 +164,7 @@
       "price": "₹88",
       "listing": "₹88 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "unitec-fibres"
     },
@@ -175,7 +175,7 @@
       "price": "₹125",
       "listing": "₹125 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "skoffset"
     },
@@ -186,7 +186,7 @@
       "price": "₹54",
       "listing": "₹54 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "liqvd-digital"
     },
@@ -197,7 +197,7 @@
       "price": "₹115",
       "listing": "₹115 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "pooja-logistics"
     },
@@ -208,7 +208,7 @@
       "price": "₹113",
       "listing": "₹113 (0.00%)",
       "date": "23-25 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "sai-urja-indo-ventures"
     },
@@ -219,7 +219,7 @@
       "price": "₹72",
       "listing": "₹72 (0.00%)",
       "date": "22-24 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "anand-seamless"
     },
@@ -230,7 +230,7 @@
       "price": "₹106",
       "listing": "₹106 (0.00%)",
       "date": "22-24 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "himalaya-nutravedics"
     },
@@ -241,7 +241,7 @@
       "price": "₹37",
       "listing": "₹37 (0.00%)",
       "date": "21-23 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "vivekanand-cotspin"
     },
@@ -252,7 +252,7 @@
       "price": "₹106",
       "listing": "₹157 (48.11%)",
       "date": "21-23 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "robokidz-eduventures"
     },
@@ -263,7 +263,7 @@
       "price": "₹116",
       "listing": "₹116 (0.00%)",
       "date": "21-23 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "upcoming",
       "slug": "fx-multitech"
     },
@@ -274,7 +274,7 @@
       "price": "₹53",
       "listing": "₹53 (0.00%)",
       "date": "18-22 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "active",
       "slug": "axiom-gas-engineering"
     },
@@ -285,7 +285,7 @@
       "price": "₹118",
       "listing": "₹163 (38.14%)",
       "date": "17-21 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "active",
       "slug": "spectraa-technology"
     },
@@ -296,7 +296,7 @@
       "price": "₹101",
       "listing": "₹111 (9.90%)",
       "date": "17-21 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "active",
       "slug": "kheria-autocomp"
     },
@@ -307,7 +307,7 @@
       "price": "₹341",
       "listing": "₹344 (0.88%)",
       "date": "15-17 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "vama-wovenfab"
     },
@@ -318,7 +318,7 @@
       "price": "₹59",
       "listing": "₹65 (10.17%)",
       "date": "15-17 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "shakti-polytarp"
     },
@@ -329,7 +329,7 @@
       "price": "₹67",
       "listing": "₹67 (0.00%)",
       "date": "15-17 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "quanto-agroworld"
     },
@@ -340,7 +340,7 @@
       "price": "₹100",
       "listing": "₹100 (0.00%)",
       "date": "11-16 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "injecto-polymers"
     },
@@ -351,7 +351,7 @@
       "price": "₹74",
       "listing": "₹74 (0.00%)",
       "date": "11-16 Sept",
-      "type": "SME",
+      "type": "Mainboard",
       "status": "closed",
       "slug": "century-business-media"
     }
