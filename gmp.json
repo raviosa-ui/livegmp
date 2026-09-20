@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-20T10:14:45.162Z",
-  "updatedLocal": "20/09/2026, 15:44:45 IST",
+  "updatedIso": "2026-09-20T11:21:10.398Z",
+  "updatedLocal": "20/09/2026, 16:51:10 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -89,7 +89,7 @@
       "date": "17-21 Sept",
       "type": "SME",
       "status": "active",
-      "slug": "nse"
+      "slug": "national-stock-exchange"
     },
     {
       "ipo": "Hero Motors",
