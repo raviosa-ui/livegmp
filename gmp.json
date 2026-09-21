@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-21T08:04:48.796Z",
-  "updatedLocal": "21/09/2026, 13:34:48 IST",
+  "updatedIso": "2026-09-21T14:27:30.716Z",
+  "updatedLocal": "21/09/2026, 19:57:30 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -88,18 +88,18 @@
       "listing": "₹99 (0.00%)",
       "date": "17-21 Sept",
       "type": "Unknown",
-      "status": "active",
+      "status": "closed",
       "slug": "sonaselection-india"
     },
     {
       "ipo": "NSE",
-      "gmp": 48,
-      "gmpRaw": "₹48",
+      "gmp": 61,
+      "gmpRaw": "₹61",
       "price": "₹1785",
-      "listing": "₹1833 (2.69%)",
+      "listing": "₹1846 (3.42%)",
       "date": "17-21 Sept",
       "type": "Unknown",
-      "status": "active",
+      "status": "closed",
       "slug": "national-stock-exchange"
     },
     {
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "SS Retail",
-      "gmp": 147,
-      "gmpRaw": "₹147",
+      "gmp": 156,
+      "gmpRaw": "₹156",
       "price": "₹424",
-      "listing": "₹571 (34.67%)",
+      "listing": "₹580 (36.79%)",
       "date": "16-18 Sept",
       "type": "Unknown",
       "status": "closed",
@@ -148,14 +148,69 @@
     },
     {
       "ipo": "Bench Mark Infotech",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
-      "date": "23-25 Sept",
+      "gmp": 12,
+      "gmpRaw": "₹12",
+      "price": "₹110",
+      "listing": "₹122 (10.91%)",
+      "date": "25-29 Sept",
       "type": "Unknown",
       "status": "upcoming",
       "slug": "bench-mark-infotech"
+    },
+    {
+      "ipo": "Sai Urja Indo Ventures",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹113",
+      "listing": "₹113 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Unknown",
+      "status": "upcoming",
+      "slug": "sai-urja-indo-ventures"
+    },
+    {
+      "ipo": "Himalayan Solar",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹103",
+      "listing": "₹103 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Unknown",
+      "status": "upcoming",
+      "slug": "himalayan-solar"
+    },
+    {
+      "ipo": "Green Asia Impex",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹90",
+      "listing": "₹90 (0.00%)",
+      "date": "24-28 Sept",
+      "type": "Unknown",
+      "status": "upcoming",
+      "slug": "green-asia-impex"
+    },
+    {
+      "ipo": "Peshwa Wheat",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹101",
+      "listing": "₹101 (0.00%)",
+      "date": "24-28 Sept",
+      "type": "Unknown",
+      "status": "upcoming",
+      "slug": "peshwa-wheat"
+    },
+    {
+      "ipo": "Roopa Screen",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹64",
+      "listing": "₹64 (0.00%)",
+      "date": "24-28 Sept",
+      "type": "Unknown",
+      "status": "upcoming",
+      "slug": "roopa-screen"
     },
     {
       "ipo": "Coreintegra Consulting",
@@ -211,17 +266,6 @@
       "type": "Unknown",
       "status": "upcoming",
       "slug": "pooja-logistics"
-    },
-    {
-      "ipo": "Sai Urja Indo Ventures",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹113",
-      "listing": "₹113 (0.00%)",
-      "date": "23-25 Sept",
-      "type": "Unknown",
-      "status": "upcoming",
-      "slug": "sai-urja-indo-ventures"
     },
     {
       "ipo": "Anand Seamless",
@@ -297,7 +341,7 @@
       "listing": "₹163 (38.14%)",
       "date": "17-21 Sept",
       "type": "Unknown",
-      "status": "active",
+      "status": "closed",
       "slug": "spectraa-technology"
     },
     {
@@ -308,7 +352,7 @@
       "listing": "₹104 (2.97%)",
       "date": "17-21 Sept",
       "type": "Unknown",
-      "status": "active",
+      "status": "closed",
       "slug": "kheria-autocomp"
     },
     {
