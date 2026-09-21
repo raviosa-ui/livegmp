@@ -321,43 +321,12 @@ function parseSourceHtml(html) {
   // MERGE every live table. ipowatch (and others) split Mainboard and SME
   // into separate tables with identical headers — taking only the biggest
   // one silently drops an entire category.
+  // Tables are NOT split by type on ipowatch — a single table held both NSE
+  // (mainboard) and SME issuers. Type is therefore decided per ROW later,
+  // never from which table a row came from.
   const all = [];
-  const perTable = live.map(c => ({ c, rows: extractRows($, c) }));
-
-  // Label tables by CONTENT using NSE, falling back to heading/order.
-  let labelled = false;
-  if (NSE_NAMES && NSE_NAMES.size) {
-    const scores = perTable.map(({ c, rows }) => {
-      const hits = rows.filter(r => nseMatches(r.ipo, NSE_NAMES)).length;
-      const pct = rows.length ? hits / rows.length : 0;
-      console.log(`    table [${c.idx}]: ${hits}/${rows.length} rows match NSE mainboard list (${(pct*100).toFixed(0)}%)`);
-      return { c, rows, hits, pct };
-    });
-    const best = [...scores].sort((a, b) => b.pct - a.pct)[0];
-    const worst = [...scores].sort((a, b) => a.pct - b.pct)[0];
-    // Require a clear separation before trusting it.
-    if (best && worst && best.c.idx !== worst.c.idx && best.pct >= 0.30 && best.pct - worst.pct >= 0.25) {
-      for (const sc of scores) {
-        const t = sc.c.idx === best.c.idx ? "Mainboard" : "SME";
-        for (const r of sc.rows) if (!clean(r.type)) r.type = t;
-        console.log(`  table [${sc.c.idx}] -> ${t} (NSE content match)`);
-      }
-      labelled = true;
-    } else {
-      console.log(`  NSE match too weak to label tables (best ${(best?best.pct*100:0).toFixed(0)}%, spread ${((best&&worst)?(best.pct-worst.pct)*100:0).toFixed(0)}%)`);
-    }
-  }
-
-  if (!labelled) {
-    console.log(`  WARNING: falling back to heading/order inference — this is positional and has silently inverted before. Verify a known mainboard IPO on the site after this run.`);
-    for (const { c, rows } of perTable) {
-      const inferred = inferTableType($, c, live);
-      for (const r of rows) if (!clean(r.type)) r.type = inferred;
-      console.log(`  table [${c.idx}] -> ${inferred || "unknown"} (fallback)`);
-    }
-  }
-
-  for (const { c, rows } of perTable) {
+  for (const c of live) {
+    const rows = extractRows($, c);
     console.log(`  table [${c.idx}] contributed ${rows.length} rows`);
     all.push(...rows);
   }
@@ -370,6 +339,11 @@ function parseSourceHtml(html) {
     seen.add(k); out.push(r);
   }
   console.log(`  merged ${live.length} live table(s) -> ${out.length} unique rows`);
+  const withHref = out.filter(r => r.href).slice(0, 4);
+  if (withHref.length) {
+    console.log(`  sample row links (to confirm a per-row type signal):`);
+    for (const r of withHref) console.log(`    ${r.ipo} -> ${r.href}`);
+  }
   return out;
 }
 
@@ -387,47 +361,41 @@ const NSE_ENDPOINTS = [
   "https://www.nseindia.com/api/public-past-issues",
 ];
 
-// NSE gates its API on cookies set by the homepage.
-async function nseFetchJson() {
-  const jar = [];
-  const cookieHeader = () => jar.join("; ");
-  const collect = (res) => {
-    const sc = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
-    for (const c of sc) {
-      const kv = String(c).split(";")[0];
-      if (kv && !jar.includes(kv)) jar.push(kv);
-    }
-  };
-  const H = (extra = {}) => ({
-    "User-Agent": UA,
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9",
-    ...(jar.length ? { "Cookie": cookieHeader() } : {}),
-    ...extra,
-  });
+// NSE rejects Node's HTTP client at the connection level ("fetch failed"),
+// but answers curl from the same runner — proven by the probe workflows.
+// So NSE is called through curl, with a cookie jar seeded from the homepage.
+const { execFileSync } = require("child_process");
 
-  const seed = await fetch(NSE_HOME, { headers: H({ "Accept": "text/html,*/*" }), redirect: "follow" });
-  collect(seed);
+function curl(args) {
+  try {
+    return execFileSync("curl", args, { encoding: "utf8", maxBuffer: 20 * 1024 * 1024, timeout: 40000 });
+  } catch (e) {
+    return (e && e.stdout) ? String(e.stdout) : "";
+  }
+}
+
+async function nseFetchJson() {
+  const jar = "/tmp/nse_cookies.txt";
+  const base = ["-s", "-L", "--max-time", "30", "-A", UA, "-H", "Accept-Language: en-US,en;q=0.9"];
+  curl([...base, "-c", jar, "-o", "/dev/null", "-H", "Accept: text/html,*/*", NSE_HOME]);
 
   const names = new Set();
   for (const url of NSE_ENDPOINTS) {
+    const label = url.split("/api/")[1];
+    const txt = curl([...base, "-b", jar, "-c", jar, "-H", "Accept: application/json, text/plain, */*",
+                      "-H", `Referer: ${NSE_REF}`, url]).trim();
+    if (!txt || !/^[\[{]/.test(txt)) { console.log(`    NSE ${label}: not JSON (${txt.length} bytes)`); continue; }
     try {
-      const res = await fetch(url, { headers: H({ "Referer": NSE_REF }), redirect: "follow" });
-      collect(res);
-      const txt = await res.text();
-      if (!txt || !/^[\[{]/.test(txt.trim())) { console.log(`    NSE ${url.split("/api/")[1]}: not JSON`); continue; }
       const data = JSON.parse(txt);
       const arr = Array.isArray(data) ? data : (data.data || []);
       let n = 0;
       for (const row of arr) {
         const nm = row.companyName || row.company || "";
-        if (!nm) continue;
-        names.add(normalizeKey(nm));
-        n++;
+        if (nm) { names.add(normalizeKey(nm)); n++; }
       }
-      console.log(`    NSE ${url.split("/api/")[1]}: ${n} companies`);
+      console.log(`    NSE ${label}: ${n} companies`);
     } catch (e) {
-      console.log(`    NSE ${url.split("/api/")[1]}: ${e.message}`);
+      console.log(`    NSE ${label}: bad JSON (${e.message})`);
     }
   }
   return names;
@@ -443,41 +411,6 @@ function nseMatches(rowName, nseNames) {
   return false;
 }
 
-// Work out whether a table is the Mainboard or SME list when the page has no
-// Type column. Strategy, in order:
-//   1. nearest preceding heading/text mentioning "sme" or "mainboard"
-//   2. any caption or first-row text inside the table itself
-//   3. table order as a last resort (first live table = Mainboard)
-// Every step is logged so a layout change is diagnosable from one run.
-function inferTableType($, c, live) {
-  // 1. walk backwards through previous siblings looking for a label
-  let el = c.$t[0] ? c.$t[0].prev : null;
-  for (let hops = 0; el && hops < 8; hops++, el = el.prev) {
-    const txt = clean($(el).text ? $(el).text() : "");
-    if (!txt) continue;
-    const low = txt.toLowerCase();
-    if (/\bsme\b/.test(low))                     { console.log(`    [${c.idx}] heading "${txt.slice(0,60)}" -> SME`); return "SME"; }
-    if (/main\s*board|mainboard/.test(low))       { console.log(`    [${c.idx}] heading "${txt.slice(0,60)}" -> Mainboard`); return "Mainboard"; }
-    if (txt.length > 4) { console.log(`    [${c.idx}] nearest heading "${txt.slice(0,60)}" (no category)`); break; }
-  }
-
-  // 2. caption or anything inside the table that names the category
-  const inside = clean(c.$t.find("caption").first().text() || "").toLowerCase();
-  if (/\bsme\b/.test(inside))               { console.log(`    [${c.idx}] caption -> SME`); return "SME"; }
-  if (/main\s*board|mainboard/.test(inside)) { console.log(`    [${c.idx}] caption -> Mainboard`); return "Mainboard"; }
-
-  // 3. order fallback. ipowatch lists SME FIRST, Mainboard second — verified
-  //    20 Sep 2026 when NSE's own IPO turned up in the second table. Position
-  //    is not a safe signal; this exists only for when NSE is unreachable.
-  if (live.length === 2) {
-    const guess = live[0].idx === c.idx ? "SME" : "Mainboard";
-    console.log(`    [${c.idx}] no label found; using table order -> ${guess}`);
-    return guess;
-  }
-  console.log(`    [${c.idx}] no label found and order is ambiguous -> unknown`);
-  return "";
-}
-
 function extractRows($, c) {
   const rows = [];
   c.$t.find("tr").slice(1).each((_, tr) => {
@@ -485,16 +418,31 @@ function extractRows($, c) {
     if (!tds.length) return;
     const cell = i => (i === undefined || i >= tds.length) ? "" : clean($(tds[i]).text());
     const m = c.map;
+    const href = (m.ipo !== undefined && tds[m.ipo]) ? ($(tds[m.ipo]).find("a").attr("href") || "") : "";
     rows.push({
       ipo: cell(m.ipo), gmpRaw: cell(m.gmp), price: cell(m.price),
       listing: cell(m.listing), date: cell(m.date), type: cell(m.type),
-      status: cell(m.status), updated: cell(m.updated),
+      status: cell(m.status), updated: cell(m.updated), href,
     });
   });
   return rows;
 }
 
 // ---------------- validation ----------------
+// Per-row type, in order of authority:
+//   1. an explicit Type column, if the source has one
+//   2. NSE's mainboard list — authoritative when it loaded
+//   3. "sme" in the row's own link URL (secondary signal)
+//   4. Unknown — never a positional guess
+function resolveRowType(r) {
+  const col = normalizeType(r.type);
+  if (col) return col;
+  if (NSE_NAMES && NSE_NAMES.size) return nseMatches(r.ipo, NSE_NAMES) ? "Mainboard" : "SME";
+  if (r.href && /(^|[\/_-])sme([\/_.-]|$)/i.test(r.href)) return "SME";
+  return "Unknown";
+}
+
+
 function validateAndNormalize(rawRows, sourceName) {
   const out = [];
   let considered = 0;
@@ -513,7 +461,7 @@ function validateAndNormalize(rawRows, sourceName) {
       price: clean(r.price),
       listing: clean(r.listing),
       date: clean(r.date),
-      type: normalizeType(r.type) || "Unknown",
+      type: resolveRowType(r),
       status,
     });
   }
@@ -929,7 +877,7 @@ ${urls.join("\n")}
     console.log(`  NSE knows ${NSE_NAMES.size} company name(s)`);
   } catch (e) {
     NSE_NAMES = new Set();
-    console.log(`  NSE unavailable: ${e.message} — will fall back to positional inference`);
+    console.log(`  NSE unavailable: ${e.message} — types will come from row links, else Unknown`);
   }
 
   let rows = null, sourceUsed = null;
