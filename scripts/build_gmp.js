@@ -429,17 +429,105 @@ function extractRows($, c) {
 }
 
 // ---------------- validation ----------------
-// Per-row type, in order of authority:
-//   1. an explicit Type column, if the source has one
-//   2. NSE's mainboard list — authoritative when it loaded
-//   3. "sme" in the row's own link URL (secondary signal)
-//   4. Unknown — never a positional guess
-function resolveRowType(r) {
-  const col = normalizeType(r.type);
-  if (col) return col;
-  if (NSE_NAMES && NSE_NAMES.size) return nseMatches(r.ipo, NSE_NAMES) ? "Mainboard" : "SME";
-  if (r.href && /(^|[\/_-])sme([\/_.-]|$)/i.test(r.href)) return "SME";
-  return "Unknown";
+// ============================================================
+// IPO TYPE RESOLUTION — per company, resolved once, cached forever.
+//
+// ipowatch has no Type column, its two tables mix both types, its URLs carry
+// no type marker, and NSE's API is too flaky to be primary. A company's type
+// never changes, so it is resolved ONCE and stored in data/ipo_types.json.
+//
+// Order of authority for an uncached company:
+//   1. data/ipo_types.json entry        (includes your manual corrections)
+//   2. NSE mainboard list, if it loaded  -> Mainboard
+//   3. the company's own ipowatch page   -> "listed at NSE SME / BSE SME" etc.
+//   4. Unknown (retried next run)
+//
+// To correct a wrong type by hand, edit data/ipo_types.json and set
+// "source": "manual" — manual entries are never overwritten.
+// ============================================================
+const TYPES_FILE = "data/ipo_types.json";
+const MAX_DETAIL_FETCHES = 40;
+
+async function loadTypeCache() {
+  try { return JSON.parse(await fs.readFile(TYPES_FILE, "utf8")); } catch { return {}; }
+}
+async function saveTypeCache(cache) {
+  await fs.mkdir("data", { recursive: true });
+  const sorted = Object.fromEntries(Object.keys(cache).sort().map(k => [k, cache[k]]));
+  await fs.writeFile(TYPES_FILE, JSON.stringify(sorted, null, 2) + "\n", "utf8");
+}
+
+// Decide Mainboard/SME from an ipowatch IPO detail page. Navigation, sidebars
+// and footers are stripped first: ipowatch's menu links to "SME IPO" on every
+// page, so a naive count of "SME" would call every company SME.
+function classifyDetailPage(html) {
+  const $ = load(html);
+  $("header, nav, footer, aside, script, style, noscript, form, .sidebar, #sidebar, .widget, .menu, .nav, .breadcrumb, .related, .comments, #comments").remove();
+  const h1 = clean($("h1").first().text());
+  const body = clean(
+    $("article").first().text() || $(".entry-content").first().text() ||
+    $("main").first().text() || $("body").text()
+  );
+
+  // 1. explicit listing statement — the most reliable signal
+  const listing = body.match(/(?:listing\s+at|listed\s+(?:on|at)|will\s+list\s+on|to\s+be\s+listed\s+on)\s*:?\s*(?:the\s+)?([A-Za-z ,&/]{2,40})/i);
+  if (listing) {
+    const seg = listing[1];
+    if (/\bsme\b|emerge/i.test(seg)) return { type: "SME", why: `listing "${clean(seg)}"` };
+    if (/\b(nse|bse)\b/i.test(seg))  return { type: "Mainboard", why: `listing "${clean(seg)}"` };
+  }
+  // 2. the page heading
+  if (/\bsme\b/i.test(h1)) return { type: "SME", why: `heading "${h1.slice(0, 50)}"` };
+  // 3. exchange names in the body
+  if (/\b(nse\s+emerge|bse\s+sme|nse\s+sme)\b/i.test(body)) return { type: "SME", why: "body names an SME platform" };
+  const sme = (body.match(/\bSME\b/g) || []).length;
+  if (sme >= 3) return { type: "SME", why: `${sme} SME mentions in content` };
+  if (sme === 0 && /\b(BSE|NSE)\b/.test(body)) return { type: "Mainboard", why: "names BSE/NSE, no SME mention" };
+  return { type: "Unknown", why: `ambiguous (${sme} SME mentions)` };
+}
+
+async function resolveTypes(rows) {
+  const cache = await loadTypeCache();
+  let fromCache = 0, fromNse = 0, fromPage = 0, unresolved = 0, fetched = 0;
+  const log = [];
+
+  for (const r of rows) {
+    if (r.type && r.type !== "Unknown") continue;        // source had a Type column
+    const key = r.slug || slugify(r.ipo);
+    const hit = cache[key];
+    if (hit && hit.type && hit.type !== "Unknown") { r.type = hit.type; fromCache++; continue; }
+
+    if (NSE_NAMES && NSE_NAMES.size && nseMatches(r.ipo, NSE_NAMES)) {
+      r.type = "Mainboard";
+      cache[key] = { name: r.ipo, type: "Mainboard", source: "nse", at: new Date().toISOString().slice(0, 10) };
+      fromNse++; continue;
+    }
+
+    if (r.href && fetched < MAX_DETAIL_FETCHES) {
+      fetched++;
+      try {
+        const html = await fetchHtml(r.href, 2);
+        const verdict = classifyDetailPage(html);
+        r.type = verdict.type;
+        log.push(`    ${r.ipo.padEnd(28)} ${verdict.type.padEnd(10)} (${verdict.why})`);
+        if (verdict.type !== "Unknown") {
+          cache[key] = { name: r.ipo, type: verdict.type, source: "ipowatch-page", why: verdict.why, at: new Date().toISOString().slice(0, 10) };
+          fromPage++;
+        } else unresolved++;
+        await new Promise(res => setTimeout(res, 400));   // be polite to the source
+      } catch (e) {
+        log.push(`    ${r.ipo.padEnd(28)} Unknown    (detail page failed: ${e.message})`);
+        unresolved++;
+      }
+    } else {
+      unresolved++;
+    }
+  }
+
+  console.log(`Type resolution: ${fromCache} cached, ${fromNse} via NSE, ${fromPage} via detail page, ${unresolved} unresolved (${fetched} pages fetched)`);
+  if (log.length) { console.log("  newly classified:"); for (const l of log) console.log(l); }
+  await saveTypeCache(cache);
+  return { unresolved };
 }
 
 
@@ -461,7 +549,8 @@ function validateAndNormalize(rawRows, sourceName) {
       price: clean(r.price),
       listing: clean(r.listing),
       date: clean(r.date),
-      type: resolveRowType(r),
+      type: normalizeType(r.type) || "Unknown",
+      href: r.href || "",
       status,
     });
   }
@@ -490,28 +579,6 @@ function validateAndNormalize(rawRows, sourceName) {
     }
   }
 
-  // Type-skew guard. If essentially every row lands in one bucket, the Type
-  // column probably was not read and normalizeType fell through to its
-  // default — which is exactly how "no Mainboard IPOs exist" happens.
-  const sme = dedup.filter(r => r.type === "SME").length;
-  const main = dedup.filter(r => r.type === "Mainboard").length;
-  const unk = dedup.filter(r => r.type === "Unknown").length;
-  console.log(`  type split: ${main} Mainboard / ${sme} SME${unk ? ` / ${unk} Unknown` : ""}`);
-  if (unk) console.log(`  WARNING: ${unk} row(s) have no usable type — they will not appear under the Mainboard or SME filters.`);
-  // Post-hoc cross-check: whatever labelled the tables, NSE is the authority.
-  // Any row we call SME that the exchange lists as mainboard means the
-  // labelling inverted — the exact failure that shipped 31 wrong rows.
-  if (NSE_NAMES && NSE_NAMES.size) {
-    const wrong = dedup.filter(r => r.type === "SME" && nseMatches(r.ipo, NSE_NAMES));
-    if (wrong.length) {
-      console.log(`  TYPE MISMATCH: ${wrong.length} row(s) typed SME but present in NSE's mainboard list:`);
-      for (const w of wrong) console.log(`    - ${w.ipo}`);
-      console.log(`  Table labelling is probably inverted. Do not trust the Mainboard/SME filters until this is fixed.`);
-    }
-  }
-  if (dedup.length >= 5 && unk === 0 && (main === 0 || sme === 0)) {
-    console.log(`  WARNING: every row is ${main === 0 ? "SME" : "Mainboard"}. Either the Type column was not parsed, or a whole table was missed. Check the table inventory above.`);
-  }
   return dedup;
 }
 
@@ -927,6 +994,20 @@ ${urls.join("\n")}
     console.log(`  If these are the same company, add to ${ALIAS_FILE}:`);
     for (const s2 of suspects) {
       console.log(`    ${JSON.stringify(s2.name)}: ${JSON.stringify(s2.existing)}`);
+    }
+  }
+
+  await resolveTypes(rows);
+
+  // type split + safety net, now that types are final
+  {
+    const main = rows.filter(r => r.type === "Mainboard").length;
+    const sme = rows.filter(r => r.type === "SME").length;
+    const unk = rows.filter(r => r.type === "Unknown").length;
+    console.log(`Final type split: ${main} Mainboard / ${sme} SME${unk ? ` / ${unk} Unknown` : ""}`);
+    if (NSE_NAMES && NSE_NAMES.size) {
+      const wrong = rows.filter(r => r.type === "SME" && nseMatches(r.ipo, NSE_NAMES));
+      for (const w of wrong) console.log(`  TYPE MISMATCH: "${w.ipo}" is typed SME but NSE lists it as mainboard — correct it in ${TYPES_FILE}`);
     }
   }
 
