@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-09-21T14:27:30.716Z",
-  "updatedLocal": "21/09/2026, 19:57:30 IST",
+  "updatedIso": "2026-09-22T07:54:14.634Z",
+  "updatedLocal": "22/09/2026, 13:24:14 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Moneyview",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹34",
-      "listing": "₹34 (0.00%)",
+      "listing": "₹39 (14.71%)",
       "date": "24-28 Sept",
       "type": "Unknown",
       "status": "upcoming",
@@ -38,10 +38,10 @@
     },
     {
       "ipo": "Swastika Infra",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹185",
-      "listing": "₹188 (1.62%)",
+      "listing": "₹193 (4.32%)",
       "date": "23-25 Sept",
       "type": "Unknown",
       "status": "upcoming",
@@ -60,10 +60,10 @@
     },
     {
       "ipo": "ArMee Infotech",
-      "gmp": 1,
-      "gmpRaw": "₹1",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹375",
-      "listing": "₹376 (0.27%)",
+      "listing": "₹387 (3.20%)",
       "date": "23-25 Sept",
       "type": "Unknown",
       "status": "upcoming",
@@ -71,13 +71,13 @@
     },
     {
       "ipo": "Varmora Granito",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹148",
-      "listing": "₹158 (6.76%)",
+      "listing": "₹153 (3.38%)",
       "date": "22-24 Sept",
       "type": "Unknown",
-      "status": "upcoming",
+      "status": "active",
       "slug": "varmora-granito"
     },
     {
@@ -93,10 +93,10 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 61,
-      "gmpRaw": "₹61",
+      "gmp": 65,
+      "gmpRaw": "₹65",
       "price": "₹1785",
-      "listing": "₹1846 (3.42%)",
+      "listing": "₹1850 (3.64%)",
       "date": "17-21 Sept",
       "type": "Unknown",
       "status": "closed",
@@ -115,10 +115,10 @@
     },
     {
       "ipo": "SS Retail",
-      "gmp": 156,
-      "gmpRaw": "₹156",
+      "gmp": 140,
+      "gmpRaw": "₹140",
       "price": "₹424",
-      "listing": "₹580 (36.79%)",
+      "listing": "₹564 (33.02%)",
       "date": "16-18 Sept",
       "type": "Unknown",
       "status": "closed",
@@ -134,17 +134,6 @@
       "type": "Unknown",
       "status": "closed",
       "slug": "jindal-supreme"
-    },
-    {
-      "ipo": "Manika Plastech",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹43",
-      "listing": "₹44 (2.33%)",
-      "date": "11-16 Sept",
-      "type": "Unknown",
-      "status": "closed",
-      "slug": "manika-plastech"
     },
     {
       "ipo": "Bench Mark Infotech",
@@ -275,7 +264,7 @@
       "listing": "₹72 (0.00%)",
       "date": "22-24 Sept",
       "type": "Unknown",
-      "status": "upcoming",
+      "status": "active",
       "slug": "anand-seamless"
     },
     {
@@ -286,7 +275,7 @@
       "listing": "₹106 (0.00%)",
       "date": "22-24 Sept",
       "type": "Unknown",
-      "status": "upcoming",
+      "status": "active",
       "slug": "himalaya-nutravedics"
     },
     {
@@ -302,10 +291,10 @@
     },
     {
       "ipo": "Robokidz Eduventures",
-      "gmp": 51,
-      "gmpRaw": "₹51",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹106",
-      "listing": "₹157 (48.11%)",
+      "listing": "₹161 (51.89%)",
       "date": "21-23 Sept",
       "type": "Unknown",
       "status": "active",
@@ -335,10 +324,10 @@
     },
     {
       "ipo": "SpectraA Technology",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 67,
+      "gmpRaw": "₹67",
       "price": "₹118",
-      "listing": "₹163 (38.14%)",
+      "listing": "₹185 (56.78%)",
       "date": "17-21 Sept",
       "type": "Unknown",
       "status": "closed",
@@ -368,10 +357,10 @@
     },
     {
       "ipo": "Shakti Polytarp",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹59",
-      "listing": "₹65 (10.17%)",
+      "listing": "₹69 (16.95%)",
       "date": "15-17 Sept",
       "type": "Unknown",
       "status": "closed",
@@ -387,28 +376,6 @@
       "type": "Unknown",
       "status": "closed",
       "slug": "quanto-agroworld"
-    },
-    {
-      "ipo": "Injecto Polymers",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹100",
-      "listing": "₹100 (0.00%)",
-      "date": "11-16 Sept",
-      "type": "Unknown",
-      "status": "closed",
-      "slug": "injecto-polymers"
-    },
-    {
-      "ipo": "Century Business Media",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹74",
-      "listing": "₹74 (0.00%)",
-      "date": "11-16 Sept",
-      "type": "Unknown",
-      "status": "closed",
-      "slug": "century-business-media"
     }
   ]
 }
