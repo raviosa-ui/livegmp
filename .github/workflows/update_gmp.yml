@@ -32,7 +32,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
-          file_pattern: "gmp.json index.html sitemap.xml ipo/index.html ipo/*/index.html"
+          file_pattern: "gmp.json index.html sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json"
           branch: main
 
       - name: Notify on failure (Telegram)
