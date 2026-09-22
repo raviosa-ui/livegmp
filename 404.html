@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not allotted | LiveGMP</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="This page doesn't exist on LiveGMP. See IPOs open right now with live GMP.">
+  <link rel="stylesheet" href="/static/gmp.css">
+  <style>
+    .nf { max-width: 760px; margin: 28px auto 0; padding: 0 16px; }
+
+    /* ---- the allotment slip: the one memorable element ---- */
+    .slip {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--line, #e7eaef);
+      border-radius: 6px;
+      padding: 22px 24px 20px;
+      box-shadow: 0 1px 0 rgba(15,23,42,.04);
+      overflow: hidden;
+    }
+    .slip::before {           /* perforated tear edge, like a registrar printout */
+      content: "";
+      position: absolute; left: 0; right: 0; top: 0; height: 6px;
+      background: radial-gradient(circle at 6px 0, transparent 4px, #fff 4.5px) 0 0 / 12px 6px repeat-x;
+      border-bottom: 1px dashed var(--line, #e7eaef);
+    }
+    .slip-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 12px; margin: 6px 0 16px; flex-wrap: wrap;
+    }
+    .slip-title { font-size: 15px; font-weight: 700; color: #0d1424; }
+    .slip-ref { font-size: 12.5px; color: var(--muted, #64748b); font-variant-numeric: tabular-nums; }
+    .slip-rows { display: grid; grid-template-columns: 150px 1fr; row-gap: 9px; column-gap: 16px; font-size: 14px; }
+    .slip-rows dt { color: var(--muted, #64748b); }
+    .slip-rows dd { margin: 0; color: #1c2434; font-weight: 600; word-break: break-all; font-variant-numeric: tabular-nums; }
+    .slip-rows dd.zero { color: #b3261e; }
+
+    .stamp {
+      position: absolute; right: 22px; top: 50%;
+      transform: translateY(-50%) rotate(-11deg);
+      border: 3px solid #b3261e; color: #b3261e;
+      border-radius: 8px; padding: 8px 14px;
+      font-weight: 800; font-size: 20px; letter-spacing: .06em;
+      text-transform: uppercase; line-height: 1;
+      opacity: .82; mix-blend-mode: multiply;
+      animation: stamp .42s cubic-bezier(.2,.9,.3,1.25) .25s both;
+      pointer-events: none;
+    }
+    .stamp small { display: block; font-size: 10px; letter-spacing: .12em; margin-top: 4px; font-weight: 700; }
+    @keyframes stamp {
+      from { transform: translateY(-50%) rotate(-11deg) scale(2.2); opacity: 0; }
+      to   { transform: translateY(-50%) rotate(-11deg) scale(1);   opacity: .82; }
+    }
+    @media (prefers-reduced-motion: reduce) { .stamp { animation: none; } }
+
+    /* ---- message ---- */
+    .nf h1 { font-size: 30px; line-height: 1.2; letter-spacing: -0.5px; margin: 30px 0 8px; color: #0d1424; }
+    .nf .lead { font-size: 16px; line-height: 1.6; color: #3a4356; margin: 0 0 22px; max-width: 60ch; }
+
+    .guess {
+      display: none; background: #f0f9f7; border: 1px solid #cbe9e3; border-radius: 10px;
+      padding: 12px 16px; margin: 0 0 22px; font-size: 15px; color: #0a5049;
+    }
+    .guess a { color: #0a5049; font-weight: 700; }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 34px; }
+    .btn {
+      display: inline-block; padding: 11px 18px; border-radius: 9px; font-weight: 700;
+      font-size: 14px; text-decoration: none; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--navy, #0b1220); color: #fff; }
+    .btn-primary:hover { background: #0a5049; }
+    .btn-quiet { background: #fff; color: #0d1424; border-color: var(--line, #e7eaef); }
+    .btn-quiet:hover { border-color: #0f766e; color: #0a5049; }
+    .btn:focus-visible, .search input:focus-visible { outline: 3px solid #34d399; outline-offset: 2px; }
+
+    /* ---- search ---- */
+    .nf h2 { font-size: 18px; margin: 0 0 10px; color: #0d1424; }
+    .search { margin: 0 0 30px; }
+    .search input {
+      width: 100%; box-sizing: border-box; padding: 12px 14px; font-size: 15px;
+      border: 1px solid var(--line, #e7eaef); border-radius: 9px; background: #fff; color: #0d1424;
+    }
+    .results { list-style: none; padding: 0; margin: 8px 0 0; }
+    .results li a {
+      display: flex; justify-content: space-between; gap: 12px; padding: 10px 4px;
+      border-bottom: 1px solid var(--line, #e7eaef); text-decoration: none; color: #0d1424; font-size: 14.5px;
+    }
+    .results li a:hover { color: #0a5049; }
+    .results .meta { color: var(--muted, #64748b); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .empty { color: var(--muted, #64748b); font-size: 14px; padding: 8px 4px; }
+
+    /* ---- open now ---- */
+    .open { display: none; }
+    .open-row {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center;
+      padding: 12px 4px; border-bottom: 1px solid var(--line, #e7eaef); text-decoration: none; color: #0d1424;
+    }
+    .open-row:hover .name { color: #0a5049; }
+    .open-row .name { font-weight: 700; font-size: 15px; }
+    .open-row .type { font-size: 12px; color: var(--muted, #64748b); }
+    .open-row .gmp { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 15px; }
+    .open-row .gmp.up { color: #0a7a3d; }
+    .open-row .gmp.down { color: #b3261e; }
+    .open-row .gmp.flat { color: #5c6779; }
+    .open-row .when { font-size: 13px; color: var(--muted, #64748b); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    @media (max-width: 600px) {
+      .slip-rows { grid-template-columns: 1fr; row-gap: 2px; }
+      .slip-rows dd { margin-bottom: 8px; }
+      .stamp { top: auto; bottom: 16px; right: 14px; transform: rotate(-11deg); font-size: 16px; animation: none; }
+      .nf h1 { font-size: 25px; }
+      .open-row { grid-template-columns: 1fr auto; }
+      .open-row .when { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">LiveGMP<span class="brand-dot">.in</span></a>
+  <nav class="site-nav">
+    <a href="/">Live GMP</a>
+    <a href="/ipo/">IPO Analysis</a>
+    <a href="/what-is-gmp.html">What is GMP?</a>
+    <a href="/ipo-allotment-status.html">Allotment</a>
+  </nav>
+</header>
+
+<main class="nf">
+  <section class="slip" aria-label="Page request result">
+    <div class="slip-head">
+      <span class="slip-title">Allotment status</span>
+      <span class="slip-ref">Ref. 404</span>
+    </div>
+    <dl class="slip-rows">
+      <dt>Applied for</dt>      <dd id="applied">this page</dd>
+      <dt>Pages applied</dt>    <dd>1</dd>
+      <dt>Pages allotted</dt>   <dd class="zero">0</dd>
+      <dt>Refund</dt>           <dd>Your time — nothing lost</dd>
+    </dl>
+    <div class="stamp" aria-hidden="true">Not allotted<small>Better luck next issue</small></div>
+  </section>
+
+  <h1>This page wasn't allotted.</h1>
+  <p class="lead">The address you tried doesn't exist on LiveGMP — it may have been renamed, or the IPO has moved on. Plenty of issues are open right now, though.</p>
+
+  <p class="guess" id="guess"></p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="/">See today's live GMP</a>
+    <a class="btn btn-quiet" href="/ipo/">Browse all IPO pages</a>
+  </div>
+
+  <div class="search">
+    <h2>Find an IPO</h2>
+    <input id="q" type="search" placeholder="Type a company name, e.g. Hero Motors" autocomplete="off" aria-label="Search IPOs by company name">
+    <ul class="results" id="results" aria-live="polite"></ul>
+  </div>
+
+  <section class="open" id="open">
+    <h2>Open for subscription now</h2>
+    <div id="openList"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>GMP figures shown on LiveGMP.in are unofficial, informational estimates based on grey-market activity. Investments in securities are subject to market risk — consult a SEBI-registered advisor before investing.</p>
+  <p>&copy; LiveGMP.in · <a href="/">Live IPO GMP</a> · <a href="/ipo/">All IPO Pages</a> · <a href="/what-is-gmp.html">GMP Guide</a> · <a href="/ipo-allotment-status.html">Allotment Status</a></p>
+</footer>
+
+<script>
+(function () {
+  var path = decodeURIComponent(location.pathname || "/");
+  var applied = document.getElementById("applied");
+  applied.textContent = path.length > 60 ? path.slice(0, 57) + "…" : path;
+
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  };
+  var slugify = function (s) {
+    return String(s || "").toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-").replace(/^-|-$/g, "");
+  };
+  var tokens = function (s) {
+    return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ")
+      .replace(/\b(ipo|limited|ltd|india|private|pvt|gmp|the)\b/g, " ")
+      .split(" ").filter(function (t) { return t.length > 2; });
+  };
+  var score = function (a, b) {
+    var ta = tokens(a), tb = tokens(b);
+    if (!ta.length || !tb.length) return 0;
+    var shared = ta.filter(function (t) { return tb.indexOf(t) !== -1; }).length;
+    return shared / Math.min(ta.length, tb.length);
+  };
+  var gmpClass = function (g) { return g == null ? "flat" : g > 0 ? "up" : g < 0 ? "down" : "flat"; };
+  var gmpText = function (g) { return g == null ? "—" : (g > 0 ? "▲ ₹" + g : g < 0 ? "▼ ₹" + Math.abs(g) : "₹0"); };
+
+  fetch("/gmp.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !Array.isArray(data.rows)) return;
+      var rows = data.rows.map(function (r) {
+        r.slug = r.slug || slugify(r.ipo);
+        return r;
+      });
+
+      // Did you mean — guess the IPO from the broken URL
+      var m = path.match(/\/ipo\/([^\/]+)/i);
+      var wanted = m ? m[1].replace(/-/g, " ") : path.replace(/[\/_.-]+/g, " ");
+      var best = null, bestScore = 0;
+      rows.forEach(function (r) {
+        var s = Math.max(score(wanted, r.ipo), score(wanted, r.slug.replace(/-/g, " ")));
+        if (s > bestScore) { bestScore = s; best = r; }
+      });
+      if (best && bestScore >= 0.5) {
+        var g = document.getElementById("guess");
+        g.innerHTML = 'Were you looking for <a href="/ipo/' + esc(best.slug) + '/">' + esc(best.ipo) + ' IPO</a>? GMP right now: <strong>' + esc(gmpText(best.gmp)) + '</strong>.';
+        g.style.display = "block";
+      }
+
+      // Open for subscription now — highest GMP first
+      var open = rows.filter(function (r) { return r.status === "active"; })
+        .sort(function (a, b) { return (b.gmp == null ? -1e9 : b.gmp) - (a.gmp == null ? -1e9 : a.gmp); })
+        .slice(0, 6);
+      if (open.length) {
+        document.getElementById("openList").innerHTML = open.map(function (r) {
+          return '<a class="open-row" href="/ipo/' + esc(r.slug) + '/">' +
+                   '<span><span class="name">' + esc(r.ipo) + '</span><br><span class="type">' + esc(r.type && r.type !== "Unknown" ? r.type : "IPO") + '</span></span>' +
+                   '<span class="gmp ' + gmpClass(r.gmp) + '">' + esc(gmpText(r.gmp)) + '</span>' +
+                   '<span class="when">' + esc(r.date || "") + '</span>' +
+                 '</a>';
+        }).join("");
+        document.getElementById("open").style.display = "block";
+      }
+
+      // Search
+      var q = document.getElementById("q"), out = document.getElementById("results");
+      q.addEventListener("input", function () {
+        var term = q.value.trim().toLowerCase();
+        if (!term) { out.innerHTML = ""; return; }
+        var hits = rows.filter(function (r) { return r.ipo.toLowerCase().indexOf(term) !== -1; }).slice(0, 8);
+        out.innerHTML = hits.length
+          ? hits.map(function (r) {
+              return '<li><a href="/ipo/' + esc(r.slug) + '/"><span>' + esc(r.ipo) + '</span><span class="meta">' + esc(gmpText(r.gmp)) + ' · ' + esc(r.status) + '</span></a></li>';
+            }).join("")
+          : '<li class="empty">No tracked IPO matches “' + esc(q.value) + '”. Try the <a href="/ipo/">full IPO list</a>.</li>';
+      });
+    })
+    .catch(function () { /* page still works without live data */ });
+})();
+</script>
+</body>
+</html>
