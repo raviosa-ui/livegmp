@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-22T07:54:14.634Z",
-  "updatedLocal": "22/09/2026, 13:24:14 IST",
+  "updatedIso": "2026-09-22T09:23:11.445Z",
+  "updatedLocal": "22/09/2026, 14:53:11 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,7 +10,8 @@
       "price": "₹34",
       "listing": "₹39 (14.71%)",
       "date": "24-28 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/moneyview-ipo/",
       "status": "upcoming",
       "slug": "moneyview"
     },
@@ -21,7 +22,8 @@
       "price": "₹405",
       "listing": "₹465 (14.81%)",
       "date": "24-28 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/a-one-steels-ipo/",
       "status": "upcoming",
       "slug": "a-one-steels"
     },
@@ -32,7 +34,8 @@
       "price": "₹134",
       "listing": "₹166 (23.88%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/adroit-industries-ipo/",
       "status": "upcoming",
       "slug": "adroit-industries"
     },
@@ -43,7 +46,8 @@
       "price": "₹185",
       "listing": "₹193 (4.32%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/swastika-infra-ipo/",
       "status": "upcoming",
       "slug": "swastika-infra"
     },
@@ -54,7 +58,8 @@
       "price": "₹362",
       "listing": "₹378 (4.42%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/elevate-campuses-ipo/",
       "status": "upcoming",
       "slug": "elevate-campuses"
     },
@@ -65,7 +70,8 @@
       "price": "₹375",
       "listing": "₹387 (3.20%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/armee-infotech-ipo/",
       "status": "upcoming",
       "slug": "armee-infotech"
     },
@@ -76,7 +82,8 @@
       "price": "₹148",
       "listing": "₹153 (3.38%)",
       "date": "22-24 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/varmora-granito-ipo/",
       "status": "active",
       "slug": "varmora-granito"
     },
@@ -87,7 +94,8 @@
       "price": "₹99",
       "listing": "₹99 (0.00%)",
       "date": "17-21 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/sonaselection-india-ipo/",
       "status": "closed",
       "slug": "sonaselection-india"
     },
@@ -98,7 +106,8 @@
       "price": "₹1785",
       "listing": "₹1850 (3.64%)",
       "date": "17-21 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/nse-ipo/",
       "status": "closed",
       "slug": "national-stock-exchange"
     },
@@ -109,7 +118,8 @@
       "price": "₹84",
       "listing": "₹84 (0.00%)",
       "date": "16-18 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/hero-motors-ipo/",
       "status": "closed",
       "slug": "hero-motors"
     },
@@ -120,7 +130,8 @@
       "price": "₹424",
       "listing": "₹564 (33.02%)",
       "date": "16-18 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/ss-retail-ipo/",
       "status": "closed",
       "slug": "ss-retail"
     },
@@ -131,7 +142,8 @@
       "price": "₹93",
       "listing": "₹123 (32.26%)",
       "date": "16-18 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/jindal-supreme-ipo/",
       "status": "closed",
       "slug": "jindal-supreme"
     },
@@ -142,7 +154,8 @@
       "price": "₹110",
       "listing": "₹122 (10.91%)",
       "date": "25-29 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/bench-mark-infotech-services-ipo/",
       "status": "upcoming",
       "slug": "bench-mark-infotech"
     },
@@ -153,7 +166,8 @@
       "price": "₹113",
       "listing": "₹113 (0.00%)",
       "date": "25-29 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/sai-urja-ipo/",
       "status": "upcoming",
       "slug": "sai-urja-indo-ventures"
     },
@@ -164,7 +178,8 @@
       "price": "₹103",
       "listing": "₹103 (0.00%)",
       "date": "25-29 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/himalayan-solar-ipo/",
       "status": "upcoming",
       "slug": "himalayan-solar"
     },
@@ -175,7 +190,8 @@
       "price": "₹90",
       "listing": "₹90 (0.00%)",
       "date": "24-28 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/green-asia-impex-ipo/",
       "status": "upcoming",
       "slug": "green-asia-impex"
     },
@@ -186,7 +202,8 @@
       "price": "₹101",
       "listing": "₹101 (0.00%)",
       "date": "24-28 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/peshwa-wheat-ipo/",
       "status": "upcoming",
       "slug": "peshwa-wheat"
     },
@@ -197,7 +214,8 @@
       "price": "₹64",
       "listing": "₹64 (0.00%)",
       "date": "24-28 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/roopa-screen-ipo/",
       "status": "upcoming",
       "slug": "roopa-screen"
     },
@@ -208,7 +226,8 @@
       "price": "₹78",
       "listing": "₹78 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/coreintegra-consulting-ipo/",
       "status": "upcoming",
       "slug": "coreintegra-consulting"
     },
@@ -219,7 +238,8 @@
       "price": "₹88",
       "listing": "₹88 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/unitec-fibres-ipo/",
       "status": "upcoming",
       "slug": "unitec-fibres"
     },
@@ -230,7 +250,8 @@
       "price": "₹125",
       "listing": "₹125 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/skoffset-ipo/",
       "status": "upcoming",
       "slug": "skoffset"
     },
@@ -241,7 +262,8 @@
       "price": "₹54",
       "listing": "₹54 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/liqvd-digital-ipo/",
       "status": "upcoming",
       "slug": "liqvd-digital"
     },
@@ -252,7 +274,8 @@
       "price": "₹115",
       "listing": "₹115 (0.00%)",
       "date": "23-25 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in//pooja-logistics-ipo/",
       "status": "upcoming",
       "slug": "pooja-logistics"
     },
@@ -263,7 +286,8 @@
       "price": "₹72",
       "listing": "₹72 (0.00%)",
       "date": "22-24 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/anand-seamless-ipo/",
       "status": "active",
       "slug": "anand-seamless"
     },
@@ -274,7 +298,8 @@
       "price": "₹106",
       "listing": "₹106 (0.00%)",
       "date": "22-24 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/himalaya-nutravedics-ipo/",
       "status": "active",
       "slug": "himalaya-nutravedics"
     },
@@ -285,7 +310,8 @@
       "price": "₹37",
       "listing": "₹37 (0.00%)",
       "date": "21-23 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/vivekanand-cotspin-ipo/",
       "status": "active",
       "slug": "vivekanand-cotspin"
     },
@@ -296,7 +322,8 @@
       "price": "₹106",
       "listing": "₹161 (51.89%)",
       "date": "21-23 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/robokidz-eduventures-ipo/",
       "status": "active",
       "slug": "robokidz-eduventures"
     },
@@ -307,7 +334,8 @@
       "price": "₹116",
       "listing": "₹116 (0.00%)",
       "date": "21-23 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/fx-multitech-ipo/",
       "status": "active",
       "slug": "fx-multitech"
     },
@@ -318,7 +346,8 @@
       "price": "₹53",
       "listing": "₹53 (0.00%)",
       "date": "18-22 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/axiom-gas-engineering-ipo-details/",
       "status": "active",
       "slug": "axiom-gas-engineering"
     },
@@ -329,7 +358,8 @@
       "price": "₹118",
       "listing": "₹185 (56.78%)",
       "date": "17-21 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/spectraa-technology-ipo/",
       "status": "closed",
       "slug": "spectraa-technology"
     },
@@ -340,7 +370,8 @@
       "price": "₹101",
       "listing": "₹104 (2.97%)",
       "date": "17-21 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/kheria-autocomp-ipo/",
       "status": "closed",
       "slug": "kheria-autocomp"
     },
@@ -351,7 +382,8 @@
       "price": "₹341",
       "listing": "₹344 (0.88%)",
       "date": "15-17 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/vama-wovenfab-ipo/",
       "status": "closed",
       "slug": "vama-wovenfab"
     },
@@ -362,7 +394,8 @@
       "price": "₹59",
       "listing": "₹69 (16.95%)",
       "date": "15-17 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/shakti-polytarp-ipo/",
       "status": "closed",
       "slug": "shakti-polytarp"
     },
@@ -373,7 +406,8 @@
       "price": "₹67",
       "listing": "₹67 (0.00%)",
       "date": "15-17 Sept",
-      "type": "Unknown",
+      "type": "SME",
+      "href": "https://ipowatch.in/quanto-agroworld-ipo/",
       "status": "closed",
       "slug": "quanto-agroworld"
     }
