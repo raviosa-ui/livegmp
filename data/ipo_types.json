@@ -7,6 +7,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "acevector": {
+    "name": "Acevector",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
   "adroit-industries": {
     "name": "Adroit Industries",
     "type": "Mainboard",
@@ -55,6 +63,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "dudani-retail": {
+    "name": "Dudani Retail",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
   "elevate-campuses": {
     "name": "Elevate Campuses",
     "type": "Mainboard",
@@ -68,6 +84,14 @@
     "type": "SME",
     "source": "ipowatch-page",
     "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
+  "german-green-steel": {
+    "name": "German Green Steel",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
   },
@@ -143,8 +167,24 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "orient-cables": {
+    "name": "Orient Cables",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE & NSE\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
   "peshwa-wheat": {
     "name": "Peshwa Wheat",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
+  "pind-hospitality": {
+    "name": "Pind Hospitality",
     "type": "SME",
     "source": "ipowatch-page",
     "why": "listing value \"BSE SME\"",
@@ -180,6 +220,14 @@
     "type": "SME",
     "source": "ipowatch-page",
     "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-22"
+  },
+  "runwal-enterprises": {
+    "name": "Runwal Enterprises",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
   },

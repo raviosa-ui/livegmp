@@ -1,8 +1,56 @@
 {
-  "updatedIso": "2026-09-22T10:06:14.253Z",
-  "updatedLocal": "22/09/2026, 15:36:14 IST",
+  "updatedIso": "2026-09-22T11:56:31.332Z",
+  "updatedLocal": "22/09/2026, 17:26:31 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "Acevector",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹-",
+      "listing": "₹- (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/acevector-ipo/",
+      "status": "upcoming",
+      "slug": "acevector"
+    },
+    {
+      "ipo": "German Green Steel",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹139",
+      "listing": "₹139 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/german-green-steel-ipo/",
+      "status": "upcoming",
+      "slug": "german-green-steel"
+    },
+    {
+      "ipo": "Runwal Enterprises",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹305",
+      "listing": "₹305 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/runwal-enterprises-ipo/",
+      "status": "upcoming",
+      "slug": "runwal-enterprises"
+    },
+    {
+      "ipo": "Orient Cables",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹272",
+      "listing": "₹272 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/orient-cables-ipo/",
+      "status": "upcoming",
+      "slug": "orient-cables"
+    },
     {
       "ipo": "Moneyview",
       "gmp": 5,
@@ -146,6 +194,30 @@
       "href": "https://ipowatch.in/jindal-supreme-ipo/",
       "status": "closed",
       "slug": "jindal-supreme"
+    },
+    {
+      "ipo": "Pind Hospitality",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹99",
+      "listing": "₹99 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/pind-hospitality-ipo/",
+      "status": "upcoming",
+      "slug": "pind-hospitality"
+    },
+    {
+      "ipo": "Dudani Retail",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹29",
+      "listing": "₹29 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/dudani-retail-ipo/",
+      "status": "upcoming",
+      "slug": "dudani-retail"
     },
     {
       "ipo": "Bench Mark Infotech",
@@ -348,7 +420,7 @@
       "date": "18-22 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/axiom-gas-engineering-ipo-details/",
-      "status": "active",
+      "status": "closed",
       "slug": "axiom-gas-engineering"
     },
     {
