@@ -448,9 +448,10 @@ function extractRows($, c) {
 const TYPES_FILE = "data/ipo_types.json";
 const MAX_DETAIL_FETCHES = 40;
 // Bump to discard every non-manual verdict produced by an older classifier.
+// v3: v2 stripped real Listing At values as boilerplate and discarded correct SME verdicts.
 // v2: v1 read a site-wide promo <h1> ("Q-Line Biotech NSE SME IPO review")
 //     as each company's heading and cached 34 companies as SME.
-const TYPE_CACHE_VERSION = 2;
+const TYPE_CACHE_VERSION = 3;
 
 async function loadTypeCache() {
   let raw = {};
@@ -486,26 +487,36 @@ function pageBlocks(html) {
   return { title, blocks };
 }
 
-// Decide from page-UNIQUE text only.
+// Exchange values exactly as ipowatch prints them in the Listing At field.
+// These are DATA, and legitimately identical across many pages — so they are
+// matched before boilerplate stripping and never stripped themselves.
+const RE_MAIN_VALUE = /^(?:BSE|NSE)(?:\s*(?:,|&|and)\s*(?:BSE|NSE))*$/i;
+const RE_SME_VALUE  = /^(?:(?:NSE|BSE)\s+SME|NSE\s+Emerge|BSE\s+SME\s+platform|SME\s+platform)$/i;
+
+// Strongest signal: a block that is ENTIRELY an exchange value.
+function listingValue(blocks) {
+  for (const b of blocks) {
+    const t = clean(b);
+    if (RE_SME_VALUE.test(t))  return { type: "SME", why: `listing value "${t}"` };
+    if (RE_MAIN_VALUE.test(t)) return { type: "Mainboard", why: `listing value "${t}"` };
+  }
+  return null;
+}
+
+// Decide from page-UNIQUE text (listing values are handled before this).
 function classifyUnique(title, blocks) {
   const body = blocks.join(" \n ");
 
-  // 1. explicit listing statement
-  const listRe = /(?:listing\s+at|listed\s+(?:on|at)|will\s+(?:be\s+)?list(?:ed)?\s+on|to\s+be\s+listed\s+on|shares\s+will\s+list\s+on|listing\s+on|exchange[s]?)\s*:?\s*(?:the\s+)?([A-Za-z ,&/]{2,40})/ig;
+  // ipowatch's own sentence: "<Company> IPO to list on BSE, NSE on Sep 30"
+  const listRe = /(?:\bto\s+list\s+on|listing\s+at|listed\s+(?:on|at)|will\s+(?:be\s+)?list(?:ed)?\s+on|to\s+be\s+listed\s+on|listing\s+on)\s*:?\s*(?:the\s+)?([A-Za-z ,&/]{2,40}?)(?=\s+on\s|\.|,\s*[a-z]|$|\n)/ig;
   let m;
   while ((m = listRe.exec(body))) {
     const seg = m[1];
-    if (/\bsme\b|emerge/i.test(seg)) return { type: "SME", why: `listing "${clean(seg)}"` };
-    if (/\b(nse|bse)\b/i.test(seg))  return { type: "Mainboard", why: `listing "${clean(seg)}"` };
+    if (/\bsme\b|emerge/i.test(seg)) return { type: "SME", why: `listing text "${clean(seg)}"` };
+    if (/\b(nse|bse)\b/i.test(seg))  return { type: "Mainboard", why: `listing text "${clean(seg)}"` };
   }
-  // 2. the page's own <title> — per-page by construction, unlike the first <h1>
-  if (/\bsme\b/i.test(title)) return { type: "SME", why: `page title "${title.slice(0, 60)}"` };
-  // 3. SME platform names in unique content
-  if (/\b(nse\s+emerge|bse\s+sme|nse\s+sme)\b/i.test(body)) return { type: "SME", why: "unique content names an SME platform" };
-  const sme = (body.match(/\bSME\b/g) || []).length;
-  if (sme >= 2) return { type: "SME", why: `${sme} SME mentions in unique content` };
-  if (sme === 0 && /\b(BSE|NSE)\b/.test(body)) return { type: "Mainboard", why: "names BSE/NSE, no SME mention" };
-  return { type: "Unknown", why: `ambiguous (${sme} SME mentions)` };
+  if (/\bsme\b/i.test(title)) return { type: "SME", why: `page title` };
+  return { type: "Unknown", why: "no listing value or listing sentence found" };
 }
 
 async function resolveTypes(rows) {
@@ -543,24 +554,15 @@ async function resolveTypes(rows) {
   const freq = new Map();
   for (const p of pages) for (const b of new Set(p.blocks)) freq.set(b, (freq.get(b) || 0) + 1);
   const threshold = Math.max(3, Math.ceil(pages.length * 0.3));
-  const boiler = new Set([...freq].filter(([, n]) => pages.length >= 3 && n >= threshold).map(([b]) => b));
+  const boiler = new Set([...freq].filter(([b, n]) => pages.length >= 3 && n >= threshold && b.length >= 25 && !RE_MAIN_VALUE.test(b) && !RE_SME_VALUE.test(b)).map(([b]) => b));
   if (pages.length >= 3) console.log(`  detail pages: ${pages.length} fetched, ${boiler.size} site-wide block(s) stripped (present on ≥${threshold} pages)`);
 
   // PASS 3 — classify on unique text.
   const verdicts = pages.map(p => {
     const uniq = p.blocks.filter(b => !boiler.has(b));
-    return { p, uniq, ...classifyUnique(p.title, uniq) };
+    const lv = listingValue(p.blocks);            // data values: never stripped
+    return { p, uniq, ...(lv || classifyUnique(p.title, uniq)) };
   });
-
-  // GUARD A — one identical reason explaining most verdicts is boilerplate.
-  const byWhy = new Map();
-  for (const v of verdicts) if (v.type !== "Unknown") byWhy.set(v.why, (byWhy.get(v.why) || 0) + 1);
-  for (const [why, n] of byWhy) {
-    if (verdicts.length >= 5 && n / verdicts.length > 0.5) {
-      console.log(`  GUARD: ${n}/${verdicts.length} verdicts share the reason ${why} — treating as boilerplate, discarded`);
-      for (const v of verdicts) if (v.why === why) { v.type = "Unknown"; v.why = `discarded: shared reason ${why}`; }
-    }
-  }
 
   // GUARD B — every page resolving to one type in a real IPO week is not credible.
   const resolved = verdicts.filter(v => v.type !== "Unknown");
