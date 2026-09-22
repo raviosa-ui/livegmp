@@ -2,8 +2,8 @@ name: Update GMP (scrape -> gmp.json -> index.html)
 
 on:
   schedule:
-    - cron: '30 * * * *'   # hourly at :30 (offset from source-site update cycles)
-  workflow_dispatch:        # manual "Run workflow" button
+    - cron: '30 * * * *'   # hourly at :30
+  workflow_dispatch:
 
 jobs:
   build-gmp:
@@ -29,11 +29,34 @@ jobs:
         run: node scripts/build_gmp.js
 
       - name: Commit changes (only if data changed)
+        id: commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
           file_pattern: "gmp.json index.html sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json"
           branch: main
+
+      # A push made with GITHUB_TOKEN does NOT trigger other workflows, so
+      # deploy.yml never fired after these commits. Deploy directly instead.
+      - name: Stage site files
+        if: steps.commit.outputs.changes_detected == 'true'
+        run: |
+          rm -rf deploy && mkdir deploy
+          rsync -a \
+            --exclude ".git" --exclude ".github" --exclude "deploy" \
+            --exclude "scripts" --exclude "node_modules" --exclude "data" \
+            --exclude "package.json" --exclude "package-lock.json" \
+            --exclude ".htaccess" --exclude "health_report.md" --exclude "watchdog_report.md" \
+            ./ deploy/
+          echo "Deploying $(find deploy -type f | wc -l) files"
+
+      - name: Publish to Cloudflare Pages
+        if: steps.commit.outputs.changes_detected == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy deploy --project-name=livegmp --branch=main
 
       - name: Notify on failure (Telegram)
         if: failure()
@@ -41,4 +64,4 @@ jobs:
         run: |
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text="🔴 LiveGMP: all sources failed or build broke. Check the Actions log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            -d text="🔴 LiveGMP: GMP build or deploy failed. Check the Actions log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
