@@ -447,9 +447,23 @@ function extractRows($, c) {
 // ============================================================
 const TYPES_FILE = "data/ipo_types.json";
 const MAX_DETAIL_FETCHES = 40;
+// Bump to discard every non-manual verdict produced by an older classifier.
+// v2: v1 read a site-wide promo <h1> ("Q-Line Biotech NSE SME IPO review")
+//     as each company's heading and cached 34 companies as SME.
+const TYPE_CACHE_VERSION = 2;
 
 async function loadTypeCache() {
-  try { return JSON.parse(await fs.readFile(TYPES_FILE, "utf8")); } catch { return {}; }
+  let raw = {};
+  try { raw = JSON.parse(await fs.readFile(TYPES_FILE, "utf8")); } catch {}
+  const kept = {};
+  let dropped = 0;
+  for (const [k, v] of Object.entries(raw)) {
+    if (!v || !v.type) continue;
+    if (v.source === "manual" || v.v === TYPE_CACHE_VERSION) kept[k] = v;
+    else dropped++;
+  }
+  if (dropped) console.log(`  type cache: discarded ${dropped} verdict(s) from an older classifier (manual entries kept)`);
+  return kept;
 }
 async function saveTypeCache(cache) {
   await fs.mkdir("data", { recursive: true });
@@ -457,79 +471,127 @@ async function saveTypeCache(cache) {
   await fs.writeFile(TYPES_FILE, JSON.stringify(sorted, null, 2) + "\n", "utf8");
 }
 
-// Decide Mainboard/SME from an ipowatch IPO detail page. Navigation, sidebars
-// and footers are stripped first: ipowatch's menu links to "SME IPO" on every
-// page, so a naive count of "SME" would call every company SME.
-function classifyDetailPage(html) {
+// Text blocks from a detail page, with obvious chrome removed. Anything that
+// survives this but is still site-wide gets removed later by cross-page
+// comparison — which is the step that would have caught the promo <h1>.
+function pageBlocks(html) {
   const $ = load(html);
-  $("header, nav, footer, aside, script, style, noscript, form, .sidebar, #sidebar, .widget, .menu, .nav, .breadcrumb, .related, .comments, #comments").remove();
-  const h1 = clean($("h1").first().text());
-  const body = clean(
-    $("article").first().text() || $(".entry-content").first().text() ||
-    $("main").first().text() || $("body").text()
-  );
+  $("header, nav, footer, aside, script, style, noscript, form, iframe, .sidebar, #sidebar, .widget, .menu, .nav, .breadcrumb, .related, .comments, #comments").remove();
+  const title = clean($("meta[property='og:title']").attr("content") || $("title").first().text() || "");
+  const blocks = [];
+  $("h1, h2, h3, h4, p, li, td, th").each((_, el) => {
+    const t = clean($(el).text());
+    if (t && t.length >= 3 && t.length <= 400) blocks.push(t);
+  });
+  return { title, blocks };
+}
 
-  // 1. explicit listing statement — the most reliable signal
-  const listing = body.match(/(?:listing\s+at|listed\s+(?:on|at)|will\s+list\s+on|to\s+be\s+listed\s+on)\s*:?\s*(?:the\s+)?([A-Za-z ,&/]{2,40})/i);
-  if (listing) {
-    const seg = listing[1];
+// Decide from page-UNIQUE text only.
+function classifyUnique(title, blocks) {
+  const body = blocks.join(" \n ");
+
+  // 1. explicit listing statement
+  const listRe = /(?:listing\s+at|listed\s+(?:on|at)|will\s+(?:be\s+)?list(?:ed)?\s+on|to\s+be\s+listed\s+on|shares\s+will\s+list\s+on|listing\s+on|exchange[s]?)\s*:?\s*(?:the\s+)?([A-Za-z ,&/]{2,40})/ig;
+  let m;
+  while ((m = listRe.exec(body))) {
+    const seg = m[1];
     if (/\bsme\b|emerge/i.test(seg)) return { type: "SME", why: `listing "${clean(seg)}"` };
     if (/\b(nse|bse)\b/i.test(seg))  return { type: "Mainboard", why: `listing "${clean(seg)}"` };
   }
-  // 2. the page heading
-  if (/\bsme\b/i.test(h1)) return { type: "SME", why: `heading "${h1.slice(0, 50)}"` };
-  // 3. exchange names in the body
-  if (/\b(nse\s+emerge|bse\s+sme|nse\s+sme)\b/i.test(body)) return { type: "SME", why: "body names an SME platform" };
+  // 2. the page's own <title> — per-page by construction, unlike the first <h1>
+  if (/\bsme\b/i.test(title)) return { type: "SME", why: `page title "${title.slice(0, 60)}"` };
+  // 3. SME platform names in unique content
+  if (/\b(nse\s+emerge|bse\s+sme|nse\s+sme)\b/i.test(body)) return { type: "SME", why: "unique content names an SME platform" };
   const sme = (body.match(/\bSME\b/g) || []).length;
-  if (sme >= 3) return { type: "SME", why: `${sme} SME mentions in content` };
+  if (sme >= 2) return { type: "SME", why: `${sme} SME mentions in unique content` };
   if (sme === 0 && /\b(BSE|NSE)\b/.test(body)) return { type: "Mainboard", why: "names BSE/NSE, no SME mention" };
   return { type: "Unknown", why: `ambiguous (${sme} SME mentions)` };
 }
 
 async function resolveTypes(rows) {
   const cache = await loadTypeCache();
-  let fromCache = 0, fromNse = 0, fromPage = 0, unresolved = 0, fetched = 0;
-  const log = [];
+  const stamp = new Date().toISOString().slice(0, 10);
+  let fromCache = 0, fromNse = 0;
+  const todo = [];
 
   for (const r of rows) {
-    if (r.type && r.type !== "Unknown") continue;        // source had a Type column
+    if (r.type && r.type !== "Unknown") continue;
     const key = r.slug || slugify(r.ipo);
     const hit = cache[key];
     if (hit && hit.type && hit.type !== "Unknown") { r.type = hit.type; fromCache++; continue; }
-
     if (NSE_NAMES && NSE_NAMES.size && nseMatches(r.ipo, NSE_NAMES)) {
       r.type = "Mainboard";
-      cache[key] = { name: r.ipo, type: "Mainboard", source: "nse", at: new Date().toISOString().slice(0, 10) };
+      cache[key] = { name: r.ipo, type: "Mainboard", source: "nse", v: TYPE_CACHE_VERSION, at: stamp };
       fromNse++; continue;
     }
+    if (r.href) todo.push({ r, key });
+  }
 
-    if (r.href && fetched < MAX_DETAIL_FETCHES) {
-      fetched++;
-      try {
-        const html = await fetchHtml(r.href, 2);
-        const verdict = classifyDetailPage(html);
-        r.type = verdict.type;
-        log.push(`    ${r.ipo.padEnd(28)} ${verdict.type.padEnd(10)} (${verdict.why})`);
-        if (verdict.type !== "Unknown") {
-          cache[key] = { name: r.ipo, type: verdict.type, source: "ipowatch-page", why: verdict.why, at: new Date().toISOString().slice(0, 10) };
-          fromPage++;
-        } else unresolved++;
-        await new Promise(res => setTimeout(res, 400));   // be polite to the source
-      } catch (e) {
-        log.push(`    ${r.ipo.padEnd(28)} Unknown    (detail page failed: ${e.message})`);
-        unresolved++;
-      }
-    } else {
-      unresolved++;
+  // PASS 1 — fetch every uncached page first.
+  const pages = [];
+  for (const t of todo.slice(0, MAX_DETAIL_FETCHES)) {
+    try {
+      const html = await fetchHtml(t.r.href, 2);
+      pages.push({ ...t, ...pageBlocks(html) });
+      await new Promise(res => setTimeout(res, 350));
+    } catch (e) {
+      console.log(`    ${t.r.ipo}: detail page failed (${e.message})`);
     }
   }
 
-  console.log(`Type resolution: ${fromCache} cached, ${fromNse} via NSE, ${fromPage} via detail page, ${unresolved} unresolved (${fetched} pages fetched)`);
-  if (log.length) { console.log("  newly classified:"); for (const l of log) console.log(l); }
-  await saveTypeCache(cache);
-  return { unresolved };
-}
+  // PASS 2 — any block appearing on many pages is site chrome, not content.
+  const freq = new Map();
+  for (const p of pages) for (const b of new Set(p.blocks)) freq.set(b, (freq.get(b) || 0) + 1);
+  const threshold = Math.max(3, Math.ceil(pages.length * 0.3));
+  const boiler = new Set([...freq].filter(([, n]) => pages.length >= 3 && n >= threshold).map(([b]) => b));
+  if (pages.length >= 3) console.log(`  detail pages: ${pages.length} fetched, ${boiler.size} site-wide block(s) stripped (present on ≥${threshold} pages)`);
 
+  // PASS 3 — classify on unique text.
+  const verdicts = pages.map(p => {
+    const uniq = p.blocks.filter(b => !boiler.has(b));
+    return { p, uniq, ...classifyUnique(p.title, uniq) };
+  });
+
+  // GUARD A — one identical reason explaining most verdicts is boilerplate.
+  const byWhy = new Map();
+  for (const v of verdicts) if (v.type !== "Unknown") byWhy.set(v.why, (byWhy.get(v.why) || 0) + 1);
+  for (const [why, n] of byWhy) {
+    if (verdicts.length >= 5 && n / verdicts.length > 0.5) {
+      console.log(`  GUARD: ${n}/${verdicts.length} verdicts share the reason ${why} — treating as boilerplate, discarded`);
+      for (const v of verdicts) if (v.why === why) { v.type = "Unknown"; v.why = `discarded: shared reason ${why}`; }
+    }
+  }
+
+  // GUARD B — every page resolving to one type in a real IPO week is not credible.
+  const resolved = verdicts.filter(v => v.type !== "Unknown");
+  const types = new Set(resolved.map(v => v.type));
+  let cacheable = true;
+  if (resolved.length >= 10 && types.size === 1) {
+    cacheable = false;
+    console.log(`  GUARD: all ${resolved.length} pages resolved to ${[...types][0]} — not credible for a live IPO week. Applied for this run only, NOT cached.`);
+  }
+
+  let fromPage = 0, unresolved = 0;
+  console.log("  newly classified:");
+  for (const v of verdicts) {
+    v.p.r.type = v.type;
+    console.log(`    ${v.p.r.ipo.padEnd(28)} ${v.type.padEnd(10)} (${v.why})`);
+    if (v.type !== "Unknown" && cacheable) {
+      cache[v.p.key] = { name: v.p.r.ipo, type: v.type, source: "ipowatch-page", why: v.why, v: TYPE_CACHE_VERSION, at: stamp };
+      fromPage++;
+    } else if (v.type === "Unknown") unresolved++;
+  }
+
+  // Diagnostic: show what unique text looks like, so phrasing can be tuned.
+  for (const v of verdicts.filter(x => x.type === "Unknown").slice(0, 2)) {
+    const around = v.uniq.filter(b => /list|exchange|nse|bse|sme/i.test(b)).slice(0, 5);
+    console.log(`  [diag] ${v.p.r.ipo} — title: "${v.p.title.slice(0, 80)}"`);
+    for (const b of around) console.log(`    · ${b.slice(0, 160)}`);
+  }
+
+  console.log(`Type resolution: ${fromCache} cached, ${fromNse} via NSE, ${fromPage} via detail page, ${unresolved} unresolved (${pages.length} pages fetched)`);
+  await saveTypeCache(cache);
+}
 
 function validateAndNormalize(rawRows, sourceName) {
   const out = [];
