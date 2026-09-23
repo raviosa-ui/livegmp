@@ -223,8 +223,16 @@ function buildChain(available, preferred) {
   const lite = available.filter(id => isUsable(id) && /flash/.test(id) && /lite/.test(id))
     .sort((a, b) => versionOf(b) - versionOf(a));
 
-  for (const id of [...flash, ...lite]) if (!chain.includes(id)) chain.push(id);
-  return chain.slice(0, 4);   // primary + up to 3 fallbacks
+    // Interleave: newest Flash, newest Lite, then the rest. Lite usually has
+  // capacity exactly when Flash is saturated, so never fill the chain with
+  // four Flash variants that share the same congestion.
+  const inter = [];
+  for (let i = 0; i < Math.max(flash.length, lite.length); i++) {
+    if (flash[i]) inter.push(flash[i]);
+    if (lite[i]) inter.push(lite[i]);
+  }
+  for (const id of inter) if (!chain.includes(id)) chain.push(id);
+  return chain.slice(0, 6);
 }
 
 async function callGemini(key, prompt) {
