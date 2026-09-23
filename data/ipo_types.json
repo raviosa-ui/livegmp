@@ -15,6 +15,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "acme-universal": {
+    "name": "Acme Universal",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
+  },
   "adroit-industries": {
     "name": "Adroit Industries",
     "type": "Mainboard",
@@ -55,6 +63,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "black-opal-consultants": {
+    "name": "Black Opal Consultants",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
+  },
   "coreintegra-consulting": {
     "name": "Coreintegra Consulting",
     "type": "SME",
@@ -78,6 +94,14 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "everestims-technologies": {
+    "name": "EverestIMS Technologies",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
   },
   "fx-multitech": {
     "name": "FX Multitech",
@@ -167,6 +191,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "omara-ventures": {
+    "name": "Omara Ventures",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
+  },
   "orient-cables": {
     "name": "Orient Cables",
     "type": "Mainboard",
@@ -239,6 +271,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "shah-investors-home": {
+    "name": "Shah Investor’s Home",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-09-23"
+  },
   "shakti-polytarp": {
     "name": "Shakti Polytarp",
     "type": "SME",
@@ -246,6 +286,22 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "shivchem-agro": {
+    "name": "Shivchem Agro",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
+  },
+  "shree-tnb-polymers": {
+    "name": "Shree TNB Polymers",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-23"
   },
   "skoffset": {
     "name": "S.K.Offset",
@@ -270,6 +326,14 @@
     "why": "listing value \"NSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "srit-india": {
+    "name": "SRIT India",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-09-23"
   },
   "ss-retail": {
     "name": "SS Retail",

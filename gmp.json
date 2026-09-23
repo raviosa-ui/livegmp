@@ -1,14 +1,38 @@
 {
-  "updatedIso": "2026-09-23T06:29:38.668Z",
-  "updatedLocal": "23/09/2026, 11:59:38 IST",
+  "updatedIso": "2026-09-23T12:03:13.070Z",
+  "updatedLocal": "23/09/2026, 17:33:13 IST",
   "source": "ipowatch",
   "rows": [
+    {
+      "ipo": "SRIT India",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹130",
+      "listing": "₹130 (0.00%)",
+      "date": "28-30 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/srit-india-ipo/",
+      "status": "upcoming",
+      "slug": "srit-india"
+    },
+    {
+      "ipo": "Shah Investor’s Home",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹167",
+      "listing": "₹167 (0.00%)",
+      "date": "28-30 Sept",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/shah-investors-home-ipo/",
+      "status": "upcoming",
+      "slug": "shah-investors-home"
+    },
     {
       "ipo": "Acevector",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "₹- (0.00%)",
+      "price": "₹32",
+      "listing": "₹32 (0.00%)",
       "date": "25-29 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/acevector-ipo/",
@@ -101,10 +125,10 @@
     },
     {
       "ipo": "Elevate Campuses",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹362",
-      "listing": "₹367 (1.38%)",
+      "listing": "₹364 (0.83%)",
       "date": "23-25 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/elevate-campuses-ipo/",
@@ -113,10 +137,10 @@
     },
     {
       "ipo": "ArMee Infotech",
-      "gmp": 46,
-      "gmpRaw": "₹46",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹375",
-      "listing": "₹421 (12.27%)",
+      "listing": "₹430 (14.66%)",
       "date": "23-25 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/armee-infotech-ipo/",
@@ -125,10 +149,10 @@
     },
     {
       "ipo": "Varmora Granito",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹148",
-      "listing": "₹153 (3.38%)",
+      "listing": "₹148 (0.00%)",
       "date": "22-24 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/varmora-granito-ipo/",
@@ -149,10 +173,10 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 43,
-      "gmpRaw": "₹43",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹1785",
-      "listing": "₹1828 (2.41%)",
+      "listing": "₹1860 (4.20%)",
       "date": "17-21 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/nse-ipo/",
@@ -160,40 +184,52 @@
       "slug": "national-stock-exchange"
     },
     {
-      "ipo": "Hero Motors",
+      "ipo": "Omara Ventures",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹84",
-      "listing": "₹84 (0.00%)",
-      "date": "16-18 Sept",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/hero-motors-ipo/",
-      "status": "closed",
-      "slug": "hero-motors"
+      "price": "₹311",
+      "listing": "₹311 (0.00%)",
+      "date": "30-5 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/omara-ventures-ipo/",
+      "status": "upcoming",
+      "slug": "omara-ventures"
     },
     {
-      "ipo": "SS Retail",
-      "gmp": 160,
-      "gmpRaw": "₹160",
-      "price": "₹424",
-      "listing": "₹584 (37.74%)",
-      "date": "16-18 Sept",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/ss-retail-ipo/",
-      "status": "closed",
-      "slug": "ss-retail"
+      "ipo": "EverestIMS Technologies",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹85",
+      "listing": "₹85 (0.00%)",
+      "date": "29-5 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/everestims-technologies-ipo/",
+      "status": "upcoming",
+      "slug": "everestims-technologies"
     },
     {
-      "ipo": "Jindal Supreme",
-      "gmp": 30,
-      "gmpRaw": "₹30",
-      "price": "₹93",
-      "listing": "₹123 (32.26%)",
-      "date": "16-18 Sept",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/jindal-supreme-ipo/",
-      "status": "closed",
-      "slug": "jindal-supreme"
+      "ipo": "Black Opal Consultants",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹197",
+      "listing": "₹197 (0.00%)",
+      "date": "29-1 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/black-opal-consultants-ipo/",
+      "status": "upcoming",
+      "slug": "black-opal-consultants"
+    },
+    {
+      "ipo": "Acme Universal",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹71",
+      "listing": "₹71 (0.00%)",
+      "date": "28-30 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/acme-universal-ipo/",
+      "status": "upcoming",
+      "slug": "acme-universal"
     },
     {
       "ipo": "Pind Hospitality",
@@ -208,6 +244,18 @@
       "slug": "pind-hospitality"
     },
     {
+      "ipo": "Shivchem Agro",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹62",
+      "listing": "₹62 (0.00%)",
+      "date": "28-30 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/shivchem-agro-ipo/",
+      "status": "upcoming",
+      "slug": "shivchem-agro"
+    },
+    {
       "ipo": "Dudani Retail",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -218,6 +266,18 @@
       "href": "https://ipowatch.in/dudani-retail-ipo/",
       "status": "upcoming",
       "slug": "dudani-retail"
+    },
+    {
+      "ipo": "Shree TNB Polymers",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹52",
+      "listing": "₹52 (0.00%)",
+      "date": "25-29 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/shree-tnb-polymers-ipo/",
+      "status": "upcoming",
+      "slug": "shree-tnb-polymers"
     },
     {
       "ipo": "Bench Mark Infotech",
@@ -384,7 +444,7 @@
       "date": "21-23 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/vivekanand-cotspin-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "vivekanand-cotspin"
     },
     {
@@ -396,7 +456,7 @@
       "date": "21-23 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/robokidz-eduventures-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "robokidz-eduventures"
     },
     {
@@ -408,7 +468,7 @@
       "date": "21-23 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/fx-multitech-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "fx-multitech"
     },
     {
