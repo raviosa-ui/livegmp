@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-23T12:03:13.070Z",
-  "updatedLocal": "23/09/2026, 17:33:13 IST",
+  "updatedIso": "2026-09-23T17:23:23.427Z",
+  "updatedLocal": "23/09/2026, 22:53:23 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -173,10 +173,10 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 75,
-      "gmpRaw": "₹75",
+      "gmp": 90,
+      "gmpRaw": "₹90",
       "price": "₹1785",
-      "listing": "₹1860 (4.20%)",
+      "listing": "₹1875 (5.04%)",
       "date": "17-21 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/nse-ipo/",
