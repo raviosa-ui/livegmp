@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-09-23T20:37:31.721Z",
-  "updatedLocal": "24/09/2026, 02:07:31 IST",
+  "updatedIso": "2026-09-24T05:13:21.667Z",
+  "updatedLocal": "24/09/2026, 10:43:21 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "SRIT India",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹130",
-      "listing": "₹130 (0.00%)",
+      "listing": "₹142 (9.23%)",
       "date": "28-30 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/srit-india-ipo/",
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Shah Investor’s Home",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹167",
-      "listing": "₹167 (0.00%)",
+      "listing": "₹177 (5.99%)",
       "date": "28-30 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/shah-investors-home-ipo/",
@@ -41,10 +41,10 @@
     },
     {
       "ipo": "German Green Steel",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 24,
+      "gmpRaw": "₹24",
       "price": "₹139",
-      "listing": "₹154 (10.79%)",
+      "listing": "₹163 (17.27%)",
       "date": "25-29 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/german-green-steel-ipo/",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Orient Cables",
-      "gmp": 34,
-      "gmpRaw": "₹34",
+      "gmp": 45,
+      "gmpRaw": "₹45",
       "price": "₹272",
-      "listing": "₹306 (12.50%)",
+      "listing": "₹317 (16.54%)",
       "date": "25-29 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/orient-cables-ipo/",
@@ -77,26 +77,26 @@
     },
     {
       "ipo": "Moneyview",
-      "gmp": 11,
-      "gmpRaw": "₹11",
+      "gmp": 14,
+      "gmpRaw": "₹14",
       "price": "₹34",
-      "listing": "₹45 (32.35%)",
+      "listing": "₹48 (41.18%)",
       "date": "24-28 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/moneyview-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "moneyview"
     },
     {
       "ipo": "A-One Steels",
-      "gmp": 50,
-      "gmpRaw": "₹50",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹405",
-      "listing": "₹455 (12.35%)",
+      "listing": "₹460 (13.58%)",
       "date": "24-28 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/a-one-steels-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "a-one-steels"
     },
     {
@@ -173,10 +173,10 @@
     },
     {
       "ipo": "NSE",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 40,
+      "gmpRaw": "₹40",
       "price": "₹1785",
-      "listing": "₹1830 (2.52%)",
+      "listing": "₹1825 (2.24%)",
       "date": "17-21 Sept",
       "type": "Mainboard",
       "href": "https://ipowatch.in/nse-ipo/",
@@ -324,7 +324,7 @@
       "date": "24-28 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/green-asia-impex-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "green-asia-impex"
     },
     {
@@ -336,19 +336,19 @@
       "date": "24-28 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/peshwa-wheat-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "peshwa-wheat"
     },
     {
       "ipo": "Roopa Screen",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹64",
-      "listing": "₹78 (21.88%)",
+      "listing": "₹72 (12.50%)",
       "date": "24-28 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/roopa-screen-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "roopa-screen"
     },
     {
@@ -449,10 +449,10 @@
     },
     {
       "ipo": "Robokidz Eduventures",
-      "gmp": 65,
-      "gmpRaw": "₹65",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹106",
-      "listing": "₹171 (61.32%)",
+      "listing": "₹161 (51.89%)",
       "date": "21-23 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/robokidz-eduventures-ipo/",
@@ -461,10 +461,10 @@
     },
     {
       "ipo": "FX Multitech",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹116",
-      "listing": "₹116 (0.00%)",
+      "listing": "₹120 (3.45%)",
       "date": "21-23 Sept",
       "type": "SME",
       "href": "https://ipowatch.in/fx-multitech-ipo/",
@@ -484,18 +484,6 @@
       "slug": "axiom-gas-engineering"
     },
     {
-      "ipo": "SpectraA Technology",
-      "gmp": 73,
-      "gmpRaw": "₹73",
-      "price": "₹118",
-      "listing": "₹191 (61.86%)",
-      "date": "17-21 Sept",
-      "type": "SME",
-      "href": "https://ipowatch.in/spectraa-technology-ipo/",
-      "status": "closed",
-      "slug": "spectraa-technology"
-    },
-    {
       "ipo": "Kheria Autocomp",
       "gmp": 3,
       "gmpRaw": "₹3",
@@ -506,6 +494,18 @@
       "href": "https://ipowatch.in/kheria-autocomp-ipo/",
       "status": "closed",
       "slug": "kheria-autocomp"
+    },
+    {
+      "ipo": "SpectraA Technology",
+      "gmp": 81,
+      "gmpRaw": "₹81",
+      "price": "₹118",
+      "listing": "₹199 (68.64%)",
+      "date": "17-21 Sept",
+      "type": "SME",
+      "href": "https://ipowatch.in/spectraa-technology-ipo/",
+      "status": "closed",
+      "slug": "spectraa-technology"
     }
   ]
 }
