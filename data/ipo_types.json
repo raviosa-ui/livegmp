@@ -79,6 +79,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "dove-soft": {
+    "name": "Dove Soft",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-24"
+  },
   "dudani-retail": {
     "name": "Dudani Retail",
     "type": "SME",
@@ -206,6 +214,22 @@
     "why": "listing value \"BSE & NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "papadmalji-agro": {
+    "name": "Papadmalji Agro",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-24"
+  },
+  "paramount-syntex": {
+    "name": "Paramount Syntex",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-24"
   },
   "peshwa-wheat": {
     "name": "Peshwa Wheat",
@@ -366,6 +390,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "vans-electroengineerings": {
+    "name": "Vans Electroengineerings",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-24"
   },
   "varmora-granito": {
     "name": "Varmora Granito",

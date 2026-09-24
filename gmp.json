@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-24T05:13:21.667Z",
-  "updatedLocal": "24/09/2026, 10:43:21 IST",
+  "updatedIso": "2026-09-24T10:24:16.334Z",
+  "updatedLocal": "24/09/2026, 15:54:16 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -184,6 +184,30 @@
       "slug": "national-stock-exchange"
     },
     {
+      "ipo": "Paramount Syntex",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹127",
+      "listing": "₹127 (0.00%)",
+      "date": "30-6 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/paramount-syntex-ipo/",
+      "status": "upcoming",
+      "slug": "paramount-syntex"
+    },
+    {
+      "ipo": "Dove Soft",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹111",
+      "listing": "₹111 (0.00%)",
+      "date": "30-5 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/dove-soft-ipo/",
+      "status": "upcoming",
+      "slug": "dove-soft"
+    },
+    {
       "ipo": "Omara Ventures",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -206,6 +230,30 @@
       "href": "https://ipowatch.in/everestims-technologies-ipo/",
       "status": "upcoming",
       "slug": "everestims-technologies"
+    },
+    {
+      "ipo": "Papadmalji Agro",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹72",
+      "listing": "₹72 (0.00%)",
+      "date": "29-1 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/black-opal-consultants-ipo/",
+      "status": "upcoming",
+      "slug": "papadmalji-agro"
+    },
+    {
+      "ipo": "Vans Electroengineerings",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹118",
+      "listing": "₹118 (0.00%)",
+      "date": "29-1 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/vans-electroengineerings-ipo/",
+      "status": "upcoming",
+      "slug": "vans-electroengineerings"
     },
     {
       "ipo": "Black Opal Consultants",
