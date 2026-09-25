@@ -978,25 +978,83 @@ ${items.join("\n")}
   console.log(`ipo/index.html regenerated (${items.length} entries).`);
 }
 
+// Per-page lastmod, driven by content hashes.
+//
+// The old version stamped today's date on EVERY url on EVERY run, so the
+// sitemap claimed all 150+ pages changed daily. Search engines treat a
+// lastmod that is always "today" as untrustworthy and start ignoring it —
+// which throws away the one signal the sitemap is there to provide.
+//
+// Now a page's date only moves when its bytes actually change.
+const LASTMOD_FILE = "data/page_lastmod.json";
+
+// Hash MEANINGFUL content only. Every page carries a "Live data last
+// refreshed" stamp and a data-updated attribute that change on every run, so
+// hashing raw bytes would mark all 150 pages as modified every time — the
+// exact problem this is meant to solve.
+function normaliseForHash(text) {
+  return String(text)
+    .replace(/<p class="stub-updated">[\s\S]*?<\/p>/g, "")      // "Live data last refreshed: ..."
+    .replace(/data-updated="[^"]*"/g, "")                         // hidden meta attribute
+    .replace(/"dateModified"\s*:\s*"[^"]*"/g, "")                // JSON-LD timestamp
+    .replace(/\d{2}\/\d{2}\/\d{4},\s*\d{2}:\d{2}:\d{2}\s*IST/g, "") // any IST stamp
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function hashOf(text) {
+  return require("crypto").createHash("sha1").update(normaliseForHash(text)).digest("hex").slice(0, 16);
+}
+
 async function generateSitemap(payload) {
   const dirs = await listIpoDirs();
   const today = payload.updatedIso.slice(0, 10);
-  const staticUrls = [
-    { loc: `${SITE}/`, freq: "hourly", pri: "1.0" },
-    { loc: `${SITE}/ipo/`, freq: "daily", pri: "0.8" },
-    { loc: `${SITE}/what-is-gmp.html`, freq: "monthly", pri: "0.6" },
-    { loc: `${SITE}/ipo-allotment-status.html`, freq: "monthly", pri: "0.6" },
+
+  let store = {};
+  try { store = JSON.parse(await fs.readFile(LASTMOD_FILE, "utf8")); } catch {}
+
+  // Resolve one file's lastmod: unchanged bytes keep their recorded date.
+  async function lastmodFor(file, loc) {
+    let text = null;
+    try { text = await fs.readFile(file, "utf8"); } catch { return store[loc] ? store[loc].date : today; }
+    const h = hashOf(text);
+    const prev = store[loc];
+    if (prev && prev.hash === h) return prev.date;       // genuinely unchanged
+    store[loc] = { hash: h, date: today };
+    return today;
+  }
+
+  const entries = [];
+  const statics = [
+    { file: "index.html",               loc: `${SITE}/`,                          freq: "hourly",  pri: "1.0" },
+    { file: "ipo/index.html",           loc: `${SITE}/ipo/`,                      freq: "daily",   pri: "0.8" },
+    { file: "what-is-gmp.html",         loc: `${SITE}/what-is-gmp.html`,          freq: "monthly", pri: "0.6" },
+    { file: "ipo-allotment-status.html",loc: `${SITE}/ipo-allotment-status.html`, freq: "monthly", pri: "0.6" },
   ];
-  const urls = staticUrls.map(u =>
-    `  <url><loc>${u.loc}</loc><lastmod>${today}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.pri}</priority></url>`)
-    .concat(dirs.map(d =>
-    `  <url><loc>${SITE}/ipo/${d}/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>`));
+  for (const u of statics) {
+    entries.push({ loc: u.loc, date: await lastmodFor(u.file, u.loc), freq: u.freq, pri: u.pri });
+  }
+  for (const d of dirs) {
+    const loc = `${SITE}/ipo/${d}/`;
+    entries.push({ loc, date: await lastmodFor(`ipo/${d}/index.html`, loc), freq: "daily", pri: "0.7" });
+  }
+
+  // drop records for pages that no longer exist
+  const live = new Set(entries.map(e => e.loc));
+  for (const k of Object.keys(store)) if (!live.has(k)) delete store[k];
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join("\n")}
+${entries.map(e => `  <url><loc>${e.loc}</loc><lastmod>${e.date}</lastmod><changefreq>${e.freq}</changefreq><priority>${e.pri}</priority></url>`).join("\n")}
 </urlset>\n`;
   await fs.writeFile("sitemap.xml", xml, "utf8");
-  console.log(`sitemap.xml regenerated (${urls.length} URLs).`);
+
+  await fs.mkdir("data", { recursive: true });
+  const sorted = Object.fromEntries(Object.keys(store).sort().map(k => [k, store[k]]));
+  await fs.writeFile(LASTMOD_FILE, JSON.stringify(sorted, null, 2) + "\n", "utf8");
+
+  const changedToday = entries.filter(e => e.date === today).length;
+  console.log(`sitemap.xml regenerated (${entries.length} URLs, ${changedToday} with today's lastmod, ${entries.length - changedToday} unchanged).`);
 }
 
 // ---------------- main ----------------
