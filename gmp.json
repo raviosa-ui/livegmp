@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-25T07:25:34.342Z",
-  "updatedLocal": "25/09/2026, 12:55:34 IST",
+  "updatedIso": "2026-09-25T14:05:34.613Z",
+  "updatedLocal": "25/09/2026, 19:35:34 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -108,7 +108,7 @@
       "date": "23-25 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/adroit-industries-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "adroit-industries"
     },
     {
@@ -120,7 +120,7 @@
       "date": "23-25 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/swastika-infra-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "swastika-infra"
     },
     {
@@ -132,7 +132,7 @@
       "date": "23-25 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/elevate-campuses-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "elevate-campuses"
     },
     {
@@ -144,7 +144,7 @@
       "date": "23-25 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/armee-infotech-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "armee-infotech"
     },
     {
@@ -384,7 +384,7 @@
       "date": "23-25 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/coreintegra-consulting-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "coreintegra-consulting"
     },
     {
@@ -396,7 +396,7 @@
       "date": "23-25 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/unitec-fibres-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "unitec-fibres"
     },
     {
@@ -408,7 +408,7 @@
       "date": "23-25 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/skoffset-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "skoffset"
     },
     {
@@ -420,7 +420,7 @@
       "date": "23-25 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/liqvd-digital-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "liqvd-digital"
     },
     {
@@ -432,7 +432,7 @@
       "date": "23-25 Sep",
       "type": "SME",
       "href": "https://ipowatch.in//pooja-logistics-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "pooja-logistics"
     },
     {
