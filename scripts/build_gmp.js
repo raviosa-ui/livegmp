@@ -808,6 +808,11 @@ function siteShell({ title, desc, canonical, body, jsonld, stub }) {
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:type" content="article">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/static/gmp.css">
   <script type="application/ld+json">${jsonld}</script>
 </head>
