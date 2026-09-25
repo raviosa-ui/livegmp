@@ -1138,7 +1138,20 @@ ${entries.map(e => `  <url><loc>${e.loc}</loc><lastmod>${e.date}</lastmod><chang
   try { oldData = JSON.parse(await fs.readFile(GMP_JSON, "utf8")); } catch {}
   const stripped = j => JSON.stringify({ source: j.source, rows: j.rows });
   if (oldData && stripped(oldData) === stripped(newData)) {
-    console.log("No data change since last run — nothing to write, nothing to deploy.");
+    console.log("No GMP data change since last run.");
+    // The index and sitemap must still be rebuilt: pages published by Agent 2
+    // (a merged DRHP article) appear on disk without any GMP value changing,
+    // and would otherwise stay out of the sitemap until some unrelated IPO
+    // moved. Both are cheap and write only when their content differs.
+    const meta = {
+      updatedIso: (oldData && oldData.updatedIso) || new Date().toISOString(),
+      updatedLocal: (oldData && oldData.updatedLocal) || "",
+      source: sourceUsed,
+      rows,
+    };
+    await generateIpoIndex(meta);
+    await generateSitemap(meta);
+    console.log("Index and sitemap refreshed; GMP data unchanged.");
     return;
   }
 
