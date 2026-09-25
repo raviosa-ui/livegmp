@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-09-24T15:25:43.664Z",
-  "updatedLocal": "24/09/2026, 20:55:43 IST",
+  "updatedIso": "2026-09-25T07:25:34.342Z",
+  "updatedLocal": "25/09/2026, 12:55:34 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "SRIT India",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 22,
+      "gmpRaw": "₹22",
       "price": "₹130",
-      "listing": "₹143 (10.00%)",
+      "listing": "₹152 (16.92%)",
       "date": "28-30 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/srit-india-ipo/",
@@ -29,14 +29,14 @@
     },
     {
       "ipo": "Acevector",
-      "gmp": 1.5,
-      "gmpRaw": "₹1.5",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹32",
-      "listing": "₹33.5 (4.69%)",
+      "listing": "₹34 (6.25%)",
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/acevector-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "acevector"
     },
     {
@@ -48,31 +48,31 @@
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/german-green-steel-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "german-green-steel"
     },
     {
       "ipo": "Runwal Enterprises",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹305",
-      "listing": "₹340 (11.48%)",
+      "listing": "₹335 (9.84%)",
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/runwal-enterprises-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "runwal-enterprises"
     },
     {
       "ipo": "Orient Cables",
-      "gmp": 60,
-      "gmpRaw": "₹60",
+      "gmp": 113,
+      "gmpRaw": "₹113",
       "price": "₹272",
-      "listing": "₹332 (22.06%)",
+      "listing": "₹385 (41.54%)",
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/orient-cables-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "orient-cables"
     },
     {
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "A-One Steels",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 49,
+      "gmpRaw": "₹49",
       "price": "₹405",
-      "listing": "₹450 (11.11%)",
+      "listing": "₹454 (12.10%)",
       "date": "24-28 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/a-one-steels-ipo/",
@@ -281,14 +281,14 @@
     },
     {
       "ipo": "Dudani Retail",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹29",
-      "listing": "₹29 (0.00%)",
+      "listing": "₹32 (10.34%)",
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/dudani-retail-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "dudani-retail"
     },
     {
@@ -300,7 +300,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/shree-tnb-polymers-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "shree-tnb-polymers"
     },
     {
@@ -312,7 +312,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/bench-mark-infotech-services-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "bench-mark-infotech"
     },
     {
@@ -324,7 +324,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/sai-urja-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "sai-urja-indo-ventures"
     },
     {
@@ -336,7 +336,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/himalayan-solar-ipo/",
-      "status": "upcoming",
+      "status": "active",
       "slug": "himalayan-solar"
     },
     {
@@ -473,10 +473,10 @@
     },
     {
       "ipo": "Robokidz Eduventures",
-      "gmp": 55,
-      "gmpRaw": "₹55",
+      "gmp": 70,
+      "gmpRaw": "₹70",
       "price": "₹106",
-      "listing": "₹161 (51.89%)",
+      "listing": "₹176 (66.04%)",
       "date": "21-23 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/robokidz-eduventures-ipo/",
