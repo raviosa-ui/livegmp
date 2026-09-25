@@ -183,10 +183,27 @@ HARD RULES:
 - Amounts in Rs crore/lakh exactly as the DRHP states them. Do not convert units.
 - Simple language for retail investors. No promotional tone.
 - Financial metrics to include when present: Revenue from operations, EBITDA, Profit after tax, Net worth, Total borrowings, and margin percentages.
-- Do not recommend buying or selling. Do not predict listing gains or GMP.`;
+- Do not recommend buying or selling. Do not predict listing gains or GMP.
+- LENGTH LIMITS (important — the whole JSON must fit in one reply):
+  "overview" max 180 words. "business_model" max 120 words. "promoters" max 80 words.
+  "peer_comparison" max 80 words. Each array item max 35 words. Max 8 rows in "financials".
+  Be specific but concise; do not repeat the same fact in two fields.`;
 
 // Ask the API which models actually exist, instead of hard-coding names that
 // get retired. Returns generateContent-capable model ids, newest-looking first.
+// A truncated reply is well-formed right up to where it stops, so it only
+// shows as a JSON error. Catch it here and treat it like any other transient
+// failure, so the chain moves to the next model instead of ending the run.
+function assertParsable(text, finishReason) {
+  const t = String(text || "").replace(/^```json\s*/i, "").replace(/```\s*$/, "").trim();
+  if (/^(MAX_TOKENS|length)$/i.test(String(finishReason || ""))) {
+    throw new Error(`reply truncated (finishReason: ${finishReason}) — output limit reached`);
+  }
+  try { JSON.parse(t); } catch (e) {
+    throw new Error(`reply was not valid JSON (${e.message.slice(0, 60)}) — usually truncation`);
+  }
+}
+
 async function listModels(key) {
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}&pageSize=200`);
   const data = await res.json();
@@ -223,7 +240,7 @@ function buildChain(available, preferred) {
   const lite = available.filter(id => isUsable(id) && /flash/.test(id) && /lite/.test(id))
     .sort((a, b) => versionOf(b) - versionOf(a));
 
-    // Interleave: newest Flash, newest Lite, then the rest. Lite usually has
+  // Interleave: newest Flash, newest Lite, then the rest. Lite usually has
   // capacity exactly when Flash is saturated, so never fill the chain with
   // four Flash variants that share the same congestion.
   const inter = [];
@@ -259,7 +276,7 @@ async function callGemini(key, prompt) {
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192, temperature: 0.2 },
+            generationConfig: { responseMimeType: "application/json", maxOutputTokens: 24576, temperature: 0.2 },
           }),
         });
         const data = await res.json();
@@ -268,11 +285,13 @@ async function callGemini(key, prompt) {
         if (!cand || !cand.content || !cand.content.parts) {
           throw new Error("no content returned" + (cand && cand.finishReason ? ` (finishReason: ${cand.finishReason})` : ""));
         }
+        const out = cand.content.parts.map(p => p.text || "").join("");
+        assertParsable(out, cand.finishReason);
         if (model !== chain[0]) console.log(`  NOTE: used fallback model ${model}`);
-        return { text: cand.content.parts.map(p => p.text || "").join(""), modelUsed: model };
+        return { text: out, modelUsed: model };
       } catch (e) {
         lastErr = e;
-        const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error/i.test(e.message);
+        const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error|truncated|not valid JSON/i.test(e.message);
         console.log(`  ${model} attempt ${attempt}/3 failed: ${e.message}`);
         if (!transient) break;                       // not found / quota: next model
         if (attempt < 3) await new Promise(r => setTimeout(r, 15000 * attempt));
@@ -280,6 +299,105 @@ async function callGemini(key, prompt) {
     }
   }
   throw new Error(`Gemini: ${lastErr ? lastErr.message : "all models and attempts failed"}`);
+}
+
+
+// ============================================================
+// BACKUP PROVIDERS — used only when every Gemini model is saturated.
+// Groq and OpenRouter both expose an OpenAI-compatible /chat/completions
+// endpoint, so one function serves both. Keys are optional: a provider with
+// no key is skipped silently.
+// ============================================================
+const BACKUPS = [
+  {
+    name: "groq",
+    env: "GROQ_API_KEY",
+    base: "https://api.groq.com/openai/v1",
+    // preference order; only models the account can actually see are used
+    prefer: [/gpt-oss-120b/i, /llama-3\.3-70b/i, /llama-4/i, /qwen.*32b/i, /llama-3\.1-8b/i],
+  },
+  {
+    name: "openrouter",
+    env: "OPENROUTER_API_KEY",
+    base: "https://openrouter.ai/api/v1",
+    // ":free" suffix marks OpenRouter's no-cost models
+    prefer: [/llama-3\.3-70b.*:free/i, /deepseek.*:free/i, /qwen.*:free/i, /:free$/i],
+  },
+];
+
+async function openAiCompatModels(base, key) {
+  try {
+    const res = await fetch(`${base}/models`, { headers: { Authorization: `Bearer ${key}` } });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message || "models error");
+    return (data.data || []).map(m => m.id).filter(Boolean);
+  } catch (e) {
+    console.log(`    ${base}: could not list models (${e.message})`);
+    return [];
+  }
+}
+
+async function callOpenAiCompat(provider, key, prompt) {
+  const ids = await openAiCompatModels(provider.base, key);
+  const chain = [];
+  for (const re of provider.prefer) {
+    for (const id of ids) if (re.test(id) && !chain.includes(id)) chain.push(id);
+  }
+  if (!chain.length && ids.length) chain.push(ids[0]);
+  if (!chain.length) throw new Error(`${provider.name}: no usable models`);
+  console.log(`  ${provider.name} chain: ${chain.slice(0, 3).join(" -> ")}`);
+
+  let lastErr = null;
+  for (const model of chain.slice(0, 3)) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const res = await fetch(`${provider.base}/chat/completions`, {
+          method: "POST",
+          headers: { "content-type": "application/json", Authorization: `Bearer ${key}` },
+          body: JSON.stringify({
+            model,
+            messages: [{ role: "user", content: prompt }],
+            temperature: 0.2,
+            max_tokens: 16000,
+            response_format: { type: "json_object" },
+          }),
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+        const txt = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+        if (!txt) throw new Error("empty response");
+        assertParsable(txt, data.choices[0].finish_reason);
+        return { text: txt, modelUsed: `${provider.name}/${model}` };
+      } catch (e) {
+        lastErr = e;
+        console.log(`  ${provider.name}/${model} attempt ${attempt}/2 failed: ${e.message}`);
+        const transient = /rate limit|429|503|overload|timeout|capacity|busy|truncated|not valid JSON/i.test(e.message);
+        if (!transient) break;
+        if (attempt < 2) await new Promise(r => setTimeout(r, 8000));
+      }
+    }
+  }
+  throw new Error(`${provider.name}: ${lastErr ? lastErr.message : "all models failed"}`);
+}
+
+// Gemini first, then each configured backup in turn.
+async function generateDraft(geminiKey, prompt) {
+  try {
+    return await callGemini(geminiKey, prompt);
+  } catch (e) {
+    console.log(`Gemini unavailable: ${e.message}`);
+  }
+  for (const provider of BACKUPS) {
+    const key = process.env[provider.env];
+    if (!key) { console.log(`  ${provider.name}: no ${provider.env} set, skipping`); continue; }
+    try {
+      console.log(`Falling back to ${provider.name}…`);
+      return await callOpenAiCompat(provider, key, prompt);
+    } catch (e) {
+      console.log(`  ${provider.name} failed: ${e.message}`);
+    }
+  }
+  throw new Error("every provider failed — Gemini saturated and no backup succeeded. Re-comment /generate to retry.");
 }
 
 // ---------------- validation ----------------
@@ -467,7 +585,7 @@ ${prose}
   const prompt = `${SCHEMA_PROMPT}\n\nCOMPANY: ${meta.company}\n\nDRHP EXCERPTS:\n${source}`;
 
   console.log(`Calling Gemini…`);
-  const { text: raw, modelUsed } = await callGemini(key, prompt);
+  const { text: raw, modelUsed } = await generateDraft(key, prompt);
   let draft;
   try {
     draft = JSON.parse(raw.replace(/^```json\s*/i, "").replace(/```\s*$/, "").trim());
