@@ -199,6 +199,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "nityas-gems": {
+    "name": "Nityas Gems",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-09-26"
+  },
   "omara-ventures": {
     "name": "Omara Ventures",
     "type": "SME",
@@ -406,6 +414,14 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "vishal-nirmiti": {
+    "name": "Vishal Nirmiti",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-09-26"
   },
   "vivekanand-cotspin": {
     "name": "Vivekanand Cotspin",
