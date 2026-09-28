@@ -15,6 +15,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "acme-india-industries": {
+    "name": "Acme India Industries",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-28"
+  },
   "acme-universal": {
     "name": "Acme Universal",
     "type": "SME",
@@ -102,6 +110,14 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "eventions": {
+    "name": "Eventions",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-09-28"
   },
   "everestims-technologies": {
     "name": "EverestIMS Technologies",
@@ -335,6 +351,14 @@
     "v": 3,
     "at": "2026-09-23"
   },
+  "sjp-ultrasonics": {
+    "name": "SJP Ultrasonics",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-28"
+  },
   "skoffset": {
     "name": "S.K.Offset",
     "type": "SME",
@@ -342,6 +366,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "sollfege-smart-electronics": {
+    "name": "Sollfege Smart Electronics",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-28"
   },
   "sonaselection-india": {
     "name": "Sonaselection India",
@@ -382,6 +414,14 @@
     "why": "listing value \"BSE & NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "tna-solutions": {
+    "name": "TNA Solutions",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-09-28"
   },
   "unitec-fibres": {
     "name": "Unitec Fibres",
