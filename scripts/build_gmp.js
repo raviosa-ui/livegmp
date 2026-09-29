@@ -42,7 +42,7 @@ const fs = require("fs").promises;
 const { load } = require("cheerio");
 
 // ---------------- config ----------------
-const MAX_PER_GROUP = 10;
+const MAX_PER_GROUP = 15;
 const MIN_ROWS = 8;
 const MIN_VALID_RATIO = 0.7;
 const GMP_JSON = "gmp.json";
