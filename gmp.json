@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-29T08:56:02.233Z",
-  "updatedLocal": "29/09/2026, 14:26:02 IST",
+  "updatedIso": "2026-09-29T16:04:38.571Z",
+  "updatedLocal": "29/09/2026, 21:34:38 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "SRIT India",
-      "gmp": 33,
-      "gmpRaw": "₹33",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹130",
-      "listing": "₹163 (25.38%)",
+      "listing": "₹150 (15.38%)",
       "date": "28-30 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/srit-india-ipo/",
@@ -41,10 +41,10 @@
     },
     {
       "ipo": "Shah Investor’s Home",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹167",
-      "listing": "₹181 (8.38%)",
+      "listing": "₹180 (7.78%)",
       "date": "28-30 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/shah-investors-home-ipo/",
@@ -60,19 +60,19 @@
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/acevector-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "acevector"
     },
     {
       "ipo": "German Green Steel",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹139",
-      "listing": "₹164 (17.98%)",
+      "listing": "₹149 (7.19%)",
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/german-green-steel-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "german-green-steel"
     },
     {
@@ -84,27 +84,27 @@
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/runwal-enterprises-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "runwal-enterprises"
     },
     {
       "ipo": "Orient Cables",
-      "gmp": 72,
-      "gmpRaw": "₹72",
+      "gmp": 85,
+      "gmpRaw": "₹85",
       "price": "₹272",
-      "listing": "₹344 (26.47%)",
+      "listing": "₹360 (31.25%)",
       "date": "25-29 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/orient-cables-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "orient-cables"
     },
     {
       "ipo": "Moneyview",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹34",
-      "listing": "₹48 (41.18%)",
+      "listing": "₹47 (38.23%)",
       "date": "24-28 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/moneyview-ipo/",
@@ -113,10 +113,10 @@
     },
     {
       "ipo": "A-One Steels",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹405",
-      "listing": "₹435 (7.40%)",
+      "listing": "₹430 (6.17%)",
       "date": "24-28 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/a-one-steels-ipo/",
@@ -170,18 +170,6 @@
       "href": "https://ipowatch.in/armee-infotech-ipo/",
       "status": "closed",
       "slug": "armee-infotech"
-    },
-    {
-      "ipo": "Varmora Granito",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹148",
-      "listing": "₹149 (0.68%)",
-      "date": "22-24 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/varmora-granito-ipo/",
-      "status": "closed",
-      "slug": "varmora-granito"
     },
     {
       "ipo": "TNA Solutions",
@@ -365,10 +353,10 @@
     },
     {
       "ipo": "Shivchem Agro",
-      "gmp": 6,
-      "gmpRaw": "₹6",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹62",
-      "listing": "₹68 (9.68%)",
+      "listing": "₹72 (16.13%)",
       "date": "28-30 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/shivchem-agro-ipo/",
@@ -377,14 +365,14 @@
     },
     {
       "ipo": "Dudani Retail",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹29",
-      "listing": "₹32 (10.34%)",
+      "listing": "₹29 (0.00%)",
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/dudani-retail-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "dudani-retail"
     },
     {
@@ -396,7 +384,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/bench-mark-infotech-services-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "bench-mark-infotech"
     },
     {
@@ -408,7 +396,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/sai-urja-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "sai-urja-indo-ventures"
     },
     {
@@ -420,7 +408,7 @@
       "date": "25-29 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/himalayan-solar-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "himalayan-solar"
     },
     {
@@ -449,10 +437,10 @@
     },
     {
       "ipo": "Roopa Screen",
-      "gmp": 38,
-      "gmpRaw": "₹38",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹64",
-      "listing": "₹102 (59.38%)",
+      "listing": "₹94 (46.88%)",
       "date": "24-28 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/roopa-screen-ipo/",
@@ -518,30 +506,6 @@
       "href": "https://ipowatch.in//pooja-logistics-ipo/",
       "status": "closed",
       "slug": "pooja-logistics"
-    },
-    {
-      "ipo": "Anand Seamless",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹72",
-      "listing": "₹72 (0.00%)",
-      "date": "22-24 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/anand-seamless-ipo/",
-      "status": "closed",
-      "slug": "anand-seamless"
-    },
-    {
-      "ipo": "Himalaya Nutravedics",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹106",
-      "listing": "₹106 (0.00%)",
-      "date": "22-24 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/himalaya-nutravedics-ipo/",
-      "status": "closed",
-      "slug": "himalaya-nutravedics"
     }
   ]
 }
