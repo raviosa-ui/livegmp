@@ -1,0 +1,39 @@
+name: Agent 4 — Content digest
+
+on:
+  schedule:
+    - cron: '30 3 * * *'   # daily, 09:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build worklist and notify
+        id: digest
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/content_digest.js
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "Pending: ${{ steps.digest.outputs.pending }} · Ready to generate: ${{ steps.digest.outputs.ready }}" >> $GITHUB_STEP_SUMMARY
