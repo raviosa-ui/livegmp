@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-09-30T07:12:51.643Z",
-  "updatedLocal": "30/09/2026, 12:42:51 IST",
+  "updatedIso": "2026-09-30T14:07:37.707Z",
+  "updatedLocal": "30/09/2026, 19:37:37 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -36,7 +36,7 @@
       "date": "28-30 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/srit-india-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "srit-india"
     },
     {
@@ -48,7 +48,7 @@
       "date": "28-30 Sep",
       "type": "Mainboard",
       "href": "https://ipowatch.in/shah-investors-home-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "shah-investors-home"
     },
     {
@@ -124,52 +124,16 @@
       "slug": "a-one-steels"
     },
     {
-      "ipo": "Adroit Industries",
-      "gmp": 58,
-      "gmpRaw": "₹58",
-      "price": "₹134",
-      "listing": "₹192 (43.28%)",
-      "date": "23-25 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/adroit-industries-ipo/",
-      "status": "closed",
-      "slug": "adroit-industries"
-    },
-    {
-      "ipo": "Swastika Infra",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹185",
-      "listing": "₹192 (3.78%)",
-      "date": "23-25 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/swastika-infra-ipo/",
-      "status": "closed",
-      "slug": "swastika-infra"
-    },
-    {
-      "ipo": "Elevate Campuses",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹362",
-      "listing": "₹369 (1.80%)",
-      "date": "23-25 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/elevate-campuses-ipo/",
-      "status": "closed",
-      "slug": "elevate-campuses"
-    },
-    {
-      "ipo": "ArMee Infotech",
-      "gmp": 6,
-      "gmpRaw": "₹6",
-      "price": "₹375",
-      "listing": "₹381 (1.60%)",
-      "date": "23-25 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/armee-infotech-ipo/",
-      "status": "closed",
-      "slug": "armee-infotech"
+      "ipo": "R.K.Fashion",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹82",
+      "listing": "₹82 (0.00%)",
+      "date": "5-7 Oct",
+      "type": "SME",
+      "href": "https://ipowatch.in/rkfashion-accessories-ipo/",
+      "status": "upcoming",
+      "slug": "rkfashion"
     },
     {
       "ipo": "TNA Solutions",
@@ -336,7 +300,7 @@
       "date": "28-30 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/acme-universal-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "acme-universal"
     },
     {
@@ -348,7 +312,7 @@
       "date": "28-30 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/pind-hospitality-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "pind-hospitality"
     },
     {
@@ -360,7 +324,7 @@
       "date": "28-30 Sep",
       "type": "SME",
       "href": "https://ipowatch.in/shivchem-agro-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "shivchem-agro"
     },
     {
@@ -446,66 +410,6 @@
       "href": "https://ipowatch.in/roopa-screen-ipo/",
       "status": "closed",
       "slug": "roopa-screen"
-    },
-    {
-      "ipo": "Coreintegra Consulting",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹78",
-      "listing": "₹78 (0.00%)",
-      "date": "23-25 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/coreintegra-consulting-ipo/",
-      "status": "closed",
-      "slug": "coreintegra-consulting"
-    },
-    {
-      "ipo": "Unitec Fibres",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹88",
-      "listing": "₹88 (0.00%)",
-      "date": "23-25 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/unitec-fibres-ipo/",
-      "status": "closed",
-      "slug": "unitec-fibres"
-    },
-    {
-      "ipo": "S.K.Offset",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹125",
-      "listing": "₹125 (0.00%)",
-      "date": "23-25 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/skoffset-ipo/",
-      "status": "closed",
-      "slug": "skoffset"
-    },
-    {
-      "ipo": "Liqvd Digital",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹54",
-      "listing": "₹54 (0.00%)",
-      "date": "23-25 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in/liqvd-digital-ipo/",
-      "status": "closed",
-      "slug": "liqvd-digital"
-    },
-    {
-      "ipo": "Pooja Logistics",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹115",
-      "listing": "₹115 (0.00%)",
-      "date": "23-25 Sep",
-      "type": "SME",
-      "href": "https://ipowatch.in//pooja-logistics-ipo/",
-      "status": "closed",
-      "slug": "pooja-logistics"
     }
   ]
 }
