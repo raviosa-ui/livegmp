@@ -118,21 +118,75 @@ function fromIssueBody(body) {
   const slug = (slugRaw.match(/`([^`]+)`/) || [])[1] || slugify(company);
   let pdf = get("Main document");
   if (!pdf) {
-    const m = body.match(/https?:\/\/\S+\.pdf/i);
+    const m = body.match(/https?:\/\/\S+\.pdf/i) || body.match(/\b[\w./-]+\.pdf\b/i);
     pdf = m ? m[0] : "";
   }
+  // a markdown link or backticks around a repo path
+  const md = pdf.match(/\]\(([^)]+)\)/) || pdf.match(/`([^`]+)`/);
+  if (md) pdf = md[1];
   pdf = pdf.replace(/^<|>$/g, "");
   const kind = get("Filing") || "DRHP";
   return { company, slug, pdf, kind };
 }
 
 // ---------------- PDF ----------------
+// Three ways to get the document, in order:
+//   1. a path inside this repo   -> "Main document | docs/kmc.pdf"
+//   2. Node fetch                -> works for sebi.gov.in, ipowatch.in
+//   3. curl                      -> some hosts reject Node's HTTP client at
+//                                   the connection level but answer curl
+// bsesme.com refuses Node fetch ("fetch failed"), which is why 3 exists; and
+// when a host blocks the runner entirely, 1 is the guaranteed route: commit
+// the PDF to the repo and point the issue at its path.
 async function fetchPdf(url) {
-  const res = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
-  if (!res.ok) throw new Error(`PDF fetch HTTP ${res.status}`);
-  const ab = await res.arrayBuffer();
-  if (ab.byteLength > PDF_MAX_BYTES) throw new Error(`PDF too large (${(ab.byteLength/1048576).toFixed(1)} MB)`);
-  return Buffer.from(ab);
+  const fssync = require("fs");
+
+  // 1. repo-relative path (no scheme)
+  if (!/^https?:\/\//i.test(url)) {
+    const rel = url.replace(/^\.?\//, "");
+    if (!fssync.existsSync(rel)) {
+      throw new Error(`"${rel}" is not in this repository. Commit the PDF, then use its path (e.g. docs/company.pdf).`);
+    }
+    const buf = fssync.readFileSync(rel);
+    console.log(`  read from repo: ${rel} (${(buf.length / 1048576).toFixed(1)} MB)`);
+    return buf;
+  }
+
+  // 2. Node fetch
+  try {
+    const res = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const ab = await res.arrayBuffer();
+    if (ab.byteLength > PDF_MAX_BYTES) throw new Error(`PDF too large (${(ab.byteLength / 1048576).toFixed(1)} MB)`);
+    return Buffer.from(ab);
+  } catch (e) {
+    console.log(`  direct fetch failed (${e.message}); retrying with curl…`);
+  }
+
+  // 3. curl
+  const tmp = `/tmp/doc_${Date.now()}.pdf`;
+  try {
+    require("child_process").execFileSync("curl", [
+      "-s", "-L", "--max-time", "90", "-o", tmp,
+      "-A", UA,
+      "-H", "Accept: application/pdf,*/*",
+      "-H", "Accept-Language: en-US,en;q=0.9",
+      url,
+    ], { timeout: 100000 });
+  } catch (e) {
+    throw new Error(`curl could not download the PDF either — this host blocks GitHub runners. Commit the PDF to the repo and set "Main document" to its path (e.g. docs/company.pdf).`);
+  }
+  if (!fssync.existsSync(tmp) || fssync.statSync(tmp).size < 1024) {
+    throw new Error(`download produced no usable file — this host blocks GitHub runners. Commit the PDF to the repo and set "Main document" to its path (e.g. docs/company.pdf).`);
+  }
+  const buf = fssync.readFileSync(tmp);
+  try { fssync.unlinkSync(tmp); } catch {}
+  if (buf.length > PDF_MAX_BYTES) throw new Error(`PDF too large (${(buf.length / 1048576).toFixed(1)} MB)`);
+  if (buf.subarray(0, 5).toString() !== "%PDF-") {
+    throw new Error(`the downloaded file is not a PDF (host probably returned an error page). Commit the PDF to the repo and use its path instead.`);
+  }
+  console.log(`  downloaded via curl (${(buf.length / 1048576).toFixed(1)} MB)`);
+  return buf;
 }
 
 async function extractPages(buf, ranges) {
@@ -462,6 +516,19 @@ ${rows.map(r => `<tr><td>${esc(r.metric)}</td><td>${esc(r.fy1)}</td><td>${esc(r.
 </table>`;
 }
 
+// Only link a document that lives on an official, permanent host.
+// A repo-committed PDF would become a dead link the moment it is deleted, and
+// a link to a third-party aggregator advertises where the data came from —
+// so in both cases the sentence is printed without a link.
+function sourceLine(meta) {
+  const url = String(meta.pdf || "");
+  const official = /^https?:\/\/(www\.)?(sebi\.gov\.in|nseindia\.com|bseindia\.com|bsesme\.com)\//i.test(url);
+  const base = `Figures as disclosed in the ${esc(meta.kind)} filed with SEBI.`;
+  return official
+    ? `${base} Source: <a href="${esc(url)}" rel="nofollow noopener" target="_blank">offer document</a>.`
+    : base;
+}
+
 function proseZone(d, meta) {
   return `${PROSE_START}
 <h2>About ${esc(meta.company)}</h2>
@@ -472,7 +539,7 @@ ${paras(d.business_model)}
 
 <h2>Financial Performance</h2>
 ${financialsTable(d.financials)}
-<p class="stub-updated">Figures as disclosed in the ${esc(meta.kind)} filed with SEBI. Source: <a href="${esc(meta.pdf)}" rel="nofollow noopener" target="_blank">offer document</a>.</p>
+<p class="stub-updated">${sourceLine(meta)}</p>
 
 <h2>Objects of the Issue</h2>
 ${ul(d.objects_of_issue)}
