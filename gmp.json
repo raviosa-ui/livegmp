@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-01T03:42:58.059Z",
-  "updatedLocal": "01/10/2026, 09:12:58 IST",
+  "updatedIso": "2026-10-01T13:46:36.482Z",
+  "updatedLocal": "01/10/2026, 19:16:36 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -252,7 +252,7 @@
       "date": "29-1 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/black-opal-consultants-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "papadmalji-agro"
     },
     {
@@ -264,7 +264,7 @@
       "date": "29-1 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/vans-electroengineerings-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "vans-electroengineerings"
     },
     {
@@ -276,7 +276,7 @@
       "date": "29-1 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/black-opal-consultants-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "black-opal-consultants"
     },
     {
@@ -381,7 +381,7 @@
       "gmpRaw": "₹0",
       "price": "₹90",
       "listing": "₹90 (0.00%)",
-      "date": "24-28 Sep",
+      "date": "24-1 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/green-asia-impex-ipo/",
       "status": "closed",
