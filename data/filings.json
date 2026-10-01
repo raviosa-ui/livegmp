@@ -15,6 +15,11 @@
       "title": "M P STEEL (INDIA) LIMITED - DRHP",
       "kind": "DRHP"
     },
+    "104015": {
+      "date": "Oct 01, 2026",
+      "title": "Royal Chain Limited – DRHP",
+      "kind": "DRHP"
+    },
     "104033": {
       "date": "Aug 27, 2026",
       "title": "KARAMTARA ENGINEERING LIMITED - Addendum to DRHP",
@@ -163,6 +168,21 @@
     "104809": {
       "date": "Sep 29, 2026",
       "title": "ULTRAVIBRANT INTEGRATED ENERGY LIMITED",
+      "kind": "OTHER"
+    },
+    "104826": {
+      "date": "Sep 30, 2026",
+      "title": "S. D. INTERNATIONAL LIMITED",
+      "kind": "OTHER"
+    },
+    "104828": {
+      "date": "Sep 30, 2026",
+      "title": "S G Encon Limited",
+      "kind": "OTHER"
+    },
+    "104830": {
+      "date": "Sep 30, 2026",
+      "title": "J B ECOTEX LIMITED",
       "kind": "OTHER"
     }
   },
