@@ -25,8 +25,58 @@ jobs:
           if [ ! -f package.json ]; then npm init -y; fi
           npm install cheerio
 
+      # Output is captured to build.log so warnings can be routed to Telegram.
+      # pipefail keeps a script crash failing the job (tee would hide it).
       - name: Build GMP data + page
-        run: node scripts/build_gmp.js
+        id: build
+        run: |
+          set -o pipefail
+          node scripts/build_gmp.js 2>&1 | tee build.log
+
+      # Always leaves data/pipeline_warn_hash.txt in place, so the commit step
+      # can never fail on a missing file.
+      - name: Collect pipeline warnings
+        id: warn
+        if: always()
+        run: |
+          mkdir -p data
+          grep -E "POSSIBLE DUPLICATE|TYPE MISMATCH|WARNING:|no usable type|not merged automatically|would create ipo/" build.log > warnings.txt || true
+          grep -E '^\s+"[^"]+": "[a-z0-9-]+",?$' build.log >> warnings.txt || true
+
+          if [ -s warnings.txt ]; then
+            COUNT=$(wc -l < warnings.txt)
+            HASH=$(sha1sum warnings.txt | cut -c1-16)
+            PREV=$(cat data/pipeline_warn_hash.txt 2>/dev/null || echo "none")
+            echo "count=$COUNT" >> $GITHUB_OUTPUT
+            echo "hash=$HASH"   >> $GITHUB_OUTPUT
+            if [ "$HASH" = "$PREV" ]; then
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+            echo "--- warnings ---"; cat warnings.txt
+          else
+            echo "count=0"       >> $GITHUB_OUTPUT
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "none" > data/pipeline_warn_hash.txt
+            echo "No pipeline warnings."
+          fi
+
+      # One message per distinct set of warnings; repeats are suppressed.
+      - name: Telegram — pipeline warnings
+        if: steps.warn.outputs.changed == 'true'
+        continue-on-error: true
+        run: |
+          echo "${{ steps.warn.outputs.hash }}" > data/pipeline_warn_hash.txt
+          BODY=$(head -12 warnings.txt)
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode "text=⚠️ LiveGMP pipeline — ${{ steps.warn.outputs.count }} warning(s)
+
+          $BODY
+
+          Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --data-urlencode "disable_web_page_preview=true"
 
       - name: Commit changes (only if data changed)
         id: commit
@@ -38,6 +88,8 @@ jobs:
 
       # A push made with GITHUB_TOKEN does NOT trigger other workflows, so
       # deploy.yml never fired after these commits. Deploy directly instead.
+      # "docs" is excluded: prospectus PDFs stay in the repo for the blog
+      # generator but are never published on livegmp.in.
       - name: Stage site files
         if: steps.commit.outputs.changes_detected == 'true'
         run: |
@@ -45,8 +97,10 @@ jobs:
           rsync -a \
             --exclude ".git" --exclude ".github" --exclude "deploy" \
             --exclude "scripts" --exclude "node_modules" --exclude "data" \
+            --exclude "docs" \
             --exclude "package.json" --exclude "package-lock.json" \
             --exclude ".htaccess" --exclude "health_report.md" --exclude "watchdog_report.md" \
+            --exclude "build.log" --exclude "warnings.txt" \
             ./ deploy/
           echo "Deploying $(find deploy -type f | wc -l) files"
 
