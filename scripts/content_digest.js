@@ -56,7 +56,11 @@ function nameMatch(a, b) {
   if (short) {
     const other = short === ka ? kb : ka;
     const ini = initials(other);
-    if (ini.length >= 2 && (ini.startsWith(short) || short.startsWith(ini.slice(0, Math.max(2, short.length))))) return 0.9;
+    // The name must spell the initials, not merely share their first letter or
+    // two: "ardee" vs "asset reconstruction" (initials "ar") is not a match,
+    // "smwl" vs "solanki mechanic works" (initials "smw", L = Limited) is.
+    if (ini.startsWith(short) ||
+        (ini.length >= 3 && short.length - ini.length <= 1 && short.startsWith(ini))) return 0.9;
   }
   const ta = new Set(ka.split(" ").filter(w => w.length > 2));
   const tb = new Set(kb.split(" ").filter(w => w.length > 2));
