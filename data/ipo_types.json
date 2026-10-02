@@ -15,6 +15,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "acevector-c-mainboard": {
+    "name": "Acevector (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "acme-india-industries": {
     "name": "Acme India Industries",
     "type": "SME",
@@ -23,6 +31,14 @@
     "v": 3,
     "at": "2026-09-28"
   },
+  "acme-india-industries-o-sme": {
+    "name": "Acme India Industries (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "acme-universal": {
     "name": "Acme Universal",
     "type": "SME",
@@ -30,6 +46,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "acme-universal-c-sme": {
+    "name": "Acme Universal (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "adroit-industries": {
     "name": "Adroit Industries",
@@ -71,6 +95,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "bench-mark-infotech-c-sme": {
+    "name": "Bench Mark Infotech (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "black-opal-consultants": {
     "name": "Black Opal Consultants",
     "type": "SME",
@@ -78,6 +110,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "black-opal-consultants-c-sme": {
+    "name": "Black Opal Consultants (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "coreintegra-consulting": {
     "name": "Coreintegra Consulting",
@@ -95,6 +135,14 @@
     "v": 3,
     "at": "2026-09-24"
   },
+  "dove-soft-o-sme": {
+    "name": "Dove Soft (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "dudani-retail": {
     "name": "Dudani Retail",
     "type": "SME",
@@ -102,6 +150,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "dudani-retail-c-sme": {
+    "name": "Dudani Retail (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "elevate-campuses": {
     "name": "Elevate Campuses",
@@ -119,6 +175,14 @@
     "v": 3,
     "at": "2026-09-28"
   },
+  "eventions-o-sme": {
+    "name": "Eventions (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "everestims-technologies": {
     "name": "EverestIMS Technologies",
     "type": "SME",
@@ -126,6 +190,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "everestims-technologies-o-sme": {
+    "name": "EverestIMS Technologies (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "fx-multitech": {
     "name": "FX Multitech",
@@ -143,6 +215,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "german-green-steel-c-mainboard": {
+    "name": "German Green Steel (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "green-asia-impex": {
     "name": "Green Asia Impex",
     "type": "SME",
@@ -150,6 +230,14 @@
     "why": "listing value \"NSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "green-asia-impex-c-sme": {
+    "name": "Green Asia Impex (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "hero-motors": {
     "name": "Hero Motors",
@@ -174,6 +262,14 @@
     "why": "listing value \"NSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "himalayan-solar-c-sme": {
+    "name": "Himalayan Solar (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "jindal-supreme": {
     "name": "Jindal Supreme",
@@ -223,6 +319,14 @@
     "v": 3,
     "at": "2026-09-26"
   },
+  "nityas-gems-o-mainboard": {
+    "name": "Nityas Gems (O) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "omara-ventures": {
     "name": "Omara Ventures",
     "type": "SME",
@@ -230,6 +334,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "omara-ventures-o-sme": {
+    "name": "Omara Ventures (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "orient-cables": {
     "name": "Orient Cables",
@@ -239,6 +351,14 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "orient-cables-c-mainboard": {
+    "name": "Orient Cables (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE & NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "papadmalji-agro": {
     "name": "Papadmalji Agro",
     "type": "SME",
@@ -247,6 +367,14 @@
     "v": 3,
     "at": "2026-09-24"
   },
+  "papadmalji-agro-c-sme": {
+    "name": "Papadmalji Agro (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "paramount-syntex": {
     "name": "Paramount Syntex",
     "type": "SME",
@@ -254,6 +382,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-24"
+  },
+  "paramount-syntex-o-sme": {
+    "name": "Paramount Syntex (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "peshwa-wheat": {
     "name": "Peshwa Wheat",
@@ -270,6 +406,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "pind-hospitality-c-sme": {
+    "name": "Pind Hospitality (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "pooja-logistics": {
     "name": "Pooja Logistics",
@@ -295,6 +439,14 @@
     "v": 3,
     "at": "2026-09-30"
   },
+  "rkfashion-u-sme": {
+    "name": "R.K.Fashion (U) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"NSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "robokidz-eduventures": {
     "name": "Robokidz Eduventures",
     "type": "SME",
@@ -319,6 +471,22 @@
     "v": 3,
     "at": "2026-09-22"
   },
+  "runwal-enterprises-c-mainboard": {
+    "name": "Runwal Enterprises (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
+  "sai-urja-c-sme": {
+    "name": "Sai Urja (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "sai-urja-indo-ventures": {
     "name": "Sai Urja Indo Ventures",
     "type": "SME",
@@ -326,6 +494,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "shah-investors-c-mainboard": {
+    "name": "Shah Investor's (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "shah-investors-home": {
     "name": "Shah Investor’s Home",
@@ -351,6 +527,14 @@
     "v": 3,
     "at": "2026-09-23"
   },
+  "shivchem-agro-c-sme": {
+    "name": "Shivchem Agro (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "shree-tnb-polymers": {
     "name": "Shree TNB Polymers",
     "type": "SME",
@@ -358,6 +542,22 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "shree-tnb-polymers-c-sme": {
+    "name": "Shree TNB Polymers (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
+  "sjp-ultrasonic-o-sme": {
+    "name": "SJP Ultrasonic (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "sjp-ultrasonics": {
     "name": "SJP Ultrasonics",
@@ -383,6 +583,14 @@
     "v": 3,
     "at": "2026-09-28"
   },
+  "sollfege-smart-electronics-o-sme": {
+    "name": "Sollfege Smart Electronics (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "sonaselection-india": {
     "name": "Sonaselection India",
     "type": "Mainboard",
@@ -406,6 +614,14 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-23"
+  },
+  "srit-india-c-mainboard": {
+    "name": "SRIT India (C) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "ss-retail": {
     "name": "SS Retail",
@@ -431,6 +647,14 @@
     "v": 3,
     "at": "2026-09-28"
   },
+  "tna-solutions-o-sme": {
+    "name": "TNA Solutions (O) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "unitec-fibres": {
     "name": "Unitec Fibres",
     "type": "SME",
@@ -455,6 +679,14 @@
     "v": 3,
     "at": "2026-09-24"
   },
+  "vans-electroengineerings-c-sme": {
+    "name": "Vans Electroengineerings (C) SME",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-02"
+  },
   "varmora-granito": {
     "name": "Varmora Granito",
     "type": "Mainboard",
@@ -470,6 +702,14 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-26"
+  },
+  "vishal-nirmiti-o-mainboard": {
+    "name": "Vishal Nirmiti (O) Mainboard",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-02"
   },
   "vivekanand-cotspin": {
     "name": "Vivekanand Cotspin",
