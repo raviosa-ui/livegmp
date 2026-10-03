@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-10-03T08:28:32.005Z",
-  "updatedLocal": "03/10/2026, 13:58:32 IST",
+  "updatedIso": "2026-10-03T13:39:03.117Z",
+  "updatedLocal": "03/10/2026, 19:09:03 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Jio Platform (U) Mainboard",
-      "gmp": 150,
-      "gmpRaw": "₹150",
+      "gmp": 125,
+      "gmpRaw": "₹125",
       "price": "₹-",
       "listing": "",
       "date": "21-23 Oct*",
