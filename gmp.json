@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-02T13:02:52.811Z",
-  "updatedLocal": "02/10/2026, 18:32:52 IST",
+  "updatedIso": "2026-10-03T08:28:32.005Z",
+  "updatedLocal": "03/10/2026, 13:58:32 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -149,8 +149,8 @@
     },
     {
       "ipo": "EverestIMS Technologies (O) SME",
-      "gmp": 28,
-      "gmpRaw": "₹28",
+      "gmp": 40,
+      "gmpRaw": "₹40",
       "price": "₹85",
       "listing": "",
       "date": "29-5 Oct",
@@ -185,8 +185,8 @@
     },
     {
       "ipo": "Black Opal Consultants (C) SME",
-      "gmp": 66,
-      "gmpRaw": "₹66",
+      "gmp": 78,
+      "gmpRaw": "₹78",
       "price": "₹197",
       "listing": "",
       "date": "29-1 Oct",
@@ -209,8 +209,8 @@
     },
     {
       "ipo": "SRIT India (C) Mainboard",
-      "gmp": 48,
-      "gmpRaw": "₹48",
+      "gmp": 53,
+      "gmpRaw": "₹53",
       "price": "₹130",
       "listing": "",
       "date": "28-30 Sep",
@@ -221,8 +221,8 @@
     },
     {
       "ipo": "Shah Investor's (C) Mainboard",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹167",
       "listing": "",
       "date": "28-30 Sep",
@@ -281,8 +281,8 @@
     },
     {
       "ipo": "German Green Steel (C) Mainboard",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹139",
       "listing": "",
       "date": "25-29 Sep",
@@ -305,8 +305,8 @@
     },
     {
       "ipo": "Orient Cables (C) Mainboard",
-      "gmp": 107,
-      "gmpRaw": "₹107",
+      "gmp": 123,
+      "gmpRaw": "₹123",
       "price": "₹272",
       "listing": "",
       "date": "25-29 Sep",
@@ -341,8 +341,8 @@
     },
     {
       "ipo": "Sai Urja (C) SME",
-      "gmp": 8,
-      "gmpRaw": "₹8",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹113",
       "listing": "",
       "date": "25-29 Sep",
