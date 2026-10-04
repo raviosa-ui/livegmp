@@ -429,6 +429,27 @@ function extractRows($, c) {
 }
 
 // ---------------- validation ----------------
+// ipowatch began appending a status letter and the board to the name cell:
+//   "EverestIMS Technologies (O) SME", "Vishal Nirmiti (O) Mainboard".
+// Left in, those suffixes change every slug and create a duplicate page for
+// every IPO. Strip them, and keep the board — it is ipowatch's own label and
+// more reliable than anything inferred.
+function splitIpoName(raw) {
+  let name = clean(raw).replace(/\s+ipo$/i, "");
+  let type = "";
+  for (let i = 0; i < 4; i++) {
+    let m = name.match(/\s+(SME|Main\s*board)$/i);
+    if (m) { type = /sme/i.test(m[1]) ? "SME" : "Mainboard"; name = name.slice(0, m.index).trim(); continue; }
+    m = name.match(/\s*\(([A-Za-z]{1,2})\)$/);            // (O) (U) (C) (L) ...
+    if (m) { name = name.slice(0, m.index).trim(); continue; }
+    m = name.match(/\s+ipo$/i);
+    if (m) { name = name.slice(0, m.index).trim(); continue; }
+    break;
+  }
+  return { name, type };
+}
+
+
 // ============================================================
 // IPO TYPE RESOLUTION — per company, resolved once, cached forever.
 //
@@ -607,13 +628,13 @@ function validateAndNormalize(rawRows, sourceName) {
     const hasParsableDate = r.date && !/tba|announc|n\/a/i.test(r.date);
     const status = hasParsableDate ? dateStatus : (normalizeStatus(r.status) || dateStatus);
     out.push({
-      ipo: clean(r.ipo).replace(/\s+ipo$/i, ""),
+      ipo: splitIpoName(r.ipo).name,
       gmp: blank ? null : n,
       gmpRaw: clean(r.gmpRaw),
       price: clean(r.price),
       listing: clean(r.listing),
       date: clean(r.date),
-      type: normalizeType(r.type) || "Unknown",
+      type: normalizeType(r.type) || splitIpoName(r.ipo).type || "Unknown",
       href: r.href || "",
       status,
     });
@@ -1062,8 +1083,154 @@ ${entries.map(e => `  <url><loc>${e.loc}</loc><lastmod>${e.date}</lastmod><chang
   console.log(`sitemap.xml regenerated (${entries.length} URLs, ${changedToday} with today's lastmod, ${entries.length - changedToday} unchanged).`);
 }
 
+
+// One-time-safe cleanup: stub pages whose slug carries the polluted suffix
+// ("...-o-sme", "...-u-mainboard"). Only AUTO_STUB pages are touched — a page
+// holding a merged article is never deleted.
+const POLLUTED_SLUG_RE = /-[a-z]{1,2}-(sme|mainboard|main-board)$/;
+
+async function removePollutedStubs() {
+  let removed = [];
+  let entries = [];
+  try { entries = await fs.readdir("ipo", { withFileTypes: true }); } catch { return removed; }
+  for (const e of entries) {
+    if (!e.isDirectory()) continue;
+    if (!POLLUTED_SLUG_RE.test(e.name)) continue;
+    const file = `ipo/${e.name}/index.html`;
+    let html = "";
+    try { html = await fs.readFile(file, "utf8"); } catch { continue; }
+    if (!html.includes(STUB_MARK)) { console.log(`  kept ipo/${e.name}/ — has an article, review by hand`); continue; }
+    await fs.rm(`ipo/${e.name}`, { recursive: true, force: true });
+    removed.push(e.name);
+  }
+  if (removed.length) console.log(`Removed ${removed.length} polluted stub page(s): ${removed.join(", ")}`);
+  return removed;
+}
+
+
+// ============================================================
+// PAGE-CREATION GUARD
+//
+// Creating a page is the one irreversible act in this pipeline: it enters the
+// sitemap, gets crawled and dilutes average page quality. Updating an existing
+// page is routine and stays automatic. So before anything is written, every
+// scraped name is classified against what the repo already knows:
+//
+//   Approved - has an entry in data/ipo_aliases.json (you vouched for it)
+//   Known    - its slug already has a page, or was tracked on the last run
+//   Variant  - not known, but closely resembles a known company (suffix,
+//              acronym, punctuation). NEVER given a page: held back, alerted.
+//   New      - resembles nothing. Allowed, up to a small cap per run.
+//
+// If one run would create too many pages, hold too many variants, or lose too
+// many tracked IPOs, the whole run stops and writes NOTHING; last-good data
+// stays live. That is the circuit breaker. The suffix incident (40+ duplicate
+// pages in a single hour) would have tripped it on its first run.
+//
+// Escape hatch for a genuine bumper week: data/guard_override.json
+//     { "expires": "2026-10-08", "reason": "6 new SME IPOs" }
+// It EXPIRES on that date, so a forgotten override cannot switch the
+// safeguard off for good.
+// ============================================================
+const GUARD_OVERRIDE_FILE = "data/guard_override.json";
+const MAX_NEW_PAGES = 8;        // brand-new pages allowed in one run
+const MAX_VARIANTS = 4;         // names resembling existing pages, per run
+const MAX_VARIANT_SHARE = 0.25; // ...or this share of all rows
+const VANISH_MIN = 8;           // tracked IPOs lost in one run ...
+const VANISH_SHARE = 0.4;       // ... AND this share of the previous list
+
+async function readOverride() {
+  try {
+    const o = JSON.parse(await fs.readFile(GUARD_OVERRIDE_FILE, "utf8"));
+    const today = new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
+    if (o && typeof o.expires === "string" && o.expires >= today) {
+      return { active: true, expires: o.expires, reason: o.reason || "" };
+    }
+    return { active: false, expired: o && o.expires ? o.expires : "" };
+  } catch { return { active: false }; }
+}
+
+async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
+  let prev = null;
+  try { prev = JSON.parse(await fs.readFile(GMP_JSON, "utf8")); } catch {}
+  const prevRows = prev && Array.isArray(prev.rows) ? prev.rows : [];
+
+  if (!existingDirs.length && !prevRows.length) {
+    console.log("Guard: no existing pages and no previous data (first run) — skipped.");
+    return { tripped: false, held: new Set() };
+  }
+
+  // What the repo already knows. Previous names are re-normalised, because the
+  // last gmp.json may have been written while the source suffix was polluting
+  // them — comparing raw slugs would make every IPO look like it vanished.
+  const known = new Set(existingDirs);
+  for (const d of recovered || []) known.add(d.replace(POLLUTED_SLUG_RE, ""));
+  const prevSlugs = new Set();
+  for (const p of prevRows) {
+    if (!p || !p.ipo) continue;
+    const sl = resolveSlug(splitIpoName(p.ipo).name, aliases);
+    prevSlugs.add(sl);
+    known.add(sl);
+  }
+  const knownList = [...known];
+
+  const existing = [], approved = [], variants = [], fresh = [];
+  for (const r of rows) {
+    if (aliases[normalizeKey(r.ipo)]) { approved.push(r); continue; }
+    if (known.has(r.slug)) { existing.push(r); continue; }
+    let best = null;
+    for (const k of knownList) {
+      const m = nameMatch(r.ipo, k.replace(/-/g, " "));
+      if (m.score >= 0.8 && (!best || m.score > best.score)) best = { slug: k, score: m.score, how: m.how };
+    }
+    if (best) variants.push({ row: r, ...best }); else fresh.push(r);
+  }
+
+  const nowSlugs = new Set(rows.map(r => r.slug));
+  const vanished = [...prevSlugs].filter(sl => !nowSlugs.has(sl));
+
+  console.log(`Guard: ${existing.length} known, ${approved.length} approved, ${variants.length} variant(s), ` +
+              `${fresh.length} new (limit ${MAX_NEW_PAGES}), ${vanished.length} vanished of ${prevSlugs.size} tracked.`);
+
+  const reasons = [];
+  if (fresh.length > MAX_NEW_PAGES)
+    reasons.push(`${fresh.length} brand-new pages would be created in one run (limit ${MAX_NEW_PAGES})`);
+  if (variants.length > MAX_VARIANTS || (rows.length >= 8 && variants.length / rows.length > MAX_VARIANT_SHARE))
+    reasons.push(`${variants.length} of ${rows.length} names look like variants of pages that already exist`);
+  if (prevSlugs.size >= 12 && vanished.length >= VANISH_MIN && vanished.length / prevSlugs.size > VANISH_SHARE)
+    reasons.push(`${vanished.length} of ${prevSlugs.size} previously tracked IPOs disappeared`);
+
+  let tripped = false;
+  if (reasons.length) {
+    const ov = await readOverride();
+    if (ov.active) {
+      console.log(`WARNING: guard override active until ${ov.expires}${ov.reason ? ` (${ov.reason})` : ""} — breaker suppressed: ${reasons.join("; ")}`);
+    } else {
+      tripped = true;
+      console.log("WARNING: CIRCUIT BREAKER TRIPPED — nothing was written; last-good data stays live.");
+      for (const why of reasons) console.log(`WARNING:   ${why}`);
+      for (const v of variants.slice(0, 3)) console.log(`WARNING:   e.g. "${v.row.ipo}" resembles ipo/${v.slug}/`);
+      for (const r of fresh.slice(0, 3)) console.log(`WARNING:   e.g. new: "${r.ipo}"`);
+      if (ov.expired) console.log(`WARNING:   (override file expired on ${ov.expired})`);
+      console.log(`WARNING:   If this change is real, create ${GUARD_OVERRIDE_FILE} with {"expires":"YYYY-MM-DD","reason":"..."}`);
+      return { tripped, held: new Set() };
+    }
+  }
+
+  // Variants are never given pages. Held back, with the exact alias line.
+  const held = new Set(variants.map(v => v.row));
+  for (const v of variants) {
+    console.log(`WARNING: HELD "${v.row.ipo}" — resembles existing page ipo/${v.slug}/ (${v.how}, ${v.score.toFixed(2)}); no page created.`);
+    console.log(`    ${JSON.stringify(v.row.ipo)}: ${JSON.stringify(v.slug)},`);
+  }
+  if (variants.length) console.log(`WARNING: (a genuinely different company? approve it in ${ALIAS_FILE} with "Name": "<its own slug>")`);
+  return { tripped, held };
+}
+
 // ---------------- main ----------------
 (async () => {
+  const recovered = await removePollutedStubs();
+
   // Pull the exchange's own mainboard list first; used to label scraped tables.
   console.log("Fetching NSE mainboard list (authority for IPO type)…");
   try {
@@ -1109,17 +1276,28 @@ ${entries.map(e => `  <url><loc>${e.loc}</loc><lastmod>${e.date}</lastmod><chang
       if (m.score >= 0.6) { suspects.push({ name: r.ipo, slug: plain, existing: d, sim: m.score, how: m.how }); break; }
     }
   }
+  // Safeguard before anything irreversible: classify names, hold variants,
+  // and stop the whole run if the change looks like a source-format shift.
+  // It runs BEFORE the suspect listing below so that, when the breaker trips,
+  // its message is the first thing in the warning output (Telegram only shows
+  // the first dozen lines).
+  const guard = await pageCreationGuard({ rows, aliases, existingDirs, recovered });
+  if (guard.tripped) return;
+  const heldNames = new Set([...guard.held].map(r => r.ipo));
+  if (guard.held.size) rows = rows.filter(r => !guard.held.has(r));
+  const shownSuspects = suspects.filter(x => !heldNames.has(x.name));
+
   if (aliasHits.length) {
     console.log(`Alias map applied to ${aliasHits.length} row(s):`);
     for (const h of aliasHits) console.log(`  ${h}`);
   }
-  if (suspects.length) {
+  if (shownSuspects.length) {
     console.log(`POSSIBLE DUPLICATE PAGES — not merged automatically:`);
-    for (const s2 of suspects) {
+    for (const s2 of shownSuspects) {
       console.log(`  "${s2.name}" would create ipo/${s2.slug}/ but ipo/${s2.existing}/ already exists (${s2.how}, ${s2.sim.toFixed(2)})`);
     }
     console.log(`  If these are the same company, add to ${ALIAS_FILE}:`);
-    for (const s2 of suspects) {
+    for (const s2 of shownSuspects) {
       console.log(`    ${JSON.stringify(s2.name)}: ${JSON.stringify(s2.existing)}`);
     }
   }
