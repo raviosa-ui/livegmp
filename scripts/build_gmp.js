@@ -429,6 +429,31 @@ function extractRows($, c) {
 }
 
 // ---------------- validation ----------------
+// Estimated listing = issue price + GMP, as a rupee figure and a % of price.
+//
+// Computed here instead of scraped. ipowatch's own "Est. Listing" cell is just
+// price + GMP (it matched to the paisa on every sample checked), and it has
+// come back empty before — every card showed "—" on 4 Oct. Price and GMP are
+// the two cells this pipeline already depends on, so deriving it removes one
+// more thing that can silently break.
+function estimateListing(priceText, gmp) {
+  if (gmp === null || gmp === undefined || !Number.isFinite(gmp)) return "";
+  const txt = String(priceText || "").replace(/,/g, "");
+  // prefer figures marked as rupees, so "₹85 (1200 shares)" reads 85, not 1200
+  let nums = [...txt.matchAll(/(?:₹|Rs\.?)\s*(\d+(?:\.\d+)?)/gi)].map(m => Number(m[1]));
+  if (!nums.length) nums = (txt.match(/\d+(?:\.\d+)?/g) || []).map(Number);
+  if (!nums.length) return "";
+  const price = Math.max(...nums);          // upper band (cap price) when a range
+  if (!(price > 0)) return "";
+  const est = Math.round((price + gmp) * 100) / 100;
+  const pct = (gmp / price) * 100;
+  return `₹${est} (${pct.toFixed(2)}%)`;
+}
+
+// A scraped value is only worth keeping when it carries a real number.
+const usableScrapedListing = (t) => (/\d/.test(t) && !/^₹?\s*[-–—]/.test(t)) ? t : "";
+
+
 // ipowatch began appending a status letter and the board to the name cell:
 //   "EverestIMS Technologies (O) SME", "Vishal Nirmiti (O) Mainboard".
 // Left in, those suffixes change every slug and create a duplicate page for
@@ -632,7 +657,7 @@ function validateAndNormalize(rawRows, sourceName) {
       gmp: blank ? null : n,
       gmpRaw: clean(r.gmpRaw),
       price: clean(r.price),
-      listing: clean(r.listing),
+      listing: estimateListing(clean(r.price), blank ? null : n) || usableScrapedListing(clean(r.listing)),
       date: clean(r.date),
       type: normalizeType(r.type) || splitIpoName(r.ipo).type || "Unknown",
       href: r.href || "",
