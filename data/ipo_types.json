@@ -479,6 +479,14 @@
     "v": 3,
     "at": "2026-10-02"
   },
+  "sai-urja": {
+    "name": "Sai Urja",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-04"
+  },
   "sai-urja-c-sme": {
     "name": "Sai Urja (C) SME",
     "type": "SME",
@@ -494,6 +502,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "shah-investors": {
+    "name": "Shah Investor's",
+    "type": "Mainboard",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE, NSE\"",
+    "v": 3,
+    "at": "2026-10-04"
   },
   "shah-investors-c-mainboard": {
     "name": "Shah Investor's (C) Mainboard",
@@ -550,6 +566,14 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-10-02"
+  },
+  "sjp-ultrasonic": {
+    "name": "SJP Ultrasonic",
+    "type": "SME",
+    "source": "ipowatch-page",
+    "why": "listing value \"BSE SME\"",
+    "v": 3,
+    "at": "2026-10-04"
   },
   "sjp-ultrasonic-o-sme": {
     "name": "SJP Ultrasonic (O) SME",

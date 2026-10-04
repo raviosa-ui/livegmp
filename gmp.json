@@ -1,19 +1,115 @@
 {
-  "updatedIso": "2026-10-04T09:11:44.025Z",
-  "updatedLocal": "04/10/2026, 14:41:44 IST",
+  "updatedIso": "2026-10-04T18:44:24.273Z",
+  "updatedLocal": "05/10/2026, 00:14:24 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "Jio Platform",
-      "gmp": 125,
-      "gmpRaw": "₹125",
+      "gmp": 145,
+      "gmpRaw": "₹145",
       "price": "₹-",
       "listing": "",
       "date": "21-23 Oct*",
-      "type": "Mainboard",
+      "type": "Unknown",
       "href": "/jio-platforms-ipo/",
       "status": "upcoming",
       "slug": "jio-platform"
+    },
+    {
+      "ipo": "Vishal Nirmiti",
+      "gmp": 20,
+      "gmpRaw": "₹20",
+      "price": "₹220",
+      "listing": "₹240 (9.09%)",
+      "date": "30-5 Oct",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/vishal-nirmiti-ipo/",
+      "status": "active",
+      "slug": "vishal-nirmiti"
+    },
+    {
+      "ipo": "Nityas Gems",
+      "gmp": 3,
+      "gmpRaw": "₹3",
+      "price": "₹75",
+      "listing": "₹78 (4.00%)",
+      "date": "30-5 Oct",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/nityas-gems-jewellery-ipo/",
+      "status": "active",
+      "slug": "nityas-gems"
+    },
+    {
+      "ipo": "SRIT India",
+      "gmp": 53,
+      "gmpRaw": "₹53",
+      "price": "₹130",
+      "listing": "₹183 (40.77%)",
+      "date": "28-30 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/srit-india-ipo/",
+      "status": "closed",
+      "slug": "srit-india"
+    },
+    {
+      "ipo": "Shah Investor's",
+      "gmp": 16,
+      "gmpRaw": "₹16",
+      "price": "₹167",
+      "listing": "₹183 (9.58%)",
+      "date": "28-30 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/shah-investors-home-ipo/",
+      "status": "closed",
+      "slug": "shah-investors"
+    },
+    {
+      "ipo": "Acevector",
+      "gmp": 1,
+      "gmpRaw": "₹1",
+      "price": "₹32",
+      "listing": "₹33 (3.13%)",
+      "date": "25-29 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/acevector-ipo/",
+      "status": "closed",
+      "slug": "acevector"
+    },
+    {
+      "ipo": "German Green Steel",
+      "gmp": 12,
+      "gmpRaw": "₹12",
+      "price": "₹139",
+      "listing": "₹151 (8.63%)",
+      "date": "25-29 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/german-green-steel-ipo/",
+      "status": "closed",
+      "slug": "german-green-steel"
+    },
+    {
+      "ipo": "Runwal Enterprises",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹305",
+      "listing": "₹305 (0.00%)",
+      "date": "25-29 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/runwal-enterprises-ipo/",
+      "status": "closed",
+      "slug": "runwal-enterprises"
+    },
+    {
+      "ipo": "Orient Cables",
+      "gmp": 123,
+      "gmpRaw": "₹123",
+      "price": "₹272",
+      "listing": "₹395 (45.22%)",
+      "date": "25-29 Sep",
+      "type": "Mainboard",
+      "href": "https://ipowatch.in/orient-cables-ipo/",
+      "status": "closed",
+      "slug": "orient-cables"
     },
     {
       "ipo": "R.K.Fashion",
@@ -62,30 +158,6 @@
       "href": "https://ipowatch.in/paramount-syntex-ipo/",
       "status": "active",
       "slug": "paramount-syntex"
-    },
-    {
-      "ipo": "Vishal Nirmiti",
-      "gmp": 20,
-      "gmpRaw": "₹20",
-      "price": "₹220",
-      "listing": "₹240 (9.09%)",
-      "date": "30-5 Oct",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/vishal-nirmiti-ipo/",
-      "status": "active",
-      "slug": "vishal-nirmiti"
-    },
-    {
-      "ipo": "Nityas Gems",
-      "gmp": 3,
-      "gmpRaw": "₹3",
-      "price": "₹75",
-      "listing": "₹78 (4.00%)",
-      "date": "30-5 Oct",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/nityas-gems-jewellery-ipo/",
-      "status": "active",
-      "slug": "nityas-gems"
     },
     {
       "ipo": "Sollfege Smart Electronics",
@@ -208,30 +280,6 @@
       "slug": "shree-tnb-polymers"
     },
     {
-      "ipo": "SRIT India",
-      "gmp": 53,
-      "gmpRaw": "₹53",
-      "price": "₹130",
-      "listing": "₹183 (40.77%)",
-      "date": "28-30 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/srit-india-ipo/",
-      "status": "closed",
-      "slug": "srit-india"
-    },
-    {
-      "ipo": "Shah Investor's",
-      "gmp": 16,
-      "gmpRaw": "₹16",
-      "price": "₹167",
-      "listing": "₹183 (9.58%)",
-      "date": "28-30 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/shah-investors-home-ipo/",
-      "status": "closed",
-      "slug": "shah-investors"
-    },
-    {
       "ipo": "Acme Universal",
       "gmp": 11,
       "gmpRaw": "₹11",
@@ -266,54 +314,6 @@
       "href": "https://ipowatch.in/shivchem-agro-ipo/",
       "status": "closed",
       "slug": "shivchem-agro"
-    },
-    {
-      "ipo": "Acevector",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹32",
-      "listing": "₹33 (3.13%)",
-      "date": "25-29 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/acevector-ipo/",
-      "status": "closed",
-      "slug": "acevector"
-    },
-    {
-      "ipo": "German Green Steel",
-      "gmp": 12,
-      "gmpRaw": "₹12",
-      "price": "₹139",
-      "listing": "₹151 (8.63%)",
-      "date": "25-29 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/german-green-steel-ipo/",
-      "status": "closed",
-      "slug": "german-green-steel"
-    },
-    {
-      "ipo": "Runwal Enterprises",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹305",
-      "listing": "₹305 (0.00%)",
-      "date": "25-29 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/runwal-enterprises-ipo/",
-      "status": "closed",
-      "slug": "runwal-enterprises"
-    },
-    {
-      "ipo": "Orient Cables",
-      "gmp": 123,
-      "gmpRaw": "₹123",
-      "price": "₹272",
-      "listing": "₹395 (45.22%)",
-      "date": "25-29 Sep",
-      "type": "Mainboard",
-      "href": "https://ipowatch.in/orient-cables-ipo/",
-      "status": "closed",
-      "slug": "orient-cables"
     },
     {
       "ipo": "Dudani Retail",
