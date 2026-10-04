@@ -1,22 +1,22 @@
 {
-  "updatedIso": "2026-10-03T13:39:03.117Z",
-  "updatedLocal": "03/10/2026, 19:09:03 IST",
+  "updatedIso": "2026-10-04T07:36:03.105Z",
+  "updatedLocal": "04/10/2026, 13:06:03 IST",
   "source": "ipowatch",
   "rows": [
     {
-      "ipo": "Jio Platform (U) Mainboard",
+      "ipo": "Jio Platform",
       "gmp": 125,
       "gmpRaw": "₹125",
       "price": "₹-",
       "listing": "",
       "date": "21-23 Oct*",
-      "type": "Unknown",
+      "type": "Mainboard",
       "href": "/jio-platforms-ipo/",
       "status": "upcoming",
-      "slug": "jio-platform-u-mainboard"
+      "slug": "jio-platform"
     },
     {
-      "ipo": "R.K.Fashion (U) SME",
+      "ipo": "R.K.Fashion",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹82",
@@ -25,10 +25,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/rkfashion-accessories-ipo/",
       "status": "upcoming",
-      "slug": "rkfashion-u-sme"
+      "slug": "rkfashion"
     },
     {
-      "ipo": "TNA Solutions (O) SME",
+      "ipo": "TNA Solutions",
       "gmp": 6,
       "gmpRaw": "₹6",
       "price": "₹70",
@@ -37,10 +37,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/tna-solutions-ipo/",
       "status": "active",
-      "slug": "tna-solutions-o-sme"
+      "slug": "tna-solutions"
     },
     {
-      "ipo": "Acme India Industries (O) SME",
+      "ipo": "Acme India Industries",
       "gmp": 25,
       "gmpRaw": "₹25",
       "price": "₹196",
@@ -49,10 +49,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/acme-india-industries-ipo/",
       "status": "active",
-      "slug": "acme-india-industries-o-sme"
+      "slug": "acme-india-industries"
     },
     {
-      "ipo": "Paramount Syntex (O) SME",
+      "ipo": "Paramount Syntex",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹127",
@@ -61,10 +61,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/paramount-syntex-ipo/",
       "status": "active",
-      "slug": "paramount-syntex-o-sme"
+      "slug": "paramount-syntex"
     },
     {
-      "ipo": "Vishal Nirmiti (O) Mainboard",
+      "ipo": "Vishal Nirmiti",
       "gmp": 20,
       "gmpRaw": "₹20",
       "price": "₹220",
@@ -73,10 +73,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/vishal-nirmiti-ipo/",
       "status": "active",
-      "slug": "vishal-nirmiti-o-mainboard"
+      "slug": "vishal-nirmiti"
     },
     {
-      "ipo": "Nityas Gems (O) Mainboard",
+      "ipo": "Nityas Gems",
       "gmp": 3,
       "gmpRaw": "₹3",
       "price": "₹75",
@@ -85,10 +85,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/nityas-gems-jewellery-ipo/",
       "status": "active",
-      "slug": "nityas-gems-o-mainboard"
+      "slug": "nityas-gems"
     },
     {
-      "ipo": "Sollfege Smart Electronics (O) SME",
+      "ipo": "Sollfege Smart Electronics",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹55",
@@ -97,10 +97,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/sollfege-smart-electronics-ipo/",
       "status": "active",
-      "slug": "sollfege-smart-electronics-o-sme"
+      "slug": "sollfege-smart-electronics"
     },
     {
-      "ipo": "Omara Ventures (O) SME",
+      "ipo": "Omara Ventures",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹311",
@@ -109,10 +109,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/omara-ventures-ipo/",
       "status": "active",
-      "slug": "omara-ventures-o-sme"
+      "slug": "omara-ventures"
     },
     {
-      "ipo": "SJP Ultrasonic (O) SME",
+      "ipo": "SJP Ultrasonic",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹67",
@@ -121,10 +121,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/sjp-ultrasonic-ipo/",
       "status": "active",
-      "slug": "sjp-ultrasonic-o-sme"
+      "slug": "sjp-ultrasonic"
     },
     {
-      "ipo": "Eventions (O) SME",
+      "ipo": "Eventions",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹118",
@@ -133,10 +133,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/eventions-ipo/",
       "status": "active",
-      "slug": "eventions-o-sme"
+      "slug": "eventions"
     },
     {
-      "ipo": "Dove Soft (O) SME",
+      "ipo": "Dove Soft",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹111",
@@ -145,10 +145,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/dove-soft-ipo/",
       "status": "active",
-      "slug": "dove-soft-o-sme"
+      "slug": "dove-soft"
     },
     {
-      "ipo": "EverestIMS Technologies (O) SME",
+      "ipo": "EverestIMS Technologies",
       "gmp": 40,
       "gmpRaw": "₹40",
       "price": "₹85",
@@ -157,10 +157,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/everestims-technologies-ipo/",
       "status": "active",
-      "slug": "everestims-technologies-o-sme"
+      "slug": "everestims-technologies"
     },
     {
-      "ipo": "Papadmalji Agro (C) SME",
+      "ipo": "Papadmalji Agro",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹72",
@@ -169,10 +169,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/papadmalji-agro-ipo/",
       "status": "closed",
-      "slug": "papadmalji-agro-c-sme"
+      "slug": "papadmalji-agro"
     },
     {
-      "ipo": "Vans Electroengineerings (C) SME",
+      "ipo": "Vans Electroengineerings",
       "gmp": 70,
       "gmpRaw": "₹70",
       "price": "₹118",
@@ -181,10 +181,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/vans-electroengineerings-ipo/",
       "status": "closed",
-      "slug": "vans-electroengineerings-c-sme"
+      "slug": "vans-electroengineerings"
     },
     {
-      "ipo": "Black Opal Consultants (C) SME",
+      "ipo": "Black Opal Consultants",
       "gmp": 78,
       "gmpRaw": "₹78",
       "price": "₹197",
@@ -193,10 +193,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/black-opal-consultants-ipo/",
       "status": "closed",
-      "slug": "black-opal-consultants-c-sme"
+      "slug": "black-opal-consultants"
     },
     {
-      "ipo": "Shree TNB Polymers (C) SME",
+      "ipo": "Shree TNB Polymers",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹52",
@@ -205,10 +205,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/shree-tnb-polymers-ipo/",
       "status": "active",
-      "slug": "shree-tnb-polymers-c-sme"
+      "slug": "shree-tnb-polymers"
     },
     {
-      "ipo": "SRIT India (C) Mainboard",
+      "ipo": "SRIT India",
       "gmp": 53,
       "gmpRaw": "₹53",
       "price": "₹130",
@@ -217,10 +217,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/srit-india-ipo/",
       "status": "closed",
-      "slug": "srit-india-c-mainboard"
+      "slug": "srit-india"
     },
     {
-      "ipo": "Shah Investor's (C) Mainboard",
+      "ipo": "Shah Investor's",
       "gmp": 16,
       "gmpRaw": "₹16",
       "price": "₹167",
@@ -229,10 +229,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/shah-investors-home-ipo/",
       "status": "closed",
-      "slug": "shah-investors-c-mainboard"
+      "slug": "shah-investors"
     },
     {
-      "ipo": "Acme Universal (C) SME",
+      "ipo": "Acme Universal",
       "gmp": 11,
       "gmpRaw": "₹11",
       "price": "₹71",
@@ -241,10 +241,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/acme-universal-ipo/",
       "status": "closed",
-      "slug": "acme-universal-c-sme"
+      "slug": "acme-universal"
     },
     {
-      "ipo": "Pind Hospitality (C) SME",
+      "ipo": "Pind Hospitality",
       "gmp": 1,
       "gmpRaw": "₹1",
       "price": "₹99",
@@ -253,10 +253,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/pind-hospitality-ipo/",
       "status": "closed",
-      "slug": "pind-hospitality-c-sme"
+      "slug": "pind-hospitality"
     },
     {
-      "ipo": "Shivchem Agro (C) SME",
+      "ipo": "Shivchem Agro",
       "gmp": 1,
       "gmpRaw": "₹1",
       "price": "₹62",
@@ -265,10 +265,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/shivchem-agro-ipo/",
       "status": "closed",
-      "slug": "shivchem-agro-c-sme"
+      "slug": "shivchem-agro"
     },
     {
-      "ipo": "Acevector (C) Mainboard",
+      "ipo": "Acevector",
       "gmp": 1,
       "gmpRaw": "₹1",
       "price": "₹32",
@@ -277,10 +277,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/acevector-ipo/",
       "status": "closed",
-      "slug": "acevector-c-mainboard"
+      "slug": "acevector"
     },
     {
-      "ipo": "German Green Steel (C) Mainboard",
+      "ipo": "German Green Steel",
       "gmp": 12,
       "gmpRaw": "₹12",
       "price": "₹139",
@@ -289,10 +289,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/german-green-steel-ipo/",
       "status": "closed",
-      "slug": "german-green-steel-c-mainboard"
+      "slug": "german-green-steel"
     },
     {
-      "ipo": "Runwal Enterprises (C) Mainboard",
+      "ipo": "Runwal Enterprises",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹305",
@@ -301,10 +301,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/runwal-enterprises-ipo/",
       "status": "closed",
-      "slug": "runwal-enterprises-c-mainboard"
+      "slug": "runwal-enterprises"
     },
     {
-      "ipo": "Orient Cables (C) Mainboard",
+      "ipo": "Orient Cables",
       "gmp": 123,
       "gmpRaw": "₹123",
       "price": "₹272",
@@ -313,10 +313,10 @@
       "type": "Mainboard",
       "href": "https://ipowatch.in/orient-cables-ipo/",
       "status": "closed",
-      "slug": "orient-cables-c-mainboard"
+      "slug": "orient-cables"
     },
     {
-      "ipo": "Dudani Retail (C) SME",
+      "ipo": "Dudani Retail",
       "gmp": 1,
       "gmpRaw": "₹1",
       "price": "₹29",
@@ -325,10 +325,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/dudani-retail-ipo/",
       "status": "closed",
-      "slug": "dudani-retail-c-sme"
+      "slug": "dudani-retail"
     },
     {
-      "ipo": "Bench Mark Infotech (C) SME",
+      "ipo": "Bench Mark Infotech",
       "gmp": 26,
       "gmpRaw": "₹26",
       "price": "₹110",
@@ -337,10 +337,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/bench-mark-infotech-services-ipo/",
       "status": "closed",
-      "slug": "bench-mark-infotech-c-sme"
+      "slug": "bench-mark-infotech"
     },
     {
-      "ipo": "Sai Urja (C) SME",
+      "ipo": "Sai Urja",
       "gmp": 10,
       "gmpRaw": "₹10",
       "price": "₹113",
@@ -349,10 +349,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/sai-urja-ipo/",
       "status": "closed",
-      "slug": "sai-urja-c-sme"
+      "slug": "sai-urja"
     },
     {
-      "ipo": "Himalayan Solar (C) SME",
+      "ipo": "Himalayan Solar",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹103",
@@ -361,10 +361,10 @@
       "type": "SME",
       "href": "https://ipowatch.in/himalayan-solar-ipo/",
       "status": "closed",
-      "slug": "himalayan-solar-c-sme"
+      "slug": "himalayan-solar"
     },
     {
-      "ipo": "Green Asia Impex (C) SME",
+      "ipo": "Green Asia Impex",
       "gmp": 0,
       "gmpRaw": "₹0",
       "price": "₹90",
@@ -373,7 +373,7 @@
       "type": "SME",
       "href": "https://ipowatch.in/green-asia-impex-ipo/",
       "status": "closed",
-      "slug": "green-asia-impex-c-sme"
+      "slug": "green-asia-impex"
     }
   ]
 }
