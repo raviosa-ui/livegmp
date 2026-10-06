@@ -1,0 +1,159 @@
+name: Probe — IPO data feeds (Chittorgarh / InvestorGain)
+
+# Answers four questions in one run:
+#   1. Do the JSON feeds respond from a GitHub runner at all?
+#   2. Are their field names what we think they are?
+#   3. Does their data agree with the site's current gmp.json?
+#   4. Are the fallbacks already in SOURCES (ipowala, chanakya) real or fiction?
+#
+# Read-only. Writes nothing, commits nothing, deploys nothing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ---------------------------------------------------------------
+      # Reachability. The first character of the body is the real tell:
+      #   { or [  = JSON
+      #   <       = an HTML shell with no data in it (BSE looked like this)
+      # Each endpoint is tried bare and with browser headers, because NSE
+      # answered only the second way.
+      # ---------------------------------------------------------------
+      - name: Reachability
+        continue-on-error: true
+        run: |
+          set +e
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+          M=$(TZ=Asia/Kolkata date +%-m); Y=$(TZ=Asia/Kolkata date +%Y)
+          # Indian financial year: April-March
+          if [ "$M" -ge 4 ]; then FY="$Y-$(( (Y+1) % 100 ))"; else FY="$(( Y-1 ))-$(( Y % 100 ))"; fi
+          PM=$(( M - 1 )); PY=$Y; if [ "$PM" -eq 0 ]; then PM=12; PY=$(( Y - 1 )); fi
+          echo "IST month=$M year=$Y financial-year=$FY (previous month=$PM/$PY)"
+          echo "GMP_URL=https://webnodejs.investorgain.com/cloud/v2/report/data-read/331/1/$M/$Y/$FY/0/all?search=" >> $GITHUB_ENV
+          echo "UA=$UA" >> $GITHUB_ENV
+          echo ""
+
+          probe () {
+            NAME="$1"; URL="$2"; MODE="$3"
+            if [ "$MODE" = "browser" ]; then
+              CODE=$(curl -s -o /tmp/o -w '%{http_code}' -L --max-time 30 -A "$UA" \
+                -H 'Accept: application/json, text/plain, */*' \
+                -H 'Accept-Language: en-US,en;q=0.9' \
+                -H 'Referer: https://www.investorgain.com/' "$URL")
+            else
+              CODE=$(curl -s -o /tmp/o -w '%{http_code}' -L --max-time 30 "$URL")
+            fi
+            [ -z "$CODE" ] && CODE=000
+            SIZE=$(wc -c < /tmp/o 2>/dev/null || echo 0)
+            FIRST=$(head -c 1 /tmp/o 2>/dev/null)
+            printf '%-34s %-8s %-5s bytes=%-9s first=%s\n' "$NAME" "$MODE" "$CODE" "$SIZE" "${FIRST:-none}"
+          }
+
+          echo "=== JSON feeds ==="
+          GMP="https://webnodejs.investorgain.com/cloud/v2/report/data-read/331/1/$M/$Y/$FY/0/all?search="
+          LIST="https://webnodejs.chittorgarh.com/cloud/report/data-read/82/1/$M/$Y/$FY/0/0/0?search=&v=14-08"
+          probe "InvestorGain GMP"        "$GMP"  bare
+          probe "InvestorGain GMP"        "$GMP"  browser
+          probe "Chittorgarh list"        "$LIST" bare
+          probe "Chittorgarh list"        "$LIST" browser
+
+          echo ""
+          echo "=== month-boundary check (an empty list must not look like success) ==="
+          probe "InvestorGain GMP (prev month)" \
+            "https://webnodejs.investorgain.com/cloud/v2/report/data-read/331/1/$PM/$PY/$FY/0/all?search=" browser
+
+          echo ""
+          echo "=== rendered HTML page (insurance if the API is blocked) ==="
+          probe "investorgain live GMP page" "https://www.investorgain.com/report/ipo-gmp-live/331/" browser
+
+          echo ""
+          echo "=== fallbacks currently listed in SOURCES ==="
+          probe "ipowatch (current primary)" "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/" browser
+          probe "ipowala"                    "https://ipowala.in/ipo-grey-market-premium-gmp/"              browser
+          probe "chanakyanipothi"            "https://chanakyanipothi.com/ipo-gmp-today/"                   browser
+          echo ""
+          echo "first= { or [ -> JSON | < -> HTML shell | none -> blocked"
+
+      # ---------------------------------------------------------------
+      # Correctness. Reachability alone proves nothing: the question is
+      # whether the data is right. This prints the feed's real field names
+      # and compares its rows against the site's own gmp.json.
+      # ---------------------------------------------------------------
+      - name: Fields and comparison against gmp.json
+        continue-on-error: true
+        run: |
+          curl -s -L --max-time 40 -A "$UA" \
+            -H 'Accept: application/json, text/plain, */*' \
+            -H 'Referer: https://www.investorgain.com/' \
+            "$GMP_URL" -o /tmp/feed.json
+          node -e '
+            const fs = require("fs");
+            let raw = "";
+            try { raw = fs.readFileSync("/tmp/feed.json", "utf8"); } catch {}
+            if (!raw.trim()) { console.log("No response body — feed unreachable; nothing to compare."); process.exit(0); }
+            if (!/^[\[{]/.test(raw.trim())) {
+              console.log("Body is not JSON. First 300 chars:\n" + raw.slice(0, 300));
+              process.exit(0);
+            }
+            let data; try { data = JSON.parse(raw); }
+            catch (e) { console.log("Invalid JSON: " + e.message); process.exit(0); }
+
+            // The payload shape is unknown, so find the first array of objects.
+            let rows = Array.isArray(data) ? data : null;
+            if (!rows) for (const v of Object.values(data)) if (Array.isArray(v) && v.length && typeof v[0] === "object") { rows = v; break; }
+            if (!rows || !rows.length) { console.log("JSON parsed but no array of rows found. Top-level keys: " + Object.keys(data).join(", ")); process.exit(0); }
+            console.log(`Rows: ${rows.length}`);
+            console.log("\n--- FIELD NAMES (first row) ---");
+            for (const [k, v] of Object.entries(rows[0])) {
+              const s = String(v === null ? "null" : v).replace(/<[^>]*>/g, "").trim().slice(0, 60);
+              console.log(`  ${k.padEnd(28)} ${s}`);
+            }
+
+            const strip = s => String(s == null ? "" : s).replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+            const norm = s => strip(s).toLowerCase()
+              .replace(/[.,:()\u2019&]/g, " ")
+              .replace(/\b(private|pvt|limited|ltd|company|co|industries|enterprises|the|ipo|sme|mainboard|nse|bse|open|closed|upcoming|listed)\b/g, " ")
+              .replace(/\s+/g, " ").trim();
+            const pick = (o, re) => { for (const k of Object.keys(o)) if (re.test(k)) return o[k]; return undefined; };
+            const num = v => { const m = String(strip(v)).replace(/,/g, "").match(/-?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
+
+            let mine = [];
+            try { mine = (JSON.parse(fs.readFileSync("gmp.json", "utf8")).rows) || []; } catch {}
+            console.log(`\n--- COMPARISON (site rows: ${mine.length}) ---`);
+            if (!mine.length) { console.log("gmp.json unreadable or empty — skipping comparison."); process.exit(0); }
+
+            const feed = rows.map(r => ({
+              name: strip(pick(r, /name/i)),
+              gmp:  num(pick(r, /gmp|premium/i)),
+              cat:  strip(pick(r, /categ|board|type/i)),
+            })).filter(x => x.name);
+
+            let agree = 0, differ = 0, missing = 0;
+            console.log("site name".padEnd(26) + "site".padEnd(8) + "feed".padEnd(8) + "feed category / note");
+            for (const m of mine.slice(0, 15)) {
+              const k = norm(m.ipo);
+              const hit = feed.find(f => { const fk = norm(f.name); return fk === k || (fk.length > 4 && k.length > 4 && (fk.includes(k) || k.includes(fk))); });
+              if (!hit) { missing++; console.log(String(m.ipo).slice(0,25).padEnd(26) + String(m.gmp).padEnd(8) + "-".padEnd(8) + "not found in feed"); continue; }
+              const same = m.gmp === hit.gmp || (m.gmp == null && hit.gmp == null);
+              same ? agree++ : differ++;
+              console.log(String(m.ipo).slice(0,25).padEnd(26) + String(m.gmp).padEnd(8) + String(hit.gmp).padEnd(8) + (hit.cat || "") + (same ? "" : "   <-- differs"));
+            }
+            console.log(`\nOf the first 15: ${agree} identical GMP, ${differ} different, ${missing} not found.`);
+            console.log("A few differences are NORMAL — GMP moves intraday and the two sources poll different dealers.");
+            console.log("What would be a red flag: most rows missing, or the category disagreeing with your type.");
+          '
