@@ -742,5 +742,7 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
-  }
+  },
+    "jio-platforms": { "name": "Jio Platform", "type": "Mainboard", "source": "manual" },
+  "hd-fire-protect": { "name": "HD Fire Protect", "type": "Mainboard", "source": "manual" }
 }
