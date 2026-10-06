@@ -460,13 +460,22 @@ const usableScrapedListing = (t) => (/\d/.test(t) && !/^₹?\s*[-–—]/.test(t
 // every IPO. Strip them, and keep the board — it is ipowatch's own label and
 // more reliable than anything inferred.
 function splitIpoName(raw) {
-  let name = clean(raw).replace(/\s+ipo$/i, "");
+  // Status words ipowatch has appended to the name cell. Stripped only when
+  // a real name remains (3+ characters), so a company genuinely called
+  // "Open" or "Listed" could never be reduced to nothing. Names without
+  // spaces, like "R.K.Fashion", must still qualify.
+  const STATUS_WORDS = /\s+(Upcoming|Open|Opened|Closing\s+Today|Closing|Closed|Close|Listed|Listing|Active|Allotment|Allotted|Withdrawn)$/i;
+  let name = clean(raw);
   let type = "";
-  for (let i = 0; i < 4; i++) {
+  // Up to 6 passes: a cell may carry several suffixes at once, e.g.
+  // "Acme India Industries (O) SME IPO".
+  for (let i = 0; i < 6; i++) {
     let m = name.match(/\s+(SME|Main\s*board)$/i);
     if (m) { type = /sme/i.test(m[1]) ? "SME" : "Mainboard"; name = name.slice(0, m.index).trim(); continue; }
     m = name.match(/\s*\(([A-Za-z]{1,2})\)$/);            // (O) (U) (C) (L) ...
     if (m) { name = name.slice(0, m.index).trim(); continue; }
+    m = name.match(STATUS_WORDS);                          // Open / Closed / Upcoming ...
+    if (m && name.slice(0, m.index).trim().length >= 3) { name = name.slice(0, m.index).trim(); continue; }
     m = name.match(/\s+ipo$/i);
     if (m) { name = name.slice(0, m.index).trim(); continue; }
     break;
