@@ -239,6 +239,11 @@
     "v": 3,
     "at": "2026-10-02"
   },
+  "hd-fire-protect": {
+    "name": "HD Fire Protect",
+    "type": "Mainboard",
+    "source": "manual"
+  },
   "hero-motors": {
     "name": "Hero Motors",
     "type": "Mainboard",
@@ -278,6 +283,11 @@
     "why": "listing value \"BSE, NSE\"",
     "v": 3,
     "at": "2026-09-22"
+  },
+  "jio-platform": {
+    "name": "Jio Platform",
+    "type": "Mainboard",
+    "source": "manual"
   },
   "kheria-autocomp": {
     "name": "Kheria Autocomp",
@@ -742,7 +752,5 @@
     "why": "listing value \"BSE SME\"",
     "v": 3,
     "at": "2026-09-22"
-  },
-    "jio-platform": { "name": "Jio Platform", "type": "Mainboard", "source": "manual" },
-  "hd-fire-protect": { "name": "HD Fire Protect", "type": "Mainboard", "source": "manual" }
+  }
 }

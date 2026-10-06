@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-06T11:53:50.999Z",
-  "updatedLocal": "06/10/2026, 17:23:50 IST",
+  "updatedIso": "2026-10-06T12:02:44.109Z",
+  "updatedLocal": "06/10/2026, 17:32:44 IST",
   "source": "ipowatch",
   "rows": [
     {
@@ -10,7 +10,7 @@
       "price": "₹-",
       "listing": "",
       "date": "21-23 Oct*",
-      "type": "Unknown",
+      "type": "Mainboard",
       "href": "/jio-platforms-ipo/",
       "status": "upcoming",
       "slug": "jio-platform"
@@ -22,7 +22,7 @@
       "price": "₹-",
       "listing": "",
       "date": "13-15 Oct",
-      "type": "Unknown",
+      "type": "Mainboard",
       "href": "/hd-fire-protect-ipo/",
       "status": "upcoming",
       "slug": "hd-fire-protect"
