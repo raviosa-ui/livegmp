@@ -1,12 +1,17 @@
 name: Probe — IPO data feeds (Chittorgarh / InvestorGain)
 
 # Answers four questions in one run:
-#   1. Do the JSON feeds respond from a GitHub runner at all?
-#   2. Are their field names what we think they are?
+#   1. Do the JSON feeds respond from a GitHub runner?
+#   2. Are the field names what we expect?
 #   3. Does their data agree with the site's current gmp.json?
 #   4. Are the fallbacks already in SOURCES (ipowala, chanakya) real or fiction?
 #
 # Read-only. Writes nothing, commits nothing, deploys nothing.
+#
+# v2 — field names are now EXPLICIT, confirmed from a live response.
+# v1 picked fields by regex and matched ~max_gmp1 (the ALL-TIME PEAK GMP)
+# instead of the current GMP, which made 10 of 15 rows look like mismatches
+# when the data was in fact fine.
 
 on:
   workflow_dispatch:
@@ -30,7 +35,7 @@ jobs:
       # ---------------------------------------------------------------
       # Reachability. The first character of the body is the real tell:
       #   { or [  = JSON
-      #   <       = an HTML shell with no data in it (BSE looked like this)
+      #   <       = an HTML shell with no data in it (how BSE failed)
       # Each endpoint is tried bare and with browser headers, because NSE
       # answered only the second way.
       # ---------------------------------------------------------------
@@ -40,7 +45,7 @@ jobs:
           set +e
           UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
           M=$(TZ=Asia/Kolkata date +%-m); Y=$(TZ=Asia/Kolkata date +%Y)
-          # Indian financial year: April-March
+          # Indian financial year runs April-March
           if [ "$M" -ge 4 ]; then FY="$Y-$(( (Y+1) % 100 ))"; else FY="$(( Y-1 ))-$(( Y % 100 ))"; fi
           PM=$(( M - 1 )); PY=$Y; if [ "$PM" -eq 0 ]; then PM=12; PY=$(( Y - 1 )); fi
           echo "IST month=$M year=$Y financial-year=$FY (previous month=$PM/$PY)"
@@ -90,9 +95,8 @@ jobs:
           echo "first= { or [ -> JSON | < -> HTML shell | none -> blocked"
 
       # ---------------------------------------------------------------
-      # Correctness. Reachability alone proves nothing: the question is
-      # whether the data is right. This prints the feed's real field names
-      # and compares its rows against the site's own gmp.json.
+      # Correctness. Reachability proves nothing on its own; the question
+      # is whether the data is right and whether the two sources agree.
       # ---------------------------------------------------------------
       - name: Fields and comparison against gmp.json
         continue-on-error: true
@@ -106,54 +110,87 @@ jobs:
             let raw = "";
             try { raw = fs.readFileSync("/tmp/feed.json", "utf8"); } catch {}
             if (!raw.trim()) { console.log("No response body — feed unreachable; nothing to compare."); process.exit(0); }
-            if (!/^[\[{]/.test(raw.trim())) {
-              console.log("Body is not JSON. First 300 chars:\n" + raw.slice(0, 300));
-              process.exit(0);
-            }
+            if (!/^[\[{]/.test(raw.trim())) { console.log("Body is not JSON. First 300 chars:\n" + raw.slice(0, 300)); process.exit(0); }
             let data; try { data = JSON.parse(raw); }
             catch (e) { console.log("Invalid JSON: " + e.message); process.exit(0); }
 
-            // The payload shape is unknown, so find the first array of objects.
             let rows = Array.isArray(data) ? data : null;
             if (!rows) for (const v of Object.values(data)) if (Array.isArray(v) && v.length && typeof v[0] === "object") { rows = v; break; }
             if (!rows || !rows.length) { console.log("JSON parsed but no array of rows found. Top-level keys: " + Object.keys(data).join(", ")); process.exit(0); }
-            console.log(`Rows: ${rows.length}`);
-            console.log("\n--- FIELD NAMES (first row) ---");
-            for (const [k, v] of Object.entries(rows[0])) {
-              const s = String(v === null ? "null" : v).replace(/<[^>]*>/g, "").trim().slice(0, 60);
-              console.log(`  ${k.padEnd(28)} ${s}`);
-            }
+            console.log("Rows: " + rows.length);
 
-            const strip = s => String(s == null ? "" : s).replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+            const strip = s => String(s == null ? "" : s)
+              .replace(/<[^>]*>/g, " ")
+              .replace(/&#8377;/g, "\u20b9").replace(/&amp;/g, "&").replace(/&#\d+;/g, " ")
+              .replace(/\s+/g, " ").trim();
+
+            console.log("\n--- FIELD NAMES (first row) ---");
+            for (const [k, v] of Object.entries(rows[0])) console.log("  " + k.padEnd(28) + strip(v).slice(0, 60));
+
+            // Explicit field names, confirmed from a live response.
+            // NOT ~max_gmp1: that is the ALL-TIME PEAK GMP, not the current one.
+            // Using it made 10 of 15 rows look wrong when the data was fine.
+            const F = {
+              name: "~ipo_name",            // clean name; "Name" has status glued on
+              cat:  "~IPO_Category",        // IPO = mainboard, SME = SME
+              status: "~ipo_status1",       // U / O / C / CT / L
+              gmp:  "GMP",                  // "₹40 (47.06%) 13 ↓ / 40 ↑"
+              peak: "~max_gmp1",
+              slug: "~urlrewrite_folder_name",
+            };
+            const absent = Object.entries(F).filter(function (e) { return !(e[1] in rows[0]); })
+                                            .map(function (e) { return e[0] + " (" + e[1] + ")"; });
+            if (absent.length) console.log("\nWARNING: expected field(s) not present: " + absent.join(", ") + " — the payload shape has changed.");
+
+            // First rupee amount in the GMP cell is the current premium. The
+            // trailing "13 down / 40 up" is the low/high range, not the value.
+            const gmpNow = r => { const m = strip(r[F.gmp]).match(/\u20b9\s*(-?\d+(?:\.\d+)?)/); return m ? Number(m[1]) : null; };
+
             const norm = s => strip(s).toLowerCase()
               .replace(/[.,:()\u2019&]/g, " ")
               .replace(/\b(private|pvt|limited|ltd|company|co|industries|enterprises|the|ipo|sme|mainboard|nse|bse|open|closed|upcoming|listed)\b/g, " ")
               .replace(/\s+/g, " ").trim();
-            const pick = (o, re) => { for (const k of Object.keys(o)) if (re.test(k)) return o[k]; return undefined; };
-            const num = v => { const m = String(strip(v)).replace(/,/g, "").match(/-?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
+
+            const feed = rows.map(r => ({
+              name: strip(r[F.name]),
+              gmp:  gmpNow(r),
+              peak: Number(r[F.peak]) || null,
+              cat:  strip(r[F.cat]),
+              status: strip(r[F.status]),
+              slug: strip(r[F.slug]),
+            })).filter(x => x.name);
+
+            console.log("\n--- SAMPLE FEED ROWS ---");
+            for (const f of feed.slice(0, 5))
+              console.log("  " + f.name.slice(0,26).padEnd(28) + "gmp=" + String(f.gmp).padEnd(7) + "peak=" + String(f.peak).padEnd(6) + f.cat.padEnd(5) + f.status.padEnd(3) + f.slug);
 
             let mine = [];
             try { mine = (JSON.parse(fs.readFileSync("gmp.json", "utf8")).rows) || []; } catch {}
-            console.log(`\n--- COMPARISON (site rows: ${mine.length}) ---`);
+            console.log("\n--- COMPARISON (site rows: " + mine.length + ") ---");
             if (!mine.length) { console.log("gmp.json unreadable or empty — skipping comparison."); process.exit(0); }
 
-            const feed = rows.map(r => ({
-              name: strip(pick(r, /name/i)),
-              gmp:  num(pick(r, /gmp|premium/i)),
-              cat:  strip(pick(r, /categ|board|type/i)),
-            })).filter(x => x.name);
-
-            let agree = 0, differ = 0, missing = 0;
-            console.log("site name".padEnd(26) + "site".padEnd(8) + "feed".padEnd(8) + "feed category / note");
-            for (const m of mine.slice(0, 15)) {
+            let agree = 0, close = 0, differ = 0, notFound = 0, typeClash = 0;
+            console.log("site name".padEnd(27) + "site".padEnd(7) + "feed".padEnd(7) + "site type".padEnd(11) + "feed type".padEnd(10) + "note");
+            for (const m of mine.slice(0, 20)) {
               const k = norm(m.ipo);
               const hit = feed.find(f => { const fk = norm(f.name); return fk === k || (fk.length > 4 && k.length > 4 && (fk.includes(k) || k.includes(fk))); });
-              if (!hit) { missing++; console.log(String(m.ipo).slice(0,25).padEnd(26) + String(m.gmp).padEnd(8) + "-".padEnd(8) + "not found in feed"); continue; }
-              const same = m.gmp === hit.gmp || (m.gmp == null && hit.gmp == null);
-              same ? agree++ : differ++;
-              console.log(String(m.ipo).slice(0,25).padEnd(26) + String(m.gmp).padEnd(8) + String(hit.gmp).padEnd(8) + (hit.cat || "") + (same ? "" : "   <-- differs"));
+              if (!hit) { notFound++; console.log(String(m.ipo).slice(0,25).padEnd(27) + String(m.gmp).padEnd(7) + "-".padEnd(7) + String(m.type||"").padEnd(11) + "-".padEnd(10) + "NOT FOUND in feed"); continue; }
+              const feedType = /sme/i.test(hit.cat) ? "SME" : "Mainboard";
+              const typeOk = !m.type || m.type === "Unknown" || m.type === feedType;
+              if (!typeOk) typeClash++;
+              const a = m.gmp == null ? null : Number(m.gmp);
+              const b = hit.gmp;
+              let note = "";
+              // "--" in the feed and 0 on the site both mean "no premium quoted",
+              // so treat them as agreement rather than a false alarm.
+              const none = v => v == null || v === 0;
+              if (a === b || (none(a) && none(b))) { agree++; }
+              else if (a != null && b != null && Math.abs(a - b) <= Math.max(1, Math.abs(a) * 0.1)) { close++; note = "within 10% (intraday drift)"; }
+              else { differ++; note = "DIFFERS"; }
+              if (!typeOk) note += "  <-- TYPE CLASH";
+              console.log(String(m.ipo).slice(0,25).padEnd(27) + String(m.gmp).padEnd(7) + String(b).padEnd(7) + String(m.type||"").padEnd(11) + feedType.padEnd(10) + note);
             }
-            console.log(`\nOf the first 15: ${agree} identical GMP, ${differ} different, ${missing} not found.`);
-            console.log("A few differences are NORMAL — GMP moves intraday and the two sources poll different dealers.");
-            console.log("What would be a red flag: most rows missing, or the category disagreeing with your type.");
+            console.log("\nIdentical: " + agree + "   Within 10%: " + close + "   Materially different: " + differ + "   Not found: " + notFound + "   Type clashes: " + typeClash);
+            console.log("Small GMP differences are EXPECTED — the sources poll different dealers and GMP moves intraday.");
+            console.log("Red flags: many rows NOT FOUND, or any TYPE CLASH.");
           '
