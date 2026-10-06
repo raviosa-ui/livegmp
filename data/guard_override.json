@@ -1,0 +1,4 @@
+{
+  "expires": "2026-10-08",
+  "reason": "ipowatch trimmed its table from 31 to 19 rows, dropping closed IPOs; verified against the InvestorGain feed"
+}
