@@ -300,6 +300,11 @@
       "title": "Arete 22 Limited",
       "kind": "OTHER"
     },
+    "105018": {
+      "date": "Oct 05, 2026",
+      "title": "PES Installations Limited- DRHP",
+      "kind": "DRHP"
+    },
     "105022": {
       "date": "Oct 05, 2026",
       "title": "Everbrands India Limited- DRHP",
@@ -309,6 +314,36 @@
       "date": "Oct 05, 2026",
       "title": "B S Sponge Limited- DRHP",
       "kind": "DRHP"
+    },
+    "105024": {
+      "date": "Oct 05, 2026",
+      "title": "Inox Air Products Limited- DRHP",
+      "kind": "DRHP"
+    },
+    "105025": {
+      "date": "Oct 05, 2026",
+      "title": "Baanganga Gold & Diamond (I) Limited- DRHP",
+      "kind": "DRHP"
+    },
+    "105027": {
+      "date": "Oct 05, 2026",
+      "title": "Electromech Infraprojects Limited- DRHP",
+      "kind": "DRHP"
+    },
+    "105036": {
+      "date": "Oct 06, 2026",
+      "title": "Pentacle Consultants (I) Limited - DRHP",
+      "kind": "DRHP"
+    },
+    "105039": {
+      "date": "Oct 06, 2026",
+      "title": "Pentacle Consultants I Limited",
+      "kind": "OTHER"
+    },
+    "105041": {
+      "date": "Oct 06, 2026",
+      "title": "PM CONA INDUSTRIES LIMITED",
+      "kind": "OTHER"
     }
   },
   "seededAt": "2026-09-18T17:29:17.667Z"
