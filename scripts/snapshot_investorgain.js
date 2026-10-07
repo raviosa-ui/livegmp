@@ -70,29 +70,33 @@ const OUT = path.join(process.cwd(), 'tmp');
     }
   }
 
-  log('\n=== normalised ===');
+  log('\n=== normalised (extractRows() shape, as build_gmp.js will receive it) ===');
   try {
-    const { records, meta } = await ig.fetchInvestorGain({ verbose: true });
-    fs.writeFileSync(path.join(OUT, 'ig_records.json'), JSON.stringify(records, null, 2));
-    log(`requests: ${JSON.stringify(meta.requests)}`);
-    log(`records : ${records.length} (raw ${meta.rawCount}, skipped ${meta.skipped})`);
-    log(`mainboard ${records.filter((r) => r.type === 'Mainboard').length} | ` +
-        `sme ${records.filter((r) => r.type === 'SME').length} | ` +
-        `type-null ${records.filter((r) => !r.type).length}`);
-    log(`gmp null: ${records.filter((r) => r.gmp === null).length}`);
-    log(`no openDate: ${records.filter((r) => !r.openDate).length}`);
-    log('\nname | type | gmp | pct | peak | open | close | srcStatus | srcSlug');
-    for (const r of records) {
-      log(
-        [r.name, r.type, r.gmp, r.gmpPct, r.peakGmp, r.openDate, r.closeDate,
-         r.sourceStatusCode, r.sourceSlug].join(' | ')
-      );
-    }
-    log('\nGMP cells as received (verify the first-rupee-amount rule):');
-    for (const r of records.slice(0, 15)) log(`  ${r.name} :: ${r.gmpRaw} -> ${r.gmp}`);
+    const { rows, meta } = await ig.fetchInvestorGainRows({ verbose: true });
+    fs.writeFileSync(path.join(OUT, 'ig_records.json'), JSON.stringify(rows, null, 2));
+    log(`requests: ${meta.requests.map((r) => `${r.month}/${r.year} fy=${r.fy}:${r.rows}`).join(' ')}`);
+    log(`rows    : ${rows.length} (raw ${meta.rawCount}, skipped ${meta.skipped})`);
+    log(`mainboard ${rows.filter((r) => r.type === 'Mainboard').length} | ` +
+        `sme ${rows.filter((r) => r.type === 'SME').length} | ` +
+        `type-blank ${rows.filter((r) => !r.type).length}`);
+    log(`gmp blank: ${rows.filter((r) => r.gmpRaw === '-').length} | ` +
+        `no price: ${rows.filter((r) => !r.price).length} | ` +
+        `no date: ${rows.filter((r) => !r.date).length}`);
+    log('\nipo | type | gmpRaw | price | date');
+    for (const r of rows) log([r.ipo, r.type, r.gmpRaw, r.price || '-', r.date || '-'].join(' | '));
   } catch (e) {
     log(`normalise FAILED: ${e.message}`);
     process.exitCode = 1;
+  }
+
+  // One full raw row WITH dates and a price, for verification.
+  try {
+    const raw = JSON.parse(fs.readFileSync(path.join(OUT, `ig_raw_${baseMonth}_${baseYear}.json`), 'utf8'));
+    const priced = raw.find((r) => r['~Srt_Open'] && Number(String(r['Price (₹)'] || '0').replace(/[^\d.]/g, '')) > 0);
+    log('\n=== one full raw row with dates + price (verbatim) ===');
+    log(priced ? JSON.stringify(priced, null, 2) : '(none in this payload)');
+  } catch (e) {
+    log(`raw-row dump failed: ${e.message}`);
   }
 
   fs.writeFileSync(path.join(OUT, 'ig_report.txt'), lines.join('\n'));
