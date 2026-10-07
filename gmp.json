@@ -1,17 +1,17 @@
 {
-  "updatedIso": "2026-10-07T09:07:16.971Z",
-  "updatedLocal": "07/10/2026, 14:37:16 IST",
+  "updatedIso": "2026-10-07T16:49:10.698Z",
+  "updatedLocal": "07/10/2026, 22:19:10 IST",
   "source": "ipowatch",
   "rows": [
     {
       "ipo": "HD Fire Protect",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹-",
-      "listing": "",
+      "gmp": 60,
+      "gmpRaw": "₹60",
+      "price": "₹271",
+      "listing": "₹331 (22.14%)",
       "date": "13-15 Oct",
       "type": "Mainboard",
-      "href": "/hd-fire-protect-ipo/",
+      "href": "/hd-fire-protect-ipo-gmp-grey-market-premium/",
       "status": "upcoming",
       "slug": "hd-fire-protect"
     },
@@ -48,7 +48,7 @@
       "date": "5-7 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/rkfashion-accessories-ipo/",
-      "status": "active",
+      "status": "closed",
       "slug": "rkfashion"
     },
     {
