@@ -1,20 +1,8 @@
 {
-  "updatedIso": "2026-10-06T12:02:44.109Z",
-  "updatedLocal": "06/10/2026, 17:32:44 IST",
+  "updatedIso": "2026-10-07T09:07:16.971Z",
+  "updatedLocal": "07/10/2026, 14:37:16 IST",
   "source": "ipowatch",
   "rows": [
-    {
-      "ipo": "Jio Platform",
-      "gmp": 155,
-      "gmpRaw": "₹155",
-      "price": "₹-",
-      "listing": "",
-      "date": "21-23 Oct*",
-      "type": "Mainboard",
-      "href": "/jio-platforms-ipo/",
-      "status": "upcoming",
-      "slug": "jio-platform"
-    },
     {
       "ipo": "HD Fire Protect",
       "gmp": 0,
@@ -53,10 +41,10 @@
     },
     {
       "ipo": "R.K.Fashion",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹82",
-      "listing": "₹89 (8.54%)",
+      "listing": "₹97 (18.29%)",
       "date": "5-7 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/rkfashion-accessories-ipo/",
@@ -65,10 +53,10 @@
     },
     {
       "ipo": "TNA Solutions",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 3,
+      "gmpRaw": "₹3",
       "price": "₹70",
-      "listing": "₹80 (14.29%)",
+      "listing": "₹73 (4.29%)",
       "date": "30-6 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/tna-solutions-ipo/",
@@ -77,10 +65,10 @@
     },
     {
       "ipo": "Acme India Industries",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 65,
+      "gmpRaw": "₹65",
       "price": "₹196",
-      "listing": "₹236 (20.41%)",
+      "listing": "₹261 (33.16%)",
       "date": "30-6 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/acme-india-industries-ipo/",
@@ -161,75 +149,15 @@
     },
     {
       "ipo": "EverestIMS Technologies",
-      "gmp": 42,
-      "gmpRaw": "₹42",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹85",
-      "listing": "₹127 (49.41%)",
+      "listing": "₹140 (64.71%)",
       "date": "29-5 Oct",
       "type": "SME",
       "href": "https://ipowatch.in/everestims-technologies-ipo/",
       "status": "closed",
       "slug": "everestims-technologies"
-    },
-    {
-      "ipo": "Papadmalji Agro",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹72",
-      "listing": "₹72 (0.00%)",
-      "date": "29-1 Oct",
-      "type": "SME",
-      "href": "https://ipowatch.in/papadmalji-agro-ipo/",
-      "status": "closed",
-      "slug": "papadmalji-agro"
-    },
-    {
-      "ipo": "Vans Electroengineerings",
-      "gmp": 103,
-      "gmpRaw": "₹103",
-      "price": "₹118",
-      "listing": "₹221 (87.29%)",
-      "date": "29-1 Oct",
-      "type": "SME",
-      "href": "https://ipowatch.in/vans-electroengineerings-ipo/",
-      "status": "closed",
-      "slug": "vans-electroengineerings"
-    },
-    {
-      "ipo": "Black Opal Consultants",
-      "gmp": 88,
-      "gmpRaw": "₹88",
-      "price": "₹197",
-      "listing": "₹285 (44.67%)",
-      "date": "29-1 Oct",
-      "type": "SME",
-      "href": "https://ipowatch.in/black-opal-consultants-ipo/",
-      "status": "closed",
-      "slug": "black-opal-consultants"
-    },
-    {
-      "ipo": "Shree TNB Polymers",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹52",
-      "listing": "₹52 (0.00%)",
-      "date": "28-5 Oct",
-      "type": "SME",
-      "href": "https://ipowatch.in/shree-tnb-polymers-ipo/",
-      "status": "closed",
-      "slug": "shree-tnb-polymers"
-    },
-    {
-      "ipo": "Green Asia Impex",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹90",
-      "listing": "₹90 (0.00%)",
-      "date": "24-1 Oct",
-      "type": "SME",
-      "href": "https://ipowatch.in/green-asia-impex-ipo/",
-      "status": "closed",
-      "slug": "green-asia-impex"
     }
   ]
 }
