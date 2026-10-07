@@ -1,0 +1,50 @@
+name: Shadow InvestorGain
+
+# Read-only. Commits nothing, deploys nothing, touches no pipeline data file.
+# Produces artifacts for manual inspection during the migration trial.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 5 * * *'   # throttled in practice; dispatch when you want it on time
+
+permissions:
+  contents: read
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Snapshot raw feed
+        run: node scripts/snapshot_investorgain.js
+
+      - name: Compare against committed gmp.json
+        continue-on-error: true
+        run: node scripts/compare_sources.js gmp.json
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '## Snapshot'
+            echo '```'
+            tail -n 80 tmp/ig_report.txt || echo 'no snapshot report'
+            echo '```'
+            echo '## Compare'
+            echo '```'
+            cat tmp/compare_report.txt || echo 'no compare report'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: investorgain-shadow
+          path: tmp/
+          retention-days: 14
