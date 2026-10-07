@@ -31,7 +31,20 @@ const HEADERS = {
 
 const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-const clean = (s) => String(s ?? '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;/gi, ' ')
+/** Strip tags, decode the HTML entities the feed uses (&#8377; is the rupee sign). */
+function decodeEntities(s) {
+  return s
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&rupee;|&inr;/gi, '₹');
+}
+const clean = (s) => decodeEntities(String(s ?? '').replace(/<br\s*\/?>/gi, ' | ').replace(/<[^>]*>/g, ' '))
   .replace(/\s+/g, ' ').trim();
 
 // ------------------------------------------------------------------ fy / url
@@ -106,7 +119,9 @@ async function fetchMonth(month, year, opts = {}) {
  * decoration. "~max_gmp1" is the all-time peak and is never read here.
  */
 function parseGmpCell(raw) {
-  const s = clean(raw);
+  // The live cell is "&#8377;<b>182</b> (-%)<br><small>…movement…</small>".
+  // Everything after the first <br> is decoration; never read numbers from it.
+  const s = clean(String(raw ?? '').split(/<br\s*\/?>/i)[0]);
   if (!s || /^(-+|n\/?a)$/i.test(s)) return { gmp: null, pct: null, raw: s };
   let m = s.match(/₹\s*(-?[\d,]+(?:\.\d+)?)/);
   if (!m) m = s.match(/(?:^|[\s(])(-?[\d,]+(?:\.\d+)?)/);
@@ -159,12 +174,16 @@ function parseType(v) {
 }
 
 /** Find a price-band field under any of the names the feed might use. */
-const PRICE_KEYS = ['Price', 'price', '~Price', 'Price Band', 'price_band',
-                    '~ipo_price', 'IPO Price', '~price_band'];
+// "Price (₹)" verified from a live payload (7 Oct 2026). "0" means not priced yet.
+const PRICE_KEYS = ['Price (₹)', 'Price (&#8377;)', 'Price', 'Price Band'];
 function readPriceField(row) {
   for (const k of PRICE_KEYS) {
     const v = clean(row[k]);
-    if (v && /\d/.test(v)) return v;
+    if (!v || !/\d/.test(v)) continue;
+    const nums = (v.replace(/,/g, '').match(/\d+(?:\.\d+)?/g) || []).map(Number);
+    if (!nums.length || nums.every((n) => n === 0)) continue;   // "0" = unpriced
+    // Hand estimateListing() a rupee-marked value; a band keeps its shape.
+    return /₹/.test(v) ? v : `₹${v}`;
   }
   return '';
 }
@@ -188,7 +207,9 @@ function toRawRow(row) {
   const name = clean(row['~ipo_name']);       // clean name; "Name" is polluted
   if (!name) return null;
 
-  const { gmp, pct } = parseGmpCell(row['GMP']);
+  const { gmp, pct: cellPct } = parseGmpCell(row['GMP']);
+  const calcPct = Number(clean(row['~gmp_percent_calc']));
+  const pct = Number.isFinite(calcPct) && calcPct !== 0 ? calcPct : cellPct;
   const openD = isoToDate(row['~Srt_Open']);
   const closeD = isoToDate(row['~Srt_Close']);
 
