@@ -40,6 +40,7 @@
 
 const fs = require("fs").promises;
 const { load } = require("cheerio");
+const { fetchInvestorGainRows } = require("./sources/investorgain");
 
 // ---------------- config ----------------
 const MAX_PER_GROUP = 15;
@@ -59,6 +60,9 @@ const PROSE_START = "<!-- PROSE_START -->";    // human-owned zone
 const PROSE_END   = "<!-- PROSE_END -->";
 
 const SOURCES = [
+  // Primary: structured JSON feed (scripts/sources/investorgain.js).
+  // ipowatch and the rest stay as fallbacks — independent second opinion.
+  { name: "investorgain", fetchRaw: fetchInvestorGainRows },
   { name: "ipowatch", url: "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/" },
   { name: "ipowala",  url: "https://ipowala.in/ipo-grey-market-premium-gmp/" },
   { name: "chanakya", url: "https://chanakyanipothi.com/ipo-gmp-today/" },
@@ -1278,9 +1282,13 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
   let rows = null, sourceUsed = null;
   for (const src of SOURCES) {
     try {
-      console.log(`Trying source: ${src.name} (${src.url})`);
-      const html = await fetchHtml(src.url);
-      const raw = parseSourceHtml(html);
+      console.log(`Trying source: ${src.name} (${src.url || "json feed"})`);
+      let raw;
+      if (src.fetchRaw) {
+        raw = (await src.fetchRaw({ verbose: true })).rows;
+      } else {
+        raw = parseSourceHtml(await fetchHtml(src.url));
+      }
       rows = validateAndNormalize(raw, src.name);
       sourceUsed = src.name;
       console.log(`  OK: ${rows.length} valid rows from ${src.name}`);
