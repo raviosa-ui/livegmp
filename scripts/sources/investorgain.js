@@ -227,6 +227,24 @@ function toRawRow(row) {
   };
 }
 
+// --------------------------------------------------------------- freshness
+
+/**
+ * "Updated-On" = "<small…><b>7-Oct 23:02</b></small>"  ->  sortable number.
+ * Requests seconds apart can hit edge caches hours apart (seen live: 19:02 vs
+ * 23:02 in the same run), so duplicates are resolved by this, newest wins.
+ * Month rollover: a December stamp seen in January sorts as last year.
+ */
+function updatedStamp(v, now = new Date()) {
+  const m = clean(v).match(/(\d{1,2})-([A-Za-z]{3})\s+(\d{1,2}):(\d{2})/);
+  if (!m) return 0;
+  const mon = MONTH_ABBR.findIndex((x) => x.toLowerCase() === m[2].toLowerCase());
+  if (mon < 0) return 0;
+  let year = now.getUTCFullYear();
+  if (mon > now.getUTCMonth() + 1) year -= 1;
+  return Date.UTC(year, mon, +m[1], +m[3], +m[4]);
+}
+
 // --------------------------------------------------------------- public API
 
 /**
@@ -259,12 +277,16 @@ async function fetchInvestorGainRows(opts = {}) {
       if (!r) { meta.skipped++; continue; }
       const idm = clean(feedRow['~urlrewrite_folder_name']).match(/\/(\d+)\/?$/);
       const key = idm ? `id:${idm[1]}` : `name:${r.ipo.toLowerCase()}`;
+      const ts = updatedStamp(feedRow['Updated-On'], now);
       const prev = seen.get(key);
-      if (!prev || (prev.gmpRaw === '-' && r.gmpRaw !== '-')) seen.set(key, r);
+      if (!prev || ts > prev.ts || (ts === prev.ts && prev.r.gmpRaw === '-' && r.gmpRaw !== '-')) {
+        seen.set(key, { r, ts });
+      }
     }
   }
 
-  const out = [...seen.values()];
+  const out = [...seen.values()].map((x) => x.r);
+  meta.newestUpdate = Math.max(0, ...[...seen.values()].map((x) => x.ts));
   // Let validateAndNormalize() enforce MIN_ROWS; a hard zero is still fatal here
   // so the caller can fall through to the next source.
   if (!out.length) {
@@ -284,6 +306,7 @@ module.exports = {
   derivePrice,
   parseType,
   isoToDate,
+  updatedStamp,
   fyCandidates,
   extractFeedRows,
   BASE,
