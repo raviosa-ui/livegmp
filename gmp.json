@@ -1,8 +1,20 @@
 {
-  "updatedIso": "2026-10-09T17:08:34.099Z",
-  "updatedLocal": "09/10/2026, 22:38:34 IST",
+  "updatedIso": "2026-10-09T21:50:27.804Z",
+  "updatedLocal": "10/10/2026, 03:20:27 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "Bonfigloli Transmissions",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bonfigloli-transmissions"
+    },
     {
       "ipo": "Jio Platforms",
       "gmp": 173,
@@ -590,30 +602,6 @@
       "href": "",
       "status": "closed",
       "slug": "himalaya-nutravedics"
-    },
-    {
-      "ipo": "Varmora Granito",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹148",
-      "listing": "₹149 (0.68%)",
-      "date": "22-24 Sep 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "varmora-granito"
-    },
-    {
-      "ipo": "Bonfigloli Transmissions",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "",
-      "type": "Mainboard",
-      "href": "",
-      "status": "upcoming",
-      "slug": "bonfigloli-transmissions"
     }
   ]
 }
