@@ -1,12 +1,12 @@
 {
-  "updatedIso": "2026-10-09T09:31:24.164Z",
-  "updatedLocal": "09/10/2026, 15:01:24 IST",
+  "updatedIso": "2026-10-09T17:08:34.099Z",
+  "updatedLocal": "09/10/2026, 22:38:34 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Jio Platforms",
-      "gmp": 170,
-      "gmpRaw": "₹170",
+      "gmp": 173,
+      "gmpRaw": "₹173",
       "price": "",
       "listing": "",
       "date": "",
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Fusion CX",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 55,
+      "gmpRaw": "₹55",
       "price": "₹289",
-      "listing": "₹329 (13.84%)",
+      "listing": "₹344 (19.03%)",
       "date": "14-16 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "HD Fire Protect",
-      "gmp": 67,
-      "gmpRaw": "₹67",
+      "gmp": 74,
+      "gmpRaw": "₹74",
       "price": "₹271",
-      "listing": "₹338 (24.72%)",
+      "listing": "₹345 (27.31%)",
       "date": "13-15 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -602,6 +602,18 @@
       "href": "",
       "status": "closed",
       "slug": "varmora-granito"
+    },
+    {
+      "ipo": "Bonfigloli Transmissions",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bonfigloli-transmissions"
     }
   ]
 }
