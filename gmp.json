@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-10T08:50:59.068Z",
-  "updatedLocal": "10/10/2026, 14:20:59 IST",
+  "updatedIso": "2026-10-10T15:31:55.786Z",
+  "updatedLocal": "10/10/2026, 21:01:55 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -16,23 +16,23 @@
       "slug": "jio-platform"
     },
     {
-      "ipo": "Bonfigloli Transmissions",
-      "gmp": null,
-      "gmpRaw": "-",
+      "ipo": "Bonfiglioli Transmissions",
+      "gmp": 120,
+      "gmpRaw": "₹120",
       "price": "",
       "listing": "",
       "date": "",
       "type": "Mainboard",
       "href": "",
       "status": "upcoming",
-      "slug": "bonfigloli-transmissions"
+      "slug": "bonfiglioli-transmissions"
     },
     {
       "ipo": "Fusion CX",
-      "gmp": 55,
-      "gmpRaw": "₹55",
+      "gmp": 53,
+      "gmpRaw": "₹53",
       "price": "₹289",
-      "listing": "₹344 (19.03%)",
+      "listing": "₹342 (18.34%)",
       "date": "14-16 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "HD Fire Protect",
-      "gmp": 73,
-      "gmpRaw": "₹73",
+      "gmp": 75,
+      "gmpRaw": "₹75",
       "price": "₹271",
-      "listing": "₹344 (26.94%)",
+      "listing": "₹346 (27.68%)",
       "date": "13-15 Oct 2026",
       "type": "Mainboard",
       "href": "",
