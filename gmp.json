@@ -1,12 +1,24 @@
 {
-  "updatedIso": "2026-10-10T15:31:55.786Z",
-  "updatedLocal": "10/10/2026, 21:01:55 IST",
+  "updatedIso": "2026-10-10T20:14:46.598Z",
+  "updatedLocal": "11/10/2026, 01:44:46 IST",
   "source": "investorgain",
   "rows": [
     {
+      "ipo": "Sahajanand Medical Technologies",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "sahajanand-medical-technologies"
+    },
+    {
       "ipo": "Jio Platforms",
-      "gmp": 172,
-      "gmpRaw": "₹172",
+      "gmp": 171,
+      "gmpRaw": "₹171",
       "price": "",
       "listing": "",
       "date": "",
@@ -17,8 +29,8 @@
     },
     {
       "ipo": "Bonfiglioli Transmissions",
-      "gmp": 120,
-      "gmpRaw": "₹120",
+      "gmp": 137,
+      "gmpRaw": "₹137",
       "price": "",
       "listing": "",
       "date": "",
@@ -590,18 +602,6 @@
       "href": "",
       "status": "closed",
       "slug": "adroit-industries"
-    },
-    {
-      "ipo": "Varmora Granito",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹148",
-      "listing": "₹149 (0.68%)",
-      "date": "22-24 Sep 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "varmora-granito"
     }
   ]
 }
