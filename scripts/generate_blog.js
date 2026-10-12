@@ -523,7 +523,9 @@ ${rows.map(r => `<tr><td>${esc(r.metric)}</td><td>${esc(r.fy1)}</td><td>${esc(r.
 function sourceLine(meta) {
   const url = String(meta.pdf || "");
   const official = /^https?:\/\/(www\.)?(sebi\.gov\.in|nseindia\.com|bseindia\.com|bsesme\.com)\//i.test(url);
-  const base = `Figures as disclosed in the ${esc(meta.kind)} filed with SEBI.`;
+  // SME offer documents are filed with BSE SME / NSE Emerge, not SEBI; Mainboard
+  // ones are filed with the exchanges too. "the stock exchange" is true for both.
+  const base = `Figures as disclosed in the DRHP/RHP filed with the stock exchange.`;
   return official
     ? `${base} Source: <a href="${esc(url)}" rel="nofollow noopener" target="_blank">offer document</a>.`
     : base;
@@ -568,7 +570,7 @@ ${LIVE_END}`;
 function newPage({ company, slug, kind, pdf }, prose) {
   const url = `${SITE}/ipo/${slug}/`;
   const title = `${company} IPO — ${kind} Details, Business & Financials | LiveGMP`;
-  const desc = `${company} IPO: business overview, financials, objects of the issue, promoters, strengths and risks from the ${kind} filed with SEBI.`;
+  const desc = `${company} IPO: business overview, financials, objects of the issue, promoters, strengths and risks from the DRHP/RHP filed with the stock exchange.`;
   const jsonld = JSON.stringify({
     "@context": "https://schema.org", "@type": "Article",
     "headline": `${company} IPO — ${kind} Details, Business & Financials`,
