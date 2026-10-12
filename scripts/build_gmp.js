@@ -835,6 +835,8 @@ function liveZone(r, payload) {
   <tr><th>Status</th><td>${r.status[0].toUpperCase() + r.status.slice(1)}</td></tr>
 </table>
 <p class="stub-updated">Live data last refreshed: <strong>${esc(payload.updatedLocal)}</strong></p>
+
+${faqHtml(r)}
 ${LIVE_END}`;
 }
 
@@ -844,13 +846,6 @@ function prosePlaceholder(r) {
   return `${PROSE_START}
 <div class="coming-soon-note">📝 <strong>Full analysis coming soon</strong> — a detailed review of ${esc(r.ipo)}'s business, financials, objects of the issue, strengths and risks will be published here. The live GMP and key details above update automatically every hour.</div>
 
-<h2>FAQ</h2>
-<h3>What is the GMP of ${esc(r.ipo)} IPO today?</h3>
-<p>The current GMP is shown in the Key Details table above and refreshes every hour.</p>
-<h3>Is ${esc(r.ipo)} a Mainboard or SME IPO?</h3>
-<p>${esc(r.ipo)} is a ${esc(r.type)} IPO.</p>
-<h3>Does GMP guarantee listing gains?</h3>
-<p>No. GMP is an unofficial, unregulated indicator and can change quickly. Always evaluate the company's fundamentals before investing.</p>
 ${PROSE_END}`;
 }
 
@@ -896,21 +891,66 @@ ${body}
 </html>`;
 }
 
-function stubJsonLd(r, url, payload) {
-  const faq = {
+// ================= FAQ (one source for visible text AND schema) =================
+// Google requires FAQPage structured data to match text visible on the page.
+// The FAQ lives in the LIVE zone, so it is rewritten every run on every page
+// (stub or published) and can never drift from the schema in the head.
+function faqItems(r) {
+  return [
+    { q: `What is the GMP of ${r.ipo} IPO today?`,
+      a: r.gmp === null
+        ? `${r.ipo} IPO GMP is not yet quoted in the grey market.`
+        : `${r.ipo} IPO GMP today is ₹${r.gmp}.` },
+    { q: `What are the ${r.ipo} IPO dates?`,
+      a: r.date ? `${r.ipo} IPO dates: ${r.date}.` : `${r.ipo} IPO dates are yet to be announced.` },
+    { q: `Is ${r.ipo} a Mainboard or SME IPO?`,
+      a: `${r.ipo} is a ${r.type} IPO.` },
+    { q: `Does GMP guarantee listing gains?`,
+      a: `No. GMP is an unofficial, unregulated indicator and can change quickly. Always evaluate the company's fundamentals before investing.` },
+  ];
+}
+
+function faqSchema(r) {
+  return {
     "@context": "https://schema.org", "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": `What is the GMP of ${r.ipo} IPO today?`,
-        "acceptedAnswer": { "@type": "Answer", "text": r.gmp === null
-          ? `${r.ipo} IPO GMP is not yet quoted in the grey market.`
-          : `${r.ipo} IPO GMP today is ₹${r.gmp}.` } },
-      { "@type": "Question", "name": `What are the ${r.ipo} IPO dates?`,
-        "acceptedAnswer": { "@type": "Answer", "text": r.date
-          ? `${r.ipo} IPO dates: ${r.date}.` : `${r.ipo} IPO dates are yet to be announced.` } },
-      { "@type": "Question", "name": `Is ${r.ipo} a Mainboard or SME IPO?`,
-        "acceptedAnswer": { "@type": "Answer", "text": `${r.ipo} is a ${r.type} IPO.` } }
-    ]
+    "mainEntity": faqItems(r).map(({ q, a }) => ({
+      "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a },
+    })),
   };
+}
+
+function faqHtml(r) {
+  return `<h2>FAQ</h2>\n` + faqItems(r).map(({ q, a }) => `<h3>${esc(q)}</h3>\n<p>${esc(a)}</p>`).join("\n");
+}
+
+// Auto-generated meta description. Stubs use it; published pages keep it
+// refreshed only while it is still this auto text (a hand-written one is left alone).
+const AUTO_DESC_RE = /^.+ IPO grey market premium today\b/;
+function stubDesc(r) {
+  return `${r.ipo} IPO grey market premium today${r.gmp !== null ? ` is ₹${r.gmp}` : ""}. ${r.type} IPO${r.date ? `, dates ${r.date}` : ""}. Live GMP, price band and listing estimate.`;
+}
+
+// Published pages: the head was written once (at stub stage or by Agent 2) and
+// never touched again, so its FAQ schema and meta description froze with an
+// old GMP. Refresh ONLY those two machine-generated parts. Title, canonical,
+// Article schema and the prose zone stay exactly as they are.
+function refreshPublishedHead(html, r) {
+  let out = html;
+  out = out.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (whole, json) => {
+    let data;
+    try { data = JSON.parse(json); } catch { return whole; }        // unparseable: leave alone
+    const list = (Array.isArray(data) ? data : [data]).filter(x => x && x["@type"] !== "FAQPage");
+    list.push(faqSchema(r));
+    return `<script type="application/ld+json">${JSON.stringify(list)}</script>`;
+  });
+  const fresh = esc(stubDesc(r));
+  out = out.replace(/(<meta (?:name="description"|property="og:description") content=")([^"]*)(">)/g,
+    (whole, a, cur, b) => (AUTO_DESC_RE.test(cur) ? a + fresh + b : whole));
+  return out;
+}
+
+function stubJsonLd(r, url, payload) {
+  const faq = faqSchema(r);
   const article = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": `${r.ipo} IPO GMP Today, Price Band, Dates`,
@@ -934,7 +974,7 @@ ${prosePlaceholder(r)}
 `;
   return siteShell({
     title: `${r.ipo} IPO GMP Today, Price Band, Dates | LiveGMP`,
-    desc: `${r.ipo} IPO grey market premium today${r.gmp !== null ? ` is ₹${r.gmp}` : ""}. ${r.type} IPO${r.date ? `, dates ${r.date}` : ""}. Live GMP, price band and listing estimate.`,
+    desc: stubDesc(r),
     canonical: url,
     jsonld: stubJsonLd(r, url, payload),
     body,
@@ -976,11 +1016,12 @@ async function generateStubs(rows, payload) {
     }
 
     // hand-written page: refresh ONLY the live zone, never the prose
-    const updated = spliceLiveZone(existing, r, payload);
+    let updated = spliceLiveZone(existing, r, payload);
     if (updated === null) {
       noZone.push(slug);
       continue;
     }
+    updated = refreshPublishedHead(updated, r);
     if (updated !== existing) {
       await fs.writeFile(file, updated, "utf8");
       liveUpdated++;
