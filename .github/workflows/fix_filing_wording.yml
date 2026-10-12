@@ -1,0 +1,25 @@
+name: One-off - fix filing wording
+
+# Run once by hand, then delete this file and scripts/fix_filing_wording.js.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Replace "filed with SEBI" wording
+        run: node scripts/fix_filing_wording.js
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "content: filing wording - stock exchange, not SEBI"
+          file_pattern: "ipo/*/index.html"
+          branch: main
