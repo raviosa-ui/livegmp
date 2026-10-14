@@ -1,6 +1,6 @@
 {
   "https://livegmp.in/": {
-    "hash": "0d2ce3990c5503f5",
+    "hash": "59cc0eb6418577c6",
     "date": "2026-10-14"
   },
   "https://livegmp.in/ipo-allotment-status.html": {
@@ -8,8 +8,8 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/": {
-    "hash": "92098acd2f60aab8",
-    "date": "2026-10-13"
+    "hash": "db2ab29dc1e1ab29",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/a-one-steels/": {
     "hash": "067f4934689b9a70",
@@ -92,8 +92,8 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/armee-infotech/": {
-    "hash": "56b074574f2bb234",
-    "date": "2026-10-08"
+    "hash": "1bd334cfd85a6e7c",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/asset-reconstruction/": {
     "hash": "89dd1b1b59a826a7",
@@ -136,7 +136,7 @@
     "date": "2026-10-12"
   },
   "https://livegmp.in/ipo/bonfiglioli-transmissions/": {
-    "hash": "9df1c5916c2514ce",
+    "hash": "f70e98a2c00b7445",
     "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/bonfigloli-transmissions/": {
@@ -236,7 +236,7 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/fusion-cx/": {
-    "hash": "013c73e2e4700ff5",
+    "hash": "7cbb3ac45090c48e",
     "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/fusion-klassroom/": {
@@ -348,7 +348,7 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/jio-platform/": {
-    "hash": "d8e772c4f44770d3",
+    "hash": "0e0cb8ee294a5575",
     "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/jsw-one-platforms/": {
@@ -515,9 +515,17 @@
     "hash": "4e97387ad73cf5c8",
     "date": "2026-10-12"
   },
+  "https://livegmp.in/ipo/paramotor-digital-technology/": {
+    "hash": "d4feaf6feb2cabbc",
+    "date": "2026-10-14"
+  },
   "https://livegmp.in/ipo/paramount-syntex/": {
     "hash": "97e1e023f20583af",
     "date": "2026-10-12"
+  },
+  "https://livegmp.in/ipo/paras-healthcare/": {
+    "hash": "8d69d025160e5bf2",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/pentacle-consultants-i/": {
     "hash": "dbf2a2dea41eb593",
@@ -612,16 +620,12 @@
     "date": "2026-10-12"
   },
   "https://livegmp.in/ipo/sahajanand-medical-technologies/": {
-    "hash": "ba42db79c6005312",
+    "hash": "f87af1749f57c619",
     "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/sai-urja-indo-ventures/": {
-    "hash": "a027709d7c45acba",
-    "date": "2026-10-02"
-  },
-  "https://livegmp.in/ipo/sai-urja/": {
-    "hash": "bfc7cd6fbe8608fa",
-    "date": "2026-10-12"
+    "hash": "6e8b0a029e04de2b",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/sampark-india-logistics/": {
     "hash": "e8cdce829a570bad",
@@ -642,10 +646,6 @@
   "https://livegmp.in/ipo/shah-investors-home/": {
     "hash": "36a6bf382b1783ba",
     "date": "2026-10-12"
-  },
-  "https://livegmp.in/ipo/shah-investors/": {
-    "hash": "f9809e41701f2eaa",
-    "date": "2026-10-04"
   },
   "https://livegmp.in/ipo/shakti-polytarp/": {
     "hash": "e7a30e726fd313e4",
@@ -696,8 +696,8 @@
     "date": "2026-09-30"
   },
   "https://livegmp.in/ipo/skoffset/": {
-    "hash": "22d157fd1239d70d",
-    "date": "2026-10-08"
+    "hash": "957d4eec6ea48b29",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/skytech-infinite-platform/": {
     "hash": "e784990acf701510",
@@ -752,8 +752,8 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/swastika-infra/": {
-    "hash": "199b661cef3da5a8",
-    "date": "2026-10-08"
+    "hash": "1475448e9ab26365",
+    "date": "2026-10-14"
   },
   "https://livegmp.in/ipo/symbiotec-pharmalab/": {
     "hash": "28c390ed98396b27",
@@ -832,7 +832,7 @@
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/zetwerk/": {
-    "hash": "193af0d916706464",
+    "hash": "94343eb66381d45b",
     "date": "2026-10-14"
   },
   "https://livegmp.in/what-is-gmp.html": {
