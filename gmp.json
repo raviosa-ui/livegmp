@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-15T13:37:53.407Z",
-  "updatedLocal": "15/10/2026, 19:07:53 IST",
+  "updatedIso": "2026-10-15T14:32:25.069Z",
+  "updatedLocal": "15/10/2026, 20:02:25 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 229,
-      "gmpRaw": "₹229",
+      "gmp": 226,
+      "gmpRaw": "₹226",
       "price": "₹1119",
-      "listing": "₹1348 (20.46%)",
+      "listing": "₹1345 (20.20%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "Tonbo Imaging India",
-      "gmp": 495,
-      "gmpRaw": "₹495",
+      "gmp": 498,
+      "gmpRaw": "₹498",
       "price": "₹700",
-      "listing": "₹1195 (70.71%)",
+      "listing": "₹1198 (71.14%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Zetwerk",
-      "gmp": 14.75,
-      "gmpRaw": "₹14.75",
+      "gmp": 14.5,
+      "gmpRaw": "₹14.5",
       "price": "₹151",
-      "listing": "₹165.75 (9.77%)",
+      "listing": "₹165.5 (9.60%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
