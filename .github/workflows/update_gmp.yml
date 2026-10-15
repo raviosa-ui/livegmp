@@ -4,6 +4,20 @@ on:
   schedule:
     - cron: '30 * * * *'   # hourly at :30
   workflow_dispatch:
+  # A merged article PR (or any hand edit under ipo/) rebuilds the sitemap,
+  # /ipo/ index and homepage Latest Analysis block within minutes, instead of
+  # waiting for the throttled cron. This workflow's own commits are pushed with
+  # GITHUB_TOKEN, which never triggers workflows, so it cannot loop.
+  push:
+    branches: [main]
+    paths:
+      - 'ipo/**'
+
+# One run at a time. A merge arriving while the cron run is mid-flight waits,
+# then checks out the newer main - two runs never race to push.
+concurrency:
+  group: update-gmp
+  cancel-in-progress: false
 
 jobs:
   build-gmp:
@@ -83,7 +97,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
-          file_pattern: "gmp.json index.html sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json data/page_lastmod.json data/pipeline_warn_hash.txt"
+          file_pattern: "*.html gmp.json sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json data/page_lastmod.json data/pipeline_warn_hash.txt data/published.json"
           branch: main
 
       # A push made with GITHUB_TOKEN does NOT trigger other workflows, so
@@ -91,7 +105,7 @@ jobs:
       # "docs" is excluded: prospectus PDFs stay in the repo for the blog
       # generator but are never published on livegmp.in.
       - name: Stage site files
-        if: steps.commit.outputs.changes_detected == 'true'
+        if: steps.commit.outputs.changes_detected == 'true' || github.event_name == 'push'
         run: |
           rm -rf deploy && mkdir deploy
           rsync -a \
@@ -105,7 +119,7 @@ jobs:
           echo "Deploying $(find deploy -type f | wc -l) files"
 
       - name: Publish to Cloudflare Pages
-        if: steps.commit.outputs.changes_detected == 'true'
+        if: steps.commit.outputs.changes_detected == 'true' || github.event_name == 'push'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
