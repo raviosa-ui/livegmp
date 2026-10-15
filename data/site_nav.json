@@ -1,0 +1,9 @@
+{
+  "nav": [
+    { "href": "/",                          "label": "Live GMP" },
+    { "href": "/ipo/",                      "label": "IPO Analysis" },
+    { "href": "/what-is-gmp.html",          "label": "What is GMP?" },
+    { "href": "/ipo-allotment-status.html", "label": "Allotment" }
+  ],
+  "footer": []
+}
