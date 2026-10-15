@@ -83,6 +83,14 @@ const HEADER_MAP = [
 const esc = (s = "") =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+// Inverse of esc(): text read back out of an existing page is already escaped,
+// and must be decoded before esc() runs again, or "&amp;" becomes "&amp;amp;".
+const unesc = (s = "") =>
+  String(s ?? "")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
+    .replace(/&#0*39;|&#x0*27;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&amp;/g, "&");
 
 const clean = (s = "") => String(s ?? "").replace(/\s+/g, " ").trim();
 
@@ -754,7 +762,217 @@ function cardHtml(r) {
   </div>`;
 }
 
-function buildWrapper(rows, meta) {
+// ================= SITE NAV + FOOTER LINKS (data/site_nav.json) =================
+// Every page carries its own copy of the header menu. Pipeline-generated stubs
+// would pick up a change, but published articles and the hand-written pages
+// (homepage, What is GMP, Allotment, 404) never would. So the menu lives in ONE
+// file and this script rewrites <nav class="site-nav"> on every page, every run.
+//
+//   data/site_nav.json
+//   { "nav":    [ {"href": "/", "label": "Live GMP"}, ... ],
+//     "footer": [ {"href": "/what-is-gmp.html", "label": "What is GMP?"}, ... ] }
+//
+// "footer" links go in a <p class="footer-links"> at the end of each page's
+// footer; the disclaimer text there is never touched. An empty list removes it.
+// A broken or missing file leaves every page exactly as it is (logged, never fatal).
+const SITE_NAV_FILE = "data/site_nav.json";
+const NAV_MAX_ITEMS = 7;
+
+async function loadSiteNav() {
+  let raw;
+  try { raw = await fs.readFile(SITE_NAV_FILE, "utf8"); } catch { return null; }   // not set up: no-op
+  let cfg;
+  try { cfg = JSON.parse(raw); } catch (e) {
+    console.log(`WARNING: ${SITE_NAV_FILE} is not valid JSON (${e.message}) - menus left unchanged.`);
+    return null;
+  }
+  const ok = (list) => Array.isArray(list) && list.every(x =>
+    x && typeof x.label === "string" && x.label.trim() &&
+    typeof x.href === "string" && /^(\/|https:\/\/)/.test(x.href));
+  const nav = cfg && cfg.nav, footer = (cfg && cfg.footer) || [];
+  if (!ok(nav) || !nav.length || nav.length > NAV_MAX_ITEMS || !ok(footer)) {
+    console.log(`WARNING: ${SITE_NAV_FILE} needs "nav": 1-${NAV_MAX_ITEMS} items of {"href","label"} ` +
+                `(href starting with / or https://) and an optional "footer" list - menus left unchanged.`);
+    return null;
+  }
+  // A menu link to a page that is not in the repo would be a broken link on
+  // every page of the site. Refuse the whole file until the page exists.
+  const fsync = require("fs");
+  const missing = [...nav, ...footer].filter(x => x.href.startsWith("/")).filter(x => {
+    const p = x.href.split(/[?#]/)[0].replace(/^\//, "");
+    const file = p === "" ? "index.html" : p.endsWith("/") ? p + "index.html" : p;
+    return !fsync.existsSync(file);
+  });
+  if (missing.length) {
+    console.log(`WARNING: ${SITE_NAV_FILE} links to page(s) that do not exist yet: ` +
+                `${missing.map(x => x.href).join(", ")} - menus left unchanged until they do.`);
+    return null;
+  }
+  return { nav, footer };
+}
+
+// The menu every page gets this run. A missing or broken file must never change
+// what is live, so the fallback is the menu currently on the homepage (the
+// built-in list only if even that cannot be read).
+const DEFAULT_NAV = [
+  { href: "/", label: "Live GMP" },
+  { href: "/ipo/", label: "IPO Analysis" },
+  { href: "/what-is-gmp.html", label: "What is GMP?" },
+  { href: "/ipo-allotment-status.html", label: "Allotment" },
+];
+let SITE_NAV = { nav: DEFAULT_NAV, footer: [], fromFile: false };
+
+async function resolveSiteNav() {
+  const cfg = await loadSiteNav();
+  if (cfg) { SITE_NAV = { ...cfg, fromFile: true }; return; }
+  try {
+    const home = await fs.readFile(INDEX_HTML, "utf8");
+    const links = (block) => [...String(block || "").matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+      .map(m => ({ href: unesc(m[1]), label: unesc(m[2]) }));
+    const nav = links((home.match(/<nav class="site-nav">([\s\S]*?)<\/nav>/) || [])[1]);
+    const footer = links((home.match(/<p class="footer-links">([\s\S]*?)<\/p>/) || [])[1]);
+    if (nav.length) SITE_NAV = { nav, footer, fromFile: false };
+  } catch {}
+}
+
+// The URL a file is served at, to mark the current page's own menu link.
+function pagePath(file) {
+  if (file === "index.html") return "/";
+  if (file.endsWith("/index.html")) return "/" + file.slice(0, -"index.html".length);
+  return "/" + file;
+}
+
+function navBlock(items, here) {
+  const links = items.map(x => {
+    const ext = /^https:/.test(x.href) ? ' target="_blank" rel="noopener"' : "";
+    const active = x.href === here ? ' class="nav-active"' : "";
+    return `    <a href="${esc(x.href)}"${active}${ext}>${esc(x.label)}</a>`;
+  });
+  return `<nav class="site-nav">\n${links.join("\n")}\n  </nav>`;
+}
+
+function footerLinks(items) {
+  if (!items.length) return "";
+  return `<p class="footer-links">${items.map(x => `<a href="${esc(x.href)}">${esc(x.label)}</a>`).join(" · ")}</p>`;
+}
+
+async function applySiteNav() {
+  const cfg = SITE_NAV;
+  const files = [];
+  for (const f of await fs.readdir(".")) if (f.endsWith(".html")) files.push(f);
+  files.push("ipo/index.html");
+  for (const d of await listIpoDirs()) files.push(`ipo/${d}/index.html`);
+  // Any other section folder (e.g. tools/), so new sections get the menu too.
+  const SKIP = new Set(["ipo", "data", "docs", "scripts", "static", "node_modules", "deploy"]);
+  for (const e of await fs.readdir(".", { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith(".") || SKIP.has(e.name)) continue;
+    for (const f of await fs.readdir(e.name, { withFileTypes: true })) {
+      if (f.isFile() && f.name.endsWith(".html")) files.push(`${e.name}/${f.name}`);
+      else if (f.isDirectory()) files.push(`${e.name}/${f.name}/index.html`);
+    }
+  }
+
+  let changed = 0, noNav = [];
+  for (const file of files) {
+    let html;
+    try { html = await fs.readFile(file, "utf8"); } catch { continue; }
+    if (!/<nav class="site-nav">[\s\S]*?<\/nav>/.test(html)) { noNav.push(file); continue; }
+    let out = html.replace(/<nav class="site-nav">[\s\S]*?<\/nav>/, navBlock(cfg.nav, pagePath(file)));
+    // footer links: replace, insert before </footer>, or remove
+    const fl = footerLinks(cfg.footer);
+    if (/<p class="footer-links">[\s\S]*?<\/p>\n?/.test(out)) {
+      out = out.replace(/<p class="footer-links">[\s\S]*?<\/p>\n?/, fl ? fl + "\n" : "");
+    } else if (fl) {
+      out = out.replace(/(<footer class="site-footer">[\s\S]*?)(<\/footer>)/, `$1  ${fl}\n$2`);
+    }
+    if (out !== html) { await fs.writeFile(file, out, "utf8"); changed++; }
+  }
+  if (changed) console.log(`Site nav: menu updated on ${changed} page(s) from ${cfg.fromFile ? SITE_NAV_FILE : "the menu already live on the homepage"}.`);
+  if (noNav.length) console.log(`  (no site-nav found, left alone: ${noNav.join(", ")})`);
+}
+
+// ================= LATEST ANALYSIS (homepage block) =================
+// Article pages that are not in today's GMP table get no homepage card, so
+// Google - which crawls the homepage far more often than the sitemap - finds
+// them late. This block links the newest articles from the homepage.
+//
+// "Newest" needs a real publish time. The page head is not reliable for that
+// (a converted stub keeps the timestamp of its last stub refresh), so the
+// first time this script sees a page as an article it records the time in
+// data/published.json. With update_gmp.yml also running on merges to ipo/,
+// that is within minutes of the merge.
+const PUBLISHED_FILE = "data/published.json";
+const LATEST_COUNT = 8;
+
+async function updatePublished(nowIso) {
+  let store = null;
+  try { store = JSON.parse(await fs.readFile(PUBLISHED_FILE, "utf8")); } catch {}
+  const seeding = store === null;          // first run: no file yet
+  store = store || {};
+  const before = JSON.stringify(store);
+  const seen = new Set();
+
+  for (const d of await listIpoDirs()) {
+    let html = "";
+    try { html = await fs.readFile(`ipo/${d}/index.html`, "utf8"); } catch { continue; }
+    if (html.includes(STUB_MARK)) continue;                 // still a stub
+    seen.add(d);
+    const crumb = html.match(/›\s*([^<]+?)\s*<\/nav>/);
+    const title = html.match(/<title>([^<]+)<\/title>/i);
+    const name = crumb ? unesc(crumb[1])
+      : title ? unesc(title[1]).replace(/\s*\|\s*LiveGMP.*/i, "").replace(/\s+IPO\b.*$/i, "")
+      : d.replace(/-/g, " ");
+    // Fingerprint of the human-owned article text only. Live GMP, FAQ and menu
+    // changes never count; a regenerated or hand-edited article does.
+    const pz = html.match(/<!-- PROSE_START -->([\s\S]*?)<!-- PROSE_END -->/);
+    const ph = pz ? require("crypto").createHash("sha1").update(pz[1].replace(/\s+/g, " ").trim()).digest("hex").slice(0, 12) : "";
+    if (store[d] && ph) {
+      if (!store[d].h) store[d].h = ph;                    // first sight: record, don't bump
+      else if (store[d].h !== ph) {                        // article text changed: resurface
+        store[d] = { ...store[d], at: nowIso, h: ph, updated: true };
+        console.log(`  article updated: ipo/${d}/ - moved to the top of Latest Analysis`);
+      }
+    }
+    if (!store[d]) {
+      let at = nowIso;
+      if (seeding) {                     // best available date for pages that predate the file
+        const m = html.match(/"@type":"Article"[^}]*?"dateModified":"([^"]+)"/);
+        if (m && !isNaN(Date.parse(m[1]))) at = m[1];
+      }
+      store[d] = ph ? { at, name, h: ph } : { at, name };
+    } else if (store[d].name !== name) {
+      store[d].name = name;              // keep the date, follow a renamed company
+    }
+  }
+  for (const d of Object.keys(store)) if (!seen.has(d)) delete store[d];   // page removed
+
+  const sorted = Object.fromEntries(Object.entries(store).sort(([a], [b]) => a.localeCompare(b)));
+  if (JSON.stringify(sorted) !== before) {
+    await fs.mkdir("data", { recursive: true });
+    await fs.writeFile(PUBLISHED_FILE, JSON.stringify(sorted, null, 2) + "\n", "utf8");
+    console.log(`${PUBLISHED_FILE}: ${Object.keys(sorted).length} article page(s) recorded${seeding ? " (first run: seeded from page dates)" : ""}.`);
+  }
+  return sorted;
+}
+
+function latestAnalysisHtml(store) {
+  const items = Object.entries(store || {})
+    .sort(([sa, a], [sb, b]) => (b.at || "").localeCompare(a.at || "") || sa.localeCompare(sb))
+    .slice(0, LATEST_COUNT);
+  if (!items.length) return "";
+  const day = (iso) => new Date(iso).toLocaleDateString("en-GB",
+    { day: "numeric", month: "short", timeZone: "Asia/Kolkata" });
+  return `
+<section id="latest-analysis" style="margin-top:28px;">
+<h3 class="section-heading">Latest IPO Analysis</h3>
+<ul class="ipo-index-list">
+${items.map(([slug, v]) => `<li><a href="/ipo/${slug}/">${esc(v.name)} IPO — business, financials &amp; risks</a> <span class="tag-analysis">${v.updated ? "Updated " : ""}${esc(day(v.at))}</span></li>`).join("\n")}
+</ul>
+<p><a href="/ipo/">All IPO analysis pages →</a></p>
+</section>`;
+}
+
+function buildWrapper(rows, meta, latestHtml = "") {
   const groups = { active: [], upcoming: [], closed: [] };
   for (const r of rows) (groups[r.status] || groups.upcoming).push(r);
   const byGmp = (a, b) => {
@@ -790,6 +1008,7 @@ ${section("Upcoming IPOs", groups.upcoming)}
 ${section("Closed / Listed", groups.closed)}
 </div>
 <div id="load-more-wrap" style="text-align:center;margin-top:12px;"><button id="load-more-btn" class="load-more-btn">Load more</button></div>
+${latestHtml}
     <div style="display:none" id="gmp-meta" data-updated="${meta.updatedIso}" data-source="${esc(meta.source)}"></div>
   </div>`;
 }
@@ -873,12 +1092,7 @@ function siteShell({ title, desc, canonical, body, jsonld, stub }) {
 <body>
 ${stub ? STUB_MARK + "\n" : ""}<header class="site-header">
   <a class="brand" href="/">LiveGMP<span class="brand-dot">.in</span></a>
-  <nav class="site-nav">
-    <a href="/">Live GMP</a>
-    <a href="/ipo/">IPO Analysis</a>
-    <a href="/what-is-gmp.html">What is GMP?</a>
-    <a href="/ipo-allotment-status.html">Allotment</a>
-  </nav>
+  ${navBlock(SITE_NAV.nav, String(canonical).replace(SITE, "") || "/")}
 </header>
 <main class="container" style="max-width:900px;margin:20px auto;padding:16px;">
 ${body}
@@ -1058,7 +1272,7 @@ async function generateIpoIndex(payload) {
       const c = await fs.readFile(`ipo/${d}/index.html`, "utf8");
       isStub = c.includes(STUB_MARK);
       const m = c.match(/<title>([^<]+)<\/title>/i);
-      if (m) title = m[1].replace(/\s*\|\s*LiveGMP.*/i, "");
+      if (m) title = unesc(m[1]).replace(/\s*\|\s*LiveGMP.*/i, "");
     } catch {}
     items.push(`<li><a href="/ipo/${d}/">${esc(title)}</a>${isStub ? ' <span class="tag-stub">GMP page</span>' : ' <span class="tag-analysis">Full analysis</span>'}</li>`);
   }
@@ -1097,8 +1311,22 @@ const LASTMOD_FILE = "data/page_lastmod.json";
 // refreshed" stamp and a data-updated attribute that change on every run, so
 // hashing raw bytes would mark all 150 pages as modified every time — the
 // exact problem this is meant to solve.
+// Hash as used before the shared menu existed. Kept so the first run after this
+// change re-keys data/page_lastmod.json without bumping every page's lastmod.
+function legacyNormaliseForHash(text) {
+  return String(text)
+    .replace(/<p class="stub-updated">[\s\S]*?<\/p>/g, "")
+    .replace(/data-updated="[^"]*"/g, "")
+    .replace(/"dateModified"\s*:\s*"[^"]*"/g, "")
+    .replace(/\d{2}\/\d{2}\/\d{4},\s*\d{2}:\d{2}:\d{2}\s*IST/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function normaliseForHash(text) {
   return String(text)
+    .replace(/<nav class="site-nav">[\s\S]*?<\/nav>/g, "")         // site menu (same on every page)
+    .replace(/<p class="footer-links">[\s\S]*?<\/p>/g, "")         // footer menu
     .replace(/<p class="stub-updated">[\s\S]*?<\/p>/g, "")      // "Live data last refreshed: ..."
     .replace(/data-updated="[^"]*"/g, "")                         // hidden meta attribute
     .replace(/"dateModified"\s*:\s*"[^"]*"/g, "")                // JSON-LD timestamp
@@ -1125,6 +1353,11 @@ async function generateSitemap(payload) {
     const h = hashOf(text);
     const prev = store[loc];
     if (prev && prev.hash === h) return prev.date;       // genuinely unchanged
+    if (prev && prev.hash === require("crypto").createHash("sha1")
+          .update(legacyNormaliseForHash(text)).digest("hex").slice(0, 16)) {
+      store[loc] = { hash: h, date: prev.date };          // same page, old hash format: re-key only
+      return prev.date;
+    }
     store[loc] = { hash: h, date: today };
     return today;
   }
@@ -1308,6 +1541,7 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
 
 // ---------------- main ----------------
 (async () => {
+  await resolveSiteNav();
   const recovered = await removePollutedStubs();
 
   // Pull the exchange's own mainboard list first; used to label scraped tables.
@@ -1415,7 +1649,21 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
       source: sourceUsed,
       rows,
     };
+    // A merged article changes the homepage's Latest Analysis block even when
+    // no GMP value moved. Same rows + same meta = same cards, so index.html is
+    // rewritten only when that block actually differs.
+    const published = await updatePublished(new Date().toISOString());
+    const home = await fs.readFile(INDEX_HTML, "utf8");
+    const reHome = /<!--\s*GMP_START\s*-->[\s\S]*?<!--\s*GMP_END\s*-->/;
+    if (reHome.test(home)) {
+      const next = home.replace(reHome, `<!-- GMP_START -->\n${buildWrapper(rows, meta, latestAnalysisHtml(published))}\n<!-- GMP_END -->`);
+      if (next !== home) {
+        await fs.writeFile(INDEX_HTML, next, "utf8");
+        console.log("Homepage Latest Analysis block updated.");
+      }
+    }
     await generateIpoIndex(meta);
+    await applySiteNav();
     await generateSitemap(meta);
     console.log("Index and sitemap refreshed; GMP data unchanged.");
     return;
@@ -1435,7 +1683,8 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
     source: sourceUsed,
     rows,
   };
-  const wrapper = buildWrapper(rows, payload);
+  const published = await updatePublished(payload.updatedIso);
+  const wrapper = buildWrapper(rows, payload, latestAnalysisHtml(published));
   await fs.writeFile(GMP_JSON, JSON.stringify(payload, null, 2), "utf8");
   console.log(`Wrote ${GMP_JSON} (${rows.length} rows, source=${sourceUsed})`);
   await fs.writeFile(INDEX_HTML, html.replace(re, `<!-- GMP_START -->\n${wrapper}\n<!-- GMP_END -->`), "utf8");
@@ -1443,6 +1692,7 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
 
   await generateStubs(rows, payload);
   await generateIpoIndex(payload);
+  await applySiteNav();
   await generateSitemap(payload);
   console.log("Done.");
 })().catch(err => {
