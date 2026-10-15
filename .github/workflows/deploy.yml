@@ -3,6 +3,14 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+    # Pushes that only touch ipo/ are deployed by update_gmp.yml after it has
+    # rebuilt the sitemap and indexes. Deploying here too would race it and
+    # could publish the old sitemap last. Any push that also changes other
+    # files still deploys here as before.
+    paths-ignore:
+      - 'ipo/**'
+      - 'data/**'     # never deployed; an article merge also edits data/ipo_aliases.json
+      - 'docs/**'     # never deployed
   workflow_dispatch:
 
 permissions:
@@ -32,6 +40,10 @@ jobs:
             --exclude "package-lock.json" \
             --exclude ".htaccess" \
             --exclude "health_report.md" \
+            --exclude "data" \
+            --exclude "docs" \
+            --exclude "watchdog_report.md" \
+            --exclude "build.log" --exclude "warnings.txt" \
             ./ deploy/
           echo "Deploying $(find deploy -type f | wc -l) files"
 
