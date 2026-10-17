@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-17T17:28:02.275Z",
-  "updatedLocal": "17/10/2026, 22:58:02 IST",
+  "updatedIso": "2026-10-17T19:39:46.721Z",
+  "updatedLocal": "18/10/2026, 01:09:46 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 223,
-      "gmpRaw": "₹223",
+      "gmp": 235,
+      "gmpRaw": "₹235",
       "price": "₹1119",
-      "listing": "₹1342 (19.93%)",
+      "listing": "₹1354 (21.00%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -41,10 +41,10 @@
     },
     {
       "ipo": "Shellz India",
-      "gmp": 23,
-      "gmpRaw": "₹23",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹179",
-      "listing": "₹202 (12.85%)",
+      "listing": "₹204 (13.97%)",
       "date": "15-19 Oct 2026",
       "type": "SME",
       "href": "",
