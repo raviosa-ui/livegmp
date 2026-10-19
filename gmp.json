@@ -1,8 +1,20 @@
 {
-  "updatedIso": "2026-10-19T05:07:23.474Z",
-  "updatedLocal": "19/10/2026, 10:37:23 IST",
+  "updatedIso": "2026-10-19T11:06:09.524Z",
+  "updatedLocal": "19/10/2026, 16:36:09 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "BLS Polymers",
+      "gmp": 20,
+      "gmpRaw": "₹20",
+      "price": "₹150",
+      "listing": "₹170 (13.33%)",
+      "date": "27-29 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bls-polymers"
+    },
     {
       "ipo": "Core4 Engineers",
       "gmp": 0,
@@ -16,23 +28,11 @@
       "slug": "core4-engineers"
     },
     {
-      "ipo": "BLS Polymers",
-      "gmp": 25,
-      "gmpRaw": "₹25",
-      "price": "₹150",
-      "listing": "₹175 (16.67%)",
-      "date": "27-29 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "upcoming",
-      "slug": "bls-polymers"
-    },
-    {
       "ipo": "Paras Healthcare",
-      "gmp": 92,
-      "gmpRaw": "₹92",
+      "gmp": 82,
+      "gmpRaw": "₹82",
       "price": "₹693",
-      "listing": "₹785 (13.28%)",
+      "listing": "₹775 (11.83%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -41,10 +41,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 250,
-      "gmpRaw": "₹250",
+      "gmp": 252,
+      "gmpRaw": "₹252",
       "price": "₹1119",
-      "listing": "₹1369 (22.34%)",
+      "listing": "₹1371 (22.52%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Tonbo Imaging India",
-      "gmp": 520,
-      "gmpRaw": "₹520",
+      "gmp": 515,
+      "gmpRaw": "₹515",
       "price": "₹700",
-      "listing": "₹1220 (74.29%)",
+      "listing": "₹1215 (73.57%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Shellz India",
-      "gmp": 39,
-      "gmpRaw": "₹39",
+      "gmp": 46,
+      "gmpRaw": "₹46",
       "price": "₹179",
-      "listing": "₹218 (21.79%)",
+      "listing": "₹225 (25.70%)",
       "date": "15-19 Oct 2026",
       "type": "SME",
       "href": "",
@@ -77,10 +77,10 @@
     },
     {
       "ipo": "Zetwerk",
-      "gmp": 4,
-      "gmpRaw": "₹4",
+      "gmp": 3.5,
+      "gmpRaw": "₹3.5",
       "price": "₹151",
-      "listing": "₹155 (2.65%)",
+      "listing": "₹154.5 (2.32%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -88,28 +88,28 @@
       "slug": "zetwerk"
     },
     {
-      "ipo": "Bonfiglioli Transmissions",
-      "gmp": 125,
-      "gmpRaw": "₹125",
-      "price": "₹586",
-      "listing": "₹711 (21.33%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "active",
-      "slug": "bonfiglioli-transmissions"
-    },
-    {
       "ipo": "Sahajanand Medical Technologies",
-      "gmp": 27,
-      "gmpRaw": "₹27",
+      "gmp": 21,
+      "gmpRaw": "₹21",
       "price": "₹344",
-      "listing": "₹371 (7.85%)",
+      "listing": "₹365 (6.10%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "active",
       "slug": "sahajanand-medical-technologies"
+    },
+    {
+      "ipo": "Bonfiglioli Transmissions",
+      "gmp": 108,
+      "gmpRaw": "₹108",
+      "price": "₹586",
+      "listing": "₹694 (18.43%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "active",
+      "slug": "bonfiglioli-transmissions"
     },
     {
       "ipo": "Ravita Engineering Services",
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Fusion CX",
-      "gmp": 17,
-      "gmpRaw": "₹17",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹289",
-      "listing": "₹306 (5.88%)",
+      "listing": "₹309 (6.92%)",
       "date": "14-16 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -220,6 +220,18 @@
       "slug": "nityas-gems"
     },
     {
+      "ipo": "EverestIMS Technologies",
+      "gmp": 50,
+      "gmpRaw": "₹50",
+      "price": "₹85",
+      "listing": "₹135 (58.82%)",
+      "date": "29 Sep - 5 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "everestims-technologies"
+    },
+    {
       "ipo": "Eventions",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -244,18 +256,6 @@
       "slug": "sollfege-smart-electronics"
     },
     {
-      "ipo": "EverestIMS Technologies",
-      "gmp": 50,
-      "gmpRaw": "₹50",
-      "price": "₹85",
-      "listing": "₹135 (58.82%)",
-      "date": "29 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "everestims-technologies"
-    },
-    {
       "ipo": "Dove Soft",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -266,18 +266,6 @@
       "href": "",
       "status": "closed",
       "slug": "dove-soft"
-    },
-    {
-      "ipo": "Shree TNB Polymers",
-      "gmp": 4,
-      "gmpRaw": "₹4",
-      "price": "₹53",
-      "listing": "₹57 (7.55%)",
-      "date": "28 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "shree-tnb-polymers"
     },
     {
       "ipo": "Omara Ventures India",
@@ -304,6 +292,18 @@
       "slug": "vishal-nirmiti"
     },
     {
+      "ipo": "Shree TNB Polymers",
+      "gmp": 4,
+      "gmpRaw": "₹4",
+      "price": "₹53",
+      "listing": "₹57 (7.55%)",
+      "date": "28 Sep - 5 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "shree-tnb-polymers"
+    },
+    {
       "ipo": "SJP Ultrasonic",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -328,18 +328,6 @@
       "slug": "vans-electroengineerings"
     },
     {
-      "ipo": "Black Opal Consultants",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹197",
-      "listing": "₹197 (0.00%)",
-      "date": "29 Sep - 1 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "black-opal-consultants"
-    },
-    {
       "ipo": "Papadmalji Agro Foods",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -362,6 +350,18 @@
       "href": "",
       "status": "closed",
       "slug": "green-asia-impex"
+    },
+    {
+      "ipo": "Black Opal Consultants",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹197",
+      "listing": "₹197 (0.00%)",
+      "date": "29 Sep - 1 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "black-opal-consultants"
     },
     {
       "ipo": "Shivchem Agro",
@@ -400,18 +400,6 @@
       "slug": "srit-india"
     },
     {
-      "ipo": "Shah Investor's Home",
-      "gmp": 17,
-      "gmpRaw": "₹17",
-      "price": "₹167",
-      "listing": "₹184 (10.18%)",
-      "date": "28-30 Sep 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "shah-investors-home"
-    },
-    {
       "ipo": "Acme Universal Safezone 9",
       "gmp": 16,
       "gmpRaw": "₹16",
@@ -424,52 +412,16 @@
       "slug": "acme-universal"
     },
     {
-      "ipo": "Bench Mark Infotech Services",
-      "gmp": 15,
-      "gmpRaw": "₹15",
-      "price": "₹110",
-      "listing": "₹125 (13.64%)",
-      "date": "25-29 Sep 2026",
-      "type": "SME",
+      "ipo": "Shah Investor's Home",
+      "gmp": 17,
+      "gmpRaw": "₹17",
+      "price": "₹167",
+      "listing": "₹184 (10.18%)",
+      "date": "28-30 Sep 2026",
+      "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "bench-mark-infotech"
-    },
-    {
-      "ipo": "Himalayan Solar",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹103",
-      "listing": "₹103 (0.00%)",
-      "date": "25-29 Sep 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "himalayan-solar"
-    },
-    {
-      "ipo": "Sai Urja Indo",
-      "gmp": 11,
-      "gmpRaw": "₹11",
-      "price": "₹113",
-      "listing": "₹124 (9.73%)",
-      "date": "25-29 Sep 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "sai-urja-indo-ventures"
-    },
-    {
-      "ipo": "Dudani Retail",
-      "gmp": 0.5,
-      "gmpRaw": "₹0.5",
-      "price": "₹29",
-      "listing": "₹29.5 (1.72%)",
-      "date": "25-29 Sep 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "dudani-retail"
+      "slug": "shah-investors-home"
     },
     {
       "ipo": "Acevector",
@@ -484,6 +436,18 @@
       "slug": "acevector"
     },
     {
+      "ipo": "Himalayan Solar",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹103",
+      "listing": "₹103 (0.00%)",
+      "date": "25-29 Sep 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "himalayan-solar"
+    },
+    {
       "ipo": "Runwal Enterprises",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -494,6 +458,42 @@
       "href": "",
       "status": "closed",
       "slug": "runwal-enterprises"
+    },
+    {
+      "ipo": "Bench Mark Infotech Services",
+      "gmp": 15,
+      "gmpRaw": "₹15",
+      "price": "₹110",
+      "listing": "₹125 (13.64%)",
+      "date": "25-29 Sep 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "bench-mark-infotech"
+    },
+    {
+      "ipo": "Orient Cables",
+      "gmp": 110,
+      "gmpRaw": "₹110",
+      "price": "₹272",
+      "listing": "₹382 (40.44%)",
+      "date": "25-29 Sep 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "orient-cables"
+    },
+    {
+      "ipo": "Sai Urja Indo",
+      "gmp": 11,
+      "gmpRaw": "₹11",
+      "price": "₹113",
+      "listing": "₹124 (9.73%)",
+      "date": "25-29 Sep 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "sai-urja-indo-ventures"
     },
     {
       "ipo": "German Green Steel",
@@ -508,16 +508,16 @@
       "slug": "german-green-steel"
     },
     {
-      "ipo": "Orient Cables",
-      "gmp": 110,
-      "gmpRaw": "₹110",
-      "price": "₹272",
-      "listing": "₹382 (40.44%)",
+      "ipo": "Dudani Retail",
+      "gmp": 0.5,
+      "gmpRaw": "₹0.5",
+      "price": "₹29",
+      "listing": "₹29.5 (1.72%)",
       "date": "25-29 Sep 2026",
-      "type": "Mainboard",
+      "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "orient-cables"
+      "slug": "dudani-retail"
     },
     {
       "ipo": "A-One Steels",
@@ -544,18 +544,6 @@
       "slug": "peshwa-wheat"
     },
     {
-      "ipo": "Moneyview",
-      "gmp": 14.5,
-      "gmpRaw": "₹14.5",
-      "price": "₹34",
-      "listing": "₹48.5 (42.65%)",
-      "date": "24-28 Sep 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "moneyview"
-    },
-    {
       "ipo": "Roopa Screen",
       "gmp": 42,
       "gmpRaw": "₹42",
@@ -568,40 +556,16 @@
       "slug": "roopa-screen"
     },
     {
-      "ipo": "Swastika Infra",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹185",
-      "listing": "₹192 (3.78%)",
-      "date": "23-25 Sep 2026",
+      "ipo": "Moneyview",
+      "gmp": 14.5,
+      "gmpRaw": "₹14.5",
+      "price": "₹34",
+      "listing": "₹48.5 (42.65%)",
+      "date": "24-28 Sep 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "swastika-infra"
-    },
-    {
-      "ipo": "S.K.Offset",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹125",
-      "listing": "₹125 (0.00%)",
-      "date": "23-25 Sep 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "skoffset"
-    },
-    {
-      "ipo": "ArMee Infotech",
-      "gmp": 6,
-      "gmpRaw": "₹6",
-      "price": "₹375",
-      "listing": "₹381 (1.60%)",
-      "date": "23-25 Sep 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "armee-infotech"
+      "slug": "moneyview"
     },
     {
       "ipo": "Pooja Logistics",
@@ -614,6 +578,18 @@
       "href": "",
       "status": "closed",
       "slug": "pooja-logistics"
+    },
+    {
+      "ipo": "S.K.Offset",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹125",
+      "listing": "₹125 (0.00%)",
+      "date": "23-25 Sep 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "skoffset"
     },
     {
       "ipo": "Unitec Fibres",
