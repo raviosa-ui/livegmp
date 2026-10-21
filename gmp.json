@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-21T14:02:55.510Z",
-  "updatedLocal": "21/10/2026, 19:32:55 IST",
+  "updatedIso": "2026-10-21T18:49:42.702Z",
+  "updatedLocal": "22/10/2026, 00:19:42 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹693",
-      "listing": "₹728 (5.05%)",
+      "listing": "₹718 (3.61%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -113,10 +113,10 @@
     },
     {
       "ipo": "Sahajanand Medical Technologies",
-      "gmp": 24,
-      "gmpRaw": "₹24",
+      "gmp": 19,
+      "gmpRaw": "₹19",
       "price": "₹344",
-      "listing": "₹368 (6.98%)",
+      "listing": "₹363 (5.52%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "Fusion CX",
-      "gmp": 17,
-      "gmpRaw": "₹17",
+      "gmp": 13.5,
+      "gmpRaw": "₹13.5",
       "price": "₹289",
-      "listing": "₹306 (5.88%)",
+      "listing": "₹302.5 (4.67%)",
       "date": "14-16 Oct 2026",
       "type": "Mainboard",
       "href": "",
