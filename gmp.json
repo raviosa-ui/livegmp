@@ -1,8 +1,44 @@
 {
-  "updatedIso": "2026-10-22T07:52:16.319Z",
-  "updatedLocal": "22/10/2026, 13:22:16 IST",
+  "updatedIso": "2026-10-22T14:01:16.576Z",
+  "updatedLocal": "22/10/2026, 19:31:16 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "Bombay Coated and Special Steels",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "29 Oct - 2 Nov 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bombay-coated-and-special-steels"
+    },
+    {
+      "ipo": "Carver Roboweld",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "28-30 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "carver-roboweld"
+    },
+    {
+      "ipo": "BLS Polymers",
+      "gmp": 42,
+      "gmpRaw": "₹42",
+      "price": "₹150",
+      "listing": "₹192 (28.00%)",
+      "date": "27-29 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bls-polymers"
+    },
     {
       "ipo": "Wiscon Industries",
       "gmp": 0,
@@ -17,27 +53,15 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 31,
-      "gmpRaw": "₹31",
+      "gmp": 21,
+      "gmpRaw": "₹21",
       "price": "₹330",
-      "listing": "₹361 (9.39%)",
+      "listing": "₹351 (6.36%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "upcoming",
       "slug": "sfc-environmental-technologies"
-    },
-    {
-      "ipo": "BLS Polymers",
-      "gmp": 29,
-      "gmpRaw": "₹29",
-      "price": "₹150",
-      "listing": "₹179 (19.33%)",
-      "date": "27-29 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "upcoming",
-      "slug": "bls-polymers"
     },
     {
       "ipo": "EAAA India Alternatives",
@@ -65,10 +89,10 @@
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 13,
+      "gmpRaw": "₹13",
       "price": "₹693",
-      "listing": "₹708 (2.16%)",
+      "listing": "₹706 (1.88%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -77,10 +101,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 240,
-      "gmpRaw": "₹240",
+      "gmp": 242,
+      "gmpRaw": "₹242",
       "price": "₹1119",
-      "listing": "₹1359 (21.45%)",
+      "listing": "₹1361 (21.63%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -88,35 +112,11 @@
       "slug": "jio-platform"
     },
     {
-      "ipo": "Zetwerk",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹151",
-      "listing": "₹151 (0.00%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "zetwerk"
-    },
-    {
-      "ipo": "Tonbo Imaging India",
-      "gmp": 450,
-      "gmpRaw": "₹450",
-      "price": "₹700",
-      "listing": "₹1150 (64.29%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "tonbo-imaging-india"
-    },
-    {
       "ipo": "Bonfiglioli Transmissions",
-      "gmp": 69,
-      "gmpRaw": "₹69",
+      "gmp": 65,
+      "gmpRaw": "₹65",
       "price": "₹586",
-      "listing": "₹655 (11.77%)",
+      "listing": "₹651 (11.09%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -136,11 +136,23 @@
       "slug": "sahajanand-medical-technologies"
     },
     {
+      "ipo": "Zetwerk",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹151",
+      "listing": "₹151 (0.00%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "zetwerk"
+    },
+    {
       "ipo": "Shellz India",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹179",
-      "listing": "₹204 (13.97%)",
+      "listing": "₹186 (3.91%)",
       "date": "15-19 Oct 2026",
       "type": "SME",
       "href": "",
@@ -148,16 +160,16 @@
       "slug": "shellz-india"
     },
     {
-      "ipo": "Fusion CX",
-      "gmp": 13.5,
-      "gmpRaw": "₹13.5",
-      "price": "₹289",
-      "listing": "₹302.5 (4.67%)",
-      "date": "14-16 Oct 2026",
+      "ipo": "Tonbo Imaging India",
+      "gmp": 441,
+      "gmpRaw": "₹441",
+      "price": "₹700",
+      "listing": "₹1141 (63.00%)",
+      "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "fusion-cx"
+      "slug": "tonbo-imaging-india"
     },
     {
       "ipo": "Ravita Engineering Services",
@@ -170,6 +182,18 @@
       "href": "",
       "status": "closed",
       "slug": "ravita-engineering-services"
+    },
+    {
+      "ipo": "Fusion CX",
+      "gmp": 13.5,
+      "gmpRaw": "₹13.5",
+      "price": "₹289",
+      "listing": "₹302.5 (4.67%)",
+      "date": "14-16 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "fusion-cx"
     },
     {
       "ipo": "HD Fire Protect",
@@ -208,16 +232,16 @@
       "slug": "rkfashion"
     },
     {
-      "ipo": "Paramount Syntex",
+      "ipo": "TNA Solutions",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹127",
-      "listing": "₹127 (0.00%)",
+      "price": "₹70",
+      "listing": "₹70 (0.00%)",
       "date": "30 Sep - 6 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "paramount-syntex"
+      "slug": "tna-solutions"
     },
     {
       "ipo": "Acme India Industries",
@@ -232,40 +256,16 @@
       "slug": "acme-india-industries"
     },
     {
-      "ipo": "TNA Solutions",
+      "ipo": "Paramount Syntex",
       "gmp": 0,
       "gmpRaw": "₹0",
-      "price": "₹70",
-      "listing": "₹70 (0.00%)",
+      "price": "₹127",
+      "listing": "₹127 (0.00%)",
       "date": "30 Sep - 6 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "tna-solutions"
-    },
-    {
-      "ipo": "Eventions",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹118",
-      "listing": "₹118 (0.00%)",
-      "date": "30 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "eventions"
-    },
-    {
-      "ipo": "Vishal Nirmiti",
-      "gmp": 2,
-      "gmpRaw": "₹2",
-      "price": "₹220",
-      "listing": "₹222 (0.91%)",
-      "date": "30 Sep - 5 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "vishal-nirmiti"
+      "slug": "paramount-syntex"
     },
     {
       "ipo": "SJP Ultrasonic",
@@ -290,6 +290,18 @@
       "href": "",
       "status": "closed",
       "slug": "dove-soft"
+    },
+    {
+      "ipo": "Eventions",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹118",
+      "listing": "₹118 (0.00%)",
+      "date": "30 Sep - 5 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "eventions"
     },
     {
       "ipo": "Nityas Gems & Jewellery",
@@ -340,52 +352,16 @@
       "slug": "shree-tnb-polymers"
     },
     {
-      "ipo": "Sollfege Smart Electronics",
-      "gmp": 10,
-      "gmpRaw": "₹10",
-      "price": "₹55",
-      "listing": "₹65 (18.18%)",
+      "ipo": "Vishal Nirmiti",
+      "gmp": 2,
+      "gmpRaw": "₹2",
+      "price": "₹220",
+      "listing": "₹222 (0.91%)",
       "date": "30 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "sollfege-smart-electronics"
-    },
-    {
-      "ipo": "Black Opal Consultants",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹197",
-      "listing": "₹197 (0.00%)",
-      "date": "29 Sep - 1 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "black-opal-consultants"
-    },
-    {
-      "ipo": "Bombay Coated and Special Steels",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "29 Oct - 2 Nov 2026",
       "type": "Mainboard",
       "href": "",
-      "status": "upcoming",
-      "slug": "bombay-coated-and-special-steels"
-    },
-    {
-      "ipo": "Carver Roboweld",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "28-30 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "upcoming",
-      "slug": "carver-roboweld"
+      "status": "closed",
+      "slug": "vishal-nirmiti"
     }
   ]
 }
