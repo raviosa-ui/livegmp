@@ -1,8 +1,20 @@
 {
-  "updatedIso": "2026-10-21T18:49:42.702Z",
-  "updatedLocal": "22/10/2026, 00:19:42 IST",
+  "updatedIso": "2026-10-22T07:52:16.319Z",
+  "updatedLocal": "22/10/2026, 13:22:16 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "Wiscon Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹204",
+      "listing": "₹204 (0.00%)",
+      "date": "27-29 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "wiscon-industries"
+    },
     {
       "ipo": "SFC Environmental Technologies",
       "gmp": 31,
@@ -17,10 +29,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 29,
+      "gmpRaw": "₹29",
       "price": "₹150",
-      "listing": "₹180 (20.00%)",
+      "listing": "₹179 (19.33%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -53,10 +65,10 @@
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 25,
-      "gmpRaw": "₹25",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹693",
-      "listing": "₹718 (3.61%)",
+      "listing": "₹708 (2.16%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -65,10 +77,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 246,
-      "gmpRaw": "₹246",
+      "gmp": 240,
+      "gmpRaw": "₹240",
       "price": "₹1119",
-      "listing": "₹1365 (21.98%)",
+      "listing": "₹1359 (21.45%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -89,10 +101,10 @@
     },
     {
       "ipo": "Tonbo Imaging India",
-      "gmp": 512,
-      "gmpRaw": "₹512",
+      "gmp": 450,
+      "gmpRaw": "₹450",
       "price": "₹700",
-      "listing": "₹1212 (73.14%)",
+      "listing": "₹1150 (64.29%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -101,10 +113,10 @@
     },
     {
       "ipo": "Bonfiglioli Transmissions",
-      "gmp": 132,
-      "gmpRaw": "₹132",
+      "gmp": 69,
+      "gmpRaw": "₹69",
       "price": "₹586",
-      "listing": "₹718 (22.53%)",
+      "listing": "₹655 (11.77%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -113,10 +125,10 @@
     },
     {
       "ipo": "Sahajanand Medical Technologies",
-      "gmp": 19,
-      "gmpRaw": "₹19",
+      "gmp": 17,
+      "gmpRaw": "₹17",
       "price": "₹344",
-      "listing": "₹363 (5.52%)",
+      "listing": "₹361 (4.94%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -352,16 +364,28 @@
       "slug": "black-opal-consultants"
     },
     {
-      "ipo": "Vans Electroengineerings",
-      "gmp": 103,
-      "gmpRaw": "₹103",
-      "price": "₹118",
-      "listing": "₹221 (87.29%)",
-      "date": "29 Sep - 1 Oct 2026",
+      "ipo": "Bombay Coated and Special Steels",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "29 Oct - 2 Nov 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "bombay-coated-and-special-steels"
+    },
+    {
+      "ipo": "Carver Roboweld",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
-      "status": "closed",
-      "slug": "vans-electroengineerings"
+      "status": "upcoming",
+      "slug": "carver-roboweld"
     }
   ]
 }
