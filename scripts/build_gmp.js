@@ -1421,6 +1421,137 @@ async function removePollutedStubs() {
 
 
 // ============================================================
+// PUBLISHED-URL PROTECTION — a URL that was ever public never returns 404.
+//
+// Google learns a URL the moment it appears on the homepage, in the sitemap or
+// on any deployed page, and keeps re-crawling it for months. Deleting the page
+// later - by hand, by removePollutedStubs(), or by renaming a slug - turns that
+// into a 404 in Search Console. So:
+//
+//   data/url_registry.json  every /ipo/<slug>/ this site has ever published
+//   _redirects               a block between the AUTO markers is owned by this
+//                            script; everything above it is yours, untouched
+//
+// Every run: a registered slug whose folder is gone and that has no rule of
+// yours gets a 301 to the page that replaced it (same name minus a source
+// suffix, or a clear name match). If nothing matches, it is reported once and
+// left as 404 - the honest answer for a page that has no replacement.
+// A folder that comes back gets its auto rule removed, so a redirect can never
+// hide a live page.
+// ============================================================
+const URL_REGISTRY_FILE = "data/url_registry.json";
+const REDIRECTS_FILE = "_redirects";
+const AUTO_START = "# ---- AUTO: written by build_gmp.js so no published /ipo/ URL ever 404s. Add your own rules ABOVE this line. ----";
+const AUTO_END = "# ---- END AUTO ----";
+const STATUS_SUFFIX_RE = /-(?:upcoming|open|opened|closing-today|closing|closed|close|listed|listing|active|allotment|allotted|withdrawn)$/;
+
+function redirectTarget(gone, dirs) {
+  // 1. same slug without the source's status/board suffix
+  let c = gone;
+  for (let i = 0; i < 4; i++) {
+    const n = c.replace(POLLUTED_SLUG_RE, "").replace(STATUS_SUFFIX_RE, "");
+    if (n === c) break;
+    c = n;
+    if (dirs.has(c)) return { to: c, how: "suffix" };
+  }
+  // 2. one clear name match among live pages (no near-tie)
+  const scored = [];
+  for (const d of dirs) {
+    const m = nameMatch(c.replace(/-/g, " "), d.replace(/-/g, " "));
+    if (m.score >= 0.8) scored.push({ d, score: m.score, how: m.how });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  if (scored.length && (scored.length === 1 || scored[0].score - scored[1].score >= 0.05)) {
+    return { to: scored[0].d, how: `${scored[0].how} ${scored[0].score.toFixed(2)}` };
+  }
+  // 3. a misspelt slug ("vishal-nimriti" for "vishal-nirmiti"): near-identical spelling, one clear winner
+  const ratio = (a, b) => {
+    const m = a.length, n = b.length;
+    let prev = Array.from({ length: n + 1 }, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      const cur = [i];
+      for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      prev = cur;
+    }
+    return 1 - prev[n] / Math.max(m, n);
+  };
+  const close = [...dirs].map(d => ({ d, r: ratio(c, d) })).filter(x => x.r >= 0.85).sort((a, b) => b.r - a.r);
+  if (close.length && (close.length === 1 || close[0].r - close[1].r >= 0.05)) {
+    return { to: close[0].d, how: `spelling ${close[0].r.toFixed(2)}` };
+  }
+  return null;
+}
+
+async function protectPublishedUrls(nowIso) {
+  const dirs = new Set(await listIpoDirs());
+  if (!dirs.size) return;
+  const today = nowIso.slice(0, 10);
+
+  let reg = {};
+  try { reg = JSON.parse(await fs.readFile(URL_REGISTRY_FILE, "utf8")); } catch {}
+  const regBefore = JSON.stringify(reg);
+  for (const d of dirs) {
+    if (!reg[d]) reg[d] = { first: today };
+    else if (reg[d].gone) delete reg[d].gone;           // page is back
+  }
+
+  let text = "";
+  try { text = await fs.readFile(REDIRECTS_FILE, "utf8"); } catch {}
+  const si = text.indexOf(AUTO_START), ei = text.indexOf(AUTO_END);
+  const manual = si === -1 ? text : text.slice(0, si) + (ei === -1 ? "" : text.slice(ei + AUTO_END.length));
+
+  // Your rules: which /ipo/ slugs they cover, and sanity checks on them.
+  const manualFrom = new Map();
+  for (const line of manual.split("\n")) {
+    const p = line.trim().split(/\s+/);
+    if (p.length < 2 || p[0].startsWith("#")) continue;
+    const from = p[0].match(/^\/ipo\/([^/*]+)/), to = p[1].match(/^\/ipo\/([^/]+)\//);
+    if (from) manualFrom.set(from[1], to ? to[1] : null);
+  }
+  for (const [from, to] of manualFrom) {
+    if (to === from) continue;                              // "/ipo/x -> /ipo/x/": adds the slash, same page
+    if (dirs.has(from)) console.log(`WARNING: _redirects sends /ipo/${from}/ away, but that page exists - visitors and Google never see it. Remove the rule or the folder.`);
+    if (to && !dirs.has(to)) console.log(`WARNING: _redirects sends /ipo/${from}/ to /ipo/${to}/, which does not exist - that is a 404 after a redirect.`);
+  }
+
+  const auto = [], unresolved = [];
+  for (const slug of Object.keys(reg).sort()) {
+    if (dirs.has(slug) || manualFrom.has(slug)) continue;
+    const t = redirectTarget(slug, dirs);
+    if (t) {
+      auto.push(`/ipo/${slug}/  /ipo/${t.to}/  301`, `/ipo/${slug}   /ipo/${t.to}/  301`);
+      if (!reg[slug].to || reg[slug].to !== t.to) {
+        console.log(t.how === "suffix"
+          ? `Redirect added: /ipo/${slug}/ -> /ipo/${t.to}/`
+          : `WARNING: auto-redirect /ipo/${slug}/ -> /ipo/${t.to}/ by name match (${t.how}) - check it is the same company; override with your own rule in ${REDIRECTS_FILE} if not.`);
+      }
+      reg[slug].to = t.to; delete reg[slug].gone;
+    } else {
+      unresolved.push(slug);
+      delete reg[slug].to;
+      if (!reg[slug].gone) {
+        reg[slug].gone = today;
+        console.log(`WARNING: /ipo/${slug}/ was published and is now gone, with no matching page - it will 404. If a page replaced it, add a rule to ${REDIRECTS_FILE}.`);
+      }
+    }
+  }
+
+  const block = auto.length || unresolved.length
+    ? [AUTO_START, ...auto, ...unresolved.map(s => `# no replacement page, left as 404: /ipo/${s}/`), AUTO_END].join("\n") + "\n"
+    : "";
+  const next = manual.replace(/\s*$/, "\n") + (block ? "\n" + block : "");
+  if (next !== text) {
+    await fs.writeFile(REDIRECTS_FILE, next, "utf8");
+    console.log(`${REDIRECTS_FILE}: ${auto.length / 2} automatic redirect(s), ${unresolved.length} gone page(s) without a replacement.`);
+  }
+  const sorted = Object.fromEntries(Object.keys(reg).sort().map(k => [k, reg[k]]));
+  if (JSON.stringify(sorted) !== regBefore) {
+    await fs.mkdir("data", { recursive: true });
+    await fs.writeFile(URL_REGISTRY_FILE, JSON.stringify(sorted, null, 2) + "\n", "utf8");
+  }
+}
+
+// ============================================================
 // PAGE-CREATION GUARD
 //
 // Creating a page is the one irreversible act in this pipeline: it enters the
@@ -1664,6 +1795,7 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
     }
     await generateIpoIndex(meta);
     await applySiteNav();
+    await protectPublishedUrls(new Date().toISOString());
     await generateSitemap(meta);
     console.log("Index and sitemap refreshed; GMP data unchanged.");
     return;
@@ -1693,6 +1825,7 @@ async function pageCreationGuard({ rows, aliases, existingDirs, recovered }) {
   await generateStubs(rows, payload);
   await generateIpoIndex(payload);
   await applySiteNav();
+  await protectPublishedUrls(payload.updatedIso);
   await generateSitemap(payload);
   console.log("Done.");
 })().catch(err => {
