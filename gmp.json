@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-23T13:43:41.200Z",
-  "updatedLocal": "23/10/2026, 19:13:41 IST",
+  "updatedIso": "2026-10-23T15:08:11.209Z",
+  "updatedLocal": "23/10/2026, 20:38:11 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -113,10 +113,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 257,
-      "gmpRaw": "₹257",
+      "gmp": 244,
+      "gmpRaw": "₹244",
       "price": "₹1119",
-      "listing": "₹1376 (22.97%)",
+      "listing": "₹1363 (21.81%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
