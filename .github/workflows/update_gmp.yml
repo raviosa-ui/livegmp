@@ -97,7 +97,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
-          file_pattern: "*.html gmp.json sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json data/page_lastmod.json data/pipeline_warn_hash.txt data/published.json"
+          file_pattern: "*.html _redirects gmp.json sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json data/page_lastmod.json data/pipeline_warn_hash.txt data/published.json data/url_registry.json"
           branch: main
 
       # A push made with GITHUB_TOKEN does NOT trigger other workflows, so
