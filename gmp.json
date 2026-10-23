@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-10-22T18:43:44.975Z",
-  "updatedLocal": "23/10/2026, 00:13:44 IST",
+  "updatedIso": "2026-10-23T07:51:30.483Z",
+  "updatedLocal": "23/10/2026, 13:21:30 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Bombay Coated and Special Steels",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹82",
+      "listing": "₹82 (0.00%)",
       "date": "29 Oct - 2 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -17,15 +17,27 @@
     },
     {
       "ipo": "Carver Roboweld",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹80",
+      "listing": "₹80 (0.00%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "upcoming",
       "slug": "carver-roboweld"
+    },
+    {
+      "ipo": "M.K.Sons Fine Jewels",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹162",
+      "listing": "₹162 (0.00%)",
+      "date": "28-30 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "mksons-fine-jewels"
     },
     {
       "ipo": "BLS Polymers",
@@ -40,18 +52,6 @@
       "slug": "bls-polymers"
     },
     {
-      "ipo": "Wiscon Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹204",
-      "listing": "₹204 (0.00%)",
-      "date": "27-29 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "upcoming",
-      "slug": "wiscon-industries"
-    },
-    {
       "ipo": "SFC Environmental Technologies",
       "gmp": 21,
       "gmpRaw": "₹21",
@@ -62,6 +62,18 @@
       "href": "",
       "status": "upcoming",
       "slug": "sfc-environmental-technologies"
+    },
+    {
+      "ipo": "Wiscon Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹204",
+      "listing": "₹204 (0.00%)",
+      "date": "27-29 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "wiscon-industries"
     },
     {
       "ipo": "EAAA India Alternatives",
@@ -84,15 +96,15 @@
       "date": "23-27 Oct 2026",
       "type": "SME",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "core4-engineers"
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹693",
-      "listing": "₹706 (1.88%)",
+      "listing": "₹700 (1.01%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -101,51 +113,15 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 240,
-      "gmpRaw": "₹240",
+      "gmp": 254,
+      "gmpRaw": "₹254",
       "price": "₹1119",
-      "listing": "₹1359 (21.45%)",
+      "listing": "₹1373 (22.70%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "active",
       "slug": "jio-platform"
-    },
-    {
-      "ipo": "Bonfiglioli Transmissions",
-      "gmp": 66,
-      "gmpRaw": "₹66",
-      "price": "₹586",
-      "listing": "₹652 (11.26%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "bonfiglioli-transmissions"
-    },
-    {
-      "ipo": "Sahajanand Medical Technologies",
-      "gmp": 17,
-      "gmpRaw": "₹17",
-      "price": "₹344",
-      "listing": "₹361 (4.94%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "sahajanand-medical-technologies"
-    },
-    {
-      "ipo": "Zetwerk",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹151",
-      "listing": "₹152 (0.66%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "zetwerk"
     },
     {
       "ipo": "Shellz India",
@@ -160,28 +136,52 @@
       "slug": "shellz-india"
     },
     {
+      "ipo": "Bonfiglioli Transmissions",
+      "gmp": 66,
+      "gmpRaw": "₹66",
+      "price": "₹586",
+      "listing": "₹652 (11.26%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "bonfiglioli-transmissions"
+    },
+    {
+      "ipo": "Zetwerk",
+      "gmp": 1.2,
+      "gmpRaw": "₹1.2",
+      "price": "₹151",
+      "listing": "₹152.2 (0.79%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "zetwerk"
+    },
+    {
+      "ipo": "Sahajanand Medical Technologies",
+      "gmp": 17,
+      "gmpRaw": "₹17",
+      "price": "₹344",
+      "listing": "₹361 (4.94%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "sahajanand-medical-technologies"
+    },
+    {
       "ipo": "Tonbo Imaging India",
-      "gmp": 450,
-      "gmpRaw": "₹450",
+      "gmp": 452,
+      "gmpRaw": "₹452",
       "price": "₹700",
-      "listing": "₹1150 (64.29%)",
+      "listing": "₹1152 (64.57%)",
       "date": "15-19 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
       "slug": "tonbo-imaging-india"
-    },
-    {
-      "ipo": "Ravita Engineering Services",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹112",
-      "listing": "₹113 (0.89%)",
-      "date": "14-16 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "ravita-engineering-services"
     },
     {
       "ipo": "Fusion CX",
@@ -196,16 +196,16 @@
       "slug": "fusion-cx"
     },
     {
-      "ipo": "HD Fire Protect",
-      "gmp": 70,
-      "gmpRaw": "₹70",
-      "price": "₹271",
-      "listing": "₹341 (25.83%)",
-      "date": "13-15 Oct 2026",
-      "type": "Mainboard",
+      "ipo": "Ravita Engineering Services",
+      "gmp": 1,
+      "gmpRaw": "₹1",
+      "price": "₹112",
+      "listing": "₹113 (0.89%)",
+      "date": "14-16 Oct 2026",
+      "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "hd-fire-protect"
+      "slug": "ravita-engineering-services"
     },
     {
       "ipo": "Vaibhav Vyapaar",
@@ -218,6 +218,18 @@
       "href": "",
       "status": "closed",
       "slug": "vaibhav-vyapaar"
+    },
+    {
+      "ipo": "HD Fire Protect",
+      "gmp": 70,
+      "gmpRaw": "₹70",
+      "price": "₹271",
+      "listing": "₹341 (25.83%)",
+      "date": "13-15 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "hd-fire-protect"
     },
     {
       "ipo": "R.K.Fashion Accessories",
@@ -268,6 +280,30 @@
       "slug": "paramount-syntex"
     },
     {
+      "ipo": "Nityas Gems & Jewellery",
+      "gmp": 1,
+      "gmpRaw": "₹1",
+      "price": "₹75",
+      "listing": "₹76 (1.33%)",
+      "date": "30 Sep - 5 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "nityas-gems"
+    },
+    {
+      "ipo": "Sollfege Smart Electronics",
+      "gmp": 10,
+      "gmpRaw": "₹10",
+      "price": "₹55",
+      "listing": "₹65 (18.18%)",
+      "date": "30 Sep - 5 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "sollfege-smart-electronics"
+    },
+    {
       "ipo": "SJP Ultrasonic",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -304,40 +340,16 @@
       "slug": "eventions"
     },
     {
-      "ipo": "Nityas Gems & Jewellery",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹75",
-      "listing": "₹76 (1.33%)",
+      "ipo": "Vishal Nirmiti",
+      "gmp": 2,
+      "gmpRaw": "₹2",
+      "price": "₹220",
+      "listing": "₹222 (0.91%)",
       "date": "30 Sep - 5 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "nityas-gems"
-    },
-    {
-      "ipo": "Omara Ventures India",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹311",
-      "listing": "₹311 (0.00%)",
-      "date": "30 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "omara-ventures"
-    },
-    {
-      "ipo": "EverestIMS Technologies",
-      "gmp": 50,
-      "gmpRaw": "₹50",
-      "price": "₹85",
-      "listing": "₹135 (58.82%)",
-      "date": "29 Sep - 5 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "everestims-technologies"
+      "slug": "vishal-nirmiti"
     },
     {
       "ipo": "Shree TNB Polymers",
@@ -350,18 +362,6 @@
       "href": "",
       "status": "closed",
       "slug": "shree-tnb-polymers"
-    },
-    {
-      "ipo": "Vishal Nirmiti",
-      "gmp": 2,
-      "gmpRaw": "₹2",
-      "price": "₹220",
-      "listing": "₹222 (0.91%)",
-      "date": "30 Sep - 5 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "vishal-nirmiti"
     }
   ]
 }
