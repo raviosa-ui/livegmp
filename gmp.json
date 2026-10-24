@@ -1,8 +1,32 @@
 {
-  "updatedIso": "2026-10-23T22:31:47.997Z",
-  "updatedLocal": "24/10/2026, 04:01:47 IST",
+  "updatedIso": "2026-10-24T07:32:33.469Z",
+  "updatedLocal": "24/10/2026, 13:02:33 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "Antala Industries",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "₹67",
+      "listing": "",
+      "date": "29 Oct - 2 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "antala-industries"
+    },
+    {
+      "ipo": "Ajwa Projects",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "₹203",
+      "listing": "",
+      "date": "28-30 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "ajwa-projects"
+    },
     {
       "ipo": "Bombay Coated and Special Steels",
       "gmp": 8,
@@ -29,10 +53,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 0,
-      "gmpRaw": "₹0",
+      "gmp": 8,
+      "gmpRaw": "₹8",
       "price": "₹162",
-      "listing": "₹162 (0.00%)",
+      "listing": "₹170 (4.94%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -41,10 +65,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 38,
-      "gmpRaw": "₹38",
+      "gmp": 33,
+      "gmpRaw": "₹33",
       "price": "₹150",
-      "listing": "₹188 (25.33%)",
+      "listing": "₹183 (22.00%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -77,10 +101,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 121,
-      "gmpRaw": "₹121",
+      "gmp": 115,
+      "gmpRaw": "₹115",
       "price": "₹1665",
-      "listing": "₹1786 (7.27%)",
+      "listing": "₹1780 (6.91%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -101,10 +125,10 @@
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 11,
-      "gmpRaw": "₹11",
+      "gmp": 12,
+      "gmpRaw": "₹12",
       "price": "₹693",
-      "listing": "₹704 (1.59%)",
+      "listing": "₹705 (1.73%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -113,10 +137,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 250,
-      "gmpRaw": "₹250",
+      "gmp": 249,
+      "gmpRaw": "₹249",
       "price": "₹1119",
-      "listing": "₹1369 (22.34%)",
+      "listing": "₹1368 (22.25%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -340,18 +364,6 @@
       "slug": "eventions"
     },
     {
-      "ipo": "Vishal Nirmiti",
-      "gmp": 2,
-      "gmpRaw": "₹2",
-      "price": "₹220",
-      "listing": "₹222 (0.91%)",
-      "date": "30 Sep - 5 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "vishal-nirmiti"
-    },
-    {
       "ipo": "Shree TNB Polymers",
       "gmp": 4,
       "gmpRaw": "₹4",
@@ -362,6 +374,18 @@
       "href": "",
       "status": "closed",
       "slug": "shree-tnb-polymers"
+    },
+    {
+      "ipo": "EverestIMS Technologies",
+      "gmp": 50,
+      "gmpRaw": "₹50",
+      "price": "₹85",
+      "listing": "₹135 (58.82%)",
+      "date": "29 Sep - 5 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "everestims-technologies"
     }
   ]
 }
