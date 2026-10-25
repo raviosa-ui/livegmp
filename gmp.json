@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-25T01:28:23.075Z",
-  "updatedLocal": "25/10/2026, 06:58:23 IST",
+  "updatedIso": "2026-10-25T06:42:46.053Z",
+  "updatedLocal": "25/10/2026, 12:12:46 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -101,10 +101,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 52,
+      "gmpRaw": "₹52",
       "price": "₹1665",
-      "listing": "₹1710 (2.70%)",
+      "listing": "₹1717 (3.12%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 247,
-      "gmpRaw": "₹247",
+      "gmp": 250,
+      "gmpRaw": "₹250",
       "price": "₹1119",
-      "listing": "₹1366 (22.07%)",
+      "listing": "₹1369 (22.34%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
