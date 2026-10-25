@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-25T06:42:46.053Z",
-  "updatedLocal": "25/10/2026, 12:12:46 IST",
+  "updatedIso": "2026-10-25T12:42:27.142Z",
+  "updatedLocal": "25/10/2026, 18:12:27 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -101,10 +101,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 52,
-      "gmpRaw": "₹52",
+      "gmp": 36,
+      "gmpRaw": "₹36",
       "price": "₹1665",
-      "listing": "₹1717 (3.12%)",
+      "listing": "₹1701 (2.16%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
