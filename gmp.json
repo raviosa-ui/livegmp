@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-10-24T16:51:04.935Z",
-  "updatedLocal": "24/10/2026, 22:21:04 IST",
+  "updatedIso": "2026-10-25T01:28:23.075Z",
+  "updatedLocal": "25/10/2026, 06:58:23 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Antala Industries",
-      "gmp": null,
-      "gmpRaw": "-",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹67",
-      "listing": "",
+      "listing": "₹67 (0.00%)",
       "date": "29 Oct - 2 Nov 2026",
       "type": "SME",
       "href": "",
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Ajwa Projects",
-      "gmp": null,
-      "gmpRaw": "-",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹203",
-      "listing": "",
+      "listing": "₹203 (0.00%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
