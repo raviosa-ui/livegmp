@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-25T12:42:27.142Z",
-  "updatedLocal": "25/10/2026, 18:12:27 IST",
+  "updatedIso": "2026-10-25T17:10:47.413Z",
+  "updatedLocal": "25/10/2026, 22:40:47 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -101,10 +101,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 36,
-      "gmpRaw": "₹36",
+      "gmp": 33,
+      "gmpRaw": "₹33",
       "price": "₹1665",
-      "listing": "₹1701 (2.16%)",
+      "listing": "₹1698 (1.98%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -125,10 +125,10 @@
     },
     {
       "ipo": "Jio Platforms",
-      "gmp": 250,
-      "gmpRaw": "₹250",
+      "gmp": 247,
+      "gmpRaw": "₹247",
       "price": "₹1119",
-      "listing": "₹1369 (22.34%)",
+      "listing": "₹1366 (22.07%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "Paras Healthcare",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 9,
+      "gmpRaw": "₹9",
       "price": "₹693",
-      "listing": "₹705 (1.73%)",
+      "listing": "₹702 (1.30%)",
       "date": "21-23 Oct 2026",
       "type": "Mainboard",
       "href": "",
