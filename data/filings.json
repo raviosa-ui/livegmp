@@ -384,6 +384,21 @@
       "date": "Oct 21, 2026",
       "title": "Hunger Pangs Limited – DRHP",
       "kind": "DRHP"
+    },
+    "105416": {
+      "date": "Oct 26, 2026",
+      "title": "Integris Medtech Limited - Addendum to DRHP",
+      "kind": "ADDENDUM"
+    },
+    "105418": {
+      "date": "Oct 26, 2026",
+      "title": "Oravel Stays Limited - Addendum to DRHP",
+      "kind": "ADDENDUM"
+    },
+    "105424": {
+      "date": "Oct 21, 2026",
+      "title": "GAMP Services Limited- DRHP",
+      "kind": "DRHP"
     }
   },
   "seededAt": "2026-09-18T17:29:17.667Z"
