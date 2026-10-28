@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-28T16:46:36.642Z",
-  "updatedLocal": "28/10/2026, 22:16:36 IST",
+  "updatedIso": "2026-10-28T21:51:23.889Z",
+  "updatedLocal": "29/10/2026, 03:21:23 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 16,
-      "gmpRaw": "₹16",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹162",
-      "listing": "₹178 (9.88%)",
+      "listing": "₹177 (9.26%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 13,
-      "gmpRaw": "₹13",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹330",
-      "listing": "₹343 (3.94%)",
+      "listing": "₹340 (3.03%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -161,10 +161,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 26,
-      "gmpRaw": "₹26",
+      "gmp": 28,
+      "gmpRaw": "₹28",
       "price": "₹1665",
-      "listing": "₹1691 (1.56%)",
+      "listing": "₹1693 (1.68%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
