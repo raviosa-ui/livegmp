@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-29T17:44:38.751Z",
-  "updatedLocal": "29/10/2026, 23:14:38 IST",
+  "updatedIso": "2026-10-29T17:53:11.905Z",
+  "updatedLocal": "29/10/2026, 23:23:11 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Maxwell Engineering Solutions",
-      "gmp": 52,
-      "gmpRaw": "₹52",
+      "gmp": 70,
+      "gmpRaw": "₹70",
       "price": "₹158",
-      "listing": "₹210 (32.91%)",
+      "listing": "₹228 (44.30%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 18.5,
-      "gmpRaw": "₹18.5",
+      "gmp": 19,
+      "gmpRaw": "₹19",
       "price": "₹330",
-      "listing": "₹348.5 (5.61%)",
+      "listing": "₹349 (5.76%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -161,10 +161,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 38,
-      "gmpRaw": "₹38",
+      "gmp": 37,
+      "gmpRaw": "₹37",
       "price": "₹1665",
-      "listing": "₹1703 (2.28%)",
+      "listing": "₹1702 (2.22%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
