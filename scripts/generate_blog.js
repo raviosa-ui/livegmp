@@ -269,7 +269,11 @@ From the DRHP excerpts provided, return ONLY a JSON object — no markdown fence
 {
  "overview": "2-3 paragraph plain-English company overview: what it does, since when, where, scale",
  "business_model": "1-2 paragraphs: how it earns revenue, key customers or segments",
- "financials": [ {"metric":"Revenue from operations","fy1_label":"FY24","fy1":"...","fy2_label":"FY25","fy2":"...","fy3_label":"FY26","fy3":"..."} ],
+ "financials": {
+   "unit": "Rs in lakhs",
+   "columns": ["copy the document's own column headings, in the document's own order"],
+   "rows": [ {"metric":"Revenue from operations","values":["one value per column, same order"]} ]
+ },
  "objects_of_issue": ["how the IPO proceeds will be used, with amounts where stated"],
  "promoters": "short paragraph on the promoters and their background/holding",
  "strengths": ["4-6 items"],
@@ -282,11 +286,25 @@ HARD RULES:
 - Use ONLY facts present in the excerpts. If a number is not in the excerpts, write "Not disclosed in excerpts" — NEVER estimate, infer or invent a figure.
 - Amounts in Rs crore/lakh exactly as the DRHP states them. Do not convert units.
 - Simple language for retail investors. No promotional tone.
-- Financial metrics to include when present: Revenue from operations, EBITDA, Profit after tax, Net worth, Total borrowings, and margin percentages.
+- FINANCIALS — read this carefully:
+  * Copy the financial table's column headings EXACTLY as the document prints them,
+    in the document's own order. Indian filings often show four columns — a stub
+    period such as "Three months ended June 30, 2026" followed by three fiscals in
+    REVERSE order. Do NOT reorder them and do NOT drop the stub period.
+  * Every row must have exactly as many entries in "values" as there are "columns".
+    Use "" for a cell the document leaves blank or marks N.A.
+  * Put the unit once in "unit" (e.g. "Rs in lakhs"), not in every cell. If rows use
+    different units, say so in "unit" and append the unit to those cells.
+  * Include EVERY metric the table gives, up to 14 rows. At minimum, when present:
+    Revenue from operations, Total income, EBITDA, EBITDA margin, Profit after tax
+    (or Restated PAT), PAT margin, Net worth, Total borrowings, Return on net worth,
+    Basic EPS, Debt-equity ratio.
+  * A table with only one or two rows means you have missed the main financial table —
+    look again before answering.
 - Do not recommend buying or selling. Do not predict listing gains or GMP.
 - LENGTH LIMITS (important — the whole JSON must fit in one reply):
   "overview" max 180 words. "business_model" max 120 words. "promoters" max 80 words.
-  "peer_comparison" max 80 words. Each array item max 35 words. Max 8 rows in "financials".
+  "peer_comparison" max 80 words. Each array item max 35 words. Max 14 rows in "financials".
   Be specific but concise; do not repeat the same fact in two fields.`;
 
 // Ask the API which models actually exist, instead of hard-coding names that
@@ -423,7 +441,19 @@ async function callGemini(key, prompt) {
 // endpoint, so one function serves both. Keys are optional: a provider with
 // no key is skipped silently.
 // ============================================================
+// ORDER MATTERS. The provider that can read the most of the document goes
+// first. Groq's free tier is 8000 TPM, which caps the excerpt at ~14k chars —
+// a quarter of a typical abridged prospectus — and a draft written from a
+// quarter of the document is missing whole sections without saying so.
 const BACKUPS = [
+  {
+    name: "openrouter",
+    env: "OPENROUTER_API_KEY",
+    base: "https://openrouter.ai/api/v1",
+    prefer: [/llama-3\.3-70b.*:free/i, /deepseek.*:free/i, /qwen.*:free/i, /:free$/i],
+    maxTokens: 8000,
+    charBudget: 120000,  // free models here usually have large context
+  },
   {
     name: "groq",
     env: "GROQ_API_KEY",
@@ -435,15 +465,11 @@ const BACKUPS = [
     maxTokens: 4000,     // free tier is 8000 TPM and counts max_tokens toward it
     charBudget: 14000,   // roughly 3.5k tokens of excerpt
   },
-  {
-    name: "openrouter",
-    env: "OPENROUTER_API_KEY",
-    base: "https://openrouter.ai/api/v1",
-    prefer: [/llama-3\.3-70b.*:free/i, /deepseek.*:free/i, /qwen.*:free/i, /:free$/i],
-    maxTokens: 8000,
-    charBudget: 120000,  // free models here usually have large context
-  },
 ];
+
+// A reply built from this little of the document is accepted only if nothing
+// better is available anywhere in the chain.
+const GOOD_COVERAGE = 0.9;
 
 // Models that exist on these providers but cannot do chat completion.
 const NOT_CHAT = /whisper|tts|embed|guard|moderation|vision-only|distil-whisper|playai/i;
@@ -505,10 +531,11 @@ async function callOpenAiCompat(provider, key, prompt) {
         const txt = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
         if (!txt) throw new Error("empty response");
         assertParsable(txt, data.choices[0].finish_reason);
+        const coverage = body.length ? budget / body.length : 1;
         if (budget < body.length) {
-          console.log(`  NOTE: ${provider.name}/${model} used only the first ${budget} of ${body.length} chars — the draft may be thinner than usual.`);
+          console.log(`  NOTE: ${provider.name}/${model} used only the first ${budget} of ${body.length} chars (${Math.round(coverage * 100)}% of the document).`);
         }
-        return { text: txt, modelUsed: `${provider.name}/${model}` };
+        return { text: txt, modelUsed: `${provider.name}/${model}`, coverage, charsUsed: budget, charsTotal: body.length };
       } catch (e) {
         lastErr = e;
         console.log(`  ${provider.name}/${model} attempt ${attempt}/3 failed: ${e.message}`);
@@ -529,23 +556,86 @@ async function callOpenAiCompat(provider, key, prompt) {
 }
 
 // Gemini first, then each configured backup in turn.
+//
+// A provider that returns valid JSON built from a quarter of the document is
+// NOT a success — it is a thin draft that looks complete. Such a reply is held
+// as provisional and the chain keeps going; it is used only if no provider
+// manages to read the document properly. This is the bug that produced a
+// one-row financials table while the real KPI table sat unread on page 13.
 async function generateDraft(geminiKey, prompt) {
+  let provisional = null;
+  const consider = (r) => {
+    if (r.coverage >= GOOD_COVERAGE) return r;
+    console.log(`  held as provisional (${Math.round(r.coverage * 100)}% coverage) — trying for a fuller read`);
+    if (!provisional || r.coverage > provisional.coverage) provisional = r;
+    return null;
+  };
+
   try {
-    return await callGemini(geminiKey, prompt);
+    const r = await callGemini(geminiKey, prompt);
+    return { ...r, coverage: 1 };
   } catch (e) {
     console.log(`Gemini unavailable: ${e.message}`);
   }
+
   for (const provider of BACKUPS) {
     const key = process.env[provider.env];
     if (!key) { console.log(`  ${provider.name}: no ${provider.env} set, skipping`); continue; }
     try {
       console.log(`Falling back to ${provider.name}…`);
-      return await callOpenAiCompat(provider, key, prompt);
+      const good = consider(await callOpenAiCompat(provider, key, prompt));
+      if (good) return good;
     } catch (e) {
       console.log(`  ${provider.name} failed: ${e.message}`);
     }
   }
-  throw new Error("every provider failed — Gemini saturated and no backup succeeded. Re-comment /generate to retry.");
+
+  if (provisional) {
+    console.log(`No provider could read the whole document. Using the best partial read: ` +
+      `${provisional.modelUsed}, ${provisional.charsUsed} of ${provisional.charsTotal} chars.`);
+    return provisional;
+  }
+  throw new Error("every provider failed — no backup succeeded. Re-comment /generate to retry.");
+}
+
+// ---------------- financials shape ----------------
+// The schema asks for {unit, columns, rows:[{metric, values[]}]}, which copes
+// with the four-column tables Indian filings actually print (a stub period
+// plus three fiscals, in reverse order). Models sometimes answer in the older
+// flat fy1/fy2/fy3 shape anyway, so accept both and normalise to one.
+// Returns null when the value is unusable.
+function normalizeFinancials(f) {
+  if (!f) return null;
+
+  // New shape.
+  if (!Array.isArray(f) && typeof f === "object") {
+    const columns = (Array.isArray(f.columns) ? f.columns : []).map(clean).filter(Boolean);
+    const rawRows = Array.isArray(f.rows) ? f.rows : [];
+    const rows = rawRows
+      .map(r => ({
+        metric: clean(r && r.metric),
+        values: Array.isArray(r && r.values) ? r.values.map(v => clean(v)) : [],
+      }))
+      .filter(r => r.metric);
+    if (!columns.length || !rows.length) return null;
+    return { unit: clean(f.unit), columns, rows };
+  }
+
+  // Legacy flat shape: [{metric, fy1_label, fy1, fy2_label, fy2, fy3_label, fy3}]
+  if (Array.isArray(f) && f.length) {
+    const f0 = f[0] || {};
+    const columns = [f0.fy1_label || "FY1", f0.fy2_label || "FY2", f0.fy3_label || "FY3"].map(clean);
+    const rows = f
+      .map(r => ({
+        metric: clean(r && r.metric),
+        values: [clean(r && r.fy1), clean(r && r.fy2), clean(r && r.fy3)],
+      }))
+      .filter(r => r.metric);
+    if (!rows.length) return null;
+    return { unit: "", columns, rows };
+  }
+
+  return null;
 }
 
 // ---------------- validation ----------------
@@ -565,7 +655,20 @@ function validateDraft(d) {
   }
   if (!Array.isArray(d.objects_of_issue) || d.objects_of_issue.length < 1) errs.push(`"objects_of_issue" is empty`);
   if (!Array.isArray(d.verdict_points) || d.verdict_points.length < 2) errs.push(`"verdict_points" needs at least 2 items`);
-  if (!Array.isArray(d.financials)) errs.push(`"financials" must be an array`);
+
+  const fin = normalizeFinancials(d.financials);
+  if (!fin) {
+    errs.push(`"financials" is missing or not in a recognised shape`);
+  } else if (fin.rows.length < 3) {
+    errs.push(`"financials" has only ${fin.rows.length} row(s) — the model did not find the main financial table. ` +
+              `Usually the excerpt was truncated or the page ranges miss the financial summary.`);
+  } else {
+    const bad = fin.rows.filter(r => r.values.length !== fin.columns.length);
+    if (bad.length) {
+      errs.push(`${bad.length} financial row(s) have the wrong number of values for ${fin.columns.length} columns ` +
+                `(first: "${bad[0].metric}")`);
+    }
+  }
 
   const blob = JSON.stringify(d);
   for (const re of BANNED) if (re.test(blob)) errs.push(`contains disallowed text matching ${re}`);
@@ -587,11 +690,12 @@ function unverifiedFigures(d, sourceText) {
       if (!src.includes(num)) found.add(`${where}: ${m[0]}`);
     }
   };
-  (d.financials || []).forEach((r, i) => {
-    check(r.fy1, `financials[${i}].${r.fy1_label || "fy1"} (${r.metric})`);
-    check(r.fy2, `financials[${i}].${r.fy2_label || "fy2"} (${r.metric})`);
-    check(r.fy3, `financials[${i}].${r.fy3_label || "fy3"} (${r.metric})`);
-  });
+  const fin = normalizeFinancials(d.financials);
+  if (fin) {
+    fin.rows.forEach(r => {
+      r.values.forEach((v, c) => check(v, `financials — ${r.metric} / ${fin.columns[c] || `col ${c + 1}`}`));
+    });
+  }
   (d.objects_of_issue || []).forEach((o, i) => check(o, `objects_of_issue[${i}]`));
   return [...found];
 }
@@ -601,13 +705,23 @@ const ul = (arr) => `<ul>\n${(arr || []).map(x => `  <li>${esc(x)}</li>`).join("
 const paras = (s) => clean(s).split(/\n{2,}|(?<=\.)\s{2,}/).filter(Boolean)
   .map(p => `<p>${esc(p)}</p>`).join("\n");
 
-function financialsTable(rows) {
-  if (!rows || !rows.length) return `<p>Financial details were not available in the extracted sections.</p>`;
-  const f0 = rows[0];
+function financialsTable(f) {
+  const fin = normalizeFinancials(f);
+  if (!fin || !fin.rows.length) {
+    return `<p>Financial details were not available in the extracted sections.</p>`;
+  }
+  const head = `<tr><th>Metric</th>${fin.columns.map(c => `<th>${esc(c)}</th>`).join("")}</tr>`;
+  const body = fin.rows.map(r => {
+    const cells = fin.columns.map((_, i) => `<td>${esc(r.values[i] ?? "")}</td>`).join("");
+    return `<tr><td>${esc(r.metric)}</td>${cells}</tr>`;
+  }).join("\n");
+  const unit = clean(fin.unit)
+    ? `\n<p class="stub-unit">All figures ${esc(fin.unit)} unless otherwise stated.</p>`
+    : "";
   return `<table class="stub-table">
-<tr><th>Metric</th><th>${esc(f0.fy1_label || "FY1")}</th><th>${esc(f0.fy2_label || "FY2")}</th><th>${esc(f0.fy3_label || "FY3")}</th></tr>
-${rows.map(r => `<tr><td>${esc(r.metric)}</td><td>${esc(r.fy1)}</td><td>${esc(r.fy2)}</td><td>${esc(r.fy3)}</td></tr>`).join("\n")}
-</table>`;
+${head}
+${body}
+</table>${unit}`;
 }
 
 // Only link to the source document when it is on an official host. An
@@ -747,7 +861,7 @@ ${prose}
   const prompt = `${SCHEMA_PROMPT}\n\nCOMPANY: ${meta.company}\n\nDRHP EXCERPTS:\n${source}`;
 
   console.log(`Calling the model…`);
-  const { text: raw, modelUsed } = await generateDraft(key, prompt);
+  const { text: raw, modelUsed, coverage = 1, charsUsed, charsTotal } = await generateDraft(key, prompt);
   let draft;
   try {
     draft = JSON.parse(raw.replace(/^```json\s*/i, "").replace(/```\s*$/, "").trim());
@@ -802,9 +916,15 @@ ${prose}
   md += `| Source PDF | ${meta.pdf} |\n`;
   md += `| Pages used | ${ranges.map(r => r[0] + "-" + r[1]).join(", ")} (${ext.pages.length} of ${ext.total}) |\n`;
   md += `| Model | ${modelUsed} |\n`;
+  md += `| Document read | ${coverage >= 1 ? "all of it" : `${Math.round(coverage * 100)}% (${charsUsed} of ${charsTotal} chars)`} |\n`;
   md += `| Alias variants registered | ${aliasCount} (in \`${ALIAS_FILE}\`) |\n\n`;
 
   md += `### ⚠️ Verify before merging\n\n`;
+  if (coverage < 1) {
+    md += `> **Only ${Math.round(coverage * 100)}% of the extracted text reached the model.** No provider could read ` +
+          `the whole document, so whole sections of the filing were never seen. Treat every section below as ` +
+          `possibly incomplete, and check the financials table against the source before merging.\n\n`;
+  }
   if (unverified.length) {
     md += `${unverified.length} figure(s) in this draft do **not** appear verbatim in the extracted text. Check each against the DRHP — these are the most likely errors:\n\n`;
     md += unverified.map(u => `- \`${u}\``).join("\n") + "\n\n";
