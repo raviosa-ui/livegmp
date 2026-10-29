@@ -8,7 +8,8 @@
  *   1. Read the issue body for: company, slug, main PDF URL.
  *   2. Read the comment for physical PDF page ranges: "/generate 12-18, 96-104".
  *   3. Download the PDF, extract text from exactly those pages.
- *   4. Ask Gemini (free tier) for a STRICT JSON object against a fixed schema.
+ *   4. Ask a model for a STRICT JSON object against a fixed schema.
+ *      Gemini first, then Groq, then OpenRouter.
  *   5. Validate the JSON hard. Reject on missing/placeholder/AI-refusal content.
  *   6. Cross-check every financial figure against the extracted text and flag
  *      any that do not literally appear — surfaced in the PR body for review.
@@ -25,6 +26,8 @@
 
 const fs = require("fs").promises;
 const path = require("path");
+const os = require("os");
+const { execFileSync } = require("child_process");
 
 // ---------------- config ----------------
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
@@ -53,7 +56,7 @@ const slugify = (n) => clean(n).toLowerCase()
 // table under a shorter/different name, instead of creating a second page.
 function normalizeKey(name) {
   return clean(name).toLowerCase()
-    .replace(/[.,'\u2019&()]/g, " ")
+    .replace(/[.,'’&()]/g, " ")
     .replace(/\b(private|pvt|limited|ltd|company|co|corporation|corp|industries|enterprises|the)\b/g, " ")
     .replace(/\bipo\b/g, " ")
     .replace(/\s+/g, " ")
@@ -70,8 +73,40 @@ function nameVariants(company) {
 }
 
 async function registerAliases(company, slug) {
+  // An unreadable-but-present alias file must NEVER be treated as an empty
+  // one. Doing that once wiped every alias in the repo and the hourly
+  // pipeline then built duplicate pages for companies it no longer
+  // recognised. Missing file -> start fresh. Present but unparseable ->
+  // refuse to write anything and say so loudly.
   let map = {};
-  try { map = JSON.parse(await fs.readFile(ALIAS_FILE, "utf8")); } catch {}
+  let fileExists = true;
+  let rawText = null;
+  try {
+    rawText = await fs.readFile(ALIAS_FILE, "utf8");
+  } catch (e) {
+    if (e.code === "ENOENT") {
+      fileExists = false;
+    } else {
+      console.log(`  !! alias file unreadable (${e.message}) — leaving it untouched`);
+      return 0;
+    }
+  }
+
+  if (fileExists) {
+    try {
+      const parsed = JSON.parse(rawText);
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+        throw new Error("not a JSON object");
+      }
+      map = parsed;
+    } catch (e) {
+      console.log(`  !! ${ALIAS_FILE} exists but could not be parsed (${e.message}).`);
+      console.log(`  !! Refusing to overwrite it — aliases left exactly as they are.`);
+      console.log(`  !! Fix the file by hand, then re-run /generate to register aliases.`);
+      return 0;
+    }
+  }
+
   let added = 0;
   for (const v of nameVariants(company)) {
     if (map[v] && map[v] !== slug) {
@@ -127,12 +162,77 @@ function fromIssueBody(body) {
 }
 
 // ---------------- PDF ----------------
+// SEBI drops long TLS transfers often enough that Node's fetch alone is not
+// reliable: undici reports it as a bare "TypeError: terminated" with no status
+// code and no retry. Three routes, in order:
+//   1. a path inside the repo, for PDFs that cannot be reached from Actions
+//      at all (bsesme.com is blocked at the connection level — commit those
+//      to docs/ and reference them by path)
+//   2. Node fetch, twice
+//   3. curl, which retries, resumes a broken transfer and tolerates a stall
 async function fetchPdf(url) {
-  const res = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
-  if (!res.ok) throw new Error(`PDF fetch HTTP ${res.status}`);
-  const ab = await res.arrayBuffer();
-  if (ab.byteLength > PDF_MAX_BYTES) throw new Error(`PDF too large (${(ab.byteLength/1048576).toFixed(1)} MB)`);
-  return Buffer.from(ab);
+  // Route 1: no scheme means it is a file committed to the repo.
+  if (!/^https?:\/\//i.test(url)) {
+    const buf = await fs.readFile(url);
+    console.log(`  read from repo: ${url}`);
+    return buf;
+  }
+
+  // Route 2: Node fetch, two attempts.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { "User-Agent": UA, "Accept": "application/pdf,*/*" },
+        redirect: "follow",
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const ab = await res.arrayBuffer();
+      if (ab.byteLength > PDF_MAX_BYTES) {
+        throw new Error(`PDF too large (${(ab.byteLength / 1048576).toFixed(1)} MB)`);
+      }
+      if (ab.byteLength < 10000) throw new Error(`suspiciously small (${ab.byteLength} bytes)`);
+      console.log(`  fetched via node fetch (attempt ${attempt})`);
+      return Buffer.from(ab);
+    } catch (e) {
+      console.log(`  node fetch attempt ${attempt}/2 failed: ${e.message}`);
+      if (/too large/.test(e.message)) throw e;        // no point retrying
+      if (attempt < 2) await new Promise(r => setTimeout(r, 4000));
+    }
+  }
+
+  // Route 3: curl.
+  const tmp = path.join(os.tmpdir(), `drhp_${Date.now()}.pdf`);
+  console.log("  falling back to curl…");
+  try {
+    execFileSync("curl", [
+      "-sSL",
+      "--fail",
+      "--retry", "4",
+      "--retry-delay", "3",
+      "--retry-all-errors",
+      "--connect-timeout", "30",
+      "--max-time", "300",
+      "--speed-time", "60",        // abort only if under 1 KB/s for 60s
+      "--speed-limit", "1024",
+      "-A", UA,
+      "-H", "Accept: application/pdf,*/*",
+      "-o", tmp,
+      url,
+    ], { stdio: ["ignore", "ignore", "pipe"], timeout: 330000 });
+  } catch (e) {
+    const err = e.stderr ? e.stderr.toString().trim() : e.message;
+    try { await fs.unlink(tmp); } catch {}
+    throw new Error(`PDF download failed on every route — curl: ${err || "no stderr"}`);
+  }
+
+  const buf = await fs.readFile(tmp);
+  try { await fs.unlink(tmp); } catch {}
+  if (buf.length > PDF_MAX_BYTES) {
+    throw new Error(`PDF too large (${(buf.length / 1048576).toFixed(1)} MB)`);
+  }
+  if (buf.length < 10000) throw new Error(`curl returned only ${buf.length} bytes — not a PDF`);
+  console.log(`  fetched via curl: ${(buf.length / 1048576).toFixed(1)} MB`);
+  return buf;
 }
 
 async function extractPages(buf, ranges) {
@@ -252,12 +352,21 @@ function buildChain(available, preferred) {
   return chain.slice(0, 6);
 }
 
+// Errors that no amount of retrying or model-switching can fix: the account
+// itself cannot call this API. Burning 18 requests against a revoked free
+// tier wastes four minutes before the backups ever get a turn.
+const GEMINI_ACCOUNT_FATAL =
+  /free tier is not available|billing|consumer_suspended|API key not valid|API_KEY_INVALID|PERMISSION_DENIED|has not been used in project|is disabled|SERVICE_DISABLED|quota.*exceeded.*billing/i;
+
 async function callGemini(key, prompt) {
   let available = [];
   try {
     available = await listModels(key);
     console.log(`  models available: ${available.length}`);
   } catch (e) {
+    if (GEMINI_ACCOUNT_FATAL.test(e.message)) {
+      throw new Error(`account cannot use this API (${e.message}) — skipping straight to backups`);
+    }
     console.log(`  ListModels failed (${e.message}) — falling back to configured names only`);
   }
 
@@ -291,9 +400,15 @@ async function callGemini(key, prompt) {
         return { text: out, modelUsed: model };
       } catch (e) {
         lastErr = e;
-        const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error|truncated|not valid JSON/i.test(e.message);
         console.log(`  ${model} attempt ${attempt}/3 failed: ${e.message}`);
-        if (!transient) break;                       // not found / quota: next model
+
+        // Account-level refusal: every model will say the same thing.
+        if (GEMINI_ACCOUNT_FATAL.test(e.message)) {
+          throw new Error(`account cannot use this API (${e.message}) — skipping straight to backups`);
+        }
+
+        const transient = /high demand|overload|503|429|rate limit|unavailable|timeout|internal error|truncated|not valid JSON/i.test(e.message);
+        if (!transient) break;                       // not found: next model
         if (attempt < 3) await new Promise(r => setTimeout(r, 15000 * attempt));
       }
     }
@@ -303,7 +418,7 @@ async function callGemini(key, prompt) {
 
 
 // ============================================================
-// BACKUP PROVIDERS — used only when every Gemini model is saturated.
+// BACKUP PROVIDERS — used when Gemini is saturated or unavailable.
 // Groq and OpenRouter both expose an OpenAI-compatible /chat/completions
 // endpoint, so one function serves both. Keys are optional: a provider with
 // no key is skipped silently.
@@ -495,6 +610,20 @@ ${rows.map(r => `<tr><td>${esc(r.metric)}</td><td>${esc(r.fy1)}</td><td>${esc(r.
 </table>`;
 }
 
+// Only link to the source document when it is on an official host. An
+// aggregator URL in a published page is both a dead link waiting to happen
+// and free advertising for a competitor.
+const OFFICIAL_HOST = /(^|\.)(sebi\.gov\.in|nseindia\.com|bseindia\.com|bsesme\.com)$/i;
+
+function sourceLine(meta) {
+  let host = "";
+  try { host = new URL(meta.pdf).hostname; } catch {}
+  if (host && OFFICIAL_HOST.test(host)) {
+    return `<p class="stub-updated">Figures as disclosed in the ${esc(meta.kind)} filed with SEBI. Source: <a href="${esc(meta.pdf)}" rel="nofollow noopener" target="_blank">offer document</a>.</p>`;
+  }
+  return `<p class="stub-updated">Figures as disclosed in the ${esc(meta.kind)} filed with SEBI.</p>`;
+}
+
 function proseZone(d, meta) {
   return `${PROSE_START}
 <h2>About ${esc(meta.company)}</h2>
@@ -505,7 +634,7 @@ ${paras(d.business_model)}
 
 <h2>Financial Performance</h2>
 ${financialsTable(d.financials)}
-<p class="stub-updated">Figures as disclosed in the ${esc(meta.kind)} filed with SEBI. Source: <a href="${esc(meta.pdf)}" rel="nofollow noopener" target="_blank">offer document</a>.</p>
+${sourceLine(meta)}
 
 <h2>Objects of the Issue</h2>
 ${ul(d.objects_of_issue)}
@@ -617,7 +746,7 @@ ${prose}
   const source = ext.text.slice(0, MAX_CHARS);
   const prompt = `${SCHEMA_PROMPT}\n\nCOMPANY: ${meta.company}\n\nDRHP EXCERPTS:\n${source}`;
 
-  console.log(`Calling Gemini…`);
+  console.log(`Calling the model…`);
   const { text: raw, modelUsed } = await generateDraft(key, prompt);
   let draft;
   try {
