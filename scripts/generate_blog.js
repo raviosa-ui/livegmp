@@ -118,75 +118,21 @@ function fromIssueBody(body) {
   const slug = (slugRaw.match(/`([^`]+)`/) || [])[1] || slugify(company);
   let pdf = get("Main document");
   if (!pdf) {
-    const m = body.match(/https?:\/\/\S+\.pdf/i) || body.match(/\b[\w./-]+\.pdf\b/i);
+    const m = body.match(/https?:\/\/\S+\.pdf/i);
     pdf = m ? m[0] : "";
   }
-  // a markdown link or backticks around a repo path
-  const md = pdf.match(/\]\(([^)]+)\)/) || pdf.match(/`([^`]+)`/);
-  if (md) pdf = md[1];
   pdf = pdf.replace(/^<|>$/g, "");
   const kind = get("Filing") || "DRHP";
   return { company, slug, pdf, kind };
 }
 
 // ---------------- PDF ----------------
-// Three ways to get the document, in order:
-//   1. a path inside this repo   -> "Main document | docs/kmc.pdf"
-//   2. Node fetch                -> works for sebi.gov.in, ipowatch.in
-//   3. curl                      -> some hosts reject Node's HTTP client at
-//                                   the connection level but answer curl
-// bsesme.com refuses Node fetch ("fetch failed"), which is why 3 exists; and
-// when a host blocks the runner entirely, 1 is the guaranteed route: commit
-// the PDF to the repo and point the issue at its path.
 async function fetchPdf(url) {
-  const fssync = require("fs");
-
-  // 1. repo-relative path (no scheme)
-  if (!/^https?:\/\//i.test(url)) {
-    const rel = url.replace(/^\.?\//, "");
-    if (!fssync.existsSync(rel)) {
-      throw new Error(`"${rel}" is not in this repository. Commit the PDF, then use its path (e.g. docs/company.pdf).`);
-    }
-    const buf = fssync.readFileSync(rel);
-    console.log(`  read from repo: ${rel} (${(buf.length / 1048576).toFixed(1)} MB)`);
-    return buf;
-  }
-
-  // 2. Node fetch
-  try {
-    const res = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const ab = await res.arrayBuffer();
-    if (ab.byteLength > PDF_MAX_BYTES) throw new Error(`PDF too large (${(ab.byteLength / 1048576).toFixed(1)} MB)`);
-    return Buffer.from(ab);
-  } catch (e) {
-    console.log(`  direct fetch failed (${e.message}); retrying with curl…`);
-  }
-
-  // 3. curl
-  const tmp = `/tmp/doc_${Date.now()}.pdf`;
-  try {
-    require("child_process").execFileSync("curl", [
-      "-s", "-L", "--max-time", "90", "-o", tmp,
-      "-A", UA,
-      "-H", "Accept: application/pdf,*/*",
-      "-H", "Accept-Language: en-US,en;q=0.9",
-      url,
-    ], { timeout: 100000 });
-  } catch (e) {
-    throw new Error(`curl could not download the PDF either — this host blocks GitHub runners. Commit the PDF to the repo and set "Main document" to its path (e.g. docs/company.pdf).`);
-  }
-  if (!fssync.existsSync(tmp) || fssync.statSync(tmp).size < 1024) {
-    throw new Error(`download produced no usable file — this host blocks GitHub runners. Commit the PDF to the repo and set "Main document" to its path (e.g. docs/company.pdf).`);
-  }
-  const buf = fssync.readFileSync(tmp);
-  try { fssync.unlinkSync(tmp); } catch {}
-  if (buf.length > PDF_MAX_BYTES) throw new Error(`PDF too large (${(buf.length / 1048576).toFixed(1)} MB)`);
-  if (buf.subarray(0, 5).toString() !== "%PDF-") {
-    throw new Error(`the downloaded file is not a PDF (host probably returned an error page). Commit the PDF to the repo and use its path instead.`);
-  }
-  console.log(`  downloaded via curl (${(buf.length / 1048576).toFixed(1)} MB)`);
-  return buf;
+  const res = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
+  if (!res.ok) throw new Error(`PDF fetch HTTP ${res.status}`);
+  const ab = await res.arrayBuffer();
+  if (ab.byteLength > PDF_MAX_BYTES) throw new Error(`PDF too large (${(ab.byteLength/1048576).toFixed(1)} MB)`);
+  return Buffer.from(ab);
 }
 
 async function extractPages(buf, ranges) {
@@ -367,17 +313,25 @@ const BACKUPS = [
     name: "groq",
     env: "GROQ_API_KEY",
     base: "https://api.groq.com/openai/v1",
-    // preference order; only models the account can actually see are used
-    prefer: [/gpt-oss-120b/i, /llama-3\.3-70b/i, /llama-4/i, /qwen.*32b/i, /llama-3\.1-8b/i],
+    // Preference only — anything else the account can see is still tried
+    // after these. A hardcoded list silently shrank the chain to one model
+    // when Groq renamed its roster.
+    prefer: [/gpt-oss-20b/i, /llama-3\.1-8b/i, /llama-3\.3-70b/i, /gpt-oss-120b/i, /qwen/i, /llama-4/i],
+    maxTokens: 4000,     // free tier is 8000 TPM and counts max_tokens toward it
+    charBudget: 14000,   // roughly 3.5k tokens of excerpt
   },
   {
     name: "openrouter",
     env: "OPENROUTER_API_KEY",
     base: "https://openrouter.ai/api/v1",
-    // ":free" suffix marks OpenRouter's no-cost models
     prefer: [/llama-3\.3-70b.*:free/i, /deepseek.*:free/i, /qwen.*:free/i, /:free$/i],
+    maxTokens: 8000,
+    charBudget: 120000,  // free models here usually have large context
   },
 ];
+
+// Models that exist on these providers but cannot do chat completion.
+const NOT_CHAT = /whisper|tts|embed|guard|moderation|vision-only|distil-whisper|playai/i;
 
 async function openAiCompatModels(base, key) {
   try {
@@ -393,26 +347,41 @@ async function openAiCompatModels(base, key) {
 
 async function callOpenAiCompat(provider, key, prompt) {
   const ids = await openAiCompatModels(provider.base, key);
+  const usable = ids.filter(id => !NOT_CHAT.test(id));
+  console.log(`  ${provider.name}: ${ids.length} model(s) listed, ${usable.length} usable`);
+
+  // Preference first, then everything else — never narrow to a fixed list.
   const chain = [];
-  for (const re of provider.prefer) {
-    for (const id of ids) if (re.test(id) && !chain.includes(id)) chain.push(id);
-  }
-  if (!chain.length && ids.length) chain.push(ids[0]);
+  for (const re of provider.prefer) for (const id of usable) if (re.test(id) && !chain.includes(id)) chain.push(id);
+  for (const id of usable) if (!chain.includes(id)) chain.push(id);
   if (!chain.length) throw new Error(`${provider.name}: no usable models`);
-  console.log(`  ${provider.name} chain: ${chain.slice(0, 3).join(" -> ")}`);
+  console.log(`  ${provider.name} chain: ${chain.slice(0, 4).join(" -> ")}`);
+
+  // The excerpt is the only part worth shrinking; the schema must stay whole.
+  const SPLIT = "DRHP EXCERPTS:\n";
+  const cut = prompt.indexOf(SPLIT);
+  const head = cut === -1 ? "" : prompt.slice(0, cut + SPLIT.length);
+  const body = cut === -1 ? prompt : prompt.slice(cut + SPLIT.length);
+  const build = chars => head + body.slice(0, chars);
+
+  // A per-minute token limit is not a transient blip — retrying the same
+  // payload fails identically. Shrink the excerpt instead.
+  const tooBig = m => /too large|tokens per minute|TPM|reduce your message|context length|maximum context/i.test(m);
 
   let lastErr = null;
-  for (const model of chain.slice(0, 3)) {
-    for (let attempt = 1; attempt <= 2; attempt++) {
+  for (const model of chain.slice(0, 4)) {
+    let budget = Math.min(provider.charBudget || 120000, body.length);
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const sent = build(budget);
       try {
         const res = await fetch(`${provider.base}/chat/completions`, {
           method: "POST",
           headers: { "content-type": "application/json", Authorization: `Bearer ${key}` },
           body: JSON.stringify({
             model,
-            messages: [{ role: "user", content: prompt }],
+            messages: [{ role: "user", content: sent }],
             temperature: 0.2,
-            max_tokens: 16000,
+            max_tokens: provider.maxTokens || 8000,
             response_format: { type: "json_object" },
           }),
         });
@@ -421,13 +390,23 @@ async function callOpenAiCompat(provider, key, prompt) {
         const txt = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
         if (!txt) throw new Error("empty response");
         assertParsable(txt, data.choices[0].finish_reason);
+        if (budget < body.length) {
+          console.log(`  NOTE: ${provider.name}/${model} used only the first ${budget} of ${body.length} chars — the draft may be thinner than usual.`);
+        }
         return { text: txt, modelUsed: `${provider.name}/${model}` };
       } catch (e) {
         lastErr = e;
-        console.log(`  ${provider.name}/${model} attempt ${attempt}/2 failed: ${e.message}`);
+        console.log(`  ${provider.name}/${model} attempt ${attempt}/3 failed: ${e.message}`);
+        if (tooBig(e.message)) {
+          const next = Math.floor(budget / 2);
+          if (next < 6000) { console.log(`  ${provider.name}/${model}: excerpt cannot shrink further and still be useful — next model.`); break; }
+          budget = next;
+          console.log(`  retrying with a ${budget}-char excerpt`);
+          continue;
+        }
         const transient = /rate limit|429|503|overload|timeout|capacity|busy|truncated|not valid JSON/i.test(e.message);
         if (!transient) break;
-        if (attempt < 2) await new Promise(r => setTimeout(r, 8000));
+        if (attempt < 3) await new Promise(r => setTimeout(r, 8000));
       }
     }
   }
@@ -516,21 +495,6 @@ ${rows.map(r => `<tr><td>${esc(r.metric)}</td><td>${esc(r.fy1)}</td><td>${esc(r.
 </table>`;
 }
 
-// Only link a document that lives on an official, permanent host.
-// A repo-committed PDF would become a dead link the moment it is deleted, and
-// a link to a third-party aggregator advertises where the data came from —
-// so in both cases the sentence is printed without a link.
-function sourceLine(meta) {
-  const url = String(meta.pdf || "");
-  const official = /^https?:\/\/(www\.)?(sebi\.gov\.in|nseindia\.com|bseindia\.com|bsesme\.com)\//i.test(url);
-  // SME offer documents are filed with BSE SME / NSE Emerge, not SEBI; Mainboard
-  // ones are filed with the exchanges too. "the stock exchange" is true for both.
-  const base = `Figures as disclosed in the DRHP/RHP filed with the stock exchange.`;
-  return official
-    ? `${base} Source: <a href="${esc(url)}" rel="nofollow noopener" target="_blank">offer document</a>.`
-    : base;
-}
-
 function proseZone(d, meta) {
   return `${PROSE_START}
 <h2>About ${esc(meta.company)}</h2>
@@ -541,7 +505,7 @@ ${paras(d.business_model)}
 
 <h2>Financial Performance</h2>
 ${financialsTable(d.financials)}
-<p class="stub-updated">${sourceLine(meta)}</p>
+<p class="stub-updated">Figures as disclosed in the ${esc(meta.kind)} filed with SEBI. Source: <a href="${esc(meta.pdf)}" rel="nofollow noopener" target="_blank">offer document</a>.</p>
 
 <h2>Objects of the Issue</h2>
 ${ul(d.objects_of_issue)}
@@ -570,7 +534,7 @@ ${LIVE_END}`;
 function newPage({ company, slug, kind, pdf }, prose) {
   const url = `${SITE}/ipo/${slug}/`;
   const title = `${company} IPO — ${kind} Details, Business & Financials | LiveGMP`;
-  const desc = `${company} IPO: business overview, financials, objects of the issue, promoters, strengths and risks from the DRHP/RHP filed with the stock exchange.`;
+  const desc = `${company} IPO: business overview, financials, objects of the issue, promoters, strengths and risks from the ${kind} filed with SEBI.`;
   const jsonld = JSON.stringify({
     "@context": "https://schema.org", "@type": "Article",
     "headline": `${company} IPO — ${kind} Details, Business & Financials`,
@@ -590,11 +554,6 @@ function newPage({ company, slug, kind, pdf }, prose) {
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:url" content="${url}">
   <meta property="og:type" content="article">
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/static/gmp.css">
   <script type="application/ld+json">${jsonld}</script>
 </head>
