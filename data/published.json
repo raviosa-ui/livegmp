@@ -75,9 +75,10 @@
     "h": "8ca34de69792"
   },
   "gamp-services": {
-    "at": "2026-10-29T15:36:55.916Z",
+    "at": "2026-10-29T17:35:09.912Z",
     "name": "GAMP Services",
-    "h": "593c63ac49e1"
+    "h": "4b145b403b37",
+    "updated": true
   },
   "german-green-steel": {
     "at": "2026-09-26T16:33:32Z",

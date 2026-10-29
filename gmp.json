@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-29T16:21:46.913Z",
-  "updatedLocal": "29/10/2026, 21:51:46 IST",
+  "updatedIso": "2026-10-29T17:35:09.912Z",
+  "updatedLocal": "29/10/2026, 23:05:09 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 12,
-      "gmpRaw": "₹12",
+      "gmp": 12.5,
+      "gmpRaw": "₹12.5",
       "price": "₹162",
-      "listing": "₹174 (7.41%)",
+      "listing": "₹174.5 (7.72%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
