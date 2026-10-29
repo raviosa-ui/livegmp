@@ -51,7 +51,10 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           COMMENT_BODY: ${{ github.event.comment.body }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.6-flash
+          # Backup providers. Without these lines the script sees no key and
+          # skips them, which is why a Gemini billing error ended the run.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: node scripts/generate_blog.js
 
       - name: Open pull request
@@ -84,4 +87,4 @@ jobs:
         run: |
           gh issue comment ${{ github.event.issue.number }} \
             --repo ${{ github.repository }} \
-            --body "❌ Generation failed — nothing was written. [See the log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). Common causes: wrong page ranges, a scanned PDF with no text layer, or the model returning invalid JSON. Re-comment \`/generate <ranges>\` to retry."
+            --body "❌ Generation failed — nothing was written. [See the log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). Common causes: wrong page ranges, a scanned PDF with no text layer, every AI provider refusing (check the log for billing or quota errors), or the model returning invalid JSON. Re-comment \`/generate <ranges>\` to retry."
