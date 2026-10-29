@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-10-28T21:51:23.889Z",
-  "updatedLocal": "29/10/2026, 03:21:23 IST",
+  "updatedIso": "2026-10-29T01:54:58.147Z",
+  "updatedLocal": "29/10/2026, 07:24:58 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Vedant Poly Fabs",
-      "gmp": null,
-      "gmpRaw": "-",
+      "gmp": 0,
+      "gmpRaw": "₹0",
       "price": "₹94",
-      "listing": "",
+      "listing": "₹94 (0.00%)",
       "date": "2-4 Nov 2026",
       "type": "SME",
       "href": "",
