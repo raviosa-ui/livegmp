@@ -40,10 +40,13 @@ jobs:
         with:
           node-version: '20'
 
+      # --no-save stops every run from rewriting package.json as npm
+      # re-resolves the tree. Nothing here needs recording: the runner is
+      # thrown away.
       - name: Install dependencies
         run: |
           if [ ! -f package.json ]; then npm init -y; fi
-          npm install cheerio pdfjs-dist@4.0.379
+          npm install --no-save cheerio pdfjs-dist@4.0.379
 
       - name: Generate page
         id: gen
@@ -57,6 +60,35 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: node scripts/generate_blog.js
 
+      # A run once reported success, pushed a branch, and threw the article
+      # away: create-pull-request found nothing staged, deleted its own branch
+      # and exited clean. This step makes the working tree visible in the log
+      # BEFORE the PR step, so that can never be a mystery again.
+      - name: Show what changed
+        run: |
+          echo "=== Script outputs ==="
+          echo "slug:       '${{ steps.gen.outputs.slug }}'"
+          echo "company:    '${{ steps.gen.outputs.company }}'"
+          echo "file:       '${{ steps.gen.outputs.file }}'"
+          echo "unverified: '${{ steps.gen.outputs.unverified }}'"
+          echo
+          echo "=== git status (whole tree) ==="
+          git status --porcelain
+          echo
+          echo "=== git status limited to the paths the PR step will stage ==="
+          git status --porcelain -- ipo data/ipo_aliases.json
+          echo
+          if [ -z "$(git status --porcelain -- ipo data/ipo_aliases.json)" ]; then
+            echo "::error::The script reported success but nothing changed under ipo/ or data/ipo_aliases.json."
+            echo "::error::Nothing would be committed, so no pull request can be opened."
+            exit 1
+          fi
+          echo "Changes present. Proceeding to open a pull request."
+
+      # add-paths entries are git pathspecs. 'ipo' as a bare directory is
+      # unambiguous; 'ipo/**' relies on glob behaviour that differs depending
+      # on whether pathspec magic is in play, and is the likeliest reason a
+      # run staged nothing.
       - name: Open pull request
         id: pr
         uses: peter-evans/create-pull-request@v6
@@ -68,8 +100,22 @@ jobs:
           body-path: pr_body.md
           labels: drhp-draft
           add-paths: |
-            ipo/**
+            ipo
             data/ipo_aliases.json
+
+      # create-pull-request exits successfully when it has nothing to open a
+      # PR for. Without this, a thrown-away article looks exactly like a
+      # successful run.
+      - name: Fail if no pull request was opened
+        if: steps.pr.outputs.pull-request-number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "::error::The draft was generated but no pull request was opened."
+          gh issue comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
+            --body "⚠️ The draft generated successfully but **no pull request was opened**, so the article was discarded. This usually means nothing was staged for the commit. [See the log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) — the \`Show what changed\` step lists the working tree. Re-comment \`/generate <ranges>\` once the cause is fixed."
+          exit 1
 
       - name: Link the PR on the issue
         if: steps.pr.outputs.pull-request-number
