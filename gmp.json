@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-30T15:54:48.400Z",
-  "updatedLocal": "30/10/2026, 21:24:48 IST",
+  "updatedIso": "2026-10-30T20:01:33.518Z",
+  "updatedLocal": "31/10/2026, 01:31:33 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "HGS (India)",
-      "gmp": 34,
-      "gmpRaw": "₹34",
+      "gmp": 30,
+      "gmpRaw": "₹30",
       "price": "₹120",
-      "listing": "₹154 (28.33%)",
+      "listing": "₹150 (25.00%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 6.3,
-      "gmpRaw": "₹6.3",
+      "gmp": 6,
+      "gmpRaw": "₹6",
       "price": "₹162",
-      "listing": "₹168.3 (3.89%)",
+      "listing": "₹168 (3.70%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -149,10 +149,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 70.5,
-      "gmpRaw": "₹70.5",
+      "gmp": 70,
+      "gmpRaw": "₹70",
       "price": "₹150",
-      "listing": "₹220.5 (47.00%)",
+      "listing": "₹220 (46.67%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
