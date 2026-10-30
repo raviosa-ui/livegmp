@@ -1,0 +1,66 @@
+# ---------------------------------------------------------------
+# LiveGMP.in — files that must never enter the repo
+#
+# Note: .gitignore has NO effect on a file that is already tracked.
+# One file under node_modules was tracked, which is why it survived
+# every run and reappeared as a "rename" when npm hoisted it. Run
+#   git rm -r --cached node_modules
+# once, then this file keeps it out for good.
+# ---------------------------------------------------------------
+
+# Dependencies — reinstalled by the workflow on every run
+node_modules/
+.npm/
+.pnpm-store/
+jspm_packages/
+
+# npm/yarn noise
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+
+# Build and scratch output from the pipeline
+build.log
+*.log
+pr_body.md
+tmp/
+.tmp/
+*.tmp
+
+# Downloaded prospectus PDFs that are fetched at run time.
+# PDFs you deliberately commit to docs/ are NOT ignored — see below.
+drhp_*.pdf
+
+# Environment and secrets — nothing here should ever be committed
+.env
+.env.*
+*.pem
+*.key
+secrets.json
+
+# Editor and OS cruft
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cloudflare / wrangler local state
+.wrangler/
+.dev.vars
+
+# ---------------------------------------------------------------
+# Deliberately NOT ignored, listed here so nobody adds them later:
+#   docs/            — SME prospectus PDFs that cannot be fetched from
+#                      Actions. Committed on purpose; excluded from the
+#                      deploy by rsync, not by git.
+#   data/            — ipo_types.json, ipo_aliases.json, page_lastmod.json,
+#                      published.json, url_registry.json. These ARE the
+#                      pipeline's memory. Losing them re-creates duplicate
+#                      pages.
+#   package-lock.json — commit this and use `npm ci`, so the dependency
+#                      tree stops changing on every run.
+# ---------------------------------------------------------------
