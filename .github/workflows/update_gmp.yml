@@ -34,10 +34,29 @@ jobs:
         with:
           node-version: '20'
 
+      # --no-save is deliberate: without it, every run rewrites package.json
+      # as npm re-resolves the dependency tree, so package.json showed as
+      # modified on each build. Dependencies are reinstalled from scratch on
+      # every runner anyway, so nothing needs recording.
       - name: Install cheerio
         run: |
           if [ ! -f package.json ]; then npm init -y; fi
-          npm install cheerio
+          npm install --no-save cheerio
+
+      # Guard. One file under node_modules was committed long ago; once a file
+      # is tracked, .gitignore has no effect on it, so every run restaged it
+      # and npm's hoisting showed it as a mysterious new folder. Fail loudly
+      # rather than quietly committing dependencies into the repo again.
+      - name: Refuse to run with dependencies tracked in git
+        run: |
+          TRACKED=$(git ls-files node_modules | head -5)
+          if [ -n "$TRACKED" ]; then
+            echo "::error::node_modules is tracked in git. Run: git rm -r --cached node_modules"
+            echo "First tracked paths:"
+            echo "$TRACKED"
+            exit 1
+          fi
+          echo "node_modules is not tracked. Good."
 
       # Output is captured to build.log so warnings can be routed to Telegram.
       # pipefail keeps a script crash failing the job (tee would hide it).
@@ -92,12 +111,33 @@ jobs:
           Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
             --data-urlencode "disable_web_page_preview=true"
 
+      # file_pattern entries are git PATHSPECS, not shell globs. A bare
+      # "*.html" matches at ANY depth, so it reached
+      # node_modules/**/index.html and kept restaging a tracked dependency
+      # file. Root pages are listed explicitly instead. Add new root-level
+      # pages to this list when you create them — a wildcard here is how the
+      # repo grew a node_modules folder.
       - name: Commit changes (only if data changed)
         id: commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update GMP data"
-          file_pattern: "*.html _redirects gmp.json sitemap.xml ipo/index.html ipo/*/index.html data/ipo_types.json data/page_lastmod.json data/pipeline_warn_hash.txt data/published.json data/url_registry.json"
+          file_pattern: >-
+            index.html
+            404.html
+            what-is-gmp.html
+            ipo-allotment-status.html
+            _redirects
+            gmp.json
+            sitemap.xml
+            ipo/index.html
+            ipo/*/index.html
+            data/ipo_types.json
+            data/ipo_aliases.json
+            data/page_lastmod.json
+            data/pipeline_warn_hash.txt
+            data/published.json
+            data/url_registry.json
           branch: main
 
       # A push made with GITHUB_TOKEN does NOT trigger other workflows, so
@@ -116,7 +156,15 @@ jobs:
             --exclude ".htaccess" --exclude "health_report.md" --exclude "watchdog_report.md" \
             --exclude "build.log" --exclude "warnings.txt" \
             ./ deploy/
-          echo "Deploying $(find deploy -type f | wc -l) files"
+          COUNT=$(find deploy -type f | wc -l)
+          echo "Deploying $COUNT files"
+          # Cloudflare Pages refuses a deployment over 20,000 files. If a
+          # dependency folder ever leaks into the site again, stop here with a
+          # clear message instead of a wrangler error 30 seconds later.
+          if [ "$COUNT" -gt 5000 ]; then
+            echo "::error::$COUNT files staged for deploy — far more than this site has. Something is leaking into the site root."
+            exit 1
+          fi
 
       - name: Publish to Cloudflare Pages
         if: steps.commit.outputs.changes_detected == 'true' || github.event_name == 'push'
