@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-30T07:38:32.164Z",
-  "updatedLocal": "30/10/2026, 13:08:32 IST",
+  "updatedIso": "2026-10-30T15:13:15.152Z",
+  "updatedLocal": "30/10/2026, 20:43:15 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -77,10 +77,10 @@
     },
     {
       "ipo": "Bombay Coated and Special Steels",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹82",
-      "listing": "₹91 (10.98%)",
+      "listing": "₹89 (8.54%)",
       "date": "29 Oct - 2 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -89,14 +89,14 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 9.5,
-      "gmpRaw": "₹9.5",
+      "gmp": 6.3,
+      "gmpRaw": "₹6.3",
       "price": "₹162",
-      "listing": "₹171.5 (5.86%)",
+      "listing": "₹168.3 (3.89%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "mksons-fine-jewels"
     },
     {
@@ -108,19 +108,19 @@
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "ajwa-projects"
     },
     {
       "ipo": "Carver Roboweld",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 5,
+      "gmpRaw": "₹5",
       "price": "₹80",
-      "listing": "₹83 (3.75%)",
+      "listing": "₹85 (6.25%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "carver-roboweld"
     },
     {
@@ -149,10 +149,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 70,
-      "gmpRaw": "₹70",
+      "gmp": 73,
+      "gmpRaw": "₹73",
       "price": "₹150",
-      "listing": "₹220 (46.67%)",
+      "listing": "₹223 (48.67%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -161,10 +161,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 56,
-      "gmpRaw": "₹56",
+      "gmp": 52,
+      "gmpRaw": "₹52",
       "price": "₹1665",
-      "listing": "₹1721 (3.36%)",
+      "listing": "₹1717 (3.12%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
