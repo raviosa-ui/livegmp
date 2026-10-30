@@ -301,6 +301,9 @@ HARD RULES:
     Basic EPS, Debt-equity ratio.
   * A table with only one or two rows means you have missed the main financial table —
     look again before answering.
+  * OMIT a metric entirely if the excerpts do not give it. Do NOT add a row and fill
+    every cell with "Not disclosed in excerpts" — a row of those is noise. Only include
+    a metric when at least one of its cells has a real figure.
 - Do not recommend buying or selling. Do not predict listing gains or GMP.
 - LENGTH LIMITS (important — the whole JSON must fit in one reply):
   "overview" max 180 words. "business_model" max 120 words. "promoters" max 80 words.
@@ -604,6 +607,29 @@ async function generateDraft(geminiKey, prompt) {
 // plus three fiscals, in reverse order). Models sometimes answer in the older
 // flat fy1/fy2/fy3 shape anyway, so accept both and normalise to one.
 // Returns null when the value is unusable.
+// Cells that say "there is no value here". The model is told to write
+// "Not disclosed in excerpts" rather than invent a figure — correct behaviour,
+// but a row of them is noise in a published table.
+const NO_VALUE = /^(|-|—|–|n\.?\s?a\.?|nil|none|not\s+(disclosed|available|stated|provided|reported|given)(\s+in\s+(the\s+)?excerpts?)?)$/i;
+const isBlankCell = v => NO_VALUE.test(clean(v));
+
+// Drop any row whose every cell is blank, then any column that is blank in
+// every surviving row. A single blank cell inside an otherwise real row is
+// kept and rendered as an em dash — that is information, not noise.
+function pruneFinancials(fin) {
+  const rows = fin.rows.filter(r => r.values.some(v => !isBlankCell(v)));
+  if (!rows.length) return { ...fin, rows: [] };
+
+  const keep = fin.columns.map((_, i) => rows.some(r => !isBlankCell(r.values[i])));
+  if (keep.every(Boolean)) return { ...fin, rows };
+
+  return {
+    ...fin,
+    columns: fin.columns.filter((_, i) => keep[i]),
+    rows: rows.map(r => ({ metric: r.metric, values: r.values.filter((_, i) => keep[i]) })),
+  };
+}
+
 function normalizeFinancials(f) {
   if (!f) return null;
 
@@ -618,7 +644,8 @@ function normalizeFinancials(f) {
       }))
       .filter(r => r.metric);
     if (!columns.length || !rows.length) return null;
-    return { unit: clean(f.unit), columns, rows };
+    const pruned = pruneFinancials({ unit: clean(f.unit), columns, rows });
+    return pruned.rows.length ? pruned : null;
   }
 
   // Legacy flat shape: [{metric, fy1_label, fy1, fy2_label, fy2, fy3_label, fy3}]
@@ -632,7 +659,8 @@ function normalizeFinancials(f) {
       }))
       .filter(r => r.metric);
     if (!rows.length) return null;
-    return { unit: "", columns, rows };
+    const pruned = pruneFinancials({ unit: "", columns, rows });
+    return pruned.rows.length ? pruned : null;
   }
 
   return null;
@@ -712,7 +740,11 @@ function financialsTable(f) {
   }
   const head = `<tr><th>Metric</th>${fin.columns.map(c => `<th>${esc(c)}</th>`).join("")}</tr>`;
   const body = fin.rows.map(r => {
-    const cells = fin.columns.map((_, i) => `<td>${esc(r.values[i] ?? "")}</td>`).join("");
+    // A lone gap in an otherwise real row shows as an em dash, not a sentence.
+    const cells = fin.columns.map((_, i) => {
+      const v = r.values[i];
+      return `<td>${isBlankCell(v) ? "—" : esc(v)}</td>`;
+    }).join("");
     return `<tr><td>${esc(r.metric)}</td>${cells}</tr>`;
   }).join("\n");
   const unit = clean(fin.unit)
