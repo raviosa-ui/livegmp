@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-10-31T12:57:37.321Z",
-  "updatedLocal": "31/10/2026, 18:27:37 IST",
+  "updatedIso": "2026-10-31T17:52:25.158Z",
+  "updatedLocal": "31/10/2026, 23:22:25 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -77,10 +77,10 @@
     },
     {
       "ipo": "Bombay Coated and Special Steels",
-      "gmp": 10,
-      "gmpRaw": "₹10",
+      "gmp": 8.5,
+      "gmpRaw": "₹8.5",
       "price": "₹82",
-      "listing": "₹92 (12.20%)",
+      "listing": "₹90.5 (10.37%)",
       "date": "29 Oct - 2 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 24.5,
-      "gmpRaw": "₹24.5",
+      "gmp": 23.5,
+      "gmpRaw": "₹23.5",
       "price": "₹330",
-      "listing": "₹354.5 (7.42%)",
+      "listing": "₹353.5 (7.12%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -161,10 +161,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 52,
-      "gmpRaw": "₹52",
+      "gmp": 56,
+      "gmpRaw": "₹56",
       "price": "₹1665",
-      "listing": "₹1717 (3.12%)",
+      "listing": "₹1721 (3.36%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
