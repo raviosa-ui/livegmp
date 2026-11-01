@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-11-01T15:24:29.885Z",
-  "updatedLocal": "01/11/2026, 20:54:29 IST",
+  "updatedIso": "2026-11-01T19:51:43.969Z",
+  "updatedLocal": "02/11/2026, 01:21:43 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Vedant Poly Fabs",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 15,
+      "gmpRaw": "₹15",
       "price": "₹94",
-      "listing": "₹99 (5.32%)",
+      "listing": "₹109 (15.96%)",
       "date": "2-4 Nov 2026",
       "type": "SME",
       "href": "",
@@ -161,10 +161,10 @@
     },
     {
       "ipo": "EAAA India Alternatives",
-      "gmp": 64,
-      "gmpRaw": "₹64",
+      "gmp": 54,
+      "gmpRaw": "₹54",
       "price": "₹1665",
-      "listing": "₹1729 (3.84%)",
+      "listing": "₹1719 (3.24%)",
       "date": "26-28 Oct 2026",
       "type": "Mainboard",
       "href": "",
