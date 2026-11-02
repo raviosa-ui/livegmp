@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-01T19:51:43.969Z",
-  "updatedLocal": "02/11/2026, 01:21:43 IST",
+  "updatedIso": "2026-11-02T06:39:14.371Z",
+  "updatedLocal": "02/11/2026, 12:09:14 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -12,7 +12,7 @@
       "date": "2-4 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "vedant-poly-fabs"
     },
     {
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "Johnsoncab Electricals",
-      "gmp": 5,
-      "gmpRaw": "₹5",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹200",
-      "listing": "₹205 (2.50%)",
+      "listing": "₹210 (5.00%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 26,
-      "gmpRaw": "₹26",
+      "gmp": 23,
+      "gmpRaw": "₹23",
       "price": "₹330",
-      "listing": "₹356 (7.88%)",
+      "listing": "₹353 (6.97%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -149,10 +149,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 68,
-      "gmpRaw": "₹68",
+      "gmp": 66,
+      "gmpRaw": "₹66",
       "price": "₹150",
-      "listing": "₹218 (45.33%)",
+      "listing": "₹216 (44.00%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
