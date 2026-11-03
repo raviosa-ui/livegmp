@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-03T15:25:40.992Z",
-  "updatedLocal": "03/11/2026, 20:55:40 IST",
+  "updatedIso": "2026-11-03T21:12:33.907Z",
+  "updatedLocal": "04/11/2026, 02:42:33 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -77,10 +77,10 @@
     },
     {
       "ipo": "Bombay Coated and Special Steels",
-      "gmp": 9,
-      "gmpRaw": "₹9",
+      "gmp": 7,
+      "gmpRaw": "₹7",
       "price": "₹82",
-      "listing": "₹91 (10.98%)",
+      "listing": "₹89 (8.54%)",
       "date": "29 Oct - 2 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 11.5,
-      "gmpRaw": "₹11.5",
+      "gmp": 10,
+      "gmpRaw": "₹10",
       "price": "₹162",
-      "listing": "₹173.5 (7.10%)",
+      "listing": "₹172 (6.17%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
