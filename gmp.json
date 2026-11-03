@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-02T17:21:14.295Z",
-  "updatedLocal": "02/11/2026, 22:51:14 IST",
+  "updatedIso": "2026-11-03T00:00:07.971Z",
+  "updatedLocal": "03/11/2026, 05:30:07 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -137,10 +137,10 @@
     },
     {
       "ipo": "SFC Environmental Technologies",
-      "gmp": 16.5,
-      "gmpRaw": "₹16.5",
+      "gmp": 15.5,
+      "gmpRaw": "₹15.5",
       "price": "₹330",
-      "listing": "₹346.5 (5.00%)",
+      "listing": "₹345.5 (4.70%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -149,10 +149,10 @@
     },
     {
       "ipo": "BLS Polymers",
-      "gmp": 67,
-      "gmpRaw": "₹67",
+      "gmp": 68,
+      "gmpRaw": "₹68",
       "price": "₹150",
-      "listing": "₹217 (44.67%)",
+      "listing": "₹218 (45.33%)",
       "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
