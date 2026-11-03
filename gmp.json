@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-03T07:08:15.915Z",
-  "updatedLocal": "03/11/2026, 12:38:15 IST",
+  "updatedIso": "2026-11-03T15:25:40.992Z",
+  "updatedLocal": "03/11/2026, 20:55:40 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Vedant Poly Fabs",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 11,
+      "gmpRaw": "₹11",
       "price": "₹94",
-      "listing": "₹109 (15.96%)",
+      "listing": "₹105 (11.70%)",
       "date": "2-4 Nov 2026",
       "type": "SME",
       "href": "",
@@ -29,14 +29,14 @@
     },
     {
       "ipo": "HGS (India)",
-      "gmp": 20,
-      "gmpRaw": "₹20",
+      "gmp": 25,
+      "gmpRaw": "₹25",
       "price": "₹120",
-      "listing": "₹140 (16.67%)",
+      "listing": "₹145 (20.83%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "hgs-india"
     },
     {
@@ -48,7 +48,7 @@
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "johnsoncab-electricals"
     },
     {
@@ -60,7 +60,7 @@
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "vectras-enprocon"
     },
     {
@@ -72,7 +72,7 @@
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "maxwell-engineering-solutions"
     },
     {
@@ -89,10 +89,10 @@
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 9.5,
-      "gmpRaw": "₹9.5",
+      "gmp": 11.5,
+      "gmpRaw": "₹11.5",
       "price": "₹162",
-      "listing": "₹171.5 (5.86%)",
+      "listing": "₹173.5 (7.10%)",
       "date": "28-30 Oct 2026",
       "type": "Mainboard",
       "href": "",
@@ -113,10 +113,10 @@
     },
     {
       "ipo": "Carver Roboweld",
-      "gmp": 3,
-      "gmpRaw": "₹3",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹80",
-      "listing": "₹83 (3.75%)",
+      "listing": "₹84 (5.00%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
