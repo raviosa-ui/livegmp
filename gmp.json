@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-05T15:42:37.430Z",
-  "updatedLocal": "05/11/2026, 21:12:37 IST",
+  "updatedIso": "2026-11-05T17:50:18.893Z",
+  "updatedLocal": "05/11/2026, 23:20:18 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "HGS (India)",
-      "gmp": 35,
-      "gmpRaw": "₹35",
+      "gmp": 31,
+      "gmpRaw": "₹31",
       "price": "₹120",
-      "listing": "₹155 (29.17%)",
+      "listing": "₹151 (25.83%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Maxwell Engineering Solutions",
-      "gmp": 110,
-      "gmpRaw": "₹110",
+      "gmp": 105,
+      "gmpRaw": "₹105",
       "price": "₹158",
-      "listing": "₹268 (69.62%)",
+      "listing": "₹263 (66.46%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
