@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-05T07:12:31.280Z",
-  "updatedLocal": "05/11/2026, 12:42:31 IST",
+  "updatedIso": "2026-11-05T15:42:37.430Z",
+  "updatedLocal": "05/11/2026, 21:12:37 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -12,7 +12,7 @@
       "date": "29 Oct - 5 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "active",
+      "status": "closed",
       "slug": "antala-industries"
     },
     {
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "HGS (India)",
-      "gmp": 38,
-      "gmpRaw": "₹38",
+      "gmp": 35,
+      "gmpRaw": "₹35",
       "price": "₹120",
-      "listing": "₹158 (31.67%)",
+      "listing": "₹155 (29.17%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Maxwell Engineering Solutions",
-      "gmp": 117,
-      "gmpRaw": "₹117",
+      "gmp": 110,
+      "gmpRaw": "₹110",
       "price": "₹158",
-      "listing": "₹275 (74.05%)",
+      "listing": "₹268 (69.62%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
