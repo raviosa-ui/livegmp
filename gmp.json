@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-05T22:11:37.952Z",
-  "updatedLocal": "06/11/2026, 03:41:37 IST",
+  "updatedIso": "2026-11-06T02:44:27.554Z",
+  "updatedLocal": "06/11/2026, 08:14:27 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -29,10 +29,10 @@
     },
     {
       "ipo": "HGS (India)",
-      "gmp": 30,
-      "gmpRaw": "₹30",
+      "gmp": 27,
+      "gmpRaw": "₹27",
       "price": "₹120",
-      "listing": "₹150 (25.00%)",
+      "listing": "₹147 (22.50%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
