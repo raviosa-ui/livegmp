@@ -1,15 +1,27 @@
 {
-  "updatedIso": "2026-11-12T13:06:59.215Z",
-  "updatedLocal": "12/11/2026, 18:36:59 IST",
+  "updatedIso": "2026-11-13T09:52:56.909Z",
+  "updatedLocal": "13/11/2026, 15:22:56 IST",
   "source": "investorgain",
   "rows": [
     {
+      "ipo": "Watrana Rentals",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹245",
+      "listing": "₹245 (0.00%)",
+      "date": "19-23 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "watrana-rentals"
+    },
+    {
       "ipo": "Crystal Crop Protection",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "",
+      "gmp": 45,
+      "gmpRaw": "₹45",
+      "price": "₹272",
+      "listing": "₹317 (16.54%)",
+      "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
       "status": "upcoming",
@@ -40,18 +52,6 @@
       "slug": "vedant-poly-fabs"
     },
     {
-      "ipo": "Vectras Enprocon",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹105",
-      "listing": "₹105 (0.00%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "vectras-enprocon"
-    },
-    {
       "ipo": "Johnsoncab Electricals",
       "gmp": 8,
       "gmpRaw": "₹8",
@@ -64,16 +64,16 @@
       "slug": "johnsoncab-electricals"
     },
     {
-      "ipo": "Maxwell Engineering Solutions",
-      "gmp": 105,
-      "gmpRaw": "₹105",
-      "price": "₹158",
-      "listing": "₹263 (66.46%)",
+      "ipo": "Vectras Enprocon",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹105",
+      "listing": "₹105 (0.00%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "maxwell-engineering-solutions"
+      "slug": "vectras-enprocon"
     },
     {
       "ipo": "HGS (India)",
@@ -88,6 +88,18 @@
       "slug": "hgs-india"
     },
     {
+      "ipo": "Maxwell Engineering Solutions",
+      "gmp": 105,
+      "gmpRaw": "₹105",
+      "price": "₹158",
+      "listing": "₹263 (66.46%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "maxwell-engineering-solutions"
+    },
+    {
       "ipo": "Bombay Coated and Special Steels",
       "gmp": 8,
       "gmpRaw": "₹8",
@@ -98,6 +110,18 @@
       "href": "",
       "status": "closed",
       "slug": "bombay-coated-and-special-steels"
+    },
+    {
+      "ipo": "M.K.Sons Fine Jewels",
+      "gmp": 11,
+      "gmpRaw": "₹11",
+      "price": "₹162",
+      "listing": "₹173 (6.79%)",
+      "date": "28-30 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "mksons-fine-jewels"
     },
     {
       "ipo": "Ajwa Projects",
@@ -124,16 +148,16 @@
       "slug": "carver-roboweld"
     },
     {
-      "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 11,
-      "gmpRaw": "₹11",
-      "price": "₹162",
-      "listing": "₹173 (6.79%)",
-      "date": "28-30 Oct 2026",
+      "ipo": "SFC Environmental Technologies",
+      "gmp": 15.5,
+      "gmpRaw": "₹15.5",
+      "price": "₹330",
+      "listing": "₹345.5 (4.70%)",
+      "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "mksons-fine-jewels"
+      "slug": "sfc-environmental-technologies"
     },
     {
       "ipo": "Wiscon Industries",
@@ -160,18 +184,6 @@
       "slug": "bls-polymers"
     },
     {
-      "ipo": "SFC Environmental Technologies",
-      "gmp": 15.5,
-      "gmpRaw": "₹15.5",
-      "price": "₹330",
-      "listing": "₹345.5 (4.70%)",
-      "date": "27-29 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "sfc-environmental-technologies"
-    },
-    {
       "ipo": "EAAA India Alternatives",
       "gmp": 54,
       "gmpRaw": "₹54",
@@ -196,18 +208,6 @@
       "slug": "core4-engineers"
     },
     {
-      "ipo": "Jio Platforms",
-      "gmp": 250,
-      "gmpRaw": "₹250",
-      "price": "₹1119",
-      "listing": "₹1369 (22.34%)",
-      "date": "21-23 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "jio-platform"
-    },
-    {
       "ipo": "Paras Healthcare",
       "gmp": 13,
       "gmpRaw": "₹13",
@@ -220,6 +220,18 @@
       "slug": "paras-healthcare"
     },
     {
+      "ipo": "Jio Platforms",
+      "gmp": 250,
+      "gmpRaw": "₹250",
+      "price": "₹1119",
+      "listing": "₹1369 (22.34%)",
+      "date": "21-23 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "jio-platform"
+    },
+    {
       "ipo": "Shellz India",
       "gmp": 7,
       "gmpRaw": "₹7",
@@ -230,6 +242,18 @@
       "href": "",
       "status": "closed",
       "slug": "shellz-india"
+    },
+    {
+      "ipo": "Bonfiglioli Transmissions",
+      "gmp": 66,
+      "gmpRaw": "₹66",
+      "price": "₹586",
+      "listing": "₹652 (11.26%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "bonfiglioli-transmissions"
     },
     {
       "ipo": "Sahajanand Medical Technologies",
@@ -256,18 +280,6 @@
       "slug": "tonbo-imaging-india"
     },
     {
-      "ipo": "Bonfiglioli Transmissions",
-      "gmp": 66,
-      "gmpRaw": "₹66",
-      "price": "₹586",
-      "listing": "₹652 (11.26%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "bonfiglioli-transmissions"
-    },
-    {
       "ipo": "Zetwerk",
       "gmp": 1.2,
       "gmpRaw": "₹1.2",
@@ -290,18 +302,6 @@
       "href": "",
       "status": "closed",
       "slug": "ravita-engineering-services"
-    },
-    {
-      "ipo": "Fusion CX",
-      "gmp": 13.5,
-      "gmpRaw": "₹13.5",
-      "price": "₹289",
-      "listing": "₹302.5 (4.67%)",
-      "date": "14-16 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "fusion-cx"
     }
   ]
 }
