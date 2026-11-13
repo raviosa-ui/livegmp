@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-11-13T17:58:27.870Z",
-  "updatedLocal": "13/11/2026, 23:28:27 IST",
+  "updatedIso": "2026-11-13T23:47:10.038Z",
+  "updatedLocal": "14/11/2026, 05:17:10 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Watrana Rentals",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 16,
+      "gmpRaw": "₹16",
       "price": "₹245",
-      "listing": "₹260 (6.12%)",
+      "listing": "₹261 (6.53%)",
       "date": "19-23 Nov 2026",
       "type": "SME",
       "href": "",
@@ -17,10 +17,10 @@
     },
     {
       "ipo": "Crystal Crop Protection",
-      "gmp": 45,
-      "gmpRaw": "₹45",
+      "gmp": 40,
+      "gmpRaw": "₹40",
       "price": "₹272",
-      "listing": "₹317 (16.54%)",
+      "listing": "₹312 (14.71%)",
       "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
