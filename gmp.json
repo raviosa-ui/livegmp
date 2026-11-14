@@ -1,14 +1,26 @@
 {
-  "updatedIso": "2026-11-13T23:47:10.038Z",
-  "updatedLocal": "14/11/2026, 05:17:10 IST",
+  "updatedIso": "2026-11-14T06:54:42.481Z",
+  "updatedLocal": "14/11/2026, 12:24:42 IST",
   "source": "investorgain",
   "rows": [
     {
+      "ipo": "Mahanadi Coalfields",
+      "gmp": 12.5,
+      "gmpRaw": "₹12.5",
+      "price": "",
+      "listing": "",
+      "date": "19-23 Nov 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "mahanadi-coalfields"
+    },
+    {
       "ipo": "Watrana Rentals",
-      "gmp": 16,
-      "gmpRaw": "₹16",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹245",
-      "listing": "₹261 (6.53%)",
+      "listing": "₹263 (7.35%)",
       "date": "19-23 Nov 2026",
       "type": "SME",
       "href": "",
@@ -17,10 +29,10 @@
     },
     {
       "ipo": "Crystal Crop Protection",
-      "gmp": 40,
-      "gmpRaw": "₹40",
+      "gmp": 27,
+      "gmpRaw": "₹27",
       "price": "₹272",
-      "listing": "₹312 (14.71%)",
+      "listing": "₹299 (9.93%)",
       "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -52,6 +64,30 @@
       "slug": "vedant-poly-fabs"
     },
     {
+      "ipo": "Maxwell Engineering Solutions",
+      "gmp": 105,
+      "gmpRaw": "₹105",
+      "price": "₹158",
+      "listing": "₹263 (66.46%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "maxwell-engineering-solutions"
+    },
+    {
+      "ipo": "HGS (India)",
+      "gmp": 27,
+      "gmpRaw": "₹27",
+      "price": "₹120",
+      "listing": "₹147 (22.50%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "hgs-india"
+    },
+    {
       "ipo": "Johnsoncab Electricals",
       "gmp": 8,
       "gmpRaw": "₹8",
@@ -76,30 +112,6 @@
       "slug": "vectras-enprocon"
     },
     {
-      "ipo": "HGS (India)",
-      "gmp": 27,
-      "gmpRaw": "₹27",
-      "price": "₹120",
-      "listing": "₹147 (22.50%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "hgs-india"
-    },
-    {
-      "ipo": "Maxwell Engineering Solutions",
-      "gmp": 105,
-      "gmpRaw": "₹105",
-      "price": "₹158",
-      "listing": "₹263 (66.46%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "maxwell-engineering-solutions"
-    },
-    {
       "ipo": "Bombay Coated and Special Steels",
       "gmp": 8,
       "gmpRaw": "₹8",
@@ -110,18 +122,6 @@
       "href": "",
       "status": "closed",
       "slug": "bombay-coated-and-special-steels"
-    },
-    {
-      "ipo": "M.K.Sons Fine Jewels",
-      "gmp": 11,
-      "gmpRaw": "₹11",
-      "price": "₹162",
-      "listing": "₹173 (6.79%)",
-      "date": "28-30 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "mksons-fine-jewels"
     },
     {
       "ipo": "Ajwa Projects",
@@ -136,6 +136,18 @@
       "slug": "ajwa-projects"
     },
     {
+      "ipo": "M.K.Sons Fine Jewels",
+      "gmp": 11,
+      "gmpRaw": "₹11",
+      "price": "₹162",
+      "listing": "₹173 (6.79%)",
+      "date": "28-30 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "mksons-fine-jewels"
+    },
+    {
       "ipo": "Carver Roboweld",
       "gmp": 4,
       "gmpRaw": "₹4",
@@ -148,18 +160,6 @@
       "slug": "carver-roboweld"
     },
     {
-      "ipo": "SFC Environmental Technologies",
-      "gmp": 15.5,
-      "gmpRaw": "₹15.5",
-      "price": "₹330",
-      "listing": "₹345.5 (4.70%)",
-      "date": "27-29 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "sfc-environmental-technologies"
-    },
-    {
       "ipo": "Wiscon Industries",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -170,6 +170,18 @@
       "href": "",
       "status": "closed",
       "slug": "wiscon-industries"
+    },
+    {
+      "ipo": "SFC Environmental Technologies",
+      "gmp": 15.5,
+      "gmpRaw": "₹15.5",
+      "price": "₹330",
+      "listing": "₹345.5 (4.70%)",
+      "date": "27-29 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "sfc-environmental-technologies"
     },
     {
       "ipo": "BLS Polymers",
@@ -232,18 +244,6 @@
       "slug": "jio-platform"
     },
     {
-      "ipo": "Shellz India",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹179",
-      "listing": "₹186 (3.91%)",
-      "date": "15-19 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "shellz-india"
-    },
-    {
       "ipo": "Bonfiglioli Transmissions",
       "gmp": 66,
       "gmpRaw": "₹66",
@@ -268,18 +268,6 @@
       "slug": "sahajanand-medical-technologies"
     },
     {
-      "ipo": "Tonbo Imaging India",
-      "gmp": 452,
-      "gmpRaw": "₹452",
-      "price": "₹700",
-      "listing": "₹1152 (64.57%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "tonbo-imaging-india"
-    },
-    {
       "ipo": "Zetwerk",
       "gmp": 1.2,
       "gmpRaw": "₹1.2",
@@ -292,16 +280,28 @@
       "slug": "zetwerk"
     },
     {
-      "ipo": "Ravita Engineering Services",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹112",
-      "listing": "₹113 (0.89%)",
-      "date": "14-16 Oct 2026",
+      "ipo": "Shellz India",
+      "gmp": 7,
+      "gmpRaw": "₹7",
+      "price": "₹179",
+      "listing": "₹186 (3.91%)",
+      "date": "15-19 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "ravita-engineering-services"
+      "slug": "shellz-india"
+    },
+    {
+      "ipo": "Tonbo Imaging India",
+      "gmp": 452,
+      "gmpRaw": "₹452",
+      "price": "₹700",
+      "listing": "₹1152 (64.57%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "tonbo-imaging-india"
     }
   ]
 }
