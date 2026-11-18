@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-11-17T23:04:43.587Z",
-  "updatedLocal": "18/11/2026, 04:34:43 IST",
+  "updatedIso": "2026-11-18T04:39:23.349Z",
+  "updatedLocal": "18/11/2026, 10:09:23 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Mahanadi Coalfields",
-      "gmp": 3.65,
-      "gmpRaw": "₹3.65",
+      "gmp": 3.5,
+      "gmpRaw": "₹3.5",
       "price": "₹136",
-      "listing": "₹139.65 (2.68%)",
+      "listing": "₹139.5 (2.57%)",
       "date": "19-23 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -36,7 +36,7 @@
       "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "crystal-crop-protection"
     },
     {
