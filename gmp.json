@@ -1,38 +1,50 @@
 {
-  "updatedIso": "2026-11-19T03:46:10.717Z",
-  "updatedLocal": "19/11/2026, 09:16:10 IST",
+  "updatedIso": "2026-11-19T13:45:14.691Z",
+  "updatedLocal": "19/11/2026, 19:15:14 IST",
   "source": "investorgain",
   "rows": [
     {
+      "ipo": "Shree Siddhivinayak Greentech Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹142",
+      "listing": "₹142 (0.00%)",
+      "date": "25-27 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "shree-siddhivinayak-greentech-industries"
+    },
+    {
       "ipo": "Mahanadi Coalfields",
-      "gmp": 3.1,
-      "gmpRaw": "₹3.1",
+      "gmp": 2,
+      "gmpRaw": "₹2",
       "price": "₹136",
-      "listing": "₹139.1 (2.28%)",
+      "listing": "₹138 (1.47%)",
       "date": "19-23 Nov 2026",
       "type": "Mainboard",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "mahanadi-coalfields"
     },
     {
       "ipo": "Watrana Rentals",
-      "gmp": 62,
-      "gmpRaw": "₹62",
+      "gmp": 67,
+      "gmpRaw": "₹67",
       "price": "₹245",
-      "listing": "₹307 (25.31%)",
+      "listing": "₹312 (27.35%)",
       "date": "19-23 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "watrana-rentals"
     },
     {
       "ipo": "Crystal Crop Protection",
-      "gmp": 18,
-      "gmpRaw": "₹18",
+      "gmp": 17,
+      "gmpRaw": "₹17",
       "price": "₹272",
-      "listing": "₹290 (6.62%)",
+      "listing": "₹289 (6.25%)",
       "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -64,16 +76,16 @@
       "slug": "vedant-poly-fabs"
     },
     {
-      "ipo": "Maxwell Engineering Solutions",
-      "gmp": 105,
-      "gmpRaw": "₹105",
-      "price": "₹158",
-      "listing": "₹263 (66.46%)",
+      "ipo": "Johnsoncab Electricals",
+      "gmp": 8,
+      "gmpRaw": "₹8",
+      "price": "₹200",
+      "listing": "₹208 (4.00%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "maxwell-engineering-solutions"
+      "slug": "johnsoncab-electricals"
     },
     {
       "ipo": "HGS (India)",
@@ -88,16 +100,16 @@
       "slug": "hgs-india"
     },
     {
-      "ipo": "Johnsoncab Electricals",
-      "gmp": 8,
-      "gmpRaw": "₹8",
-      "price": "₹200",
-      "listing": "₹208 (4.00%)",
+      "ipo": "Maxwell Engineering Solutions",
+      "gmp": 105,
+      "gmpRaw": "₹105",
+      "price": "₹158",
+      "listing": "₹263 (66.46%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "johnsoncab-electricals"
+      "slug": "maxwell-engineering-solutions"
     },
     {
       "ipo": "Vectras Enprocon",
@@ -124,16 +136,16 @@
       "slug": "bombay-coated-and-special-steels"
     },
     {
-      "ipo": "Ajwa Projects",
-      "gmp": 1,
-      "gmpRaw": "₹1",
-      "price": "₹203",
-      "listing": "₹204 (0.49%)",
+      "ipo": "Carver Roboweld",
+      "gmp": 4,
+      "gmpRaw": "₹4",
+      "price": "₹80",
+      "listing": "₹84 (5.00%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "ajwa-projects"
+      "slug": "carver-roboweld"
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
@@ -148,28 +160,16 @@
       "slug": "mksons-fine-jewels"
     },
     {
-      "ipo": "Carver Roboweld",
-      "gmp": 4,
-      "gmpRaw": "₹4",
-      "price": "₹80",
-      "listing": "₹84 (5.00%)",
+      "ipo": "Ajwa Projects",
+      "gmp": 1,
+      "gmpRaw": "₹1",
+      "price": "₹203",
+      "listing": "₹204 (0.49%)",
       "date": "28-30 Oct 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "carver-roboweld"
-    },
-    {
-      "ipo": "Wiscon Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹204",
-      "listing": "₹204 (0.00%)",
-      "date": "27-29 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "wiscon-industries"
+      "slug": "ajwa-projects"
     },
     {
       "ipo": "SFC Environmental Technologies",
@@ -194,6 +194,18 @@
       "href": "",
       "status": "closed",
       "slug": "bls-polymers"
+    },
+    {
+      "ipo": "Wiscon Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹204",
+      "listing": "₹204 (0.00%)",
+      "date": "27-29 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "wiscon-industries"
     },
     {
       "ipo": "EAAA India Alternatives",
@@ -244,16 +256,16 @@
       "slug": "jio-platform"
     },
     {
-      "ipo": "Bonfiglioli Transmissions",
-      "gmp": 66,
-      "gmpRaw": "₹66",
-      "price": "₹586",
-      "listing": "₹652 (11.26%)",
+      "ipo": "Shellz India",
+      "gmp": 7,
+      "gmpRaw": "₹7",
+      "price": "₹179",
+      "listing": "₹186 (3.91%)",
       "date": "15-19 Oct 2026",
-      "type": "Mainboard",
+      "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "bonfiglioli-transmissions"
+      "slug": "shellz-india"
     },
     {
       "ipo": "Sahajanand Medical Technologies",
@@ -268,30 +280,6 @@
       "slug": "sahajanand-medical-technologies"
     },
     {
-      "ipo": "Zetwerk",
-      "gmp": 1.2,
-      "gmpRaw": "₹1.2",
-      "price": "₹151",
-      "listing": "₹152.2 (0.79%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "zetwerk"
-    },
-    {
-      "ipo": "Shellz India",
-      "gmp": 7,
-      "gmpRaw": "₹7",
-      "price": "₹179",
-      "listing": "₹186 (3.91%)",
-      "date": "15-19 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "shellz-india"
-    },
-    {
       "ipo": "Tonbo Imaging India",
       "gmp": 452,
       "gmpRaw": "₹452",
@@ -304,16 +292,16 @@
       "slug": "tonbo-imaging-india"
     },
     {
-      "ipo": "Shree Siddhivinayak Greentech Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹142",
-      "listing": "₹142 (0.00%)",
-      "date": "25-27 Nov 2026",
-      "type": "SME",
+      "ipo": "Bonfiglioli Transmissions",
+      "gmp": 66,
+      "gmpRaw": "₹66",
+      "price": "₹586",
+      "listing": "₹652 (11.26%)",
+      "date": "15-19 Oct 2026",
+      "type": "Mainboard",
       "href": "",
-      "status": "upcoming",
-      "slug": "shree-siddhivinayak-greentech-industries"
+      "status": "closed",
+      "slug": "bonfiglioli-transmissions"
     }
   ]
 }
