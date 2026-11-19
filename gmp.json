@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-18T22:15:23.663Z",
-  "updatedLocal": "19/11/2026, 03:45:23 IST",
+  "updatedIso": "2026-11-19T03:46:10.717Z",
+  "updatedLocal": "19/11/2026, 09:16:10 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -302,6 +302,18 @@
       "href": "",
       "status": "closed",
       "slug": "tonbo-imaging-india"
+    },
+    {
+      "ipo": "Shree Siddhivinayak Greentech Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹142",
+      "listing": "₹142 (0.00%)",
+      "date": "25-27 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "shree-siddhivinayak-greentech-industries"
     }
   ]
 }
