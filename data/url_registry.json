@@ -320,6 +320,9 @@
   "injecto-polymers": {
     "first": "seed"
   },
+  "integris-medtech": {
+    "first": "2026-11-20"
+  },
   "integrum-energy-infrastructure": {
     "first": "seed"
   },
@@ -442,6 +445,9 @@
   },
   "moneyview": {
     "first": "seed"
+  },
+  "monomark-engineering": {
+    "first": "2026-11-20"
   },
   "mopshop-distribution": {
     "first": "seed"
