@@ -1,20 +1,8 @@
 {
-  "updatedIso": "2026-11-20T13:28:33.584Z",
-  "updatedLocal": "20/11/2026, 18:58:33 IST",
+  "updatedIso": "2026-11-20T21:28:42.960Z",
+  "updatedLocal": "21/11/2026, 02:58:42 IST",
   "source": "investorgain",
   "rows": [
-    {
-      "ipo": "Integris Medtech",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "27 Nov - 1 Dec 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "upcoming",
-      "slug": "integris-medtech"
-    },
     {
       "ipo": "Monomark Engineering",
       "gmp": null,
@@ -26,6 +14,18 @@
       "href": "",
       "status": "upcoming",
       "slug": "monomark-engineering"
+    },
+    {
+      "ipo": "Integris Medtech",
+      "gmp": null,
+      "gmpRaw": "-",
+      "price": "",
+      "listing": "",
+      "date": "27 Nov - 1 Dec 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "integris-medtech"
     },
     {
       "ipo": "Foodlink F&B Holdings",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Mahanadi Coalfields",
-      "gmp": 1,
-      "gmpRaw": "₹1",
+      "gmp": 0.75,
+      "gmpRaw": "₹0.75",
       "price": "₹136",
-      "listing": "₹137 (0.74%)",
+      "listing": "₹136.75 (0.55%)",
       "date": "19-23 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -112,6 +112,18 @@
       "slug": "vedant-poly-fabs"
     },
     {
+      "ipo": "Johnsoncab Electricals",
+      "gmp": 8,
+      "gmpRaw": "₹8",
+      "price": "₹200",
+      "listing": "₹208 (4.00%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "johnsoncab-electricals"
+    },
+    {
       "ipo": "HGS (India)",
       "gmp": 27,
       "gmpRaw": "₹27",
@@ -134,18 +146,6 @@
       "href": "",
       "status": "closed",
       "slug": "maxwell-engineering-solutions"
-    },
-    {
-      "ipo": "Johnsoncab Electricals",
-      "gmp": 8,
-      "gmpRaw": "₹8",
-      "price": "₹200",
-      "listing": "₹208 (4.00%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "johnsoncab-electricals"
     },
     {
       "ipo": "Vectras Enprocon",
@@ -208,16 +208,16 @@
       "slug": "ajwa-projects"
     },
     {
-      "ipo": "BLS Polymers",
-      "gmp": 69,
-      "gmpRaw": "₹69",
-      "price": "₹150",
-      "listing": "₹219 (46.00%)",
+      "ipo": "Wiscon Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹204",
+      "listing": "₹204 (0.00%)",
       "date": "27-29 Oct 2026",
-      "type": "Mainboard",
+      "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "bls-polymers"
+      "slug": "wiscon-industries"
     },
     {
       "ipo": "SFC Environmental Technologies",
@@ -232,16 +232,16 @@
       "slug": "sfc-environmental-technologies"
     },
     {
-      "ipo": "Wiscon Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹204",
-      "listing": "₹204 (0.00%)",
+      "ipo": "BLS Polymers",
+      "gmp": 69,
+      "gmpRaw": "₹69",
+      "price": "₹150",
+      "listing": "₹219 (46.00%)",
       "date": "27-29 Oct 2026",
-      "type": "SME",
+      "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "wiscon-industries"
+      "slug": "bls-polymers"
     },
     {
       "ipo": "EAAA India Alternatives",
@@ -290,18 +290,6 @@
       "href": "",
       "status": "closed",
       "slug": "paras-healthcare"
-    },
-    {
-      "ipo": "Tonbo Imaging India",
-      "gmp": 452,
-      "gmpRaw": "₹452",
-      "price": "₹700",
-      "listing": "₹1152 (64.57%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "tonbo-imaging-india"
     },
     {
       "ipo": "Bonfiglioli Transmissions",
