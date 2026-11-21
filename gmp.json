@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-20T21:28:42.960Z",
-  "updatedLocal": "21/11/2026, 02:58:42 IST",
+  "updatedIso": "2026-11-21T11:37:46.062Z",
+  "updatedLocal": "21/11/2026, 17:07:46 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -53,10 +53,10 @@
     },
     {
       "ipo": "Watrana Rentals",
-      "gmp": 67,
-      "gmpRaw": "₹67",
+      "gmp": 65,
+      "gmpRaw": "₹65",
       "price": "₹245",
-      "listing": "₹312 (27.35%)",
+      "listing": "₹310 (26.53%)",
       "date": "19-23 Nov 2026",
       "type": "SME",
       "href": "",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Mahanadi Coalfields",
-      "gmp": 0.75,
-      "gmpRaw": "₹0.75",
+      "gmp": 0.7,
+      "gmpRaw": "₹0.7",
       "price": "₹136",
-      "listing": "₹136.75 (0.55%)",
+      "listing": "₹136.7 (0.51%)",
       "date": "19-23 Nov 2026",
       "type": "Mainboard",
       "href": "",
