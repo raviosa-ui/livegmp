@@ -1,8 +1,32 @@
 {
-  "updatedIso": "2026-11-22T17:18:41.973Z",
-  "updatedLocal": "22/11/2026, 22:48:41 IST",
+  "updatedIso": "2026-11-23T03:54:54.959Z",
+  "updatedLocal": "23/11/2026, 09:24:54 IST",
   "source": "investorgain",
   "rows": [
+    {
+      "ipo": "Matangi Rubber",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹172",
+      "listing": "₹172 (0.00%)",
+      "date": "1-3 Dec 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "matangi-rubber"
+    },
+    {
+      "ipo": "A J Packaging",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹180",
+      "listing": "₹180 (0.00%)",
+      "date": "1-3 Dec 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "a-j-packaging"
+    },
     {
       "ipo": "Monomark Engineering",
       "gmp": 23,
@@ -278,30 +302,6 @@
       "href": "",
       "status": "closed",
       "slug": "jio-platform"
-    },
-    {
-      "ipo": "Paras Healthcare",
-      "gmp": 13,
-      "gmpRaw": "₹13",
-      "price": "₹693",
-      "listing": "₹706 (1.88%)",
-      "date": "21-23 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "paras-healthcare"
-    },
-    {
-      "ipo": "Bonfiglioli Transmissions",
-      "gmp": 66,
-      "gmpRaw": "₹66",
-      "price": "₹586",
-      "listing": "₹652 (11.26%)",
-      "date": "15-19 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "bonfiglioli-transmissions"
     }
   ]
 }

@@ -1,15 +1,19 @@
 {
   "https://livegmp.in/": {
-    "hash": "6c96774d178eb174",
-    "date": "2026-11-22"
+    "hash": "c4250be02d773eaa",
+    "date": "2026-11-23"
   },
   "https://livegmp.in/ipo-allotment-status.html": {
     "hash": "e1f9e40021b5e826",
     "date": "2026-09-25"
   },
   "https://livegmp.in/ipo/": {
-    "hash": "958fdd193ce9cac6",
-    "date": "2026-11-20"
+    "hash": "a5ac32f49dc0f8f8",
+    "date": "2026-11-23"
+  },
+  "https://livegmp.in/ipo/a-j-packaging/": {
+    "hash": "8ce81d0988e7ccba",
+    "date": "2026-11-23"
   },
   "https://livegmp.in/ipo/a-one-steels/": {
     "hash": "96d3c95553483d8c",
@@ -514,6 +518,10 @@
   "https://livegmp.in/ipo/manipal-payment/": {
     "hash": "09b405b4f365c2c7",
     "date": "2026-09-25"
+  },
+  "https://livegmp.in/ipo/matangi-rubber/": {
+    "hash": "31ede407aacc5172",
+    "date": "2026-11-23"
   },
   "https://livegmp.in/ipo/maxwell-engineering-solutions/": {
     "hash": "52dc8d1435bd4c15",
