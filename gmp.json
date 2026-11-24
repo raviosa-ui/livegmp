@@ -1,6 +1,6 @@
 {
-  "updatedIso": "2026-11-23T15:11:46.583Z",
-  "updatedLocal": "23/11/2026, 20:41:46 IST",
+  "updatedIso": "2026-11-24T12:52:50.128Z",
+  "updatedLocal": "24/11/2026, 18:22:50 IST",
   "source": "investorgain",
   "rows": [
     {
@@ -52,11 +52,23 @@
       "slug": "integris-medtech"
     },
     {
+      "ipo": "Airpro Technology",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹99",
+      "listing": "₹99 (0.00%)",
+      "date": "27 Nov - 1 Dec 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "airpro-technology"
+    },
+    {
       "ipo": "Foodlink F&B Holdings",
-      "gmp": 15,
-      "gmpRaw": "₹15",
+      "gmp": 17,
+      "gmpRaw": "₹17",
       "price": "₹191",
-      "listing": "₹206 (7.85%)",
+      "listing": "₹208 (8.90%)",
       "date": "26-30 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -101,10 +113,10 @@
     },
     {
       "ipo": "Crystal Crop Protection",
-      "gmp": 14,
-      "gmpRaw": "₹14",
+      "gmp": 18,
+      "gmpRaw": "₹18",
       "price": "₹272",
-      "listing": "₹286 (5.15%)",
+      "listing": "₹290 (6.62%)",
       "date": "18-20 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -136,30 +148,6 @@
       "slug": "vedant-poly-fabs"
     },
     {
-      "ipo": "HGS (India)",
-      "gmp": 27,
-      "gmpRaw": "₹27",
-      "price": "₹120",
-      "listing": "₹147 (22.50%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "hgs-india"
-    },
-    {
-      "ipo": "Maxwell Engineering Solutions",
-      "gmp": 105,
-      "gmpRaw": "₹105",
-      "price": "₹158",
-      "listing": "₹263 (66.46%)",
-      "date": "30 Oct - 3 Nov 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "maxwell-engineering-solutions"
-    },
-    {
       "ipo": "Vectras Enprocon",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -184,6 +172,30 @@
       "slug": "johnsoncab-electricals"
     },
     {
+      "ipo": "HGS (India)",
+      "gmp": 27,
+      "gmpRaw": "₹27",
+      "price": "₹120",
+      "listing": "₹147 (22.50%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "hgs-india"
+    },
+    {
+      "ipo": "Maxwell Engineering Solutions",
+      "gmp": 105,
+      "gmpRaw": "₹105",
+      "price": "₹158",
+      "listing": "₹263 (66.46%)",
+      "date": "30 Oct - 3 Nov 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "maxwell-engineering-solutions"
+    },
+    {
       "ipo": "Bombay Coated and Special Steels",
       "gmp": 8,
       "gmpRaw": "₹8",
@@ -196,18 +208,6 @@
       "slug": "bombay-coated-and-special-steels"
     },
     {
-      "ipo": "Carver Roboweld",
-      "gmp": 4,
-      "gmpRaw": "₹4",
-      "price": "₹80",
-      "listing": "₹84 (5.00%)",
-      "date": "28-30 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "carver-roboweld"
-    },
-    {
       "ipo": "Ajwa Projects",
       "gmp": 1,
       "gmpRaw": "₹1",
@@ -218,6 +218,18 @@
       "href": "",
       "status": "closed",
       "slug": "ajwa-projects"
+    },
+    {
+      "ipo": "Carver Roboweld",
+      "gmp": 4,
+      "gmpRaw": "₹4",
+      "price": "₹80",
+      "listing": "₹84 (5.00%)",
+      "date": "28-30 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "carver-roboweld"
     },
     {
       "ipo": "M.K.Sons Fine Jewels",
@@ -244,18 +256,6 @@
       "slug": "bls-polymers"
     },
     {
-      "ipo": "Wiscon Industries",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹204",
-      "listing": "₹204 (0.00%)",
-      "date": "27-29 Oct 2026",
-      "type": "SME",
-      "href": "",
-      "status": "closed",
-      "slug": "wiscon-industries"
-    },
-    {
       "ipo": "SFC Environmental Technologies",
       "gmp": 15.5,
       "gmpRaw": "₹15.5",
@@ -266,6 +266,18 @@
       "href": "",
       "status": "closed",
       "slug": "sfc-environmental-technologies"
+    },
+    {
+      "ipo": "Wiscon Industries",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹204",
+      "listing": "₹204 (0.00%)",
+      "date": "27-29 Oct 2026",
+      "type": "SME",
+      "href": "",
+      "status": "closed",
+      "slug": "wiscon-industries"
     },
     {
       "ipo": "EAAA India Alternatives",
@@ -290,18 +302,6 @@
       "href": "",
       "status": "closed",
       "slug": "core4-engineers"
-    },
-    {
-      "ipo": "Jio Platforms",
-      "gmp": 250,
-      "gmpRaw": "₹250",
-      "price": "₹1119",
-      "listing": "₹1369 (22.34%)",
-      "date": "21-23 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "jio-platform"
     }
   ]
 }
