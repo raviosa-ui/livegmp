@@ -1,14 +1,14 @@
 {
-  "updatedIso": "2026-11-24T23:12:52.582Z",
-  "updatedLocal": "25/11/2026, 04:42:52 IST",
+  "updatedIso": "2026-11-25T05:36:52.454Z",
+  "updatedLocal": "25/11/2026, 11:06:52 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Monomark Engineering",
-      "gmp": 23,
-      "gmpRaw": "₹23",
-      "price": "",
-      "listing": "",
+      "gmp": 21,
+      "gmpRaw": "₹21",
+      "price": "₹65",
+      "listing": "₹86 (32.31%)",
       "date": "2-4 Dec 2026",
       "type": "Mainboard",
       "href": "",
@@ -65,10 +65,10 @@
     },
     {
       "ipo": "Foodlink F&B Holdings",
-      "gmp": 21,
-      "gmpRaw": "₹21",
+      "gmp": 27,
+      "gmpRaw": "₹27",
       "price": "₹191",
-      "listing": "₹212 (10.99%)",
+      "listing": "₹218 (14.14%)",
       "date": "26-30 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -84,7 +84,7 @@
       "date": "25-27 Nov 2026",
       "type": "SME",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "shree-siddhivinayak-greentech-industries"
     },
     {
