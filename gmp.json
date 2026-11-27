@@ -1,20 +1,8 @@
 {
-  "updatedIso": "2026-11-27T03:09:17.450Z",
-  "updatedLocal": "27/11/2026, 08:39:17 IST",
+  "updatedIso": "2026-11-27T11:06:00.799Z",
+  "updatedLocal": "27/11/2026, 16:36:00 IST",
   "source": "investorgain",
   "rows": [
-    {
-      "ipo": "Swara Baby Products",
-      "gmp": 0,
-      "gmpRaw": "₹0",
-      "price": "₹111",
-      "listing": "₹111 (0.00%)",
-      "date": "2-4 Dec 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "upcoming",
-      "slug": "swara-baby-products"
-    },
     {
       "ipo": "Integris Medtech",
       "gmp": null,
@@ -28,11 +16,23 @@
       "slug": "integris-medtech"
     },
     {
+      "ipo": "Vishwas Refoils & Consumer",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹90",
+      "listing": "₹90 (0.00%)",
+      "date": "3-7 Dec 2026",
+      "type": "SME",
+      "href": "",
+      "status": "upcoming",
+      "slug": "vishwas-refoils-consumer"
+    },
+    {
       "ipo": "Monomark Engineering",
-      "gmp": 24,
-      "gmpRaw": "₹24",
+      "gmp": 20,
+      "gmpRaw": "₹20",
       "price": "₹65",
-      "listing": "₹89 (36.92%)",
+      "listing": "₹85 (30.77%)",
       "date": "2-4 Dec 2026",
       "type": "Mainboard",
       "href": "",
@@ -40,16 +40,16 @@
       "slug": "monomark-engineering"
     },
     {
-      "ipo": "Matangi Rubber",
-      "gmp": 27,
-      "gmpRaw": "₹27",
-      "price": "₹172",
-      "listing": "₹199 (15.70%)",
-      "date": "1-3 Dec 2026",
+      "ipo": "Swara Baby Products",
+      "gmp": 3,
+      "gmpRaw": "₹3",
+      "price": "₹111",
+      "listing": "₹114 (2.70%)",
+      "date": "2-4 Dec 2026",
       "type": "Mainboard",
       "href": "",
       "status": "upcoming",
-      "slug": "matangi-rubber"
+      "slug": "swara-baby-products"
     },
     {
       "ipo": "A J Packaging",
@@ -64,6 +64,18 @@
       "slug": "a-j-packaging"
     },
     {
+      "ipo": "Matangi Rubber",
+      "gmp": 31,
+      "gmpRaw": "₹31",
+      "price": "₹172",
+      "listing": "₹203 (18.02%)",
+      "date": "1-3 Dec 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "upcoming",
+      "slug": "matangi-rubber"
+    },
+    {
       "ipo": "Airpro Technology",
       "gmp": 3,
       "gmpRaw": "₹3",
@@ -72,15 +84,15 @@
       "date": "27 Nov - 1 Dec 2026",
       "type": "SME",
       "href": "",
-      "status": "upcoming",
+      "status": "active",
       "slug": "airpro-technology"
     },
     {
       "ipo": "Foodlink F&B Holdings",
-      "gmp": 7,
-      "gmpRaw": "₹7",
+      "gmp": 4,
+      "gmpRaw": "₹4",
       "price": "₹191",
-      "listing": "₹198 (3.66%)",
+      "listing": "₹195 (2.09%)",
       "date": "26-30 Nov 2026",
       "type": "Mainboard",
       "href": "",
@@ -89,27 +101,15 @@
     },
     {
       "ipo": "Shree Siddhivinayak Greentech Industries",
-      "gmp": 2,
-      "gmpRaw": "₹2",
+      "gmp": 1,
+      "gmpRaw": "₹1",
       "price": "₹142",
-      "listing": "₹144 (1.41%)",
+      "listing": "₹143 (0.70%)",
       "date": "25-27 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "active",
       "slug": "shree-siddhivinayak-greentech-industries"
-    },
-    {
-      "ipo": "Mahanadi Coalfields",
-      "gmp": 0.7,
-      "gmpRaw": "₹0.7",
-      "price": "₹136",
-      "listing": "₹136.7 (0.51%)",
-      "date": "19-23 Nov 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "mahanadi-coalfields"
     },
     {
       "ipo": "Watrana Rentals",
@@ -122,6 +122,18 @@
       "href": "",
       "status": "closed",
       "slug": "watrana-rentals"
+    },
+    {
+      "ipo": "Mahanadi Coalfields",
+      "gmp": 0.7,
+      "gmpRaw": "₹0.7",
+      "price": "₹136",
+      "listing": "₹136.7 (0.51%)",
+      "date": "19-23 Nov 2026",
+      "type": "Mainboard",
+      "href": "",
+      "status": "closed",
+      "slug": "mahanadi-coalfields"
     },
     {
       "ipo": "Crystal Crop Protection",
@@ -172,16 +184,16 @@
       "slug": "vectras-enprocon"
     },
     {
-      "ipo": "Johnsoncab Electricals",
-      "gmp": 8,
-      "gmpRaw": "₹8",
-      "price": "₹200",
-      "listing": "₹208 (4.00%)",
+      "ipo": "Maxwell Engineering Solutions",
+      "gmp": 105,
+      "gmpRaw": "₹105",
+      "price": "₹158",
+      "listing": "₹263 (66.46%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "johnsoncab-electricals"
+      "slug": "maxwell-engineering-solutions"
     },
     {
       "ipo": "HGS (India)",
@@ -196,16 +208,16 @@
       "slug": "hgs-india"
     },
     {
-      "ipo": "Maxwell Engineering Solutions",
-      "gmp": 105,
-      "gmpRaw": "₹105",
-      "price": "₹158",
-      "listing": "₹263 (66.46%)",
+      "ipo": "Johnsoncab Electricals",
+      "gmp": 8,
+      "gmpRaw": "₹8",
+      "price": "₹200",
+      "listing": "₹208 (4.00%)",
       "date": "30 Oct - 3 Nov 2026",
       "type": "SME",
       "href": "",
       "status": "closed",
-      "slug": "maxwell-engineering-solutions"
+      "slug": "johnsoncab-electricals"
     },
     {
       "ipo": "Bombay Coated and Special Steels",
@@ -268,18 +280,6 @@
       "slug": "bls-polymers"
     },
     {
-      "ipo": "SFC Environmental Technologies",
-      "gmp": 15.5,
-      "gmpRaw": "₹15.5",
-      "price": "₹330",
-      "listing": "₹345.5 (4.70%)",
-      "date": "27-29 Oct 2026",
-      "type": "Mainboard",
-      "href": "",
-      "status": "closed",
-      "slug": "sfc-environmental-technologies"
-    },
-    {
       "ipo": "Wiscon Industries",
       "gmp": 0,
       "gmpRaw": "₹0",
@@ -292,16 +292,16 @@
       "slug": "wiscon-industries"
     },
     {
-      "ipo": "EAAA India Alternatives",
-      "gmp": 54,
-      "gmpRaw": "₹54",
-      "price": "₹1665",
-      "listing": "₹1719 (3.24%)",
-      "date": "26-28 Oct 2026",
+      "ipo": "SFC Environmental Technologies",
+      "gmp": 15.5,
+      "gmpRaw": "₹15.5",
+      "price": "₹330",
+      "listing": "₹345.5 (4.70%)",
+      "date": "27-29 Oct 2026",
       "type": "Mainboard",
       "href": "",
       "status": "closed",
-      "slug": "eaaa-india-alternatives"
+      "slug": "sfc-environmental-technologies"
     }
   ]
 }
