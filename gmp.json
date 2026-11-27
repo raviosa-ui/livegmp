@@ -1,15 +1,15 @@
 {
-  "updatedIso": "2026-11-26T20:26:58.810Z",
-  "updatedLocal": "27/11/2026, 01:56:58 IST",
+  "updatedIso": "2026-11-27T03:09:17.450Z",
+  "updatedLocal": "27/11/2026, 08:39:17 IST",
   "source": "investorgain",
   "rows": [
     {
       "ipo": "Swara Baby Products",
-      "gmp": null,
-      "gmpRaw": "-",
-      "price": "",
-      "listing": "",
-      "date": "",
+      "gmp": 0,
+      "gmpRaw": "₹0",
+      "price": "₹111",
+      "listing": "₹111 (0.00%)",
+      "date": "2-4 Dec 2026",
       "type": "Mainboard",
       "href": "",
       "status": "upcoming",
